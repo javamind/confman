@@ -13,15 +13,15 @@ compileJava {
 }
 
 repositories {
-    //mavenCentral()
-    maven {
-        credentials {
-            username 'deployment'
-            password 'deployment123'
-        }
-        url 'http://webnexus.laboboiron.com/nexus/content/groups/public'
+    mavenCentral()
+//    maven {
+//        credentials {
+//            username 'deployment'
+//            password 'deployment123'
+//        }
+//        url 'http://webnexus.laboboiron.com/nexus/content/groups/public'
+//    }
     }
-}
 
 dependencies {
     compile group:'net.code-story', name:'http', version: '1.50'

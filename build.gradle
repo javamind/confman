@@ -1,4 +1,56 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply plugin: 'java'
+apply plugin: 'idea'
+
+version = '1.0'
+jar {
+    baseName = 'conf-manager'
+    version =  '0.0.1-SNAPSHOT'
+}
+
+compileJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile group:'net.code-story', name:'http', version: '1.50'
+    compile group:'org.webjars', name:'bootstrap', version: '3.1.1'
+    compile group:'org.webjars', name:'angularjs', version: '1.2.15'
+    compile group:'com.h2database', name:'h2', version: '1.4.179'
+    compile group:'com.google.guava', name:'guava', version: '16.0.1'
+
+    compile group:'org.springframework', name:'spring-context', version: '4.0.5.RELEASE'
+    compile group:'org.springframework.data', name:'spring-data-jpa', version: '1.6.1.RELEASE'
+
+    compile group:'org.hibernate', name:'hibernate-core', version: '4.3.5.Final'
+    compile group:'org.hibernate', name:'hibernate-entitymanager', version: '4.3.5.Final'
+
+    /*Config Hibernate tools*/
+    compile group:'org.hibernate', name:'hibernate-tools', version: '4.3.1.CR1'
+    //runtime group:'org.eclipse.core', name:'commands', version: '3.3.0-I20070605-0010'
+    //'[,3.3.0]'
+
+    testCompile group: 'org.assertj', name: 'assertj-core', version: '1.5.0'
+}
+
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.10'
+    gradleVersion = '1.11'
+}
+
+task generate_schema << {
+    ant.taskdef(name: 'hibernatetool', classname: 'org.hibernate.tool.ant.HibernateToolTask', classpath: configurations.compile.asPath)
+    mkdir( dir: "$buildDir/sql" )
+    ant.hibernatetool( destdir : "$buildDir/generated" ) {
+        //annotationconfiguration( configurationfile:"$classesDir/hibernate.cfg.xml" )
+        //hbm2ddl( export: false, outputfilename: 'schema.sql' )
+        classpath {
+            hbm2cfgxml()
+            pathelement( path: classesDir )
+        }
+    }
 }

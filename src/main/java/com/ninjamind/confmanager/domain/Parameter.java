@@ -2,8 +2,7 @@ package com.ninjamind.confmanager.domain;
 
 import com.google.common.base.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * {@link }
@@ -11,10 +10,20 @@ import javax.persistence.ManyToOne;
  * @author EHRET_G
  */
 @Entity
+@Table(name=Parameter.TABLE_NAME)
 public class Parameter extends AbstractConfManEntity{
+    public final static String TABLE_NAME="parameter";
+    public final static String SEQ_NAME= "seq_parameter";
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator = Parameter.SEQ_NAME)
+    @SequenceGenerator(name = Parameter.SEQ_NAME, sequenceName = Parameter.SEQ_NAME, allocationSize = 1)
+    private Long id;
     @ManyToOne
+    @JoinColumn(name = "parameterGroupment_id")
     private ParameterGroupment parameterGroupment;
     @ManyToOne
+    @JoinColumn(name = "instance_id")
     private Instance instance;
 
     public Parameter() {
@@ -35,6 +44,22 @@ public class Parameter extends AbstractConfManEntity{
 
     public void setInstance(Instance instance) {
         this.instance = instance;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public ParameterGroupment getParameterGroupment() {
+        return parameterGroupment;
+    }
+
+    public void setParameterGroupment(ParameterGroupment parameterGroupment) {
+        this.parameterGroupment = parameterGroupment;
     }
 
     @Override
@@ -63,6 +88,7 @@ public class Parameter extends AbstractConfManEntity{
     @Override
     public String toString() {
         return Objects.toStringHelper(this)
+                .add("id", id)
                 .addValue(super.toString())
                 .add("parameterGroupment", parameterGroupment)
                 .add("instance", instance)

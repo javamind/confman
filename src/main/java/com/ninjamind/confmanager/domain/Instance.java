@@ -2,9 +2,7 @@ package com.ninjamind.confmanager.domain;
 
 import com.google.common.base.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,8 +13,17 @@ import java.util.Set;
  * @author EHRET_G
  */
 @Entity
+@Table(name=Instance.TABLE_NAME)
 public class Instance extends AbstractConfManEntity{
+    public final static String TABLE_NAME="instance";
+    public final static String SEQ_NAME= "seq_instance";
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator = Instance.SEQ_NAME)
+    @SequenceGenerator(name = Instance.SEQ_NAME, sequenceName = Instance.SEQ_NAME, allocationSize = 1)
+    private Long id;
     @ManyToOne
+    @JoinColumn(name = "versionTracking_id")
     private VersionTracking versionTracking;
     @OneToMany(mappedBy = "parameter")
     private Set<Parameter> parameters= new HashSet<>();
@@ -57,6 +64,14 @@ public class Instance extends AbstractConfManEntity{
         return Collections.unmodifiableSet(parameters);
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -81,6 +96,7 @@ public class Instance extends AbstractConfManEntity{
     @Override
     public String toString() {
         return Objects.toStringHelper(this)
+                .add("id", id)
                 .addValue(super.toString())
                 .add("versionTracking", versionTracking)
                 .toString();

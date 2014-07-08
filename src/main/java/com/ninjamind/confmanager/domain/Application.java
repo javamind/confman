@@ -2,9 +2,8 @@ package com.ninjamind.confmanager.domain;
 
 import com.google.common.base.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import java.lang.annotation.Target;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,10 +14,19 @@ import java.util.Set;
  * @author EHRET_G
  */
 @Entity
+@Table(name=Application.TABLE_NAME)
 public class Application extends AbstractConfManEntity{
+    public final static String TABLE_NAME="application";
+    public final static String SEQ_NAME= "seq_application";
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator = Application.SEQ_NAME)
+    @SequenceGenerator(name = Application.SEQ_NAME, sequenceName = Application.SEQ_NAME, allocationSize = 1)
+    private Long id;
     @OneToMany(mappedBy = "applicationVersion")
     private Set<ApplicationVersion> applicationVersions= new HashSet<>();
     @ManyToOne
+    @JoinColumn(name = "applicationGroupment_id")
     private ApplicationGroupment applicationGroupment;
 
     public Application() {
@@ -57,6 +65,14 @@ public class Application extends AbstractConfManEntity{
         return Collections.unmodifiableSet(applicationVersions);
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -81,6 +97,7 @@ public class Application extends AbstractConfManEntity{
     @Override
     public String toString() {
         return Objects.toStringHelper(this)
+                .add("id", id)
                 .addValue(super.toString())
                 .add("applicationGroupment", applicationGroupment)
                 .toString();

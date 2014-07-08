@@ -1,7 +1,8 @@
 package com.ninjamind.confmanager.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import com.google.common.base.Objects;
+
+import javax.persistence.*;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +13,15 @@ import java.util.Set;
  * @author EHRET_G
  */
 @Entity
+@Table(name=Environment.TABLE_NAME)
 public class Environment extends AbstractConfManEntity{
+    public final static String TABLE_NAME="environment";
+    public final static String SEQ_NAME= "seq_environment";
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator = Environment.SEQ_NAME)
+    @SequenceGenerator(name = Environment.SEQ_NAME, sequenceName = Environment.SEQ_NAME, allocationSize = 1)
+    private Long id;
     @OneToMany(mappedBy = "applicationGroupment")
     private Set<ApplicationGroupment> applicationGroupments= new HashSet<>();
 
@@ -37,5 +46,21 @@ public class Environment extends AbstractConfManEntity{
 
     public Set<ApplicationGroupment> getApplicationGroupments() {
         return Collections.unmodifiableSet(applicationGroupments);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+                .add("id", id)
+                .addValue(super.toString())
+                .toString();
     }
 }

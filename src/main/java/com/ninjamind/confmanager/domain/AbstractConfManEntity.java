@@ -10,13 +10,8 @@ import javax.persistence.*;
  * @author EHRET_G
  */
 @MappedSuperclass
-public class AbstractConfManEntity {
-    /**
-     * Id (sequence)
-     */
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
+public abstract class AbstractConfManEntity {
+
     /**
      * Code
      */
@@ -45,14 +40,6 @@ public class AbstractConfManEntity {
     public AbstractConfManEntity(String code, String label) {
         this.code = code;
         this.label = label;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getCode() {
@@ -102,7 +89,6 @@ public class AbstractConfManEntity {
     @Override
     public String toString() {
         return Objects.toStringHelper(this)
-                .add("id", id)
                 .add("code", code)
                 .add("label", label)
                 .toString();

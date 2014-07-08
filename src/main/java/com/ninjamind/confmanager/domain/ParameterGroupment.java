@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * {@link }
+ * Parameters can be grouped
  *
  * @author EHRET_G
  */

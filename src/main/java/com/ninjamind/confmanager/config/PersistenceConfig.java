@@ -35,21 +35,15 @@ public class PersistenceConfig {
     @Resource
     private Environment env;
 
-//    @Bean
-//    public DataSource dataSource() {
-//        SingleConnectionDataSource dataSource = new SingleConnectionDataSource();
-//        dataSource.setDriverClassName(env.getRequiredProperty(PROPERTY_NAME_DATABASE_DRIVER));
-//        dataSource.setUrl(env.getRequiredProperty(PROPERTY_NAME_DATABASE_URL));
-//        dataSource.setUsername(env.getRequiredProperty(PROPERTY_NAME_DATABASE_USERNAME));
-//        dataSource.setPassword(env.getRequiredProperty(PROPERTY_NAME_DATABASE_PASSWORD));
-//        dataSource.setSuppressClose(new Boolean(env.getRequiredProperty(PROPERTY_NAME_DATABASE_SUPRESSCLOSE)));
-//        return dataSource;
-//    }
-    public EmbeddedDatabase dataSource() {
-        return new EmbeddedDatabaseBuilder().
-                setType(EmbeddedDatabaseType.H2).
-                addScript("db-schema.sql").
-                build();
+    @Bean
+    public DataSource dataSource() {
+        SingleConnectionDataSource dataSource = new SingleConnectionDataSource();
+        dataSource.setDriverClassName(env.getRequiredProperty(PROPERTY_NAME_DATABASE_DRIVER));
+        dataSource.setUrl(env.getRequiredProperty(PROPERTY_NAME_DATABASE_URL));
+        dataSource.setUsername(env.getRequiredProperty(PROPERTY_NAME_DATABASE_USERNAME));
+        dataSource.setPassword(env.getRequiredProperty(PROPERTY_NAME_DATABASE_PASSWORD));
+        dataSource.setSuppressClose(new Boolean(env.getRequiredProperty(PROPERTY_NAME_DATABASE_SUPRESSCLOSE)));
+        return dataSource;
     }
 
     @Bean

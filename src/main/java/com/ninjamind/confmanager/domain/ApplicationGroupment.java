@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * {@link }
+ * To respond to a user's demand you often need to install several applications
  *
  * @author EHRET_G
  */

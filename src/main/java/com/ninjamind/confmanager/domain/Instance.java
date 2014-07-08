@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * {@link }
+ * An application can be installed on several servers
  *
  * @author EHRET_G
  */

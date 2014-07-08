@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * {@link }
+ * A version is fixed but sometimes we have to change only one parameter in the conf without make a release
  *
  * @author EHRET_G
  */

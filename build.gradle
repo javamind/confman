@@ -1,3 +1,14 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.h2database:h2:1.4.179'
+        classpath 'org.flywaydb:flyway-gradle-plugin:3.0'
+    }
+}
+
+apply plugin: 'flyway'
 apply plugin: 'java'
 apply plugin: 'idea'
 
@@ -39,4 +50,9 @@ dependencies {
 
 task wrapper(type: Wrapper) {
     gradleVersion = '1.11'
+}
+
+flyway {
+    url = 'jdbc:h2:file:target/foobar'
+    user = 'sa'
 }

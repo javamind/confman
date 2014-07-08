@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * {@link }
+ * you always need several environment when you develop an application : development, staging, production
  *
  * @author EHRET_G
  */

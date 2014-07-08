@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 /**
- * {@link }
+ * Each instances have paramaters
  *
  * @author EHRET_G
  */

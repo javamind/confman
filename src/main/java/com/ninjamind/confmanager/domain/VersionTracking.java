@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * {@link }
+ * A tracking version represent a little modification in the conf made without make a release
  *
  * @author EHRET_G
  */

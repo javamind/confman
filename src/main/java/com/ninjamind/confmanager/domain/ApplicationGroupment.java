@@ -22,7 +22,7 @@ public class ApplicationGroupment extends AbstractConfManEntity{
     @GeneratedValue(strategy= GenerationType.AUTO, generator = ApplicationGroupment.SEQ_NAME)
     @SequenceGenerator(name = ApplicationGroupment.SEQ_NAME, sequenceName = ApplicationGroupment.SEQ_NAME, allocationSize = 1)
     private Long id;
-    @OneToMany(mappedBy = "application")
+    @OneToMany(mappedBy = "applicationGroupment")
     private Set<Application> applications= new HashSet<>();
     @ManyToOne
     @JoinColumn(name = "environment_id")

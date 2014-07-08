@@ -23,7 +23,7 @@ public class Application extends AbstractConfManEntity{
     @GeneratedValue(strategy= GenerationType.AUTO, generator = Application.SEQ_NAME)
     @SequenceGenerator(name = Application.SEQ_NAME, sequenceName = Application.SEQ_NAME, allocationSize = 1)
     private Long id;
-    @OneToMany(mappedBy = "applicationVersion")
+    @OneToMany(mappedBy = "application")
     private Set<ApplicationVersion> applicationVersions= new HashSet<>();
     @ManyToOne
     @JoinColumn(name = "applicationGroupment_id")

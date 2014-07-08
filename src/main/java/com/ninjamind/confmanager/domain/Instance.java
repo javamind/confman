@@ -25,7 +25,7 @@ public class Instance extends AbstractConfManEntity{
     @ManyToOne
     @JoinColumn(name = "versionTracking_id")
     private VersionTracking versionTracking;
-    @OneToMany(mappedBy = "parameter")
+    @OneToMany(mappedBy = "instance")
     private Set<Parameter> parameters= new HashSet<>();
 
     public Instance() {

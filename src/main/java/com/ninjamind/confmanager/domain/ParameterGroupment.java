@@ -22,7 +22,7 @@ public class ParameterGroupment extends AbstractConfManEntity{
     @GeneratedValue(strategy= GenerationType.AUTO, generator = ParameterGroupment.SEQ_NAME)
     @SequenceGenerator(name = ParameterGroupment.SEQ_NAME, sequenceName = ParameterGroupment.SEQ_NAME, allocationSize = 1)
     private Long id;
-    @OneToMany(mappedBy = "parameter")
+    @OneToMany(mappedBy = "parameterGroupment")
     private Set<Parameter> parameters= new HashSet<>();
 
     public ParameterGroupment() {

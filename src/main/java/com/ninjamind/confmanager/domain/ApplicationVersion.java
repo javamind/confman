@@ -22,7 +22,7 @@ public class ApplicationVersion extends AbstractConfManEntity{
     @GeneratedValue(strategy= GenerationType.AUTO, generator = ApplicationVersion.SEQ_NAME)
     @SequenceGenerator(name = ApplicationVersion.SEQ_NAME, sequenceName = ApplicationVersion.SEQ_NAME, allocationSize = 1)
     private Long id;
-    @OneToMany(mappedBy = "versionTracking")
+    @OneToMany(mappedBy = "applicationVersion")
     private Set<VersionTracking> versionTrackings= new HashSet<>();
     @ManyToOne
     @JoinColumn(name = "application_id")

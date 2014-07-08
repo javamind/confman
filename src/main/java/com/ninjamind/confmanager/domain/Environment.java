@@ -22,7 +22,7 @@ public class Environment extends AbstractConfManEntity{
     @GeneratedValue(strategy= GenerationType.AUTO, generator = Environment.SEQ_NAME)
     @SequenceGenerator(name = Environment.SEQ_NAME, sequenceName = Environment.SEQ_NAME, allocationSize = 1)
     private Long id;
-    @OneToMany(mappedBy = "applicationGroupment")
+    @OneToMany(mappedBy = "environment")
     private Set<ApplicationGroupment> applicationGroupments= new HashSet<>();
 
     public Environment() {

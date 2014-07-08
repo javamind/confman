@@ -51,13 +51,25 @@ dependencies {
 
 processResources {
     filter ReplaceTokens, tokens: [
-        "db.driver": project.property("db.driver"),
-        "db.url": project.property("db.url"),
-        "db.username": project.property("db.username"),
-        "db.password": project.property("db.password"),
-        "db.supressclose": project.property("db.supressclose"),
-        "hibernate.dialect": project.property("hibernate.dialect"),
-        "hibernate.show_sql": project.property("hibernate.show_sql")
+            "db.driver": project.property("db.driver"),
+            "db.url": project.property("db.url"),
+            "db.username": project.property("db.username"),
+            "db.password": project.property("db.password"),
+            "db.supressclose": project.property("db.supressclose"),
+            "hibernate.dialect": project.property("hibernate.dialect"),
+            "hibernate.show_sql": project.property("hibernate.show_sql")
+    ]
+}
+
+processTestResources {
+    filter ReplaceTokens, tokens: [
+            "db.driver": project.property("db.driver"),
+            "db.url": project.property("db.url"),
+            "db.username": project.property("db.username"),
+            "db.password": project.property("db.password"),
+            "db.supressclose": project.property("db.supressclose"),
+            "hibernate.dialect": project.property("hibernate.dialect"),
+            "hibernate.show_sql": project.property("hibernate.show_sql")
     ]
 }
 

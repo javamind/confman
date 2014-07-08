@@ -20,7 +20,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @ComponentScan("com.ninjamind.conference.repository")
 @PropertySource("classpath:application.properties")
-@EnableJpaRepositories("com.ninjamind.conference.repository")
+@EnableJpaRepositories("com.ninjamind.confmanager.repository")
 public class PersistenceConfig {
 
     public static final String PROPERTY_NAME_DATABASE_DRIVER = "db.driver";

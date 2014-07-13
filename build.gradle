@@ -5,7 +5,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        compile group:'postgresql', name:'postgresql', version: '9.1-901.jdbc4'
+        classpath 'postgresql:postgresql:9.1-901.jdbc4'
         classpath 'org.flywaydb:flyway-gradle-plugin:3.0'
     }
 }
@@ -33,7 +33,7 @@ repositories {
 dependencies {
     compile group:'net.code-story', name:'http', version: '1.50'
     compile group:'org.webjars', name:'bootstrap', version: '3.1.1'
-    compile group:'org.webjars', name:'angularjs', version: '1.2.15'
+    compile group:'org.webjars', name:'angularjs', version: '1.2.16'
     compile group:'postgresql', name:'postgresql', version: '9.1-901.jdbc4'
     compile group:'com.google.guava', name:'guava', version: '16.0.1'
 

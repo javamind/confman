@@ -1,0 +1,31 @@
+package com.ninjamind.confmanager.config;
+
+import com.ninjamind.confmanager.web.EnvironmentController;
+import org.hibernate.jpa.HibernatePersistenceProvider;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.SingleConnectionDataSource;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+import javax.sql.DataSource;
+import java.util.Properties;
+
+@Configuration
+@ComponentScan("com.ninjamind.confmanager.service")
+@Transactional(propagation = Propagation.REQUIRES_NEW)
+public class WebConfig {
+
+    @Bean
+    public EnvironmentController environmentController(){
+        return new EnvironmentController();
+    }
+}

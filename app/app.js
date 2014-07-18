@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-    .module('confmanager', [
+    .module('confman', [
         'ngResource',
         'ngRoute'
     ])
@@ -9,7 +9,7 @@ angular
         urlserver: 'http://localhost:8082/'
     }
 )
-    .controller('confmanagerController', function ($scope,$http, constants) {
+    .controller('confmanController', function ($scope,$http, constants) {
         $scope.myname = "toto";
 
         $scope.refresh = function(){

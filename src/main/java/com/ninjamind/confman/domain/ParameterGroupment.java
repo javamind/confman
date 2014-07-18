@@ -1,4 +1,4 @@
-package com.ninjamind.confmanager.domain;
+package com.ninjamind.confman.domain;
 
 import com.google.common.base.Objects;
 
@@ -14,7 +14,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name=ParameterGroupment.TABLE_NAME)
-public class ParameterGroupment extends AbstractConfManEntity{
+public class ParameterGroupment extends AbstractConfManEntity<ParameterGroupment>{
     public final static String TABLE_NAME="parametergrpt";
     public final static String SEQ_NAME= "seq_parameter_grpt";
 
@@ -28,16 +28,15 @@ public class ParameterGroupment extends AbstractConfManEntity{
     public ParameterGroupment() {
     }
 
-    public ParameterGroupment(String code, String label) {
-        super(code, label);
+
+    public ParameterGroupment addParameter(Parameter instance) {
+         parameters.add(instance);
+        return this;
     }
 
-    public boolean addParameter(Parameter instance) {
-        return parameters.add(instance);
-    }
-
-    public boolean removeParameter(Object o) {
-        return parameters.remove(o);
+    public ParameterGroupment removeParameter(Object o) {
+        parameters.remove(o);
+        return this;
     }
 
     public void clearParameter() {
@@ -52,8 +51,10 @@ public class ParameterGroupment extends AbstractConfManEntity{
         return id;
     }
 
-    public void setId(Long id) {
+    public ParameterGroupment setId(Long id) {
         this.id = id;
+        return this;
+
     }
 
     @Override

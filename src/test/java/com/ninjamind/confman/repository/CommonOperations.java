@@ -1,8 +1,8 @@
-package com.ninjamind.confmanager.repository;
+package com.ninjamind.confman.repository;
 
 import com.ninja_squad.dbsetup.Operations;
 import com.ninja_squad.dbsetup.operation.Operation;
-import com.ninjamind.confmanager.domain.*;
+import com.ninjamind.confman.domain.*;
 
 /**
  * {@link }

@@ -1,8 +1,9 @@
-package com.ninjamind.confmanager.domain;
+package com.ninjamind.confman.domain;
 
 import com.google.common.base.Objects;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * All our entities have common fields
@@ -10,7 +11,7 @@ import javax.persistence.*;
  * @author EHRET_G
  */
 @MappedSuperclass
-public abstract class AbstractConfManEntity {
+public abstract class AbstractConfManEntity<T extends AbstractConfManEntity> implements Serializable {
 
     /**
      * Code
@@ -46,24 +47,27 @@ public abstract class AbstractConfManEntity {
         return code;
     }
 
-    public void setCode(String code) {
+    public T setCode(String code) {
         this.code = code;
+        return (T) this;
     }
 
     public String getLabel() {
         return label;
     }
 
-    public void setLabel(String label) {
+    public T setLabel(String label) {
         this.label = label;
+        return (T) this;
     }
 
     public Long getVersion() {
         return version;
     }
 
-    public void setVersion(Long version) {
+    public T setVersion(Long version) {
         this.version = version;
+        return (T) this;
     }
 
     @Override

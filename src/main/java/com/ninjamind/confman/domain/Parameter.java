@@ -1,4 +1,4 @@
-package com.ninjamind.confmanager.domain;
+package com.ninjamind.confman.domain;
 
 import com.google.common.base.Objects;
 
@@ -11,7 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name=Parameter.TABLE_NAME)
-public class Parameter extends AbstractConfManEntity{
+public class Parameter extends AbstractConfManEntity<Parameter>{
     public final static String TABLE_NAME="parameter";
     public final static String SEQ_NAME= "seq_parameter";
 
@@ -29,37 +29,31 @@ public class Parameter extends AbstractConfManEntity{
     public Parameter() {
     }
 
-    public Parameter(String code, String label) {
-        super(code, label);
-    }
-
-    public Parameter(String code, String label, Instance instance) {
-        super(code, label);
-        this.instance = instance;
-    }
-
     public Instance getInstance() {
         return instance;
     }
 
-    public void setInstance(Instance instance) {
+    public Parameter setInstance(Instance instance) {
         this.instance = instance;
+        return this;
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public Parameter setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public ParameterGroupment getParameterGroupment() {
         return parameterGroupment;
     }
 
-    public void setParameterGroupment(ParameterGroupment parameterGroupment) {
+    public Parameter setParameterGroupment(ParameterGroupment parameterGroupment) {
         this.parameterGroupment = parameterGroupment;
+        return this;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.ninjamind.confmanager.domain;
+package com.ninjamind.confman.domain;
 
 import com.google.common.base.Objects;
 
@@ -14,7 +14,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name=ApplicationGroupment.TABLE_NAME)
-public class ApplicationGroupment extends AbstractConfManEntity{
+public class ApplicationGroupment extends AbstractConfManEntity<ApplicationGroupment>{
     public final static String TABLE_NAME="applicationgrpt";
     public final static String SEQ_NAME= "seq_application_grpt";
 
@@ -31,29 +31,23 @@ public class ApplicationGroupment extends AbstractConfManEntity{
     public ApplicationGroupment() {
     }
 
-    public ApplicationGroupment(String code, String label) {
-        super(code, label);
-    }
-
-    public ApplicationGroupment(String code, String label, Environment environment) {
-        super(code, label);
-        this.environment = environment;
-    }
-
     public Environment getEnvironment() {
         return environment;
     }
 
-    public void setEnvironment(Environment environment) {
+    public ApplicationGroupment setEnvironment(Environment environment) {
         this.environment = environment;
+        return this;
     }
 
-    public boolean addApplication(Application application) {
-        return applications.add(application);
+    public ApplicationGroupment addApplication(Application application) {
+        applications.add(application);
+        return this;
     }
 
-    public boolean removeApplication(Object o) {
-        return applications.remove(o);
+    public ApplicationGroupment removeApplication(Object o) {
+        applications.remove(o);
+        return this;
     }
 
     public void clearApplication() {
@@ -68,8 +62,9 @@ public class ApplicationGroupment extends AbstractConfManEntity{
         return id;
     }
 
-    public void setId(Long id) {
+    public ApplicationGroupment setId(Long id) {
         this.id = id;
+        return this;
     }
 
     @Override

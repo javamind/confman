@@ -1,4 +1,4 @@
-package com.ninjamind.confmanager.domain;
+package com.ninjamind.confman.domain;
 
 import com.google.common.base.Objects;
 
@@ -14,7 +14,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name=Instance.TABLE_NAME)
-public class Instance extends AbstractConfManEntity{
+public class Instance extends AbstractConfManEntity<Instance>{
     public final static String TABLE_NAME="instance";
     public final static String SEQ_NAME= "seq_instance";
 
@@ -31,29 +31,23 @@ public class Instance extends AbstractConfManEntity{
     public Instance() {
     }
 
-    public Instance(String code, String label) {
-        super(code, label);
-    }
-
-    public Instance(String code, String label, VersionTracking versionTracking) {
-        super(code, label);
-        this.versionTracking = versionTracking;
-    }
-
     public VersionTracking getVersionTracking() {
         return versionTracking;
     }
 
-    public void setVersionTracking(VersionTracking versionTracking) {
+    public Instance setVersionTracking(VersionTracking versionTracking) {
         this.versionTracking = versionTracking;
+        return this;
     }
 
-    public boolean addParameter(Parameter parameter) {
-        return parameters.add(parameter);
+    public Instance addParameter(Parameter parameter) {
+        parameters.add(parameter);
+        return this;
     }
 
-    public boolean removeParameter(Object o) {
-        return parameters.remove(o);
+    public Instance removeParameter(Object o) {
+        parameters.remove(o);
+        return this;
     }
 
     public void clearParameter() {
@@ -68,8 +62,9 @@ public class Instance extends AbstractConfManEntity{
         return id;
     }
 
-    public void setId(Long id) {
+    public Instance setId(Long id) {
         this.id = id;
+        return this;
     }
 
     @Override

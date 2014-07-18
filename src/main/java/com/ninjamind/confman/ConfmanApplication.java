@@ -1,8 +1,8 @@
-package com.ninjamind.confmanager;
+package com.ninjamind.confman;
 
-import com.ninjamind.confmanager.config.PersistenceConfig;
-import com.ninjamind.confmanager.config.WebConfig;
-import com.ninjamind.confmanager.web.EnvironmentController;
+import com.ninjamind.confman.config.PersistenceConfig;
+import com.ninjamind.confman.config.WebConfig;
+import com.ninjamind.confman.web.EnvironmentController;
 import net.codestory.http.WebServer;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -11,7 +11,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  *
  * @author EHRET_G
  */
-public class ConfManagerApplication {
+public class ConfmanApplication {
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext rootContext = new AnnotationConfigApplicationContext();

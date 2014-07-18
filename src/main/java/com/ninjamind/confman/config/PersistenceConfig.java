@@ -1,4 +1,4 @@
-package com.ninjamind.confmanager.config;
+package com.ninjamind.confman.config;
 
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.*;
@@ -20,7 +20,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @ComponentScan("com.ninjamind.conference.repository")
 @PropertySource("classpath:application.properties")
-@EnableJpaRepositories("com.ninjamind.confmanager.repository")
+@EnableJpaRepositories("com.ninjamind.confman.repository")
 public class PersistenceConfig {
 
     public static final String PROPERTY_NAME_DATABASE_DRIVER = "db.driver";

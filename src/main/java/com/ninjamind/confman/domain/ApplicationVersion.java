@@ -1,4 +1,4 @@
-package com.ninjamind.confmanager.domain;
+package com.ninjamind.confman.domain;
 
 import com.google.common.base.Objects;
 
@@ -14,7 +14,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name=ApplicationVersion.TABLE_NAME)
-public class ApplicationVersion extends AbstractConfManEntity{
+public class ApplicationVersion extends AbstractConfManEntity<ApplicationVersion>{
     public final static String TABLE_NAME="applicationversion";
     public final static String SEQ_NAME= "seq_application_version";
 
@@ -31,29 +31,23 @@ public class ApplicationVersion extends AbstractConfManEntity{
     public ApplicationVersion() {
     }
 
-    public ApplicationVersion(String code, String label) {
-        super(code, label);
-    }
-
-    public ApplicationVersion(String code, String label, Application application) {
-        super(code, label);
-        this.application = application;
-    }
-
     public Application getApplication() {
         return application;
     }
 
-    public void setApplication(Application application) {
+    public ApplicationVersion setApplication(Application application) {
         this.application = application;
+        return this;
     }
 
-    public boolean addVersionTracking(VersionTracking versionTracking) {
-        return versionTrackings.add(versionTracking);
+    public ApplicationVersion addVersionTracking(VersionTracking versionTracking) {
+        versionTrackings.add(versionTracking);
+        return this;
     }
 
-    public boolean removeVersionTracking(Object o) {
-        return versionTrackings.remove(o);
+    public ApplicationVersion removeVersionTracking(Object o) {
+        versionTrackings.remove(o);
+        return this;
     }
 
     public void clearVersionTracking() {
@@ -81,8 +75,9 @@ public class ApplicationVersion extends AbstractConfManEntity{
         return id;
     }
 
-    public void setId(Long id) {
+    public ApplicationVersion setId(Long id) {
         this.id = id;
+        return this;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.ninjamind.confmanager.domain;
+package com.ninjamind.confman.domain;
 
 import com.google.common.base.Objects;
 
@@ -14,7 +14,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name=Environment.TABLE_NAME)
-public class Environment extends AbstractConfManEntity{
+public class Environment extends AbstractConfManEntity<Environment>{
     public final static String TABLE_NAME="environment";
     public final static String SEQ_NAME= "seq_environment";
 
@@ -28,16 +28,14 @@ public class Environment extends AbstractConfManEntity{
     public Environment() {
     }
 
-    public Environment(String code, String label) {
-        super(code, label);
+    public Environment addApplicationGroupment(ApplicationGroupment applicationGroupment) {
+        applicationGroupments.add(applicationGroupment);
+        return this;
     }
 
-    public boolean addApplicationGroupment(ApplicationGroupment applicationGroupment) {
-        return applicationGroupments.add(applicationGroupment);
-    }
-
-    public boolean removeApplicationGroupment(Object o) {
-        return applicationGroupments.remove(o);
+    public Environment removeApplicationGroupment(Object o) {
+        applicationGroupments.remove(o);
+        return this;
     }
 
     public void clearApplicationGroupment() {
@@ -52,8 +50,9 @@ public class Environment extends AbstractConfManEntity{
         return id;
     }
 
-    public void setId(Long id) {
+    public Environment setId(Long id) {
         this.id = id;
+        return this;
     }
 
     @Override

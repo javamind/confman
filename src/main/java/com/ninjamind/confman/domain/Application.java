@@ -1,4 +1,4 @@
-package com.ninjamind.confmanager.domain;
+package com.ninjamind.confman.domain;
 
 import com.google.common.base.Objects;
 
@@ -15,7 +15,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name=Application.TABLE_NAME)
-public class Application extends AbstractConfManEntity{
+public class Application extends AbstractConfManEntity<Application>{
     public final static String TABLE_NAME="application";
     public final static String SEQ_NAME= "seq_application";
 
@@ -32,29 +32,23 @@ public class Application extends AbstractConfManEntity{
     public Application() {
     }
 
-    public Application(String code, String label) {
-        super(code, label);
-    }
-
-    public Application(String code, String label, ApplicationGroupment applicationGroupment) {
-        super(code, label);
-        this.applicationGroupment = applicationGroupment;
-    }
-
     public ApplicationGroupment getApplicationGroupment() {
         return applicationGroupment;
     }
 
-    public void setApplicationGroupment(ApplicationGroupment applicationGroupment) {
+    public Application setApplicationGroupment(ApplicationGroupment applicationGroupment) {
         this.applicationGroupment = applicationGroupment;
+        return this;
     }
 
-    public boolean addApplicationVersion(ApplicationVersion applicationVersion) {
-        return applicationVersions.add(applicationVersion);
+    public Application addApplicationVersion(ApplicationVersion applicationVersion) {
+        applicationVersions.add(applicationVersion);
+        return this;
     }
 
-    public boolean removeApplicationVersion(Object o) {
-        return applicationVersions.remove(o);
+    public Application removeApplicationVersion(Object o) {
+        applicationVersions.remove(o);
+        return this;
     }
 
     public void clearApplicationVersion() {
@@ -69,8 +63,9 @@ public class Application extends AbstractConfManEntity{
         return id;
     }
 
-    public void setId(Long id) {
+    public Application setId(Long id) {
         this.id = id;
+        return this;
     }
 
     @Override

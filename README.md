@@ -1,4 +1,4 @@
-confmanager
+confman
 ==========
 
 Do you want to implement continuous delivery or continuous deployment on your own tools ? We were in this situation. We had to implement continuous deployment but we did'nt want to use a big solution like Puppet, Chef, Go...

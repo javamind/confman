@@ -1,6 +1,6 @@
-package com.ninjamind.confmanager.config;
+package com.ninjamind.confman.config;
 
-import com.ninjamind.confmanager.web.EnvironmentController;
+import com.ninjamind.confman.web.EnvironmentController;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -20,7 +20,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan("com.ninjamind.confmanager.service")
+@ComponentScan("com.ninjamind.confman.service")
 @Transactional(propagation = Propagation.REQUIRES_NEW)
 public class WebConfig {
 

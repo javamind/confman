@@ -1,10 +1,10 @@
-package com.ninjamind.confmanager.repository;
+package com.ninjamind.confman.repository;
 
 import com.ninja_squad.dbsetup.DbSetup;
 import com.ninja_squad.dbsetup.destination.DataSourceDestination;
 import com.ninja_squad.dbsetup.operation.Operation;
-import com.ninjamind.confmanager.config.PersistenceConfig;
-import com.ninjamind.confmanager.domain.Environment;
+import com.ninjamind.confman.config.PersistenceConfig;
+import com.ninjamind.confman.domain.Environment;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,21 +1,91 @@
 ---
-layout: default
-title: Hello
+layout: confman
 yourname : Javamind
-styles: [/webjars/bootstrap/3.1.1/css/bootstrap.css, style.less]
+styles: [/webjars/bootstrap/3.1.1/css/bootstrap.css, styles/material-design.min.css, styles/style.less]
 ng-app: confman
 ---
 
-<div class="container" ng-controller="confmanController">
-    <div class="jumbotron">
-        <h1 ng-cloak>Hello [[yourname]] {{myname}}</h1>
 
-        <form>
-            <input type="text" name="">
-            <button ng-click="refresh()" autofocus>Say Hello</button>
-        </form>
+<div ng-controller="AppCtrl">
+    <!-- -->
+    <material-sidenav class="material-sidenav-left material-whiteframe-z3 material-theme-light" component-id="left">
+
+        <material-toolbar class="material-theme-light">
+            <div ng-controller="LeftCtrl">
+                <button class="material-button" ng-click="close()">Close<<</button>
+                <div class="menu_title">
+                    <img src="img/icone64.png"/>
+                    <h2>&nbsp;Confman</h2>
+                    <small>your app's parameter management is now easy</small>
+                </div>
+            </div>
+
+        </material-toolbar>
+        <material-content style="top: 120px" class="material-theme-orange">
+            sdsdsqd
+        </material-content>
+    </material-sidenav>
+
+    <button class="material-button" ng-click="toggleLeft()">>> Menu</button>
+
+    <div class="sidenav-content material-whiteframe-z2">
+        <material-toolbar class="material-theme-dark">
+            <div class="material-toolbar-tools">
+                <div class="menu-icon" ng-click="toggleMenu()">
+                    <material-icon icon="img/icons/ic_menu_24px.svg">
+                    </material-icon>
+                </div>
+                <span ng-bind="currentComponent.name || 'Material Design'" style="margin-left: 9px"></span>
+                <div class="material-display-flex material-flex">
+                    <!-- use up the third space so the button is on the right -->
+                </div>
+                <button class="material-button view-source-button" ng-show="currentComponent.name" ng-click="viewSource(currentComponent, $event)">
+                    View Source
+                </button>
+            </div>
+        </material-toolbar>
+        <ng-view class="sliding-view">
+
+        </ng-view>
+        <div class="container" ng-controller="confmanController">
+            <div class="jumbotron">
+                <h1 ng-cloak>Hello [[yourname]] {{myname}}</h1>
+
+                <form>
+                    <input type="text" name="">
+                    <button ng-click="refresh()" autofocus>Say Hello</button>
+                </form>
+
+            </div>
+        </div>
 
     </div>
+
+
 </div>
-<script src="/webjars/angularjs/1.2.16/angular.js"></script>
-<script src="app.js"></script>
+<div  class="material-theme-dark"> teststs<br>titti</div>
+<div  class="material-theme-orange"> teststs<br>titti</div>
+<div  class="material-theme-indigo"> teststs<br>titti</div>
+<div  class="material-theme-green"> teststs<br>titti</div>
+<div  class="material-theme-light"> teststs<br>titti</div>
+<div  class="material-theme-light-blue"> teststs<br>titti</div>
+<div  class="material-theme-purple"> teststs<br>titti</div>
+<div  class="material-theme-red"> teststs<br>titti</div>
+<div  class="material-theme-yellow"> teststs<br>titti</div>
+
+
+<!--<script src="/webjars/angularjs/1.2.16/angular.min.js"></script>-->
+<!--<script src="/webjars/angularjs/1.2.16/angular-resource.min.js"></script>-->
+<!--<script src="/webjars/angularjs/1.2.16/angular-route.min.js"></script>-->
+<!--<script src="/webjars/angularjs/1.2.16/angular-animate.min.js"></script>-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.14/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.14/angular-animate.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.14/angular-route.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.14/angular-resource.min.js"></script>
+
+<script src="js/angular-animate-sequence/angular-animate-sequence.js"></script>
+<script src="js/angular-animate-sequence/angular-animate-stylers.js"></script>
+<script src="js/angular-materials/material-design.min.js"></script>
+
+<script src="js/app.js"></script>

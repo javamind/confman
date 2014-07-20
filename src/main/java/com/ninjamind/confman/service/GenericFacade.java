@@ -1,18 +1,14 @@
 package com.ninjamind.confman.service;
 
 import com.ninjamind.confman.domain.Environment;
-import com.ninjamind.confman.repository.EnvironmentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ninjamind.confman.repository.HibernateUtil;
 import org.springframework.data.jpa.repository.JpaRepository;
+import com.ninjamind.confman.utils.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import utils.LoggerFactory;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.ListIterator;
-import java.util.Objects;
-import java.util.function.UnaryOperator;
 import java.util.logging.Logger;
 
 /**
@@ -20,11 +16,20 @@ import java.util.logging.Logger;
  *
  * @author EHRET_G
  */
+@Transactional
 public interface GenericFacade<T, ID extends Serializable> {
 
-    static Logger LOG = LoggerFactory.make();
-
+    /**
+     *
+     * @return
+     */
     JpaRepository<T, ID> getRepository();
+
+    /**
+     *
+     * @return
+     */
+    Class<T> getClassEntity();
 
     /**
      * Returns all instances of the type with the given IDs.
@@ -42,9 +47,8 @@ public interface GenericFacade<T, ID extends Serializable> {
      * @see javax.persistence.EntityManager#getReference(Class, Object)
      */
     default T findOne(ID id){
-        return getRepository().getOne(id);
+        return HibernateUtil.unproxy(getRepository().getOne(id), getClassEntity());
     }
-
     /**
      * Saves a given entity. Use the returned instance for further operations as the save operation might have changed the
      * entity instance completely.
@@ -65,4 +69,5 @@ public interface GenericFacade<T, ID extends Serializable> {
     default void delete(ID id){
         getRepository().delete(id);
     }
+
 }

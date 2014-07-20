@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author EHRET_G
  */
 @MappedSuperclass
-public abstract class AbstractConfManEntity<T extends AbstractConfManEntity> implements Serializable {
+public abstract class AbstractConfManEntity<T extends AbstractConfManEntity> {
 
     /**
      * Code

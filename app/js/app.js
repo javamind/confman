@@ -19,10 +19,24 @@ confman.constant('constants', {
  * Routes definitions
  */
 confman.config(function ($routeProvider) {
+
     $routeProvider
         .when('/', {templateUrl: 'main.html', controller:'MainCtrl'})
-        .when('/environment', {templateUrl: 'environment.html',controller: 'EnvCtrl'})
         .otherwise({redirectTo: '/'});
+
+    //Dynamic construction of the URI
+    ['environment', 'application'].forEach(function logArrayElements(element, index){
+        $routeProvider
+            .when('/' + element, {
+                templateUrl: element + '.html',
+                controller: element + 'Ctrl'
+            })
+            .when('/' + element + '/:id', {
+                templateUrl: element + '_detail.html',
+                controller: element + 'DetailCtrl'
+            });
+    });
+
 });
 
 /**

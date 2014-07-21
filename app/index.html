@@ -5,9 +5,10 @@
     <title>Confman</title>
     <meta name="author" content="@agnes_crepet"/>
     <meta name="author" content="@guillaumeehret"/>
-    <link rel="stylesheet" href="/webjars/bootstrap/3.1.1/css/bootstrap.css"/>
+    <!--<link rel="stylesheet" href="/webjars/bootstrap/3.1.1/css/bootstrap.css"/>-->
     <link rel="stylesheet" href="styles/material-design.min.css"/>
     <link rel="stylesheet" href="styles/style.less"/>
+    <link rel="stylesheet" href="styles/grid.css"/>
     <link rel="shortcut icon" href="img/favicon.ico"/>
 </head>
 <body>
@@ -15,9 +16,11 @@
     <material-sidenav class="material-sidenav-left material-whiteframe-z3" component-id="left">
 
         <material-toolbar class="material-theme-light">
-            <button class="material-button" ng-click="close()"><img src="img/icon/ic_arrow_drop_down_circle_48px.svg" width="24" height="24"/></button>
+            <button class="material-button" ng-click="close()"><img src="img/icon/ic_arrow_drop_down_circle_48px.svg"
+                                                                    width="24" height="24"/></button>
             <div class="menu_title material-theme-light">
                 <img src="img/icone64.png"/>
+
                 <h2>&nbsp;Confman</h2>
                 <small>your app's parameter management is now easy</small>
             </div>
@@ -26,10 +29,13 @@
             <p>
                 <a href="/" ng-click="toggleLeft()"><img src="img/icon/ic_home_48px.svg" width="24" height="24"></a>
             </p>
+
             <p>
-            <b>Parameters</b><br/>
-            <a href="#/environment" ng-click="toggleLeft()">Environment</a><br/>
-            <a href="" ng-click="toggleLeft()">Application groupment</a><br/>
+                <b>Parameters</b><br/>
+                <a href="#/environment" ng-click="toggleLeft()">Environment</a><br/>
+                <a href="" ng-click="toggleLeft()">Application groupment</a><br/>
+                <a href="#/application" ng-click="toggleLeft()">Application</a><br/>
+
             </p>
         </material-content>
     </material-sidenav>
@@ -37,7 +43,8 @@
     <div class="sidenav-content material-whiteframe-z2">
         <material-toolbar class="material-theme-light">
             <div class="material-toolbar-tools">
-                <button class="material-button" ng-click="toggleLeft()"><img src="img/icon/ic_menu_48px.svg" width="24" height="24"/></button>
+                <button class="material-button" ng-click="toggleLeft()"><img src="img/icon/ic_menu_48px.svg" width="24"
+                                                                             height="24"/></button>
 
                 <span ng-bind="currentPage.name || 'Confman'" style="margin-left: 9px"></span>
 
@@ -70,6 +77,7 @@
 <script src="js/app.js"></script>
 <script src="js/controller/main.js"></script>
 <script src="js/controller/environment.js"></script>
+<script src="js/controller/application.js"></script>
 </body>
 </html>
 

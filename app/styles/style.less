@@ -1,31 +1,37 @@
-body {
-  font-family: Roboto, Arial;
-}
+@menu_title_left: 64px;
 
 .menu_title{
   display:inline-table;
   width: 100%;
   position: relative;
+  height: 80px;
+
+  img {
+    position: absolute;
+    padding: 2px;
+    left: 0px
+  }
+
+  h2 {
+    left:@menu_title_left;
+    top:5px;
+    padding: 0px;
+    margin: 0px;
+    position: absolute;
+    width: 78%;
+    text-align: center;
+  }
+
+  small {
+    left:@menu_title_left;
+    top:35px;
+    position: absolute;
+    width: 78%;
+    text-align: center;
+    line-height: 80%;
+  }
 }
-.menu_title > img{
-  position: absolute;
-  padding: 2px;
-  left: 20px
-}
-.menu_title > h2{
-  left:64px;
-  top:5px;
-  padding: 0px;
-  margin: 0px;
-  position: absolute;
-  width: 78%;
-  text-align: center;
-}
-.menu_title > small{
-  left:64px;
-  top:35px;
-  position: absolute;
-  width: 78%;
-  text-align: center;
-  line-height: 80%;
+
+.menu_content{
+  top: 120px;
 }

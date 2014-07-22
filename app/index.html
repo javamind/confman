@@ -52,7 +52,7 @@
                     <!-- use up the third space so the button is on the right -->
                 </div>
 
-                <button class="material-button " style="position: static; display: block;"
+                <button class="material-button " style="position: static; display: block;" ng-show="currentPage.actionbar"
                         ng-repeat="act in currentPage.actionbar" ng-click="act.action()">
                     <img src="/img/icon/{{act.icon}}.svg" style="width: 24px; height: 24px;"/>
                 </button>

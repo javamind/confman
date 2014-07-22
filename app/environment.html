@@ -13,6 +13,7 @@
     </button>
 </material-toolbar>
 
+<form name="myForm" ng-controller="environmentCtrl">
 <material-content>
     <material-list >
         <material-item style="top:128px" ng-repeat="env in environments" ng-dblClick="update_env(env.id)">
@@ -22,7 +23,8 @@
             </div>
             <div class="material-tile-right">
                 <material-checkbox>
-                    <input type="checkbox" value="{{env.id}}" ng-model="data.cbDelete">
+                    {{envToDelete.envId}}
+                    <input type="checkbox" value="{{env.id}}" ng-model="envToDelete.envId">
                 </material-checkbox>
             </div>
         </material-item>
@@ -38,3 +40,4 @@
         <button class="material-button" style="float:right;" ng-click="close()">Ok</button>
     </div>
 </material-dialog>
+</form>

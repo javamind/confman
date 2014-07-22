@@ -1,24 +1,30 @@
-
-
+/**
+ * Controller linked to the env list
+ */
 confman.controller('environmentCtrl', function ($rootScope, $scope, $materialDialog, $location, Environment) {
-    var create_env =  function (){
-        alert('create')
-    };
     var delete_env =  function (){
         //dialog();
-        alert($scope.data)
+        alert($scope.envToDelete)
     };
 
 
     $rootScope.currentPage = {
         name : 'Environment',
         actionbar : [
-            { icon : 'ic_insert_drive_file_24px',  action : create_env},
+            { icon : 'ic_insert_drive_file_24px',  action : function (){
+                $location.path('/environment/'+0);
+            }},
             { icon : 'ic_delete_24px',  action : delete_env}
         ]
     };
 
+    //Load environments
     $scope.environments = Environment.query();
+    //Init env selected for deletion
+    $scope.environments.forEach(function logArrayElements(element, index) {
+        $scope.envToDelete.envId = true;
+    });
+
 
     $scope.update_env =  function (id){
         $location.path('/environment/'+id);

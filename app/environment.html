@@ -1,5 +1,40 @@
-env
+<material-toolbar id="header-bar" class="material-theme-light-blue" scroll-header condensed-height="60">
+    <div class="material-toolbar-tools material-toolbar-tools-top">
+        <span class="material-flex"></span>
+    </div>
+    <div class="material-toolbar-tools material-toolbar-tools-bottom">
+        <span class="material-flex material-indent">
+            <small>You can use several environments to offer different context for developers, testers, the final users...
+            For example you can have development, staging, production...</small></span>
+    </div>
 
-        {{params}}
+    <button class="material-button material-button-fab material-button-fab-bottom-right material-theme-yellow">
+        <material-icon icon="img/icon/ic_extension_24px.svg"></material-icon>
+    </button>
+</material-toolbar>
 
-<pre>$route.current.params = {{$route.current.params}}</pre>
+<material-content>
+    <material-list >
+        <material-item style="top:128px" ng-repeat="env in environments" ng-dblClick="update_env(env.id)">
+            <div class="material-tile-content">
+                <h2>{{env.code}}</h2>
+                <p>{{env.label}}</p>
+            </div>
+            <div class="material-tile-right">
+                <material-checkbox>
+                    <input type="checkbox" value="{{env.id}}" ng-model="data.cbDelete">
+                </material-checkbox>
+            </div>
+        </material-item>
+    </material-list>
+</material-content>
+
+<material-dialog>
+    <div class="dialog-content">
+        <p>Do you want to remove {{todelete.label}}</p>
+    </div>
+    <div class="dialog-actions">
+        <button class="material-button" style="float:right;" ng-click="close()">Cancel</button>
+        <button class="material-button" style="float:right;" ng-click="close()">Ok</button>
+    </div>
+</material-dialog>

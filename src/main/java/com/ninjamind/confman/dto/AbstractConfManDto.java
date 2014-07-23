@@ -1,8 +1,6 @@
 package com.ninjamind.confman.dto;
 
 import com.google.common.base.Objects;
-import com.ninjamind.confman.domain.AbstractConfManEntity;
-import com.ninjamind.confman.domain.Environment;
 
 import java.io.Serializable;
 

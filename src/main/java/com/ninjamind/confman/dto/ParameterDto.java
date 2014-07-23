@@ -1,19 +1,19 @@
 package com.ninjamind.confman.dto;
 
-import com.ninjamind.confman.domain.Application;
+import com.ninjamind.confman.domain.Parameter;
 
 /**
- * {@link com.ninjamind.confman.domain.Application}
+ * {@link com.ninjamind.confman.domain.Parameter}
  *
  * @author EHRET_G
  */
-public class ApplicationDto extends AbstractConfManDto {
+public class ParameterDto extends AbstractConfManDto {
 
-    public ApplicationDto() {
+    public ParameterDto() {
         super();
     }
 
-    public ApplicationDto(Application object) {
+    public ParameterDto(Parameter object) {
         super(
                 object.getId(),
                 object.getCode(),
@@ -22,8 +22,8 @@ public class ApplicationDto extends AbstractConfManDto {
         );
     }
 
-    public Application toApplication() {
-        return new Application()
+    public Parameter toParameter() {
+        return new Parameter()
                 .setId(getId())
                 .setCode(getCode())
                 .setLabel(getLabel())

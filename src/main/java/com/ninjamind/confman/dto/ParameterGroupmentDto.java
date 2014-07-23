@@ -1,19 +1,19 @@
 package com.ninjamind.confman.dto;
 
-import com.ninjamind.confman.domain.Application;
+import com.ninjamind.confman.domain.ParameterGroupment;
 
 /**
- * {@link com.ninjamind.confman.domain.Application}
+ * {@link com.ninjamind.confman.domain.ParameterGroupment}
  *
  * @author EHRET_G
  */
-public class ApplicationDto extends AbstractConfManDto {
+public class ParameterGroupmentDto extends AbstractConfManDto {
 
-    public ApplicationDto() {
+    public ParameterGroupmentDto() {
         super();
     }
 
-    public ApplicationDto(Application object) {
+    public ParameterGroupmentDto(ParameterGroupment object) {
         super(
                 object.getId(),
                 object.getCode(),
@@ -22,8 +22,8 @@ public class ApplicationDto extends AbstractConfManDto {
         );
     }
 
-    public Application toApplication() {
-        return new Application()
+    public ParameterGroupment toParameterGroupment() {
+        return new ParameterGroupment()
                 .setId(getId())
                 .setCode(getCode())
                 .setLabel(getLabel())

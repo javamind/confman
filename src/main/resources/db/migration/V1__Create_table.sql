@@ -1,6 +1,6 @@
 CREATE TABLE environment
 (
-  id integer NOT NULL,
+  id integer NOT NULL PRIMARY KEY,
   code character varying(40),
   label character varying(250),
   version integer,
@@ -10,27 +10,37 @@ WITH (
   OIDS=FALSE
 );
 
-CREATE TABLE applicationgrpt
+CREATE TABLE softwaresuite
 (
-  id integer NOT NULL,
+  id integer NOT NULL PRIMARY KEY,
   code character varying(40),
   label character varying(250),
-  environment_id integer,
   version integer,
-  CONSTRAINT applicationgrpt_unique_key UNIQUE (code, environment_id)
+  CONSTRAINT softwaresuite_id_unique_key UNIQUE (code)
 )
 WITH (
   OIDS=FALSE
 );
 
+CREATE TABLE softwaresuite_environment
+(
+  environment_id integer NOT NULL REFERENCES environment (id),
+  softwaresuite_id integer NOT NULL REFERENCES softwaresuite (id),
+  CONSTRAINT softwaresuite_env_id_unique_key UNIQUE (environment_id, softwaresuite_id)
+)
+WITH (
+  OIDS=FALSE
+);
+
+
 CREATE TABLE application
 (
-  id integer NOT NULL,
+  id integer NOT NULL PRIMARY KEY,
   code character varying(40),
   label character varying(250),
-  applicationGroupment_id integer,
+  softwaresuite_id integer,
   version integer,
-  CONSTRAINT application_unique_key UNIQUE (code, applicationGroupment_id)
+  CONSTRAINT application_unique_key UNIQUE (code, softwaresuite_id)
 )
 WITH (
   OIDS=FALSE
@@ -38,7 +48,7 @@ WITH (
 
 CREATE TABLE applicationversion
 (
-  id integer NOT NULL,
+  id integer NOT NULL PRIMARY KEY,
   code character varying(40),
   label character varying(250),
   application_id integer,
@@ -51,7 +61,7 @@ WITH (
 
 CREATE TABLE versiontracking
 (
-  id integer NOT NULL,
+  id integer NOT NULL PRIMARY KEY,
   code character varying(40),
   label character varying(250),
   applicationVersion_id integer,
@@ -64,7 +74,7 @@ WITH (
 
 CREATE TABLE instance
 (
-  id integer NOT NULL,
+  id integer NOT NULL PRIMARY KEY,
   code character varying(40),
   label character varying(250),
   versionTracking_id integer,
@@ -77,7 +87,7 @@ WITH (
 
 CREATE TABLE parametergrpt
 (
-  id integer NOT NULL,
+  id integer NOT NULL PRIMARY KEY,
   code character varying(40),
   label character varying(250),
   version integer,
@@ -89,7 +99,7 @@ WITH (
 
 CREATE TABLE parameter
 (
-  id integer NOT NULL,
+  id integer NOT NULL PRIMARY KEY,
   code character varying(40),
   label character varying(250),
   parameterGroupment_id integer,
@@ -108,7 +118,7 @@ CREATE SEQUENCE seq_application
     NO MAXVALUE
     CACHE 1;
 
-CREATE SEQUENCE seq_application_grpt
+CREATE SEQUENCE seq_softwaresuite
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE

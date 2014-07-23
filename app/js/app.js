@@ -39,10 +39,10 @@ confman.config(function ($routeProvider) {
         .otherwise({redirectTo: '/'});
 
     //Dynamic construction of the URI
-    ['environment', 'application'].forEach(function logArrayElements(element, index){
+    ['environment', 'softwaresuite'].forEach(function logArrayElements(element, index){
         $routeProvider
             .when('/' + element, {
-                templateUrl: element + '.html',
+                templateUrl: 'view/' + element + '.html',
                 controller: element + 'Ctrl'
             });
     });

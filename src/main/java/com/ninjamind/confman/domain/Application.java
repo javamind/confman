@@ -3,7 +3,6 @@ package com.ninjamind.confman.domain;
 import com.google.common.base.Objects;
 
 import javax.persistence.*;
-import java.lang.annotation.Target;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,21 +22,24 @@ public class Application extends AbstractConfManEntity<Application>{
     @GeneratedValue(strategy= GenerationType.AUTO, generator = Application.SEQ_NAME)
     @SequenceGenerator(name = Application.SEQ_NAME, sequenceName = Application.SEQ_NAME, allocationSize = 1)
     private Long id;
+
+
     @OneToMany(mappedBy = "application")
     private Set<ApplicationVersion> applicationVersions= new HashSet<>();
+
     @ManyToOne
-    @JoinColumn(name = "applicationGroupment_id")
-    private ApplicationGroupment applicationGroupment;
+    @JoinColumn(name = "softwareSuite_id")
+    private SoftwareSuite softwareSuite;
 
     public Application() {
     }
 
-    public ApplicationGroupment getApplicationGroupment() {
-        return applicationGroupment;
+    public SoftwareSuite getSoftwareSuite() {
+        return softwareSuite;
     }
 
-    public Application setApplicationGroupment(ApplicationGroupment applicationGroupment) {
-        this.applicationGroupment = applicationGroupment;
+    public Application setSoftwareSuite(SoftwareSuite softwareSuite) {
+        this.softwareSuite = softwareSuite;
         return this;
     }
 
@@ -76,7 +78,7 @@ public class Application extends AbstractConfManEntity<Application>{
 
         Application that = (Application) o;
 
-        if (applicationGroupment != null ? !applicationGroupment.equals(that.applicationGroupment) : that.applicationGroupment != null)
+        if (softwareSuite != null ? !softwareSuite.equals(that.softwareSuite) : that.softwareSuite != null)
             return false;
 
         return true;
@@ -85,7 +87,7 @@ public class Application extends AbstractConfManEntity<Application>{
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (applicationGroupment != null ? applicationGroupment.hashCode() : 0);
+        result = 31 * result + (softwareSuite != null ? softwareSuite.hashCode() : 0);
         return result;
     }
 
@@ -94,7 +96,7 @@ public class Application extends AbstractConfManEntity<Application>{
         return Objects.toStringHelper(this)
                 .add("id", id)
                 .addValue(super.toString())
-                .add("applicationGroupment", applicationGroupment)
+                .add("softwareSuite", softwareSuite)
                 .toString();
     }
 }

@@ -1,29 +1,30 @@
 /**
- * Controller linked to the env list
+ * Controller linked to the application's groupment list
  */
-angular.module('confman').controller('environmentCtrl', function ($rootScope, $scope, $modal, modalConfirmDeleteCtrl, Environment) {
+angular.module('confman').controller('softwaresuiteCtrl', function ($rootScope, $scope, $modal, modalConfirmDeleteCtrl, SoftwareSuite, Environment) {
 
     //Page definition
     $rootScope.currentPage = {
-        name : 'Environment',
-        description : 'You can use several environments to offer different context for developers, testers, the final users... ' +
-            'For example you can have development, staging, production...',
+        name : 'Software Suite',
+        description : 'In a complex context you have often a set of of software',
         icon : 'ic_settings_24px'
     };
 
+    //Load applicationgroupments
+    $scope.softwaresuites = SoftwareSuite.query();
     //Load environments
     $scope.environments = Environment.query();
 
     //Actions
     $scope.update =  function (elt){
         $scope.entity = {
-            verb : 'Update environment',
+            verb : 'Update software suite',
             content : elt
         };
     };
     $scope.create =  function (){
         $scope.entity = {
-            verb : 'Create environment',
+            verb : 'Create software suite',
             content : {}
         };
     };
@@ -33,20 +34,20 @@ angular.module('confman').controller('environmentCtrl', function ($rootScope, $s
             controller: modalConfirmDeleteCtrl,
             resolve: {
                 entity_todelete : function () {
-                    return 'environment ' + elt.code;
+                    return 'software suite ' + elt.code;
                 }
             }
         });
         //callback dans lequel on fait la suppression
         modalInstance.result.then(function (response) {
             $event.stopPropagation();
-            Environment.delete(
+            SoftwareSuite.delete(
                 elt,
                 function(data){
                     $scope.error=null;
-                    var index = find_entity_index($scope.environments, elt);
+                    var index = find_entity_index($scope.softwaresuites, elt);
                     if(index>=0) {
-                        $scope.environments.splice(index, 1);
+                        $scope.softwaresuites.splice(index, 1);
                     }
                     $scope.entity.content = null;
                 },
@@ -59,23 +60,24 @@ angular.module('confman').controller('environmentCtrl', function ($rootScope, $s
             return;
         }
         //We check code existence
-        if(verify_code_unicity($scope.environments, $scope.entity.content)>0){
+        if(verify_code_unicity($scope.softwaresuites, $scope.entity.content)>0){
             $rootScope.setError('The code [' + $scope.entity.content + '] is already in use');
             return;
         }
 
-         if(!$scope.entity.content.id){
-            Environment.save(
-                    $scope.entity.content,
-                    function(data){
-                        $scope.error=null;
-                        if(!$scope.environments){
-                            $scope.environments = {};
-                        }
-                        $scope.environments.push(data)
-                        $scope.entity.content = null;
-                    },
-                    $scope.callbackKO);
+        if(!$scope.entity.content.id){
+            SoftwareSuite.save(
+                $scope.entity.content,
+                function(data){
+                    $scope.error=null;
+                    if(!$scope.softwaresuites){
+                        $scope.softwaresuites = {};
+                    }
+                    $scope.softwaresuites.push(data);
+                    $scope.entity.content = data;
+                    $scope.entity.verb = 'Update software suite';
+                },
+                $scope.callbackKO);
         }
         else{
             $scope.entity.content.$update($scope.callbackOK, $scope.callbackKO);

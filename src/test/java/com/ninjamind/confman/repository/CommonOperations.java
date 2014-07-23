@@ -18,6 +18,6 @@ public class CommonOperations {
                     VersionTracking.TABLE_NAME,
                     ApplicationVersion.TABLE_NAME,
                     Application.TABLE_NAME,
-                    ApplicationGroupment.TABLE_NAME,
+                    SoftwareSuite.TABLE_NAME,
                     Environment.TABLE_NAME);
 }

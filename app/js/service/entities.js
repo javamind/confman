@@ -12,8 +12,8 @@ angular.module('confman')
     .factory('Environment', function Environment($resource, constants) {
         return $resource(constants.urlserver + 'environment/:id', { id: '@_id' },restActions);
     })
-    .factory('ApplicationGroupment', function ApplicationGroupment($resource, constants) {
-        return $resource(constants.urlserver + 'applicationgroupment/:id', { id: '@_id' },restActions);
+    .factory('SoftwareSuite', function SoftwareSuite($resource, constants) {
+        return $resource(constants.urlserver + 'softwaresuite/:id', { id: '@_id' },restActions);
     })
     .factory('Application', function Application($resource, constants) {
         return $resource(constants.urlserver + 'application/:id', { id: '@_id' },restActions);

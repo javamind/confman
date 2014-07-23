@@ -1,6 +1,7 @@
 package com.ninjamind.confman.config;
 
 import com.ninjamind.confman.web.EnvironmentController;
+import com.ninjamind.confman.web.SoftwareSuiteController;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -27,5 +28,10 @@ public class WebConfig {
     @Bean
     public EnvironmentController environmentController(){
         return new EnvironmentController();
+    }
+
+    @Bean
+    public SoftwareSuiteController softwareSuiteController(){
+        return new SoftwareSuiteController();
     }
 }

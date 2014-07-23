@@ -22,28 +22,28 @@ public class Environment extends AbstractConfManEntity<Environment>{
     @GeneratedValue(strategy= GenerationType.AUTO, generator = Environment.SEQ_NAME)
     @SequenceGenerator(name = Environment.SEQ_NAME, sequenceName = Environment.SEQ_NAME, allocationSize = 1)
     private Long id;
-    @OneToMany(mappedBy = "environment")
-    private Set<ApplicationGroupment> applicationGroupments= new HashSet<>();
+    @ManyToMany(mappedBy = "environments")
+    private Set<SoftwareSuite> softwareSuites = new HashSet<>();
 
     public Environment() {
     }
 
-    public Environment addApplicationGroupment(ApplicationGroupment applicationGroupment) {
-        applicationGroupments.add(applicationGroupment);
+    public Environment addApplicationGroupment(SoftwareSuite softwareSuite) {
+        softwareSuites.add(softwareSuite);
         return this;
     }
 
     public Environment removeApplicationGroupment(Object o) {
-        applicationGroupments.remove(o);
+        softwareSuites.remove(o);
         return this;
     }
 
     public void clearApplicationGroupment() {
-        applicationGroupments.clear();
+        softwareSuites.clear();
     }
 
-    public Set<ApplicationGroupment> getApplicationGroupments() {
-        return Collections.unmodifiableSet(applicationGroupments);
+    public Set<SoftwareSuite> getSoftwareSuites() {
+        return Collections.unmodifiableSet(softwareSuites);
     }
 
     public Long getId() {

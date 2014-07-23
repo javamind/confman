@@ -1,6 +1,6 @@
 package com.ninjamind.confman.repository;
 
-import com.ninjamind.confman.domain.Application;
+import com.ninjamind.confman.domain.Parameter;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author ehret_g
  */
-public interface ApplicationtRepository extends JpaRepository<Application, Long> {
+public interface ParameterRepository extends JpaRepository<Parameter, Long> {
 
 }

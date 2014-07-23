@@ -1,73 +1,84 @@
 /**
  * Controller linked to the env list
  */
-confman.controller('environmentCtrl', function ($rootScope, $scope, $materialDialog, $location, Environment) {
-    //delete an environment
-    var delete_env =  function (){
-        //We read the env to delete
-        var eltToDelete = [];
-        var c=0;
-        $scope.environments.forEach(function (element) {
-            if(element.todelete){
-                eltToDelete[c++] = element;
-            }
-        });
-        if(eltToDelete.length>0){
-            $scope.todelete= {
-                entity : 'environments'
-            };
-            $materialDialog({
-                templateUrl: 'dialog/dialog-confirm-delete.html',
-                controller: ['$scope', '$hideDialog', function($scope, $hideDialog) {
-                    $scope.close = function() {
-                        $hideDialog();
-                    };
-                }]
-            });
-
-        }
-
-    };
+angular.module('confman').controller('environmentCtrl', function ($rootScope, $scope, $modal, modalConfirmDeleteCtrl, Environment) {
 
     //Page definition
     $rootScope.currentPage = {
         name : 'Environment',
-        actionbar : [
-            { icon : 'ic_insert_drive_file_24px',  action : function (){
-                $location.path('/environment/'+0);
-            }},
-            { icon : 'ic_delete_24px',  action : delete_env}
-        ]
+        description : 'You can use several environments to offer different context for developers, testers, the final users... ' +
+            'For example you can have development, staging, production...',
+        icon : 'ic_settings_24px'
     };
 
     //Load environments
-    $scope.environments = Environment.query({}, function(elements){
-        //Init env selected for deletion
-        elements.forEach(function (element) {
-            element.todelete = false;
-        });
-    });
+    $scope.environments = Environment.query();
 
-
-    //update an environment
-    $scope.update_env =  function (elt){
-        //$location.path('/environment/'+id);
+    //Actions
+    $scope.update =  function (elt){
         $scope.entity = {
             verb : 'Update environment',
             content : elt
         };
     };
+    $scope.create =  function (){
+        $scope.entity = {
+            verb : 'Create environment',
+            content : {}
+        };
+    };
+    $scope.delete =  function (elt, $event){
+        var modalInstance = $modal.open({
+            templateUrl: 'modalConfirmDelete.html',
+            controller: modalConfirmDeleteCtrl,
+            resolve: {
+                entity_todelete : function () {
+                    return 'environment ' + elt.code;
+                }
+            }
+        });
+        //callback dans lequel on fait la suppression
+        modalInstance.result.then(function (response) {
+            $event.stopPropagation();
+            Environment.delete(
+                elt,
+                function(data){
+                    $scope.error=null;
+                    var index = find_entity_index($scope.environments, elt);
+                    if(index>=0) {
+                        $scope.environments.splice(index, 1);
+                    }
+                    $scope.entity.content = null;
+                },
+                $scope.callbackKO);
+        });
+    };
+    $scope.save =  function (form){
+        if(form.$error.required){
+            $rootScope.setError('Your form is not submitted : code and label are required');
+            return;
+        }
+        //We check code existence
+        if(verify_code_unicity($scope.environments, $scope.entity.content)>0){
+            $rootScope.setError('The code [' + $scope.entity.content + '] is already in use');
+            return;
+        }
 
-
-
+         if(!$scope.entity.content.id){
+            Environment.save(
+                    $scope.entity.content,
+                    function(data){
+                        $scope.error=null;
+                        $scope.environments.push(data)
+                        $scope.entity.content = null;
+                    },
+                    $scope.callbackKO);
+        }
+        else{
+            $scope.entity.content.$update($scope.callbackOK, $scope.callbackKO);
+        }
+    };
 
 })
 
-confman.controller('environmentDetailCtrl', function ($rootScope, $scope,$routeParams) {
-    $rootScope.currentPage = {
-        name : 'Detail Environment',
-        actionbar : []
-    };
 
-    $scope.params = $routeParams;
-});

@@ -4,7 +4,7 @@
  * Application definition
  * @type {module|*}
  */
-var confman = angular.module('confman', ['ngResource','ngRoute','ngMaterial']);
+var confman = angular.module('confman', ['ngResource','ngRoute','ngMaterial','ui.bootstrap']);
 
 /**
  *  TODO externalize
@@ -16,10 +16,24 @@ confman.constant('constants', {
 );
 
 /**
+ * Dialog controler use to confirm a deletion
+ */
+confman.value('modalConfirmDeleteCtrl', function ($scope, $modalInstance, entity_todelete) {
+    $scope.entity_todelete = entity_todelete;
+
+    $scope.ok = function () {
+        $modalInstance.close(true);
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss(false);
+    };
+});
+
+/**
  * Routes definitions
  */
 confman.config(function ($routeProvider) {
-
     $routeProvider
         .when('/', {templateUrl: 'main.html', controller:'MainCtrl'})
         .otherwise({redirectTo: '/'});
@@ -30,17 +44,13 @@ confman.config(function ($routeProvider) {
             .when('/' + element, {
                 templateUrl: element + '.html',
                 controller: element + 'Ctrl'
-            })
-            .when('/' + element + '/:id', {
-                templateUrl: element + '_detail.html',
-                controller: element + 'DetailCtrl'
             });
     });
 
 });
 
 /**
- * Menu toggle
+ * Menu controller
  */
 confman.controller('AppCtrl', function($scope, $timeout, $materialSidenav) {
     var leftNav;
@@ -55,6 +65,20 @@ confman.controller('AppCtrl', function($scope, $timeout, $materialSidenav) {
     };
 });
 
+/**
+ * Commons callback
+ */
+confman.run(function ($rootScope) {
+    $rootScope.callbackOK = function(){
+        $rootScope.error=null;
+    };
+    $rootScope.callbackKO = function(data){
+        $rootScope.error= { message : data.data, code : data.status};
+    };
+    $rootScope.setError = function(msgError, codeError){
+        $rootScope.error= { message : msgError, code : codeError};
+    };
+})
 
 
 

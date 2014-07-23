@@ -1,6 +1,6 @@
 
 
-confman.controller('MainCtrl', function ($rootScope, $scope, $http, constants) {
+angular.module('confman').controller('MainCtrl', function ($rootScope, $scope, $http, constants) {
     $rootScope.currentPage = {
         name : "Welcome in Confman",
         actionbar : []

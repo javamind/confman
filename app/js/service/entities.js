@@ -8,7 +8,7 @@ var restActions = {
     'delete': {method:'DELETE'}
 };
 
-confman
+angular.module('confman')
     .factory('Environment', function Environment($resource, constants) {
         return $resource(constants.urlserver + 'environment/:id', { id: '@_id' },restActions);
     })

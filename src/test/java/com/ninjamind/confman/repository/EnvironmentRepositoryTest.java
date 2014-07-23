@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -32,13 +33,13 @@ public class EnvironmentRepositoryTest {
     private DataSource dataSource;
 
     @Autowired
-    private EnvironmentRepository environmentRepository;
+    private JpaRepository<Environment, Long> environmentRepository;
 
     public static final Operation INSERT_REFERENCE_DATA =
             sequenceOf(
                     insertInto(Environment.TABLE_NAME)
-                            .columns("id", "code", "label")
-                            .values(-1, "dev", "development")
+                            .columns("id", "code", "label", "version")
+                            .values(-1, "dev", "development", 1)
                             .build()
             );
 

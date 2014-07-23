@@ -1,61 +1,58 @@
-<material-toolbar id="header-bar" class="material-theme-light-blue" scroll-header condensed-height="60">
-    <div class="material-toolbar-tools material-toolbar-tools-top">
-        <span class="material-flex"></span>
-    </div>
-    <div class="material-toolbar-tools material-toolbar-tools-bottom">
-        <span class="material-flex material-indent">
-            <small>You can use several environments to offer different context for developers, testers, the final
-                users...
-                For example you can have development, staging, production...
-            </small></span>
-    </div>
 
-    <button class="material-button material-button-fab material-button-fab-bottom-right material-theme-yellow">
-        <material-icon icon="img/icon/ic_extension_24px.svg"></material-icon>
-    </button>
-</material-toolbar>
 <material-content style="top:128px">
     <div class="container-fluid">
-        <div class="row">
-            <div class="columns six">
-
-                <h4>nb environment : {{environments.length}}</h4>
-                <material-list>
-                    <material-item ng-repeat="env in environments" ng-dblClick="update_env(env)">
-                        <div class="material-tile-content">
-                            <h2>{{env.code}}</h2>
-
-                            <p>{{env.label}}</p>
-                        </div>
-                        <div class="material-tile-right">
-                            <material-checkbox>
-                                <input type="checkbox" value="{{env.id}}" ng-model="env.todelete">
-                            </material-checkbox>
-                        </div>
-                    </material-item>
-                </material-list>
-            </div>
-            <div class="columns one">
-                &nbsp;
-            </div>
-            <div class="columns five">
-                <h4>&nbsp;</h4>
-                <material-whiteframe
-                        class="material-flex material-display-flex material-flex-center material-whiteframe-z1">
-                    <form class="form" name="form" novalidate ng-show="entity">
-                        <h4>{{entity.verb}}</h4>
-
-                        <label class="control-label" for="data-id">&nbsp;Id</label>
-                        <input type="text" id="data-id" readonly ng-model="entity.content.id">
-                        <label class="control-label" for="data-firstname">&nbsp;Code</label>
-                        <input type="text" id="data-firstname" size="30" required ng-model="entity.content.code">
-                        <label class="control-label" for="data-lastname">&nbsp;Label</label>
-                        <input type="text" id="data-lastname" size="40" required ng-model="entity.content.label">
-            </div>
-
-            </form>
-            </material-whiteframe>
+        <div class="col-md-5">
+            <h4>
+                nb environment : {{environments.length}}
+                <div class="confman_btn" style="width: 50%">
+                    <button class="btn btn-primary" ng-click="create()">
+                        <img src="img/icon/ic_insert_drive_file_24px.svg" title="New"/>
+                    </button>
+                </div>
+            </h4>
+            <material-list>
+                <material-item ng-repeat="env in environments" ng-dblClick="update(env)">
+                    <div class="material-tile-content">
+                        <h2>{{env.code}}</h2>
+                        <p>{{env.label}}</p>
+                    </div>
+                </material-item>
+            </material-list>
         </div>
-    </div>
+        <div class="col-md-6 col-md-offset-1">
+            <form class="form confman_form" name="form" novalidate ng-show="entity.content">
+                <div class="" style="height: 100%">
+                    <h4>{{entity.verb}}</h4>
+                    <div class="alert alert-danger confman_error" role="alert" ng-show="error">
+                        Error : {{error.message}}
+                    </div>
+                    <div class="thumbnail">
+                    <div class="row" ng-show="entity.content.id">
+                        <div class="col-xs-2"><label for="data-id">&nbsp;Id</label></div>
+                        <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="entity.content.id"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2"><label class="control-label"  for="data-firstname">&nbsp;Code</label></div>
+                        <div class="col-xs-10"><input type="text" id="data-firstname" required ng-model="entity.content.code"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2"><label class="control-label" for="data-lastname">&nbsp;Label</label></div>
+                        <div class="col-xs-10"><input type="text" id="data-lastname" size="50" required ng-model="entity.content.label"></div>
+                    </div>
+
+                    <div class="confman_btn">
+                        <br/>
+                        <button class="btn btn-primary" ng-click="save(form)" >
+                            <img src="img/icon/ic_save_24px.svg" title="Save"/>
+                        </button>
+                        <button class="btn btn-danger" ng-click="delete(entity.content, $event)" ng-show="entity.content.id">
+                            <img src="img/icon/ic_delete_24px.svg" title="Delete"/>
+                        </button>
+                    </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
     </div>
 </material-content>

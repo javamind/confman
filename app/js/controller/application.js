@@ -1,6 +1,6 @@
 
 
-confman.controller('applicationCtrl', function ($rootScope, $scope,$routeParams) {
+angular.module('confman').controller('applicationCtrl', function ($rootScope, $scope,$routeParams) {
     $rootScope.currentPage = {
         name : "application",
         actionbar : []
@@ -9,7 +9,7 @@ confman.controller('applicationCtrl', function ($rootScope, $scope,$routeParams)
     $scope.params = $routeParams;
 })
 
-confman.controller('applicationDetailCtrl', function ($rootScope, $scope,$routeParams) {
+angular.module('confman').controller('applicationDetailCtrl', function ($rootScope, $scope,$routeParams) {
     $rootScope.currentPage = {
         name : "Detail application",
         actionbar : []

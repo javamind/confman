@@ -5,7 +5,7 @@ import com.ninja_squad.dbsetup.destination.DataSourceDestination;
 import com.ninja_squad.dbsetup.operation.Operation;
 import com.ninjamind.confman.config.PersistenceConfig;
 import com.ninjamind.confman.domain.Environment;
-import org.assertj.core.api.Assertions;
+import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,33 +21,45 @@ import static com.ninja_squad.dbsetup.Operations.sequenceOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * One test to verify database connection
+ * Test of {@link com.ninjamind.confman.repository.SofwareSuiteEnvironmentRepository}
  *
  * @author EHRET_G
  */
 @ContextConfiguration(classes = {PersistenceConfig.class})
 @RunWith(SpringJUnit4ClassRunner.class)
-public class EnvironmentRepositoryTest {
+public class SofwareSuiteEnvironmentRepositoryTest{
 
     @Autowired
     private DataSource dataSource;
 
     @Autowired
-    private JpaRepository<Environment, Long> environmentRepository;
+    private SofwareSuiteEnvironmentRepository sofwareSuiteEnvironmentRepository;
 
     @Before
     public void setUp(){
         Operation operation =
                 sequenceOf(
                         CommonOperations.DELETE_ALL,
-                        CommonOperations.INSERT_ENVIRONMENT
+                        CommonOperations.INSERT_ENVIRONMENT,
+                        CommonOperations.INSERT_SOFTWARE_SUITE,
+                        CommonOperations.INSERT_SOFTWARE_SUITE_ENV
                 );
         DbSetup dbSetup = new DbSetup(new DataSourceDestination(dataSource), operation);
         dbSetup.launch();
     }
 
     @Test
-    public void shouldFindOneEnvironment() {
-        assertThat(environmentRepository.findOne(1L).getCode()).isEqualTo("dev");
+    public void shouldNotFindSoftwareSuiteEnvironmentByIdEnvWhenIdNotFound() {
+        assertThat(sofwareSuiteEnvironmentRepository.findSoftwareSuiteEnvironmentByIdEnv(2L)).isEmpty();
+    }
+
+    @Test
+    public void shouldindSoftwareSuiteEnvironmentByIdEnv() {
+        assertThat(sofwareSuiteEnvironmentRepository.findSoftwareSuiteEnvironmentByIdEnv(1L))
+                .isNotEmpty()
+                .extracting("id")
+                .extracting("softwareSuite")
+                .extracting("code")
+                .containsExactly("ARP");
     }
 }

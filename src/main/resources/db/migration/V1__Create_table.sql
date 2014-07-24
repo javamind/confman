@@ -26,6 +26,7 @@ CREATE TABLE softwaresuite_environment
 (
   environment_id integer NOT NULL REFERENCES environment (id),
   softwaresuite_id integer NOT NULL REFERENCES softwaresuite (id),
+  version integer,
   CONSTRAINT softwaresuite_env_id_unique_key UNIQUE (environment_id, softwaresuite_id)
 )
 WITH (

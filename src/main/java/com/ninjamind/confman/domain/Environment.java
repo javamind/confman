@@ -22,28 +22,10 @@ public class Environment extends AbstractConfManEntity<Environment>{
     @GeneratedValue(strategy= GenerationType.AUTO, generator = Environment.SEQ_NAME)
     @SequenceGenerator(name = Environment.SEQ_NAME, sequenceName = Environment.SEQ_NAME, allocationSize = 1)
     private Long id;
-    @ManyToMany(mappedBy = "environments")
-    private Set<SoftwareSuite> softwareSuites = new HashSet<>();
+    @OneToMany(mappedBy = "id.environment")
+    private Set<SoftwareSuiteEnvironment> softwareSuiteEnvironments = new HashSet<>();
 
     public Environment() {
-    }
-
-    public Environment addApplicationGroupment(SoftwareSuite softwareSuite) {
-        softwareSuites.add(softwareSuite);
-        return this;
-    }
-
-    public Environment removeApplicationGroupment(Object o) {
-        softwareSuites.remove(o);
-        return this;
-    }
-
-    public void clearApplicationGroupment() {
-        softwareSuites.clear();
-    }
-
-    public Set<SoftwareSuite> getSoftwareSuites() {
-        return Collections.unmodifiableSet(softwareSuites);
     }
 
     public Long getId() {
@@ -53,6 +35,24 @@ public class Environment extends AbstractConfManEntity<Environment>{
     public Environment setId(Long id) {
         this.id = id;
         return this;
+    }
+
+    public Set<SoftwareSuiteEnvironment> getSoftwareSuiteEnvironments() {
+        return  Collections.unmodifiableSet(softwareSuiteEnvironments);
+    }
+
+    public Environment addSoftwareSuiteEnvironment(SoftwareSuiteEnvironment softwareSuiteEnvironment) {
+        this.softwareSuiteEnvironments.add(softwareSuiteEnvironment);
+        return this;
+    }
+
+    public Environment removeSoftwareSuiteEnvironment(SoftwareSuiteEnvironment softwareSuiteEnvironment) {
+        this.softwareSuiteEnvironments.remove(softwareSuiteEnvironment);
+        return this;
+    }
+
+    public void clearSoftwareSuiteEnvironments() {
+        softwareSuiteEnvironments.clear();
     }
 
     @Override

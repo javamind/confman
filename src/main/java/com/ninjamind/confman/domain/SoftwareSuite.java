@@ -25,32 +25,28 @@ public class SoftwareSuite extends AbstractConfManEntity<SoftwareSuite>{
     @OneToMany(mappedBy = "softwareSuite")
     private Set<Application> applications= new HashSet<>();
 
-    @ManyToMany
-    @JoinTable(
-            name = "softwaresuite_environment",
-            joinColumns = {@JoinColumn(name = "environment_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "softwaresuite_id", referencedColumnName = "id")})
-    private Set<Environment> environments = new HashSet<>();
+    @OneToMany(mappedBy = "id.softwareSuite")
+    private Set<SoftwareSuiteEnvironment> softwareSuiteEnvironments = new HashSet<>();
 
     public SoftwareSuite() {
     }
 
-    public Set<Environment> getEnvironments() {
-        return  Collections.unmodifiableSet(environments);
+    public Set<SoftwareSuiteEnvironment> getSoftwareSuiteEnvironments() {
+        return  Collections.unmodifiableSet(softwareSuiteEnvironments);
     }
 
-    public SoftwareSuite addEnvironment(Environment environment) {
-        this.environments.add(environment);
+    public SoftwareSuite addSoftwareSuiteEnvironment(SoftwareSuiteEnvironment softwareSuiteEnvironment) {
+        this.softwareSuiteEnvironments.add(softwareSuiteEnvironment);
         return this;
     }
 
-    public SoftwareSuite removeEnvironment(Environment environment) {
-        this.environments.remove(environment);
+    public SoftwareSuite removeSoftwareSuiteEnvironment(SoftwareSuiteEnvironment softwareSuiteEnvironment) {
+        this.softwareSuiteEnvironments.remove(softwareSuiteEnvironment);
         return this;
     }
 
-    public void clearEnvironnements() {
-        environments.clear();
+    public void clearSoftwareSuiteEnvironments() {
+        softwareSuiteEnvironments.clear();
     }
 
     public SoftwareSuite addApplication(Application application) {

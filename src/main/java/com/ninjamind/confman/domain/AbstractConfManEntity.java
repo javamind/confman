@@ -2,7 +2,8 @@ package com.ninjamind.confman.domain;
 
 import com.google.common.base.Objects;
 
-import javax.persistence.*;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Version;
 import java.io.Serializable;
 
 /**
@@ -11,7 +12,7 @@ import java.io.Serializable;
  * @author EHRET_G
  */
 @MappedSuperclass
-public abstract class AbstractConfManEntity<T extends AbstractConfManEntity> {
+public abstract class AbstractConfManEntity<T extends AbstractConfManEntity> implements Serializable{
 
     /**
      * Code

@@ -1,6 +1,7 @@
 package com.ninjamind.confman.service;
 
 import com.ninjamind.confman.domain.Environment;
+import com.ninjamind.confman.repository.EnvironmentRepository;
 import com.ninjamind.confman.repository.HibernateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,7 +21,7 @@ import java.util.logging.Logger;
 @Transactional
 public class EnvironmentFacadeImpl implements GenericFacade<Environment, Long>{
     @Autowired
-    private JpaRepository<Environment, Long> environmentRepository;
+    private EnvironmentRepository environmentRepository;
 
     @Override
     public JpaRepository<Environment, Long> getRepository() {

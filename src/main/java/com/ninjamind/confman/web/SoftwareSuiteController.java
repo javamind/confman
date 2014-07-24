@@ -4,7 +4,9 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.SoftwareSuite;
 import com.ninjamind.confman.dto.SoftwareSuiteDto;
-import com.ninjamind.confman.service.GenericFacade;
+import com.ninjamind.confman.dto.SoftwareSuiteEnvironmentDto;
+import com.ninjamind.confman.service.SoftwareSuiteFacade;
+import com.ninjamind.confman.service.SoftwareSuiteFacadeImpl;
 import net.codestory.http.annotations.Delete;
 import net.codestory.http.annotations.Get;
 import net.codestory.http.annotations.Post;
@@ -22,7 +24,9 @@ import java.util.List;
 public class SoftwareSuiteController {
     @Autowired
     @Qualifier("softwareSuiteFacade")
-    private GenericFacade<SoftwareSuite, Long> genericFacade;
+    private SoftwareSuiteFacade<SoftwareSuite,Long> genericFacade;
+
+
 
     @Get("/softwaresuite")
     public List<SoftwareSuiteDto> list() {
@@ -32,6 +36,12 @@ public class SoftwareSuiteController {
     @Get("/softwaresuite/:id")
     public SoftwareSuiteDto get(Long id) {
         return new SoftwareSuiteDto(genericFacade.findOne(id));
+    }
+
+    @Get("/softwaresuite/:id/environment")
+    public List<SoftwareSuiteEnvironmentDto> getEnvironment(Long id) {
+        Preconditions.checkNotNull(id, "Sowftware suite id is required to update it");
+        return Lists.transform(genericFacade.findSoftwareSuiteEnvironmentByIdSoft(id), env -> new SoftwareSuiteEnvironmentDto(env));
     }
 
     @Put("/softwaresuite")

@@ -2,6 +2,7 @@ package com.ninjamind.confman.dto;
 
 import com.ninjamind.confman.domain.Environment;
 import com.ninjamind.confman.domain.SoftwareSuite;
+import com.ninjamind.confman.domain.SoftwareSuiteEnvironment;
 
 import java.io.Serializable;
 
@@ -19,6 +20,13 @@ public class SoftwareSuiteEnvironmentDto implements Serializable {
 
     public SoftwareSuiteEnvironmentDto() {
         super();
+    }
+
+    public SoftwareSuiteEnvironmentDto(SoftwareSuiteEnvironment softwareSuiteEnvironment) {
+        idEnvironmentDto = softwareSuiteEnvironment.getId().getEnvironment().getId();
+        codeEnvironmentDto = softwareSuiteEnvironment.getId().getEnvironment().getCode();
+        idSoftwareSuiteDto = softwareSuiteEnvironment.getId().getSoftwareSuite().getId();
+        codeSoftwareSuiteDto = softwareSuiteEnvironment.getId().getSoftwareSuite().getCode();
     }
 
     public SoftwareSuiteEnvironmentDto(SoftwareSuite soft, Environment env) {

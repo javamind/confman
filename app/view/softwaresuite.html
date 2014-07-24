@@ -40,18 +40,18 @@
                         <div class="col-xs-10"><input type="text" id="data-label" size="50" required ng-model="entity.content.label"></div>
                     </div>
 
-                    <div ng-show="entity.content.id">
+                    <div ng-show="entity.content.id" ng-hide="hideEnv">
                         <br>
                         <h4>Environments</h4>
                         <material-list>
                             <material-item ng-repeat="obj in environments" ng-dblClick="updateEnvironment()">
                                 <div class="material-tile-content">
                                     <h2>{{obj.code}}</h2>
-                                    <p>{{obj.label}}</p>
+                                    <p>{{obj.label}} {{obj.selected}}</p>
                                 </div>
                                 <div class="material-tile-right">
                                     <material-checkbox>
-                                        <input type="checkbox" value="{{env.id}}" ng-model="env.todelete">
+                                        <input type="checkbox" ng-model="obj.selected">
                                     </material-checkbox>
                                 </div>
                             </material-item>

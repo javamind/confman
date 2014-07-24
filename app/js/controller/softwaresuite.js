@@ -1,7 +1,7 @@
 /**
  * Controller linked to the application's groupment list
  */
-angular.module('confman').controller('softwaresuiteCtrl', function ($rootScope, $scope, $modal, modalConfirmDeleteCtrl, SoftwareSuite, Environment) {
+angular.module('confman').controller('softwaresuiteCtrl', function ($rootScope, $scope, $http, $modal, modalConfirmDeleteCtrl, SoftwareSuite, Environment, constants) {
 
     //Page definition
     $rootScope.currentPage = {
@@ -10,10 +10,10 @@ angular.module('confman').controller('softwaresuiteCtrl', function ($rootScope, 
         icon : 'ic_settings_24px'
     };
 
+
     //Load applicationgroupments
     $scope.softwaresuites = SoftwareSuite.query();
-    //Load environments
-    $scope.environments = Environment.query();
+
 
     //Actions
     $scope.update =  function (elt){
@@ -21,6 +21,28 @@ angular.module('confman').controller('softwaresuiteCtrl', function ($rootScope, 
             verb : 'Update software suite',
             content : elt
         };
+        $scope.hideEnv=true;
+        //Load environments
+        $scope.environments = Environment.query(function(){
+            $http.get(constants.urlserver + '/softwaresuite/' + elt.id +'/environment')
+                .success(function (data) {
+                    data.forEach(function(element){
+                        //on parcours la liste des env
+                        for(i = 0 ; i<$scope.environments.length ; i++){
+                            var o = $scope.environments[i];
+                            if(o.id===element.idEnvironmentDto){
+                                o.selected = true;
+                                break;
+                            }
+                        }
+                    });
+                    $scope.hideEnv=false;
+                })
+                .error(function (data) {
+                    $rootScope.setError('Error on environments load ');
+                });
+        });
+
     };
     $scope.create =  function (){
         $scope.entity = {
@@ -69,7 +91,7 @@ angular.module('confman').controller('softwaresuiteCtrl', function ($rootScope, 
             SoftwareSuite.save(
                 $scope.entity.content,
                 function(data){
-                    $scope.error=null;
+                    $rootScope.error=null;
                     if(!$scope.softwaresuites){
                         $scope.softwaresuites = {};
                     }

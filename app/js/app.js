@@ -36,10 +36,11 @@ confman.value('modalConfirmDeleteCtrl', function ($scope, $modalInstance, entity
 confman.config(function ($routeProvider) {
     $routeProvider
         .when('/', {templateUrl: 'main.html', controller:'MainCtrl'})
+        .when('/application/:id', {templateUrl: 'view/applicationdetail.html', controller:'applicationDetailCtrl'})
         .otherwise({redirectTo: '/'});
 
     //Dynamic construction of the URI
-    ['environment', 'softwaresuite'].forEach(function logArrayElements(element, index){
+    ['environment', 'softwaresuite', 'application'].forEach(function logArrayElements(element, index){
         $routeProvider
             .when('/' + element, {
                 templateUrl: 'view/' + element + '.html',

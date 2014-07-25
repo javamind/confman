@@ -35,4 +35,44 @@ public class SoftwareSuiteEnvironmentDto implements Serializable {
         idSoftwareSuiteDto = soft.getId();
         codeSoftwareSuiteDto = soft.getCode();
     }
+
+    public SoftwareSuiteEnvironment toSoftwareSuiteEnvironment() {
+        return new SoftwareSuiteEnvironment(
+                new SoftwareSuite().setId(getIdSoftwareSuiteDto()).setCode(getCodeSoftwareSuiteDto()),
+                new Environment().setId(getIdEnvironmentDto()).setCode(getCodeEnvironmentDto())
+        );
+    }
+
+
+    public Long getIdSoftwareSuiteDto() {
+        return idSoftwareSuiteDto;
+    }
+
+    public void setIdSoftwareSuiteDto(Long idSoftwareSuiteDto) {
+        this.idSoftwareSuiteDto = idSoftwareSuiteDto;
+    }
+
+    public String getCodeSoftwareSuiteDto() {
+        return codeSoftwareSuiteDto;
+    }
+
+    public void setCodeSoftwareSuiteDto(String codeSoftwareSuiteDto) {
+        this.codeSoftwareSuiteDto = codeSoftwareSuiteDto;
+    }
+
+    public Long getIdEnvironmentDto() {
+        return idEnvironmentDto;
+    }
+
+    public void setIdEnvironmentDto(Long idEnvironmentDto) {
+        this.idEnvironmentDto = idEnvironmentDto;
+    }
+
+    public String getCodeEnvironmentDto() {
+        return codeEnvironmentDto;
+    }
+
+    public void setCodeEnvironmentDto(String codeEnvironmentDto) {
+        this.codeEnvironmentDto = codeEnvironmentDto;
+    }
 }

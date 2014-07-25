@@ -6,7 +6,6 @@ import com.ninjamind.confman.domain.SoftwareSuite;
 import com.ninjamind.confman.dto.SoftwareSuiteDto;
 import com.ninjamind.confman.dto.SoftwareSuiteEnvironmentDto;
 import com.ninjamind.confman.service.SoftwareSuiteFacade;
-import com.ninjamind.confman.service.SoftwareSuiteFacadeImpl;
 import net.codestory.http.annotations.Delete;
 import net.codestory.http.annotations.Get;
 import net.codestory.http.annotations.Post;
@@ -24,8 +23,7 @@ import java.util.List;
 public class SoftwareSuiteController {
     @Autowired
     @Qualifier("softwareSuiteFacade")
-    private SoftwareSuiteFacade<SoftwareSuite,Long> genericFacade;
-
+    private SoftwareSuiteFacade<SoftwareSuite, Long> genericFacade;
 
 
     @Get("/softwaresuite")
@@ -47,7 +45,7 @@ public class SoftwareSuiteController {
     @Put("/softwaresuite")
     public SoftwareSuiteDto update(SoftwareSuiteDto env) {
         Preconditions.checkNotNull(env, "Object is required to update it");
-        return new SoftwareSuiteDto(genericFacade.save(env.toSoftwareSuite()));
+        return new SoftwareSuiteDto(genericFacade.update(env.toSoftwareSuite(), env.toSoftwareSuiteEnvironment()));
     }
 
     @Post("/softwaresuite")

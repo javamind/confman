@@ -102,6 +102,22 @@ angular.module('confman').controller('softwaresuiteCtrl', function ($rootScope, 
                 $scope.callbackKO);
         }
         else{
+            //Environment linked to the suite
+            var envs = $scope.environments.filter(function filter(env){
+                return  env.selected;
+            })
+            if(envs) {
+                var softenv = [];
+                envs.forEach(function prepare(elt){
+                    softenv.push({
+                        idEnvironmentDto : elt.id,
+                        codeEnvironmentDto : elt.code,
+                        idSoftwareSuiteDto : $scope.entity.content.id,
+                        codeSoftwareSuiteDto : $scope.entity.content.code
+                    });
+                })
+                $scope.entity.content.environments = softenv;
+            }
             $scope.entity.content.$update($scope.callbackOK, $scope.callbackKO);
         }
     };

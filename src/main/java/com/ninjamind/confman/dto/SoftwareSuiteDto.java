@@ -1,6 +1,12 @@
 package com.ninjamind.confman.dto;
 
 import com.ninjamind.confman.domain.SoftwareSuite;
+import com.ninjamind.confman.domain.SoftwareSuiteEnvironment;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * {@link com.ninjamind.confman.domain.SoftwareSuite}
@@ -8,6 +14,8 @@ import com.ninjamind.confman.domain.SoftwareSuite;
  * @author EHRET_G
  */
 public class SoftwareSuiteDto extends AbstractConfManDto {
+
+    private List<SoftwareSuiteEnvironmentDto> environments;
 
     public SoftwareSuiteDto() {
         super();
@@ -28,5 +36,21 @@ public class SoftwareSuiteDto extends AbstractConfManDto {
                 .setCode(getCode())
                 .setLabel(getLabel())
                 .setVersion(getVersion());
+    }
+
+    public Set<SoftwareSuiteEnvironment> toSoftwareSuiteEnvironment() {
+        Set<SoftwareSuiteEnvironment> set = new HashSet<>();
+        for(SoftwareSuiteEnvironmentDto dto : environments){
+            set.add(dto.toSoftwareSuiteEnvironment());
+        }
+        return set;
+    }
+
+    public List<SoftwareSuiteEnvironmentDto> getEnvironments() {
+        return environments;
+    }
+
+    public void setEnvironments(List<SoftwareSuiteEnvironmentDto> environments) {
+        this.environments = environments;
     }
 }

@@ -62,4 +62,6 @@ public class SofwareSuiteEnvironmentRepositoryTest{
                 .extracting("code")
                 .containsExactly("ARP");
     }
+
+
 }

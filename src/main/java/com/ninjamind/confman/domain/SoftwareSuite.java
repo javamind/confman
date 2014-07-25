@@ -45,8 +45,9 @@ public class SoftwareSuite extends AbstractConfManEntity<SoftwareSuite>{
         return this;
     }
 
-    public void clearSoftwareSuiteEnvironments() {
+    public SoftwareSuite clearSoftwareSuiteEnvironments() {
         softwareSuiteEnvironments.clear();
+        return this;
     }
 
     public SoftwareSuite addApplication(Application application) {

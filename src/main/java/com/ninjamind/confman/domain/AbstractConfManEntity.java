@@ -87,7 +87,9 @@ public abstract class AbstractConfManEntity<T extends AbstractConfManEntity> imp
     @Override
     public int hashCode() {
         int result = code.hashCode();
-        result = 31 * result + label.hashCode();
+        if(label!=null) {
+            result = 31 * result + label.hashCode();
+        }
         return result;
     }
 

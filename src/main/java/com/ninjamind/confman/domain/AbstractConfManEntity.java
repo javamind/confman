@@ -28,6 +28,8 @@ public abstract class AbstractConfManEntity<T extends AbstractConfManEntity> imp
     @Version
     private Long version = Long.valueOf(0);
 
+    private boolean active;
+
     /**
      * Default constructor
      */
@@ -69,6 +71,14 @@ public abstract class AbstractConfManEntity<T extends AbstractConfManEntity> imp
     public T setVersion(Long version) {
         this.version = version;
         return (T) this;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     @Override

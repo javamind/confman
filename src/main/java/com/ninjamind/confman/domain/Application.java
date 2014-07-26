@@ -27,6 +27,12 @@ public class Application extends AbstractConfManEntity<Application>{
     @OneToMany(mappedBy = "application")
     private Set<ApplicationVersion> applicationVersions= new HashSet<>();
 
+    @OneToMany(mappedBy = "application")
+    private Set<Instance> instances= new HashSet<>();
+
+    @OneToMany(mappedBy = "application")
+    private Set<Parameter> parameters= new HashSet<>();
+
     @ManyToOne
     @JoinColumn(name = "softwareSuite_id")
     private SoftwareSuite softwareSuite;
@@ -48,7 +54,7 @@ public class Application extends AbstractConfManEntity<Application>{
         return this;
     }
 
-    public Application removeApplicationVersion(Object o) {
+    public Application removeApplicationVersion(ApplicationVersion o) {
         applicationVersions.remove(o);
         return this;
     }
@@ -59,6 +65,42 @@ public class Application extends AbstractConfManEntity<Application>{
 
     public Set<ApplicationVersion> getApplicationVersions() {
         return Collections.unmodifiableSet(applicationVersions);
+    }
+
+    public Application addParameter(Parameter parameter) {
+        parameters.add(parameter);
+        return this;
+    }
+
+    public Application removeParameter(Parameter o) {
+        parameters.remove(o);
+        return this;
+    }
+
+    public void clearParameters() {
+        parameters.clear();
+    }
+
+    public Set<Parameter> getParameters() {
+        return Collections.unmodifiableSet(parameters);
+    }
+
+    public Application addInstance(Instance instance) {
+        instances.add(instance);
+        return this;
+    }
+
+    public Application removeInstance(Instance o) {
+        instances.remove(o);
+        return this;
+    }
+
+    public void clearInstances() {
+        instances.clear();
+    }
+
+    public Set<Instance> getInstance() {
+        return Collections.unmodifiableSet(instances);
     }
 
     public Long getId() {

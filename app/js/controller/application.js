@@ -5,7 +5,7 @@ angular.module('confman').controller('applicationCtrl', function ($rootScope, $s
 
     //Page definition
     $rootScope.currentPage = {
-        name : 'Application',
+        name : 'Applications',
         description : 'List of yours apps',
         icon : 'ic_settings_24px',
         actionbar : [
@@ -28,15 +28,17 @@ angular.module('confman').controller('applicationCtrl', function ($rootScope, $s
 
 });
 
-angular.module('confman').controller('applicationDetailCtrl', function ($rootScope, $scope, $modal, modalConfirmDeleteCtrl, Application) {
+angular.module('confman').controller('applicationDetailCtrl', function ($rootScope, $scope, $modal, modalConfirmDeleteCtrl, $routeParams,  Application) {
 
     //Page definition
     $rootScope.currentPage = {
-        name : 'Application TODO',
-        description : 'List of yours apps',
+        name : 'Application',
+        description : $routeParams.id>0 ? 'Update Application' : 'Create new application',
         icon : 'ic_settings_24px'
     };
 
+
+    $scope.routeparam = $routeParams;
 
 
 });

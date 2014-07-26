@@ -28,6 +28,8 @@ public class ApplicationVersion extends AbstractConfManEntity<ApplicationVersion
     @JoinColumn(name = "application_id")
     private Application application;
 
+    private boolean blocked;
+
     public ApplicationVersion() {
     }
 
@@ -56,6 +58,14 @@ public class ApplicationVersion extends AbstractConfManEntity<ApplicationVersion
 
     public Set<VersionTracking> getVersionTrackings() {
         return Collections.unmodifiableSet(versionTrackings);
+    }
+
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
     }
 
     @Override

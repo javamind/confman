@@ -22,8 +22,6 @@ public class VersionTracking extends AbstractConfManEntity<VersionTracking>{
     @GeneratedValue(strategy= GenerationType.AUTO, generator = VersionTracking.SEQ_NAME)
     @SequenceGenerator(name = VersionTracking.SEQ_NAME, sequenceName = VersionTracking.SEQ_NAME, allocationSize = 1)
     private Long id;
-    @OneToMany(mappedBy = "versionTracking")
-    private Set<Instance> instances= new HashSet<>();
     @ManyToOne
     @JoinColumn(name = "applicationVersion_id")
     private ApplicationVersion applicationVersion;
@@ -38,25 +36,6 @@ public class VersionTracking extends AbstractConfManEntity<VersionTracking>{
     public VersionTracking setApplicationVersion(ApplicationVersion applicationVersion) {
         this.applicationVersion = applicationVersion;
         return this;
-    }
-
-
-    public VersionTracking addInstance(Instance instance) {
-        instances.add(instance);
-        return this;
-    }
-
-    public VersionTracking removeInstance(Object o) {
-        instances.remove(o);
-        return this;
-    }
-
-    public void clearInstance() {
-        instances.clear();
-    }
-
-    public Set<Instance> getInstances() {
-        return Collections.unmodifiableSet(instances);
     }
 
     public Long getId() {

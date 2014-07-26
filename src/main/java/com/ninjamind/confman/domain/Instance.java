@@ -23,20 +23,20 @@ public class Instance extends AbstractConfManEntity<Instance>{
     @SequenceGenerator(name = Instance.SEQ_NAME, sequenceName = Instance.SEQ_NAME, allocationSize = 1)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "versionTracking_id")
-    private VersionTracking versionTracking;
+    @JoinColumn(name = "application_id")
+    private Application application;
     @OneToMany(mappedBy = "instance")
     private Set<Parameter> parameters= new HashSet<>();
 
     public Instance() {
     }
 
-    public VersionTracking getVersionTracking() {
-        return versionTracking;
+    public Application getApplication() {
+        return application;
     }
 
-    public Instance setVersionTracking(VersionTracking versionTracking) {
-        this.versionTracking = versionTracking;
+    public Instance setApplication(Application application) {
+        this.application = application;
         return this;
     }
 
@@ -75,7 +75,7 @@ public class Instance extends AbstractConfManEntity<Instance>{
 
         Instance instance = (Instance) o;
 
-        if (versionTracking != null ? !versionTracking.equals(instance.versionTracking) : instance.versionTracking != null)
+        if (application != null ? !application.equals(instance.application) : instance.application != null)
             return false;
 
         return true;
@@ -84,7 +84,7 @@ public class Instance extends AbstractConfManEntity<Instance>{
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (versionTracking != null ? versionTracking.hashCode() : 0);
+        result = 31 * result + (application != null ? application.hashCode() : 0);
         return result;
     }
 
@@ -93,7 +93,7 @@ public class Instance extends AbstractConfManEntity<Instance>{
         return Objects.toStringHelper(this)
                 .add("id", id)
                 .addValue(super.toString())
-                .add("versionTracking", versionTracking)
+                .add("application", application)
                 .toString();
     }
 }

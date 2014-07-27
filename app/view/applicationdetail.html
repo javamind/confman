@@ -26,7 +26,7 @@
                 <h4>Instances</h4>
                 <div class="thumbnail">
                     <h4>
-                        nb instances : {{instances.length}}
+                        nb instances : {{application.instances.length}}
                         <div class="confman_btn" style="width: 50%">
                             <button class="btn btn-primary" ng-click="createInstance()">
                                 <img src="../img/icon/ic_insert_drive_file_24px.svg" title="New"/>
@@ -47,7 +47,7 @@
                 <h4>Versions</h4>
                 <div class="thumbnail">
                     <h4>
-                        nb versions : {{versions.length}}
+                        nb versions : {{application.versions.length}}
                         <div class="confman_btn" style="width: 50%">
                             <button class="btn btn-primary" ng-click="createVersion()">
                                 <img src="../img/icon/ic_insert_drive_file_24px.svg" title="New"/>
@@ -68,7 +68,7 @@
                 <h4>Parameters</h4>
                 <div class="thumbnail">
                     <h4>
-                        nb parameters : {{parameters.length}}
+                        nb parameters : {{application.parameters.length}}
                         <div class="confman_btn" style="width: 50%">
                             <button class="btn btn-primary" ng-click="createParameter()">
                                 <img src="../img/icon/ic_insert_drive_file_24px.svg" title="New"/>
@@ -76,7 +76,7 @@
                         </div>
                     </h4>
                     <material-list>
-                        <material-item ng-repeat="parameter in application. parameters" ng-dblClick="updateParameter(env)">
+                        <material-item ng-repeat="parameter in application.parameters" ng-dblClick="updateParameter(env)">
                             <div class="material-tile-content">
                                 <h2>{{parameter.code}}</h2>
                                 <p>{{parameter.label}}</p>

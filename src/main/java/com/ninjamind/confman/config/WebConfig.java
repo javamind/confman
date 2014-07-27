@@ -1,5 +1,6 @@
 package com.ninjamind.confman.config;
 
+import com.ninjamind.confman.web.ApplicationController;
 import com.ninjamind.confman.web.EnvironmentController;
 import com.ninjamind.confman.web.SoftwareSuiteController;
 import org.hibernate.jpa.HibernatePersistenceProvider;
@@ -33,5 +34,10 @@ public class WebConfig {
     @Bean
     public SoftwareSuiteController softwareSuiteController(){
         return new SoftwareSuiteController();
+    }
+
+    @Bean
+    public ApplicationController applicationController(){
+        return new ApplicationController();
     }
 }

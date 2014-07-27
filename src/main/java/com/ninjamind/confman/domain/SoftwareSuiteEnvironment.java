@@ -17,6 +17,10 @@ public class SoftwareSuiteEnvironment implements Serializable{
     @EmbeddedId
     private SoftwareSuiteEnvironmentId id;
 
+    private boolean active;
+    @Version
+    private Long version;
+
     public SoftwareSuiteEnvironment() {
     }
 
@@ -30,6 +34,22 @@ public class SoftwareSuiteEnvironment implements Serializable{
 
     public SoftwareSuiteEnvironmentId getId() {
         return id;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
     @Override

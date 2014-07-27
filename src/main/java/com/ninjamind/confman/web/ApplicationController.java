@@ -4,6 +4,7 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.Application;
 import com.ninjamind.confman.dto.ApplicationDto;
+import com.ninjamind.confman.service.ApplicationFacade;
 import com.ninjamind.confman.service.GenericFacade;
 import net.codestory.http.annotations.Delete;
 import net.codestory.http.annotations.Get;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * {@link }
@@ -22,7 +24,7 @@ import java.util.List;
 public class ApplicationController {
     @Autowired
     @Qualifier("applicationFacade")
-    private GenericFacade<Application, Long> genericFacade;
+    private ApplicationFacade<Application, Long> genericFacade;
 
     @Get("/application")
     public List<ApplicationDto> list() {
@@ -31,7 +33,12 @@ public class ApplicationController {
 
     @Get("/application/:id")
     public ApplicationDto get(Long id) {
-        return new ApplicationDto(genericFacade.findOne(id));
+        Application app = genericFacade.findOneWthDependencies(id);
+        return new ApplicationDto(
+                app,
+                app.getApplicationVersions().stream().collect(Collectors.toList()),
+                app.getInstances().stream().collect(Collectors.toList()),
+                app.getParameters().stream().collect(Collectors.toList()));
     }
 
     @Put("/application")

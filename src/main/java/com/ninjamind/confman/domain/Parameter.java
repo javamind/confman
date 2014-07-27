@@ -28,7 +28,7 @@ public class Parameter extends AbstractConfManEntity<Parameter>{
     @ManyToOne
     @JoinColumn(name = "application_id")
     private Application application;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private ParameterType type;
 
     public Parameter() {

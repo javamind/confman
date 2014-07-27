@@ -99,7 +99,7 @@ public class Application extends AbstractConfManEntity<Application>{
         instances.clear();
     }
 
-    public Set<Instance> getInstance() {
+    public Set<Instance> getInstances() {
         return Collections.unmodifiableSet(instances);
     }
 

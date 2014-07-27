@@ -1,17 +1,89 @@
-<material-content style="top:128px">
+<material-content style="top:128px" ng-controller="applicationDetailCtrl">
     <form class="form confman_form" name="form" novalidate>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <h4>Application</h4>
+                <div class="row" ng-show="application.id">
+                    <div class="col-xs-2"><label for="data-id">&nbsp;Id</label></div>
+                    <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="application.id"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2"><label class="control-label"  for="data-code">&nbsp;Code</label></div>
+                    <div class="col-xs-10"><input type="text" id="data-code" required ng-model="application.code"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2"><label class="control-label" for="data-label">&nbsp;Label</label></div>
+                    <div class="col-xs-10"><input type="text" id="data-label" size="50" required ng-model="application.label"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2"><label class="control-label" for="data-softwaresuite">&nbsp;Software suite</label></div>
+                    <div class="col-xs-10"><select id="data-softwaresuite" ng-model="application.label"></select>
+                </div>
+                <br>&nbsp;
+                    <br>&nbsp;
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <h4>Instances</h4>
+                <div class="thumbnail">
+                    <h4>
+                        nb instances : {{instances.length}}
+                        <div class="confman_btn" style="width: 50%">
+                            <button class="btn btn-primary" ng-click="createInstance()">
+                                <img src="../img/icon/ic_insert_drive_file_24px.svg" title="New"/>
+                            </button>
+                        </div>
+                    </h4>
+                    <material-list>
+                        <material-item ng-repeat="instance in application.instances" ng-dblClick="updateInstance(env)">
+                            <div class="material-tile-content">
+                                <h2>{{instance.code}}</h2>
+                                <p>{{instance.label}}</p>
+                            </div>
+                        </material-item>
+                    </material-list>
+                </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <h4>Versions</h4>
+                <div class="thumbnail">
+                    <h4>
+                        nb versions : {{versions.length}}
+                        <div class="confman_btn" style="width: 50%">
+                            <button class="btn btn-primary" ng-click="createVersion()">
+                                <img src="../img/icon/ic_insert_drive_file_24px.svg" title="New"/>
+                            </button>
+                        </div>
+                    </h4>
+                    <material-list>
+                        <material-item ng-repeat="version in application.versions" ng-dblClick="updateVersion(env)">
+                            <div class="material-tile-content">
+                                <h2>{{version.code}}</h2>
+                                <p>{{version.label}}</p>
+                            </div>
+                        </material-item>
+                    </material-list>
+                </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <h4>Parameters</h4>
+                <div class="thumbnail">
+                    <h4>
+                        nb parameters : {{parameters.length}}
+                        <div class="confman_btn" style="width: 50%">
+                            <button class="btn btn-primary" ng-click="createParameter()">
+                                <img src="../img/icon/ic_insert_drive_file_24px.svg" title="New"/>
+                            </button>
+                        </div>
+                    </h4>
+                    <material-list>
+                        <material-item ng-repeat="parameter in application. parameters" ng-dblClick="updateParameter(env)">
+                            <div class="material-tile-content">
+                                <h2>{{parameter.code}}</h2>
+                                <p>{{parameter.label}}</p>
+                            </div>
+                        </material-item>
+                    </material-list>
+                </div>
             </div>
         </div>
     </form>

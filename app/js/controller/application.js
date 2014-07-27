@@ -7,12 +7,7 @@ angular.module('confman').controller('applicationCtrl', function ($rootScope, $s
     $rootScope.currentPage = {
         name : 'Applications',
         description : 'List of yours apps',
-        icon : 'ic_settings_24px',
-        actionbar : [
-            { icon : 'ic_insert_drive_file_24px',  action : function (){
-                $location.path('/application/'+0);
-            }}
-        ]
+        icon : 'ic_settings_24px'
     };
 
     //Load environments
@@ -20,10 +15,10 @@ angular.module('confman').controller('applicationCtrl', function ($rootScope, $s
 
     //Actions
     $scope.update =  function (elt){
-       //TODO
+        $location.path('/application/'+ elt.id);
     };
     $scope.create =  function (){
-        //TODO
+        $location.path('/application/'+0);
     };
 
 });
@@ -38,8 +33,13 @@ angular.module('confman').controller('applicationDetailCtrl', function ($rootSco
     };
 
 
-    $scope.routeparam = $routeParams;
-
+    //Load environments
+    if($routeParams.id>0){
+        $scope.application = Application.get({id:$routeParams.id});
+    }
+    else{
+        $scope.application = Application.query();
+    }
 
 });
 

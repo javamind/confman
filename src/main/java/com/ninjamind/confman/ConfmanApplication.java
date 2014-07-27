@@ -3,6 +3,7 @@ package com.ninjamind.confman;
 import com.ninjamind.confman.config.PersistenceConfig;
 import com.ninjamind.confman.config.WebConfig;
 import com.ninjamind.confman.domain.SoftwareSuite;
+import com.ninjamind.confman.web.ApplicationController;
 import com.ninjamind.confman.web.EnvironmentController;
 import com.ninjamind.confman.web.SoftwareSuiteController;
 import net.codestory.http.WebServer;
@@ -24,7 +25,7 @@ public class ConfmanApplication {
                 .get("/hello/:who", (context, name) -> "Welcome " + name)
                 .add(rootContext.getBean(EnvironmentController.class))
                 .add(rootContext.getBean(SoftwareSuiteController.class))
-
+                .add(rootContext.getBean(ApplicationController.class))
         ).start(8082);
     }
 }

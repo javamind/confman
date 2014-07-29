@@ -114,7 +114,6 @@ CREATE TABLE parameter
   code character varying(40),
   label character varying(250),
   parameterGroupment_id integer,
-  instance_id integer,
   application_id integer,
   version integer,
   active boolean,

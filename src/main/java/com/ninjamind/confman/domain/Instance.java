@@ -25,8 +25,6 @@ public class Instance extends AbstractConfManEntity<Instance>{
     @ManyToOne
     @JoinColumn(name = "application_id")
     private Application application;
-    @OneToMany(mappedBy = "instance")
-    private Set<Parameter> parameters= new HashSet<>();
 
     public Instance() {
     }
@@ -38,24 +36,6 @@ public class Instance extends AbstractConfManEntity<Instance>{
     public Instance setApplication(Application application) {
         this.application = application;
         return this;
-    }
-
-    public Instance addParameter(Parameter parameter) {
-        parameters.add(parameter);
-        return this;
-    }
-
-    public Instance removeParameter(Object o) {
-        parameters.remove(o);
-        return this;
-    }
-
-    public void clearParameter() {
-        parameters.clear();
-    }
-
-    public Set<Parameter> getParameters() {
-        return Collections.unmodifiableSet(parameters);
     }
 
     public Long getId() {

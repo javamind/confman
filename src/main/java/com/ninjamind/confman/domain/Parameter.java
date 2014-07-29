@@ -23,25 +23,12 @@ public class Parameter extends AbstractConfManEntity<Parameter>{
     @JoinColumn(name = "parameterGroupment_id")
     private ParameterGroupment parameterGroupment;
     @ManyToOne
-    @JoinColumn(name = "instance_id")
-    private Instance instance;
-    @ManyToOne
     @JoinColumn(name = "application_id")
     private Application application;
     @Enumerated(EnumType.STRING)
     private ParameterType type;
 
     public Parameter() {
-    }
-
-    public Instance getInstance() {
-        return instance;
-    }
-
-    public Parameter setInstance(Instance instance) {
-        this.instance = instance;
-        this.type = ParameterType.INSTANCE;
-        return this;
     }
 
     public Parameter setApplication(Application application) {
@@ -91,7 +78,6 @@ public class Parameter extends AbstractConfManEntity<Parameter>{
 
         Parameter parameter = (Parameter) o;
 
-        if (instance != null ? !instance.equals(parameter.instance) : parameter.instance != null) return false;
         if (type != null ? !type.equals(parameter.type) : parameter.type != null) return false;
         if (application != null ? !application.equals(parameter.application) : parameter.application != null) return false;
         if (parameterGroupment != null ? !parameterGroupment.equals(parameter.parameterGroupment) : parameter.parameterGroupment != null)
@@ -104,7 +90,6 @@ public class Parameter extends AbstractConfManEntity<Parameter>{
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (parameterGroupment != null ? parameterGroupment.hashCode() : 0);
-        result = 31 * result + (instance != null ? instance.hashCode() : 0);
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (application != null ? application.hashCode() : 0);
         return result;
@@ -117,7 +102,6 @@ public class Parameter extends AbstractConfManEntity<Parameter>{
                 .addValue(super.toString())
                 .add("parameterGroupment", parameterGroupment)
                 .add("type", type)
-                .add("instance", instance)
                 .add("application", application)
                 .toString();
     }

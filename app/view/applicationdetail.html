@@ -116,21 +116,21 @@
         <div class="thumbnail">
             <div class="row" ng-show="appelt.id">
                 <div class="col-xs-2"><label for="data-id">&nbsp;Id</label></div>
-                <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="appelt.id"></div>
+                <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="appelt.content.id"></div>
             </div>
             <div class="row">
                 <div class="col-xs-2"><label class="control-label" for="data-code">&nbsp;Code</label></div>
-                <div class="col-xs-10"><input type="text" id="data-code" required ng-model="appelt.code"></div>
+                <div class="col-xs-10"><input type="text" id="data-code" required ng-model="appelt.content.code"></div>
             </div>
             <div class="row">
                 <div class="col-xs-2"><label class="control-label" for="data-label">&nbsp;Label</label></div>
-                <div class="col-xs-10"><input type="text" id="data-label" size="50" required ng-model="appelt.label">
+                <div class="col-xs-10"><input type="text" id="data-label" size="50" required ng-model="appelt.content.label">
                 </div>
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-danger" ng-click="ok()">
-                <img src="img/icon/ic_delete_24px.svg" title="{{appelt.verb}}"/>
+            <button class="btn btn-primary" ng-click="ok(appelt.content)">
+                <img src="img/icon/ic_save_24px.svg" title="{{appelt.verb}}"/>
             </button>
             <button class="btn btn-default" ng-click="cancel()">
                 <img src="img/icon/ic_clear_24px.svg" title="Cancel"/>
@@ -145,8 +145,8 @@
 
     </div>
     <div class="modal-footer">
-        <button class="btn btn-danger" ng-click="ok()">
-            <img src="img/icon/ic_delete_24px.svg" title="{{appparam.verb}}"/>
+        <button class="btn btn-primary" ng-click="ok()">
+            <img src="img/icon/ic_save_24px.svg" title="{{appparam.verb}}"/>
         </button>
         <button class="btn btn-default" ng-click="cancel()">
             <img src="img/icon/ic_clear_24px.svg" title="Cancel"/>

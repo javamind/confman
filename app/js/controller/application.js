@@ -43,6 +43,32 @@ angular.module('confman').controller('applicationDetailCtrl', function ($rootSco
         $scope.application = {};
     }
 
+    $scope.updateInstance = function(instance){
+        $modal.open({
+            templateUrl: 'modalAddEltToApplication.html',
+            controller: function($scope, $modalInstance,instance){
+                alert(instance.id)
+                $scope.appelt = {
+                    title : 'Update instance',
+                    verb : 'Update',
+                    content : instance
+                }
+                $scope.ok = function (instance){
+                    alert('sdfdsfsd')
+                    $modalInstance.close(true);
+                }
+                $scope.cancel = function (instance){
+                    $modalInstance.dismiss(false);
+                }
+            },
+            resolve: {
+                instance : function () {
+                    return instance;
+                }
+            }
+        });
+    };
+
 });
 
 

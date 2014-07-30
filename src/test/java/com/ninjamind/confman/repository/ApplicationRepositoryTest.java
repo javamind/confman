@@ -57,7 +57,7 @@ public class ApplicationRepositoryTest {
         assertThat(app.getCode()).isEqualTo("CFM");
         assertThat(app.getApplicationVersions()).hasSize(1);
         assertThat(app.getInstances()).hasSize(1);
-        assertThat(app.getParameters()).hasSize(1);
+        assertThat(app.getParameters()).hasSize(2);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class ApplicationRepositoryTest {
     }
 
     @Test
-    public void shouldFindOneParameter() {
-        assertThat(applicationRepository.findParameterByIdApp(1L)).hasSize(1).extracting("code").containsExactly("app.maxuser");
+    public void shouldFindTwoParameter() {
+        assertThat(applicationRepository.findParameterByIdApp(1L)).hasSize(2).extracting("code").containsExactly("app.maxuser","server.name");
     }
 }

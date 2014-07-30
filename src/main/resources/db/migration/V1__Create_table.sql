@@ -118,7 +118,7 @@ CREATE TABLE parameter
   version integer,
   active boolean,
   type character varying(40),
-  CONSTRAINT parameter_unique_key UNIQUE (code, instance_id)
+  CONSTRAINT parameter_unique_key UNIQUE (code, application_id)
 )
 WITH (
   OIDS=FALSE

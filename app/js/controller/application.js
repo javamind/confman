@@ -23,7 +23,7 @@ angular.module('confman').controller('applicationCtrl', function ($rootScope, $s
 
 });
 
-angular.module('confman').controller('applicationDetailCtrl', function ($rootScope, $scope, $modal, modalConfirmDeleteCtrl, $routeParams,  Application) {
+angular.module('confman').controller('applicationDetailCtrl', function ($rootScope, $scope, $modal, modalConfirmDeleteCtrl, $routeParams,  Application, SoftwareSuite) {
 
     //Page definition
     $rootScope.currentPage = {
@@ -32,13 +32,15 @@ angular.module('confman').controller('applicationDetailCtrl', function ($rootSco
         icon : 'ic_settings_24px'
     };
 
+    //Load software suites
+    $scope.softwaresuites = SoftwareSuite.query();
 
     //Load environments
     if($routeParams.id>0){
         $scope.application = Application.get({id:$routeParams.id});
     }
     else{
-        $scope.application = Application.query();
+        $scope.application = {};
     }
 
 });

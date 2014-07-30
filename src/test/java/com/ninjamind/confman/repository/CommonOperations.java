@@ -66,8 +66,8 @@ public class CommonOperations {
 
     public static final Operation INSERT_PARAMETER =
             insertInto(Parameter.TABLE_NAME)
-                    .columns("id", "code", "label", "application_id", "type", "instance_id", "version", "active")
-                    .values(1, "app.maxuser", "Max user for the pool", 1, "APPLICATION", null, 0,  true)
-                    .values(2, "server.name", "Server name", null , "INSTANCE", 1, 0,  true)
+                    .columns("id", "code", "label", "application_id", "type", "version", "active")
+                    .values(1, "app.maxuser", "Max user for the pool", 1, "APPLICATION", 0,  true)
+                    .values(2, "server.name", "Server name", 1 , "INSTANCE", 0,  true)
                     .build();
 }

@@ -1,10 +1,7 @@
 package com.ninjamind.confman.dto;
 
 import com.google.common.collect.Lists;
-import com.ninjamind.confman.domain.Application;
-import com.ninjamind.confman.domain.ApplicationVersion;
-import com.ninjamind.confman.domain.Instance;
-import com.ninjamind.confman.domain.Parameter;
+import com.ninjamind.confman.domain.*;
 
 import java.util.List;
 
@@ -14,7 +11,7 @@ import java.util.List;
  * @author EHRET_G
  */
 public class ApplicationDto extends AbstractConfManDto {
-
+    private Long idSoftwareSuite;
     private List<ApplicationVersionDto> versions;
     private List<InstanceDto> instances;
     private List<ParameterDto> parameters;
@@ -39,6 +36,7 @@ public class ApplicationDto extends AbstractConfManDto {
                 object.getLabel(),
                 object.getVersion()
         );
+        this.idSoftwareSuite = object.getSoftwareSuite().getId();
         this.instances = Lists.transform(instances, instance -> new InstanceDto(instance));
         this.versions = Lists.transform(versions, version -> new ApplicationVersionDto(version));
         this.parameters = Lists.transform(parameters, parameter -> new ParameterDto(parameter));
@@ -50,6 +48,7 @@ public class ApplicationDto extends AbstractConfManDto {
                 .setId(getId())
                 .setCode(getCode())
                 .setLabel(getLabel())
+                .setSoftwareSuite(new SoftwareSuite().setId(idSoftwareSuite))
                 .setVersion(getVersion());
     }
 
@@ -64,4 +63,6 @@ public class ApplicationDto extends AbstractConfManDto {
     public List<ApplicationVersion> toApplicationVersions() {
         return Lists.transform(this.versions, version -> version.toApplicationVersion());
     }
+
+
 }

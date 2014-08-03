@@ -85,10 +85,11 @@ CREATE TABLE instance
   id integer NOT NULL PRIMARY KEY,
   code character varying(40),
   label character varying(250),
-  application_id integer,
+  application_id integer NOT NULL REFERENCES application (id),
+  environment_id integer NOT NULL REFERENCES environment (id),
   version integer,
   active boolean,
-  CONSTRAINT instance_unique_key UNIQUE (code, application_id)
+  CONSTRAINT instance_unique_key UNIQUE (code, application_id, environment_id)
 )
 WITH (
   OIDS=FALSE

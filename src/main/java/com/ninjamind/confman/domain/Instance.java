@@ -25,6 +25,9 @@ public class Instance extends AbstractConfManEntity<Instance>{
     @ManyToOne
     @JoinColumn(name = "application_id")
     private Application application;
+    @ManyToOne
+    @JoinColumn(name = "environment_id")
+    private Environment environment;
 
     public Instance() {
     }
@@ -35,6 +38,15 @@ public class Instance extends AbstractConfManEntity<Instance>{
 
     public Instance setApplication(Application application) {
         this.application = application;
+        return this;
+    }
+
+    public Environment getEnvironment() {
+        return environment;
+    }
+
+    public Instance setEnvironment(Environment environment) {
+        this.environment = environment;
         return this;
     }
 

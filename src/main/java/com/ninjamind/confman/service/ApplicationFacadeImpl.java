@@ -49,4 +49,9 @@ public class ApplicationFacadeImpl implements ApplicationFacade<Application, Lon
     public Application findOneWthDependencies(Long id) {
         return applicationRepository.findOneWthDependencies(id);
     }
+
+    @Override
+    public <S extends Application> S save(S entity) {
+        return null;
+    }
 }

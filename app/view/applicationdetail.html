@@ -21,32 +21,34 @@
                     <div class="col-xs-2"><label for="data-softwaresuite">&nbsp;Software
                         suite</label></div>
                     <div class="col-xs-6">
-                        <select id="data-softwaresuite"  ng-model="application.idSoftwareSuite"
+                        <select id="data-softwaresuite" ng-model="application.idSoftwareSuite"
                                 ng-options="softwareSuite.id as softwareSuite.label for softwareSuite in softwaresuites">
-                            <option value="" ng-hide="application.softwareSuite">S&eacute;lection agr&eacute;gat</option>
+                            <option value="" ng-hide="application.idSoftwareSuite">S&eacute;lection agr&eacute;gat
+                            </option>
                         </select>
-                       {{application.softwareSuite}}
+                        {{application.softwareSuite}}
                     </div>
                     <br>&nbsp;
                     <br>&nbsp;
                 </div>
                 <div class="col-md-4">
-                    <h4>Instances</h4>
+                    <h4>Instances
+                        <small>{{application.instances.length}}</small>
+                        <div class="confman_btn" style="width: 50%">
+                            <button class="btn btn-primary" ng-click="manageInstance({})">
+                                <img src="../img/icon/ic_insert_drive_file_24px.svg" title="New"/>
+                            </button>
+                        </div>
+                    </h4>
 
-                    <div class="thumbnail">
-                        <h4>
-                            nb instances : {{application.instances.length}}
-                            <div class="confman_btn" style="width: 50%">
-                                <button class="btn btn-primary" ng-click="createInstance()">
-                                    <img src="../img/icon/ic_insert_drive_file_24px.svg" title="New"/>
-                                </button>
-                            </div>
-                        </h4>
+                    <div class="container">
                         <material-list>
                             <material-item ng-repeat="instance in application.instances"
-                                           ng-dblClick="updateInstance(env)">
+                                           ng-dblClick="manageInstance(instance)">
                                 <div class="material-tile-content">
-                                    <h2>{{instance.code}}</h2>
+                                    <h2>{{instance.code}}
+                                        <small>({{instance.codeEnvironment}})</small>
+                                    </h2>
 
                                     <p>{{instance.label}}</p>
                                 </div>
@@ -55,19 +57,17 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <h4>Versions</h4>
-
-                    <div class="thumbnail">
-                        <h4>
-                            nb versions : {{application.versions.length}}
-                            <div class="confman_btn" style="width: 50%">
-                                <button class="btn btn-primary" ng-click="createVersion()">
-                                    <img src="../img/icon/ic_insert_drive_file_24px.svg" title="New"/>
-                                </button>
-                            </div>
-                        </h4>
+                    <h4>Versions
+                        <small>{{application.versions.length}}</small>
+                        <div class="confman_btn" style="width: 50%">
+                            <button class="btn btn-primary" ng-click="manageVersion({})">
+                                <img src="../img/icon/ic_insert_drive_file_24px.svg" title="New"/>
+                            </button>
+                        </div>
+                    </h4>
+                    <div class="container">
                         <material-list>
-                            <material-item ng-repeat="version in application.versions" ng-dblClick="updateVersion(env)">
+                            <material-item ng-repeat="version in application.versions" ng-dblClick="manageVersion(version)">
                                 <div class="material-tile-content">
                                     <h2>{{version.code}}</h2>
 
@@ -78,22 +78,23 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <h4>Parameters</h4>
+                    <h4>Parameters
+                        <small>{{application.parameters.length}}</small>
+                        <div class="confman_btn" style="width: 50%">
+                            <button class="btn btn-primary" ng-click="manageParameter({})">
+                                <img src="../img/icon/ic_insert_drive_file_24px.svg" title="New"/>
+                            </button>
+                        </div>
+                    </h4>
 
-                    <div class="thumbnail">
-                        <h4>
-                            nb parameters : {{application.parameters.length}}
-                            <div class="confman_btn" style="width: 50%">
-                                <button class="btn btn-primary" ng-click="createParameter()">
-                                    <img src="../img/icon/ic_insert_drive_file_24px.svg" title="New"/>
-                                </button>
-                            </div>
-                        </h4>
+                    <div class="container">
                         <material-list>
                             <material-item ng-repeat="parameter in application.parameters"
-                                           ng-dblClick="updateParameter(env)">
+                                           ng-dblClick="manageParameter(parameter)">
                                 <div class="material-tile-content">
-                                    <h2>{{parameter.code}}</h2>
+                                    <h2>{{parameter.code}}
+                                        <small>{{parameter.type}}</small>
+                                    </h2>
 
                                     <p>{{parameter.label}}</p>
                                 </div>
@@ -105,7 +106,8 @@
     </form>
 </material-content>
 
-<script type="text/ng-template" id="modalAddEltToApplication.html">
+<!-- Modal to manage instance -->
+<script type="text/ng-template" id="modalAddInstanceToApplication.html">
     <div class="modal-header">
         <h3 class="modal-title">{{appelt.title}}</h3>
     </div>
@@ -113,40 +115,146 @@
         <div class="alert alert-danger confman_error" role="alert" ng-show="error">
             Error : {{error.message}}
         </div>
-        <div class="thumbnail">
-            <div class="row" ng-show="appelt.id">
-                <div class="col-xs-2"><label for="data-id">&nbsp;Id</label></div>
-                <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="appelt.content.id"></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-2"><label class="control-label" for="data-code">&nbsp;Code</label></div>
-                <div class="col-xs-10"><input type="text" id="data-code" required ng-model="appelt.content.code"></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-2"><label class="control-label" for="data-label">&nbsp;Label</label></div>
-                <div class="col-xs-10"><input type="text" id="data-label" size="50" required ng-model="appelt.content.label">
+        <form class="form confman_form" name="formInstance" novalidate>
+            <div class="thumbnail">
+                <div class="row" ng-show="appelt.content.id">
+                    <div class="col-xs-2"><label for="data-id">&nbsp;Id</label></div>
+                    <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="appelt.content.id"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2"><label class="control-label" for="data-code">&nbsp;Code</label></div>
+                    <div class="col-xs-10"><input type="text" id="data-code" required ng-model="appelt.content.code">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2"><label class="control-label" for="data-label">&nbsp;Label</label></div>
+                    <div class="col-xs-10"><input type="text" id="data-label" size="50" required
+                                                  ng-model="appelt.content.label">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p><br>
+                            <small>If you use the same instance for different environment you have to duplicate it
+                                because the configuration could be different
+                                for each environment
+                            </small>
+                        </p>
+                    </div>
+                    <div class="col-xs-2"><label class="control-label" for="data-instance-env">&nbsp;Environment</label>
+                    </div>
+                    <select id="data-instance-env" ng-model="appelt.content.idEnvironment"
+                            ng-options="environment.id as environment.label for environment in environments">
+                        <option value="" ng-hide="appelt.content.idEnvironment">S&eacute;lection environment
+                        </option>
+                    </select>
+                    <br>
+
                 </div>
             </div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok(appelt.content)">
-                <img src="img/icon/ic_save_24px.svg" title="{{appelt.verb}}"/>
-            </button>
-            <button class="btn btn-default" ng-click="cancel()">
-                <img src="img/icon/ic_clear_24px.svg" title="Cancel"/>
-            </button>
-        </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok(appelt.content)">
+            <img ng-src="img/icon/{{appelt.icon}}" title="{{appelt.verb}}"/>
+        </button>
+        <button class="btn btn-default" ng-click="cancel()">
+            <img src="img/icon/ic_clear_24px.svg" title="Cancel"/>
+        </button>
+    </div>
+    </div>
 </script>
+
+<!-- Modal to manage version-->
+<script type="text/ng-template" id="modalAddVersionToApplication.html">
+    <div class="modal-header">
+        <h3 class="modal-title">{{appelt.title}}</h3>
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-danger confman_error" role="alert" ng-show="error">
+            Error : {{error.message}}
+        </div>
+        <form class="form confman_form" name="formInstance" novalidate>
+            <div class="thumbnail">
+                <div class="row" ng-show="appelt.content.id">
+                    <div class="col-xs-2"><label for="data-id">&nbsp;Id</label></div>
+                    <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="appelt.content.id"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2"><label class="control-label" for="data-code">&nbsp;Code</label></div>
+                    <div class="col-xs-10"><input type="text" id="data-code" required ng-model="appelt.content.code">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2"><label class="control-label" for="data-label">&nbsp;Label</label></div>
+                    <div class="col-xs-10"><input type="text" id="data-label" size="50" required
+                                                  ng-model="appelt.content.label">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok(appelt.content)">
+            <img ng-src="img/icon/{{appelt.icon}}" title="{{appelt.verb}}"/>
+        </button>
+        <button class="btn btn-default" ng-click="cancel()">
+            <img src="img/icon/ic_clear_24px.svg" title="Cancel"/>
+        </button>
+    </div>
+    </div>
+</script>
+
+<!-- Modal to manage parameter -->
 <script type="text/ng-template" id="modalAddParamToApplication.html">
     <div class="modal-header">
         <h3 class="modal-title">{{appparam.title}}</h3>
     </div>
     <div class="modal-body">
+        <div class="alert alert-danger confman_error" role="alert" ng-show="error">
+            Error : {{error.message}}
+        </div>
+        <form class="form confman_form" name="formInstance" novalidate>
+            <div class="thumbnail">
+                <div class="row" ng-show="appparam.content.id">
+                    <div class="col-xs-2"><label for="data-id">&nbsp;Id</label></div>
+                    <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="appparam.content.id">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2"><label class="control-label" for="data-code">&nbsp;Code</label></div>
+                    <div class="col-xs-10"><input type="text" id="data-code" required ng-model="appparam.content.code">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2"><label class="control-label" for="data-label">&nbsp;Label</label></div>
+                    <div class="col-xs-10"><input type="text" id="data-label" size="50" required
+                                                  ng-model="appparam.content.label">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p><br>
+                            <small>A paramater can be specific for an instance or an application
+                            </small>
+                        </p>
+                    </div>
+                    <div class="col-xs-2"><label class="control-label" for="data-instance-env">&nbsp;Type</label>
+                    </div>
+                    <select id="data-instance-env" ng-model="appparam.content.type"
+                            ng-options="type for type in parametertypes">
+                        <option value="" ng-hide="appparam.content.type">S&eacute;lection type
+                        </option>
+                    </select>
+                    <br>
 
+                </div>
+            </div>
+        </form>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="ok()">
-            <img src="img/icon/ic_save_24px.svg" title="{{appparam.verb}}"/>
+        <button class="btn btn-primary" ng-click="ok(appparam.content)">
+            <img ng-src="img/icon/{{appparam.icon}}" title="{{appparam.verb}}"/>
         </button>
         <button class="btn btn-default" ng-click="cancel()">
             <img src="img/icon/ic_clear_24px.svg" title="Cancel"/>

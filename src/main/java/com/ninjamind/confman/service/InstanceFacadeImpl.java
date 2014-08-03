@@ -1,5 +1,6 @@
 package com.ninjamind.confman.service;
 
+import com.ninjamind.confman.domain.Application;
 import com.ninjamind.confman.domain.Environment;
 import com.ninjamind.confman.domain.Instance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,4 @@ public class InstanceFacadeImpl implements GenericFacade<Instance, Long>{
     public Class<Instance> getClassEntity() {
         return Instance.class;
     }
-
 }

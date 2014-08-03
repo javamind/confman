@@ -43,6 +43,7 @@ public class PersistenceConfig {
         dataSource.setUsername(env.getRequiredProperty(PROPERTY_NAME_DATABASE_USERNAME));
         dataSource.setPassword(env.getRequiredProperty(PROPERTY_NAME_DATABASE_PASSWORD));
         dataSource.setSuppressClose(new Boolean(env.getRequiredProperty(PROPERTY_NAME_DATABASE_SUPRESSCLOSE)));
+        dataSource.setAutoCommit(false);
         return dataSource;
     }
 

@@ -5,7 +5,6 @@ import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.Application;
 import com.ninjamind.confman.dto.ApplicationDto;
 import com.ninjamind.confman.service.ApplicationFacade;
-import com.ninjamind.confman.service.GenericFacade;
 import net.codestory.http.annotations.Delete;
 import net.codestory.http.annotations.Get;
 import net.codestory.http.annotations.Post;

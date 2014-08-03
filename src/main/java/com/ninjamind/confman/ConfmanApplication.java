@@ -3,9 +3,7 @@ package com.ninjamind.confman;
 import com.ninjamind.confman.config.PersistenceConfig;
 import com.ninjamind.confman.config.WebConfig;
 import com.ninjamind.confman.domain.SoftwareSuite;
-import com.ninjamind.confman.web.ApplicationController;
-import com.ninjamind.confman.web.EnvironmentController;
-import com.ninjamind.confman.web.SoftwareSuiteController;
+import com.ninjamind.confman.web.*;
 import net.codestory.http.WebServer;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -22,10 +20,12 @@ public class ConfmanApplication {
         rootContext.refresh();
 
         new WebServer(routes -> routes
-                .get("/hello/:who", (context, name) -> "Welcome " + name)
                 .add(rootContext.getBean(EnvironmentController.class))
                 .add(rootContext.getBean(SoftwareSuiteController.class))
                 .add(rootContext.getBean(ApplicationController.class))
+                .add(rootContext.getBean(InstanceController.class))
+                .add(rootContext.getBean(ApplicationVersionController.class))
+                .add(rootContext.getBean(ParameterController.class))
         ).start(8082);
     }
 }

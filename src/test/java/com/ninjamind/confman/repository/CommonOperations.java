@@ -54,8 +54,8 @@ public class CommonOperations {
 
     public static final Operation INSERT_INSTANCE =
             insertInto(Instance.TABLE_NAME)
-                    .columns("id", "code", "label", "application_id", "version", "active")
-                    .values(1, "WWD450", "app server", 1, 0, true)
+                    .columns("id", "code", "label", "application_id", "environment_id", "version", "active")
+                    .values(1, "WWD450", "app server", 1, 1, 0, true)
                     .build();
 
     public static final Operation INSERT_VERSION =

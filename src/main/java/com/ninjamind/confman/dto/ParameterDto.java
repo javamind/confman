@@ -1,6 +1,8 @@
 package com.ninjamind.confman.dto;
 
 import com.ninjamind.confman.domain.Parameter;
+import com.ninjamind.confman.domain.ParameterGroupment;
+import com.ninjamind.confman.domain.ParameterType;
 
 /**
  * {@link com.ninjamind.confman.domain.Parameter}
@@ -8,7 +10,9 @@ import com.ninjamind.confman.domain.Parameter;
  * @author EHRET_G
  */
 public class ParameterDto extends AbstractConfManDto {
-
+    private Long idApplication;
+    private Long idParameterGroupment;
+    private String type;
     public ParameterDto() {
         super();
     }
@@ -20,6 +24,9 @@ public class ParameterDto extends AbstractConfManDto {
                 object.getLabel(),
                 object.getVersion()
         );
+        this.idApplication = object.getApplication().getId();
+        this.idParameterGroupment = object.getParameterGroupment() != null ? object.getParameterGroupment().getId() : null;
+        this.type = object.getType().name();
     }
 
     public Parameter toParameter() {
@@ -27,6 +34,8 @@ public class ParameterDto extends AbstractConfManDto {
                 .setId(getId())
                 .setCode(getCode())
                 .setLabel(getLabel())
-                .setVersion(getVersion());
+                .setVersion(getVersion())
+                .setParameterGroupment(new ParameterGroupment().setId(idParameterGroupment))
+                .setType(ParameterType.valueOf(type));
     }
 }

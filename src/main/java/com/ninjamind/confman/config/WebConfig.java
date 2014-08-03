@@ -1,8 +1,6 @@
 package com.ninjamind.confman.config;
 
-import com.ninjamind.confman.web.ApplicationController;
-import com.ninjamind.confman.web.EnvironmentController;
-import com.ninjamind.confman.web.SoftwareSuiteController;
+import com.ninjamind.confman.web.*;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -39,5 +37,20 @@ public class WebConfig {
     @Bean
     public ApplicationController applicationController(){
         return new ApplicationController();
+    }
+
+    @Bean
+    public ApplicationVersionController applicationVersionController(){
+        return new ApplicationVersionController();
+    }
+
+    @Bean
+    public InstanceController instanceController(){
+        return new InstanceController();
+    }
+
+    @Bean
+    public ParameterController parameterController(){
+        return new ParameterController();
     }
 }

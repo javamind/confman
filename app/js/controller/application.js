@@ -23,13 +23,18 @@ angular.module('confman').controller('applicationCtrl', function ($rootScope, $s
 
 });
 
-angular.module('confman').controller('applicationDetailCtrl', function ($rootScope, $scope, $modal, modalConfirmDeleteCtrl, $routeParams, Application, Environment, SoftwareSuite, Instance) {
+angular.module('confman').controller('applicationDetailCtrl', function ($rootScope, $scope, $modal, modalConfirmDeleteCtrl, $routeParams, Application, Environment, SoftwareSuite, Instance, $location) {
 
     //Page definition
     $rootScope.currentPage = {
         name: 'Application',
         description: $routeParams.id > 0 ? 'Update Application' : 'Create new application',
-        icon: 'ic_settings_24px'
+        icon: 'ic_settings_24px',
+        actionbar : [
+            {icon: 'ic_arrow_back_24px' , action : function(){
+                $location.path('/application');
+            }}
+        ]
     };
 
     //Load software suites
@@ -91,11 +96,12 @@ angular.module('confman').controller('applicationDetailCtrl', function ($rootSco
         var callBackCreateInstance = function (data) {
             $scope.error = null;
             if (!$scope.application.instances) {
-                $scope.application.instances = {};
+                $scope.application.instances = [];
             }
             $scope.application.instances.push(data);
         }
     };
+
     //Modal who manage paramters
     $scope.manageParameter = function (parameter) {
         $scope.modalInstance = $modal.open({
@@ -129,7 +135,7 @@ angular.module('confman').controller('applicationDetailCtrl', function ($rootSco
         var callBackCreateParameter = function (data) {
             $scope.error = null;
             if (!$scope.application.parameters) {
-                $scope.application.parameters = {};
+                $scope.application.parameters = [];
             }
             $scope.application.parameters.push(data);
         }
@@ -168,11 +174,94 @@ angular.module('confman').controller('applicationDetailCtrl', function ($rootSco
         var callBackCreateVersion = function (data) {
             $scope.error = null;
             if (!$scope.application.versions) {
-                $scope.application.versions = {};
+                $scope.application.versions = [];
             }
             $scope.application.versions.push(data);
         }
     };
+
+    //Save application
+    $scope.save = function(){
+        if(!$scope.application.id){
+            Applicaton.save($scope.application, function (data){
+                $scope.application = data;
+                $rootScope.error=null;
+            }, $scope.callbackKO);
+        }
+        else{
+            $scope.application.$update(function (data) {
+                    $scope.application = data;
+                    $rootScope.error = null;
+                }
+                , $scope.callbackKO
+            );
+        }
+    };
+    $scope.delete = function(){
+        alert('todo')
+    }
+    $scope.cancel = function(){
+        $location.path('/application');
+    }
+
+    //DElete some dependencies
+    var deleteEntities = function($modal, modalConfirmDeleteCtrl, entities, nameentities, callback){
+        var modalInstance = $modal.open({
+            templateUrl: 'modalConfirmDelete.html',
+            controller: modalConfirmDeleteCtrl,
+            resolve: {
+                entity_todelete : function () {
+                    return nameentities + ' selected';
+                }
+            }
+        });
+        //callback dans lequel on fait la suppression
+        modalInstance.result.then(function () {
+            callback(entities.filter(function(elt){
+                return !elt.deleted;
+            }));
+        });
+    }
+    $scope.deleteInstance = function(){
+        deleteEntities($modal, modalConfirmDeleteCtrl, $scope.application.instances, 'instances', function(liste){
+            $scope.application.instances = liste;
+        });
+    }
+    $scope.chgInstanceToDelete = function(){
+        $scope.nbInstanceToDelete=0;
+        $scope.application.instances.forEach(function(elt){
+            if(elt.deleted){
+                $scope.nbInstanceToDelete++;
+            }
+        })
+    }
+    $scope.deleteVersion = function(){
+        deleteEntities($modal, modalConfirmDeleteCtrl, $scope.application.versions, 'versions', function(liste){
+            $scope.application.versions = liste;
+        });
+    }
+    $scope.chgVersionToDelete = function(){
+        $scope.nbVersionToDelete=0;
+        $scope.application.versions.forEach(function(elt){
+            if(elt.deleted){
+                $scope.nbVersionToDelete++;
+            }
+        })
+    }
+    $scope.deleteParameter = function(){
+        deleteEntities($modal, modalConfirmDeleteCtrl, $scope.application.parameters, 'parameters', function(liste){
+            $scope.application.parameters = liste;
+        });
+    }
+    $scope.chgParameterToDelete = function(){
+        $scope.nbParameterToDelete=0;
+        $scope.application.parameters.forEach(function(elt){
+            if(elt.deleted){
+                $scope.nbParameterToDelete++;
+            }
+        })
+    }
 });
+
 
 

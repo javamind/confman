@@ -18,19 +18,19 @@ import static com.ninja_squad.dbsetup.Operations.sequenceOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Test of {@link com.ninjamind.confman.repository.ApplicationtRepository}
+ * Test of {@link com.ninjamind.confman.repository.ApplicationtVersionRepository}
  *
  * @author EHRET_G
  */
 @ContextConfiguration(classes = {PersistenceConfig.class})
 @RunWith(SpringJUnit4ClassRunner.class)
-public class ApplicationRepositoryTest {
+public class ApplicationVersionRepositoryTest {
 
     @Autowired
     private DataSource dataSource;
 
     @Autowired
-    private ApplicationtRepository applicationRepository;
+    private ApplicationtVersionRepository applicationtVersionRepository;
 
     @Before
     public void setUp(){
@@ -39,23 +39,17 @@ public class ApplicationRepositoryTest {
                         CommonOperations.DELETE_ALL,
                         CommonOperations.INSERT_ENVIRONMENT,
                         CommonOperations.INSERT_SOFTWARE_SUITE,
-                        CommonOperations.INSERT_SOFTWARE_SUITE_ENV,
                         CommonOperations.INSERT_APP,
-                        CommonOperations.INSERT_INSTANCE,
-                        CommonOperations.INSERT_VERSION,
-                        CommonOperations.INSERT_PARAMETER
+                        CommonOperations.INSERT_VERSION
                 );
         DbSetup dbSetup = new DbSetup(new DataSourceDestination(dataSource), operation);
         dbSetup.launch();
     }
 
+
     @Test
-    public void shouldFindOneApplication() {
-        Application app = applicationRepository.findOneWithDependencies(1L);
-        assertThat(app.getCode()).isEqualTo("CFM");
-        assertThat(app.getApplicationVersions()).hasSize(1);
-        assertThat(app.getInstances()).hasSize(1);
-        assertThat(app.getParameters()).hasSize(2);
+    public void shouldFindOneApplicationVersion() {
+        assertThat(applicationtVersionRepository.findApplicationVersionByIdApp(1L)).hasSize(1).extracting("code").containsExactly("1.0.0");
     }
 
 }

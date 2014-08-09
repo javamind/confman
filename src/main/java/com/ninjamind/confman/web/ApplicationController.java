@@ -33,6 +33,28 @@ public class ApplicationController {
     @Get("/application/:id")
     public ApplicationDto get(Long id) {
         Application app = genericFacade.findOneWthDependencies(id);
+        return app!=null ? getApplicationDto(app) : new ApplicationDto();
+    }
+
+
+    @Put("/application")
+    public ApplicationDto update(ApplicationDto app) {
+        Preconditions.checkNotNull(app, "Object is required to update it");
+        return getApplicationDto(genericFacade.save(app.toApplication(), app.toInstances(), app.toParameters(), app.toApplicationVersions()));
+    }
+
+    @Post("/application")
+    public ApplicationDto save(ApplicationDto app) {
+        Preconditions.checkNotNull(app, "Object is required to save it");
+        return getApplicationDto(genericFacade.save(app.toApplication(), app.toInstances(), app.toParameters(), app.toApplicationVersions()));
+    }
+
+    @Delete("/application/:id")
+    public void delete(Long id) {
+        genericFacade.delete(id);
+    }
+
+    private ApplicationDto getApplicationDto(Application app) {
         return new ApplicationDto(
                 app,
                 app.getApplicationVersions().stream().collect(Collectors.toList()),
@@ -40,20 +62,4 @@ public class ApplicationController {
                 app.getParameters().stream().collect(Collectors.toList()));
     }
 
-    @Put("/application")
-    public ApplicationDto update(ApplicationDto env) {
-        Preconditions.checkNotNull(env, "Object is required to update it");
-        return new ApplicationDto(genericFacade.save(env.toApplication()));
-    }
-
-    @Post("/application")
-    public ApplicationDto save(ApplicationDto env) {
-        Preconditions.checkNotNull(env, "Object is required to save it");
-        return new ApplicationDto(genericFacade.save(env.toApplication()));
-    }
-
-    @Delete("/application/:id")
-    public void delete(Long id) {
-        genericFacade.delete(id);
-    }
 }

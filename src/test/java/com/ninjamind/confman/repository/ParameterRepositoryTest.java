@@ -18,19 +18,19 @@ import static com.ninja_squad.dbsetup.Operations.sequenceOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Test of {@link com.ninjamind.confman.repository.ApplicationtRepository}
+ * Test of {@link com.ninjamind.confman.repository.ParameterRepository}
  *
  * @author EHRET_G
  */
 @ContextConfiguration(classes = {PersistenceConfig.class})
 @RunWith(SpringJUnit4ClassRunner.class)
-public class ApplicationRepositoryTest {
+public class ParameterRepositoryTest {
 
     @Autowired
     private DataSource dataSource;
 
     @Autowired
-    private ApplicationtRepository applicationRepository;
+    private ParameterRepository parameterRepository;
 
     @Before
     public void setUp(){
@@ -39,10 +39,7 @@ public class ApplicationRepositoryTest {
                         CommonOperations.DELETE_ALL,
                         CommonOperations.INSERT_ENVIRONMENT,
                         CommonOperations.INSERT_SOFTWARE_SUITE,
-                        CommonOperations.INSERT_SOFTWARE_SUITE_ENV,
                         CommonOperations.INSERT_APP,
-                        CommonOperations.INSERT_INSTANCE,
-                        CommonOperations.INSERT_VERSION,
                         CommonOperations.INSERT_PARAMETER
                 );
         DbSetup dbSetup = new DbSetup(new DataSourceDestination(dataSource), operation);
@@ -50,12 +47,7 @@ public class ApplicationRepositoryTest {
     }
 
     @Test
-    public void shouldFindOneApplication() {
-        Application app = applicationRepository.findOneWithDependencies(1L);
-        assertThat(app.getCode()).isEqualTo("CFM");
-        assertThat(app.getApplicationVersions()).hasSize(1);
-        assertThat(app.getInstances()).hasSize(1);
-        assertThat(app.getParameters()).hasSize(2);
+    public void shouldFindTwoParameter() {
+        assertThat(parameterRepository.findParameterByIdApp(1L)).hasSize(2).extracting("code").containsExactly("app.maxuser","server.name");
     }
-
 }

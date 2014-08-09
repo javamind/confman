@@ -1,27 +1,38 @@
 <material-content style="top:128px" ng-controller="applicationDetailCtrl">
-    <form class="form confman_form" name="form" novalidate>
+    <form class="form confman-form" name="form" novalidate>
+        <div class="alert alert-danger confman-error row" role="alert" ng-show="error">
+            Error : {{error.message}}
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <h4>Application</h4>
 
                 <div class="row" ng-show="application.id">
                     <div class="col-xs-2"><label for="data-id">&nbsp;Id</label></div>
-                    <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="application.id"></div>
+                    <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="application.id"
+                                                  class="form-control"></div>
                 </div>
                 <div class="row">
                     <div class="col-xs-2"><label for="data-code">&nbsp;Code</label></div>
-                    <div class="col-xs-10"><input type="text" id="data-code" required ng-model="application.code"></div>
+                    <div class="col-xs-10"><input type="text" id="data-code" required ng-model="application.code"
+                                                  name="code"
+                                                  class="form-control">
+                        <span ng-show="form.code.$error.required">Code is required</span>
+                    </div>
+
                 </div>
                 <div class="row">
                     <div class="col-xs-2"><label for="data-label">&nbsp;Label</label></div>
-                    <div class="col-xs-10"><input type="text" id="data-label" size="50" required
-                                                  ng-model="application.label"></div>
+                    <div class="col-xs-10"><input type="text" id="data-label" size="50" required class="form-control"
+                                                  ng-model="application.label" name="label">
+                        <span ng-show="form.label.$error.required">Label is required</span>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-2"><label for="data-softwaresuite">&nbsp;Software
                         suite</label></div>
                     <div class="col-xs-6">
-                        <select id="data-softwaresuite" ng-model="application.idSoftwareSuite"
+                        <select id="data-softwaresuite" ng-model="application.idSoftwareSuite" class="form-control"
                                 ng-options="softwareSuite.id as softwareSuite.label for softwareSuite in softwaresuites">
                             <option value="" ng-hide="application.idSoftwareSuite">S&eacute;lection agr&eacute;gat
                             </option>
@@ -34,76 +45,126 @@
                 <div class="col-md-4">
                     <h4>Instances
                         <small>{{application.instances.length}}</small>
-                        <div class="confman_btn" style="width: 50%">
+                        <div class="confman-btn" style="width: 50%">
                             <button class="btn btn-primary" ng-click="manageInstance({})">
                                 <img src="../img/icon/ic_insert_drive_file_24px.svg" title="New"/>
+                            </button>
+                            <button class="btn btn-danger" ng-click="deleteInstance()" ng-show="nbInstanceToDelete>0">
+                                <img src="../img/icon/ic_delete_24px.svg" title="Delete"/>
                             </button>
                         </div>
                     </h4>
 
-                    <div class="container">
+                    <div class="row">
                         <material-list>
-                            <material-item ng-repeat="instance in application.instances"
-                                           ng-dblClick="manageInstance(instance)">
-                                <div class="material-tile-content">
-                                    <h2>{{instance.code}}
+                            <material-item ng-repeat="instance in application.instances">
+                                <div class="material-tile-content" ng-dblClick="manageInstance(instance)">
+                                <h2>{{instance.code}}
                                         <small>({{instance.codeEnvironment}})</small>
                                     </h2>
 
                                     <p>{{instance.label}}</p>
                                 </div>
+                                <div class="material-tile-right">
+                                    <material-checkbox>
+                                        <input type="checkbox" ng-model="instance.deleted"
+                                               ng-change="chgInstanceToDelete()">
+                                    </material-checkbox>
+                                </div>
                             </material-item>
                         </material-list>
+                        <div ng-hide="application.instances.length>0">
+                            No instance for the moment
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <h4>Versions
                         <small>{{application.versions.length}}</small>
-                        <div class="confman_btn" style="width: 50%">
+                        <div class="confman-btn" style="width: 50%">
                             <button class="btn btn-primary" ng-click="manageVersion({})">
                                 <img src="../img/icon/ic_insert_drive_file_24px.svg" title="New"/>
                             </button>
+                            <button class="btn btn-danger" ng-click="deleteVersion()" ng-show="nbVersionToDelete>0">
+                                <img src="../img/icon/ic_delete_24px.svg" title="Delete"/>
+                            </button>
                         </div>
                     </h4>
-                    <div class="container">
+                    <div class="row">
                         <material-list>
-                            <material-item ng-repeat="version in application.versions" ng-dblClick="manageVersion(version)">
-                                <div class="material-tile-content">
-                                    <h2>{{version.code}}</h2>
+                            <material-item ng-repeat="version in application.versions">
+                                <div class="material-tile-content" ng-dblClick="manageVersion(version)">
+                                <h2>{{version.code}}</h2>
 
                                     <p>{{version.label}}</p>
                                 </div>
+                                <div class="material-tile-right">
+                                    <material-checkbox>
+                                        <input type="checkbox" ng-model="version.deleted"
+                                               ng-change="chgVersionToDelete()">
+                                    </material-checkbox>
+                                </div>
                             </material-item>
                         </material-list>
+                        <div ng-hide="application.versions.length>0">
+                            No version for the moment
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <h4>Parameters
                         <small>{{application.parameters.length}}</small>
-                        <div class="confman_btn" style="width: 50%">
+                        <div class="confman-btn" style="width: 50%">
                             <button class="btn btn-primary" ng-click="manageParameter({})">
                                 <img src="../img/icon/ic_insert_drive_file_24px.svg" title="New"/>
+                            </button>
+                            <button class="btn btn-danger" ng-click="deleteParameter()" ng-show="nbParameterToDelete>0">
+                                <img src="../img/icon/ic_delete_24px.svg" title="Delete"/>
                             </button>
                         </div>
                     </h4>
 
-                    <div class="container">
+                    <div class="row">
                         <material-list>
-                            <material-item ng-repeat="parameter in application.parameters"
-                                           ng-dblClick="manageParameter(parameter)">
-                                <div class="material-tile-content">
-                                    <h2>{{parameter.code}}
+                            <material-item ng-repeat="parameter in application.parameters">
+                                <div class="material-tile-content" ng-dblClick="manageParameter(parameter)">
+                                <h2>{{parameter.code}}
                                         <small>{{parameter.type}}</small>
                                     </h2>
 
                                     <p>{{parameter.label}}</p>
                                 </div>
+                                <div class="material-tile-right">
+                                    <material-checkbox>
+                                        <input type="checkbox" ng-model="parameter.deleted"
+                                               ng-change="chgParameterToDelete()">
+                                    </material-checkbox>
+                                </div>
                             </material-item>
+
                         </material-list>
+                        <div ng-hide="application.parameters.length>0">
+                            No parameter for the moment
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
     </form>
+    <footer class="footer-confman">
+        <div class="confman-btn">
+            <button class="btn" ng-click="save()" ng-class="getClassActionForm(form)"
+                    ng-disabled="form.$invalid">
+                <img src="../img/icon/ic_save_24px.svg" title="Save"/>
+            </button>
+            <button class="btn btn-danger" ng-click="delete()" ng-show="application.id">
+                <img src="../img/icon/ic_delete_24px.svg" title="Delete"/>
+            </button>
+            <button class="btn btn-default" ng-click="cancel()">
+                <img src="img/icon/ic_clear_24px.svg" title="Cancel"/>
+            </button>
+        </div>
+    </footer>
 </material-content>
 
 <!-- Modal to manage instance -->
@@ -112,24 +173,30 @@
         <h3 class="modal-title">{{appelt.title}}</h3>
     </div>
     <div class="modal-body">
-        <div class="alert alert-danger confman_error" role="alert" ng-show="error">
-            Error : {{error.message}}
+        <div class="alert alert-danger confman-error" role="alert" ng-show="error">
+        Error : {{error.message}}
         </div>
-        <form class="form confman_form" name="formInstance" novalidate>
+        <form class="form confman-form" name="formInstance" novalidate>
             <div class="thumbnail">
                 <div class="row" ng-show="appelt.content.id">
                     <div class="col-xs-2"><label for="data-id">&nbsp;Id</label></div>
-                    <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="appelt.content.id"></div>
+                    <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="appelt.content.id"
+                                                  class="form-control"></div>
                 </div>
                 <div class="row">
                     <div class="col-xs-2"><label class="control-label" for="data-code">&nbsp;Code</label></div>
-                    <div class="col-xs-10"><input type="text" id="data-code" required ng-model="appelt.content.code">
+                    <div class="col-xs-10"><input type="text" id="data-code" required ng-model="appelt.content.code"
+                                                  name="code"
+                                                  class="form-control">
+                        <span ng-show="formInstance.code.$error.required">Code is required</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-2"><label class="control-label" for="data-label">&nbsp;Label</label></div>
-                    <div class="col-xs-10"><input type="text" id="data-label" size="50" required
+                    <div class="col-xs-10"><input type="text" id="data-label" size="50" required class="form-control"
+                                                  name="label"
                                                   ng-model="appelt.content.label">
+                        <span ng-show="formInstance.label.$error.required">Label is required</span>
                     </div>
                 </div>
                 <div class="row">
@@ -143,20 +210,25 @@
                     </div>
                     <div class="col-xs-2"><label class="control-label" for="data-instance-env">&nbsp;Environment</label>
                     </div>
-                    <select id="data-instance-env" ng-model="appelt.content.idEnvironment"
-                            ng-options="environment.id as environment.label for environment in environments">
-                        <option value="" ng-hide="appelt.content.idEnvironment">S&eacute;lection environment
-                        </option>
-                    </select>
+                    <div class="col-xs-10">
+                        <select id="data-instance-env" ng-model="appelt.content.idEnvironment" required name="env"
+                                class="form-control"
+                                ng-options="environment.id as environment.label for environment in environments">
+                            <option value="" ng-hide="appelt.content.idEnvironment">S&eacute;lection environment
+                            </option>
+                        </select>
+                        <span ng-show="formInstance.env.$error.required">Environment is required</span>
+                    </div>
                     <br>
 
                 </div>
             </div>
         </form>
     </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="ok(appelt.content)">
-            <img ng-src="img/icon/{{appelt.icon}}" title="{{appelt.verb}}"/>
+    <div class="modal-footer confman-btn">
+        <button class="btn" ng-click="ok(appelt.content)" ng-class="getClassActionForm(formInstance)"
+                ng-disabled="formInstance.$invalid">
+        <img ng-src="img/icon/{{appelt.icon}}" title="{{appelt.verb}}"/>
         </button>
         <button class="btn btn-default" ng-click="cancel()">
             <img src="img/icon/ic_clear_24px.svg" title="Cancel"/>
@@ -171,31 +243,38 @@
         <h3 class="modal-title">{{appelt.title}}</h3>
     </div>
     <div class="modal-body">
-        <div class="alert alert-danger confman_error" role="alert" ng-show="error">
-            Error : {{error.message}}
+        <div class="alert alert-danger confman-error" role="alert" ng-show="error">
+        Error : {{error.message}}
         </div>
-        <form class="form confman_form" name="formInstance" novalidate>
+        <form class="form confman-form" name="formVersion" novalidate>
             <div class="thumbnail">
                 <div class="row" ng-show="appelt.content.id">
                     <div class="col-xs-2"><label for="data-id">&nbsp;Id</label></div>
-                    <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="appelt.content.id"></div>
+                    <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="appelt.content.id"
+                                                  class="form-control"></div>
                 </div>
                 <div class="row">
                     <div class="col-xs-2"><label class="control-label" for="data-code">&nbsp;Code</label></div>
-                    <div class="col-xs-10"><input type="text" id="data-code" required ng-model="appelt.content.code">
+                    <div class="col-xs-10"><input type="text" id="data-code" required ng-model="appelt.content.code"
+                                                  name="code"
+                                                  class="form-control">
+                        <span ng-show="formVersion.code.$error.required">Code is required</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-2"><label class="control-label" for="data-label">&nbsp;Label</label></div>
-                    <div class="col-xs-10"><input type="text" id="data-label" size="50" required
+                    <div class="col-xs-10"><input type="text" id="data-label" size="50" required class="form-control"
+                                                  name="label"
                                                   ng-model="appelt.content.label">
+                        <span ng-show="formVersion.label.$error.required">Label is required</span>
                     </div>
                 </div>
             </div>
         </form>
     </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="ok(appelt.content)">
+    <div class="modal-footer confman-btn">
+    <button class="btn" ng-click="ok(appelt.content)" ng-class="getClassActionForm(formVersion)"
+            ng-disabled="formVersion.$invalid">
             <img ng-src="img/icon/{{appelt.icon}}" title="{{appelt.verb}}"/>
         </button>
         <button class="btn btn-default" ng-click="cancel()">
@@ -211,25 +290,32 @@
         <h3 class="modal-title">{{appparam.title}}</h3>
     </div>
     <div class="modal-body">
-        <div class="alert alert-danger confman_error" role="alert" ng-show="error">
-            Error : {{error.message}}
+        <div class="alert alert-danger confman-error" role="alert" ng-show="error">
+        Error : {{error.message}}
         </div>
-        <form class="form confman_form" name="formInstance" novalidate>
+        <form class="form confman-form" name="formParam" novalidate>
             <div class="thumbnail">
                 <div class="row" ng-show="appparam.content.id">
                     <div class="col-xs-2"><label for="data-id">&nbsp;Id</label></div>
-                    <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="appparam.content.id">
+                    <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="appparam.content.id"
+                                                  name="id"
+                                                  class="form-control">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-2"><label class="control-label" for="data-code">&nbsp;Code</label></div>
-                    <div class="col-xs-10"><input type="text" id="data-code" required ng-model="appparam.content.code">
+                    <div class="col-xs-10"><input type="text" id="data-code" required ng-model="appparam.content.code"
+                                                  name="code"
+                                                  class="form-control">
+                        <span ng-show="formParam.code.$error.required">Code is required</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-2"><label class="control-label" for="data-label">&nbsp;Label</label></div>
-                    <div class="col-xs-10"><input type="text" id="data-label" size="50" required
+                    <div class="col-xs-10"><input type="text" id="data-label" size="50" required class="form-control"
+                                                  name="label"
                                                   ng-model="appparam.content.label">
+                        <span ng-show="formParam.label.$error.required">Label is required</span>
                     </div>
                 </div>
                 <div class="row">
@@ -241,19 +327,24 @@
                     </div>
                     <div class="col-xs-2"><label class="control-label" for="data-instance-env">&nbsp;Type</label>
                     </div>
-                    <select id="data-instance-env" ng-model="appparam.content.type"
-                            ng-options="type for type in parametertypes">
-                        <option value="" ng-hide="appparam.content.type">S&eacute;lection type
-                        </option>
-                    </select>
+                    <div class="col-xs-10">
+                        <select id="data-instance-env" ng-model="appparam.content.type" required class="form-control"
+                                name="type"
+                                ng-options="type for type in parametertypes">
+                            <option value="" ng-hide="appparam.content.type">S&eacute;lection type
+                            </option>
+                        </select>
+                        <span ng-show="formParam.type.$error.required">Type is required</span>
+                    </div>
                     <br>
 
                 </div>
             </div>
         </form>
     </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="ok(appparam.content)">
+    <div class="modal-footer confman-btn">
+    <button class="btn" ng-click="ok(appparam.content)"  ng-class="getClassActionForm(formParam)"
+            ng-disabled="formParam.$invalid">
             <img ng-src="img/icon/{{appparam.icon}}" title="{{appparam.verb}}"/>
         </button>
         <button class="btn btn-default" ng-click="cancel()">

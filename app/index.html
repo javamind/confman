@@ -18,24 +18,29 @@
         <material-toolbar class="material-theme-light">
             <button class="material-button" ng-click="close()"><img src="img/icon/ic_arrow_drop_down_circle_48px.svg"
                                                                     width="24" height="24"/></button>
-            <div class="menu_title material-theme-light">
+            <div class="menu-title material-theme-light">
                 <img src="img/icone64.png"/>
 
                 <h2>&nbsp;Confman</h2>
                 <small>your app's parameter management is now easy</small>
             </div>
         </material-toolbar>
-        <material-content class="menu_content">
+        <material-content class="menu-content">
             <p>
                 <a href="/" ng-click="toggleLeft()"><img src="img/icon/ic_home_48px.svg" width="24" height="24"></a>
             </p>
 
             <p>
-                <b>Parameters</b><br/>
+                <b>Settings</b><br/>
                 <a href="#/environment" ng-click="toggleLeft()">Environment</a><br/>
                 <a href="#/softwaresuite" ng-click="toggleLeft()">Software suite</a><br/>
                 <a href="#/application" ng-click="toggleLeft()">Application</a><br/>
-
+            </p>
+            <p>
+                <b>Configuration</b><br/>
+                <a href="#/environment" ng-click="toggleLeft()">Show</a><br/>
+                <a href="#/softwaresuite" ng-click="toggleLeft()">Create</a><br/>
+                <a href="#/application" ng-click="toggleLeft()">Compare</a><br/>
             </p>
         </material-content>
     </material-sidenav>
@@ -102,12 +107,20 @@
 <!--<script src="/webjars/angularjs/1.2.16/angular-resource.min.js"></script>-->
 <!--<script src="/webjars/angularjs/1.2.16/angular-route.min.js"></script>-->
 <!--<script src="/webjars/angularjs/1.2.16/angular-animate.min.js"></script>-->
+<!--
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.14/angular.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.14/angular-animate.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.14/angular-route.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.14/angular-resource.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
+-->
+<script src="styles/jquery.min.js"></script>
+<script src="styles/angular.min.js"></script>
+<script src="styles/angular-animate.min.js"></script>
+<script src="styles/angular-route.min.js"></script>
+<script src="styles/angular-resource.min.js"></script>
+<script src="styles/ui-bootstrap-tpls.min.js"></script>
 
 <script src="js/angular-animate-sequence/angular-animate-sequence.js"></script>
 <script src="js/angular-animate-sequence/angular-animate-stylers.js"></script>

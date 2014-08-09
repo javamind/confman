@@ -73,6 +73,8 @@ public abstract class AbstractConfManEntity<T extends AbstractConfManEntity> imp
         return (T) this;
     }
 
+    public abstract Long getId();
+
     public boolean isActive() {
         return active;
     }

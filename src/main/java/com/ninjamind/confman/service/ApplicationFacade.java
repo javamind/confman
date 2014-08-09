@@ -4,7 +4,6 @@ import com.ninjamind.confman.domain.Application;
 import com.ninjamind.confman.domain.ApplicationVersion;
 import com.ninjamind.confman.domain.Instance;
 import com.ninjamind.confman.domain.Parameter;
-import org.springframework.data.repository.query.Param;
 
 import java.io.Serializable;
 import java.util.List;
@@ -38,9 +37,18 @@ public interface ApplicationFacade<T, ID extends Serializable> extends GenericFa
     List<Instance> findInstanceByIdApp( Long id);
 
     /**
-     * @see com.ninjamind.confman.repository.ApplicationtRepository#findOneWthDependencies(Long)
+     * @see com.ninjamind.confman.repository.ApplicationtRepository#findOneWithDependencies(Long)
      * @param id
      * @return
      */
     Application findOneWthDependencies(Long id);
+
+    /**
+     * Save one applicaton and his dependencies
+     * @param app
+     * @param parameters
+     * @param versions
+     * @return
+     */
+    Application save(Application app, List<Instance> instances, List<Parameter> parameters, List<ApplicationVersion> versions);
 }

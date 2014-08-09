@@ -4,7 +4,7 @@
         <div class="col-md-5">
             <h4>
                 nb software suite : {{softwaresuites.length}}
-                <div class="confman_btn" style="width: 50%">
+                <div class="confman-btn" style="width: 50%">
                     <button class="btn btn-primary" ng-click="create()">
                         <img src="../img/icon/ic_insert_drive_file_24px.svg" title="New"/>
                     </button>
@@ -20,24 +20,26 @@
             </material-list>
         </div>
         <div class="col-md-6 col-md-offset-1">
-            <form class="form confman_form" name="form" novalidate ng-show="entity.content">
+            <form class="form confman-form" name="form" novalidate ng-show="entity.content">
                 <div class="" style="height: 100%">
                     <h4>{{entity.verb}}</h4>
-                    <div class="alert alert-danger confman_error" role="alert" ng-show="error">
+                    <div class="alert alert-danger confman-error" role="alert" ng-show="error">
                         Error : {{error.message}}
                     </div>
                     <div class="thumbnail">
                     <div class="row" ng-show="entity.content.id">
                         <div class="col-xs-2"><label for="data-id">&nbsp;Id</label></div>
-                        <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="entity.content.id"></div>
+                        <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="entity.content.id" class="form-control"></div>
                     </div>
                     <div class="row">
                         <div class="col-xs-2"><label class="control-label"  for="data-code">&nbsp;Code</label></div>
-                        <div class="col-xs-10"><input type="text" id="data-code" required ng-model="entity.content.code"></div>
+                        <div class="col-xs-10"><input type="text" id="data-code" required ng-model="entity.content.code" class="form-control" name="code">
+                            <span ng-show="form.code.$error.required">Code is required</span></div>
                     </div>
                     <div class="row">
                         <div class="col-xs-2"><label class="control-label" for="data-label">&nbsp;Label</label></div>
-                        <div class="col-xs-10"><input type="text" id="data-label" size="50" required ng-model="entity.content.label"></div>
+                        <div class="col-xs-10"><input type="text" id="data-label" size="50" required ng-model="entity.content.label" class="form-control" name="label">
+                            <span ng-show="form.label.$error.required">Label is required</span></div>
                     </div>
 
                     <div ng-show="entity.content.id" ng-hide="hideEnv">
@@ -60,9 +62,9 @@
 
 
 
-                    <div class="confman_btn">
+                    <div class="confman-btn">
                         <br/>
-                        <button class="btn btn-primary" ng-click="save(form)" >
+                        <button class="btn" ng-click="save(form)" ng-class="getClassActionForm(form)" ng-disabled="form.$invalid">
                             <img src="../img/icon/ic_save_24px.svg" title="Save"/>
                         </button>
                         <button class="btn btn-danger" ng-click="delete(entity.content, $event)" ng-show="entity.content.id">

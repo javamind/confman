@@ -4,7 +4,6 @@ import com.ninja_squad.dbsetup.DbSetup;
 import com.ninja_squad.dbsetup.destination.DataSourceDestination;
 import com.ninja_squad.dbsetup.operation.Operation;
 import com.ninjamind.confman.config.PersistenceConfig;
-import com.ninjamind.confman.domain.Application;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,19 +17,19 @@ import static com.ninja_squad.dbsetup.Operations.sequenceOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Test of {@link com.ninjamind.confman.repository.ApplicationtRepository}
+ * Test of {@link ParameterValueRepositoryImpl}
  *
  * @author EHRET_G
  */
 @ContextConfiguration(classes = {PersistenceConfig.class})
 @RunWith(SpringJUnit4ClassRunner.class)
-public class ApplicationRepositoryTest {
+public class ParameterValueRepositoryTest {
 
     @Autowired
     private DataSource dataSource;
 
     @Autowired
-    private ApplicationtRepository applicationRepository;
+    private ParameterValueRepositoryImpl parameterValueRepository;
 
     @Before
     public void setUp(){
@@ -43,19 +42,22 @@ public class ApplicationRepositoryTest {
                         CommonOperations.INSERT_APP,
                         CommonOperations.INSERT_INSTANCE,
                         CommonOperations.INSERT_VERSION,
-                        CommonOperations.INSERT_PARAMETER
+                        CommonOperations.INSERT_PARAMETER,
+                        CommonOperations.INSERT_VERSION_TRACKING,
+                        CommonOperations.INSERT_PARAMETER_VALUE
                 );
         DbSetup dbSetup = new DbSetup(new DataSourceDestination(dataSource), operation);
         dbSetup.launch();
     }
 
     @Test
-    public void shouldFindOneApplication() {
-        Application app = applicationRepository.findOneWithDependencies(1L);
-        assertThat(app.getCode()).isEqualTo("CFM");
-        assertThat(app.getApplicationVersions()).hasSize(1);
-        assertThat(app.getInstances()).hasSize(1);
-        assertThat(app.getParameters()).hasSize(2);
+    public void shouldFindParameterValueByIdApp() {
+//        assertThat(parameterValueRepository.findParameterValueByIdApp(1L)).hasSize(2).extracting("code").contains("app.maxuser", "server.name");
     }
+//
+//    @Test
+//    public void shouldFindParameterValueByIdVersionTracking() {
+//        assertThat(parameterValueRepository.findParameterValueByIdVersionTracking(1L)).hasSize(2).extracting("code").contains("app.maxuser", "server.name");
+//    }
 
 }

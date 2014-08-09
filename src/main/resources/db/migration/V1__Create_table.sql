@@ -42,7 +42,7 @@ CREATE TABLE application
   id integer NOT NULL PRIMARY KEY,
   code character varying(40),
   label character varying(250),
-  softwaresuite_id integer,
+  softwaresuite_id integer REFERENCES softwaresuite (id),
   version integer,
   active boolean,
   CONSTRAINT application_unique_key UNIQUE (code, softwaresuite_id)
@@ -56,7 +56,7 @@ CREATE TABLE applicationversion
   id integer NOT NULL PRIMARY KEY,
   code character varying(40),
   label character varying(250),
-  application_id integer,
+  application_id integer NOT NULL REFERENCES application (id),
   blocked boolean,
   version integer,
   active boolean,
@@ -71,9 +71,10 @@ CREATE TABLE versiontracking
   id integer NOT NULL PRIMARY KEY,
   code character varying(40),
   label character varying(250),
-  applicationVersion_id integer,
+  applicationVersion_id integer NOT NULL REFERENCES applicationversion (id),
   version integer,
   active boolean,
+  blocked boolean,
   CONSTRAINT versiontracking_unique_key UNIQUE (code, applicationVersion_id)
 )
 WITH (
@@ -114,8 +115,8 @@ CREATE TABLE parameter
   id integer NOT NULL PRIMARY KEY,
   code character varying(40),
   label character varying(250),
-  parameterGroupment_id integer,
-  application_id integer,
+  parameterGroupment_id integer REFERENCES parametergrpt (id),
+  application_id integer NOT NULL REFERENCES application (id),
   version integer,
   active boolean,
   type character varying(40),
@@ -125,57 +126,80 @@ WITH (
   OIDS=FALSE
 );
 
+CREATE TABLE parametervalue
+(
+  id integer NOT NULL PRIMARY KEY,
+  code character varying(40),
+  value character varying(2500),
+  versionTracking_id integer NOT NULL REFERENCES versiontracking (id),
+  parameter_id integer NOT NULL REFERENCES parameter (id),
+  instance_id integer REFERENCES instance (id),
+  application_id integer NOT NULL REFERENCES application (id),
+  version integer,
+  active boolean
+)
+WITH (
+  OIDS=FALSE
+);
+
 CREATE SEQUENCE seq_application
-    START WITH 1
+    START WITH 10
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
     CACHE 1;
 
 CREATE SEQUENCE seq_softwaresuite
-    START WITH 1
+    START WITH 10
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
     CACHE 1;
 
 CREATE SEQUENCE seq_application_version
-    START WITH 1
+    START WITH 10
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
     CACHE 1;
 
 CREATE SEQUENCE seq_environment
-    START WITH 1
+    START WITH 10
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
     CACHE 1;
 
 CREATE SEQUENCE seq_instance
-    START WITH 1
+    START WITH 10
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
     CACHE 1;
 
 CREATE SEQUENCE seq_parameter
-    START WITH 1
+    START WITH 10
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+CREATE SEQUENCE seq_parameter_value
+    START WITH 10
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
     CACHE 1;
 
 CREATE SEQUENCE seq_parameter_grpt
-    START WITH 1
+    START WITH 10
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
     CACHE 1;
 
 CREATE SEQUENCE seq_version_tracking
-    START WITH 1
+    START WITH 10
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE

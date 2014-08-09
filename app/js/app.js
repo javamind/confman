@@ -79,6 +79,12 @@ confman.run(function ($rootScope) {
     $rootScope.setError = function(msgError, codeError){
         $rootScope.error= { message : msgError, code : codeError};
     };
+    $rootScope.getClassActionForm = function(form){
+        if(form.$invalid){
+            return '';
+        }
+        return 'btn-primary'
+    };
 })
 
 

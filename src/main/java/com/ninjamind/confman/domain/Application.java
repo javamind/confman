@@ -3,6 +3,7 @@ package com.ninjamind.confman.domain;
 import com.google.common.base.Objects;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -59,6 +60,10 @@ public class Application extends AbstractConfManEntity<Application>{
         return this;
     }
 
+    public Application addAllApplicationVersions(Collection<ApplicationVersion> collection) {
+        applicationVersions.addAll(collection);
+        return this;
+    }
     public void clearApplicationVersion() {
         applicationVersions.clear();
     }
@@ -85,6 +90,11 @@ public class Application extends AbstractConfManEntity<Application>{
         return Collections.unmodifiableSet(parameters);
     }
 
+    public Application addAllParameters(Collection<Parameter> collection) {
+        parameters.addAll(collection);
+        return this;
+    }
+
     public Application addInstance(Instance instance) {
         instances.add(instance);
         return this;
@@ -97,6 +107,11 @@ public class Application extends AbstractConfManEntity<Application>{
 
     public void clearInstances() {
         instances.clear();
+    }
+
+    public Application addAllInstances(Collection<Instance> collection) {
+        instances.addAll(collection);
+        return this;
     }
 
     public Set<Instance> getInstances() {

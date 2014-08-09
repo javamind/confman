@@ -1,6 +1,25 @@
-@menu_title_left: 64px;
+@menu-title_left: 64px;
+@image_size: 24px;
+@action_simple_color:#4285f4;
 
-.menu_title{
+body{
+  min-height: 100%;
+  overflow: auto;
+}
+
+.footer-confman{
+  position: fixed;
+  width: 100%;
+  margin: 0px;
+  padding: 5px 100px;
+  bottom: 0px;
+  margin-top: 30px;
+  border-top : 1px solid #eeeeee;
+  background-color: #ffffff;
+
+}
+
+.menu-title{
   display:inline-table;
   width: 100%;
   position: relative;
@@ -13,7 +32,7 @@
   }
 
   h2 {
-    left:@menu_title_left;
+    left:@menu-title_left;
     top:5px;
     padding: 0px;
     margin: 0px;
@@ -23,7 +42,7 @@
   }
 
   small {
-    left:@menu_title_left;
+    left:@menu-title_left;
     top:35px;
     position: absolute;
     width: 78%;
@@ -32,11 +51,11 @@
   }
 }
 
-.menu_content{
+.menu-content{
   top: 120px;
 }
 
-.confman_image{
+.confman-image{
   text-align: center;
 
   img {
@@ -44,14 +63,14 @@
   }
 }
 
-.confman_btn{
+.confman-btn{
   img{
-    width: 24px;
-    height: 24px;
+    width: @image_size;
+    height: @image_size;
   }
   .btn-primary {
     color: #fff;
-    background-color: #4285f4;
+    background-color: @action_simple_color;
     border-color: #03a9f4;
   }
   display:inline-block;
@@ -59,7 +78,7 @@
   width: 100%;
 }
 
-.confman_form{
+.confman-form{
   label {
     margin: 0px;
     padding: 0px;
@@ -71,9 +90,22 @@
   .thumbnail {
     padding: 10px;
   }
+  input.ng-invalid{
+    background-color: #f2dede;
+  }
+  select.ng-invalid{
+    background-color: #f2dede;
+  }
+  input{
+    border:0px;
+    margin: 1px;
+  }
+  form{
+    color: red;
+  }
 }
 
-.confman_error{
+.confman-error{
   overflow-x: hidden;
   overflow-y: auto;
   max-width: 100%;
@@ -82,3 +114,4 @@
 .material-theme-grey {
   background-color: #eeeeee !important;
   color: #111111 !important; }
+

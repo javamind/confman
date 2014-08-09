@@ -13,15 +13,7 @@ import java.util.List;
  * @author ehret_g
  */
 public interface ApplicationtRepository extends JpaRepository<Application, Long> {
-    @Query(value = "SELECT s FROM ApplicationVersion s WHERE s.application.id = :id")
-    List<ApplicationVersion> findApplicationVersionByIdApp(@Param("id") Long id);
-
-    @Query(value = "SELECT s FROM Parameter s WHERE s.application.id = :id")
-    List<Parameter> findParameterByIdApp(@Param("id") Long id);
-
-    @Query(value = "SELECT s FROM Instance s WHERE s.application.id = :id")
-    List<Instance> findInstanceByIdApp(@Param("id") Long id);
 
     @Query(value = "SELECT a FROM Application a left join fetch a.instances left join fetch a.parameters left join fetch a.applicationVersions WHERE a.id = :id")
-    Application findOneWthDependencies(@Param("id") Long id);
+    Application findOneWithDependencies(@Param("id") Long id);
 }

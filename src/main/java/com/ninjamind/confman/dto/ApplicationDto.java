@@ -25,7 +25,8 @@ public class ApplicationDto extends AbstractConfManDto {
                 object.getId(),
                 object.getCode(),
                 object.getLabel(),
-                object.getVersion()
+                object.getVersion(),
+                object.isActive()
         );
     }
 
@@ -34,7 +35,8 @@ public class ApplicationDto extends AbstractConfManDto {
                 object.getId(),
                 object.getCode(),
                 object.getLabel(),
-                object.getVersion()
+                object.getVersion(),
+                object.isActive()
         );
         this.idSoftwareSuite = object.getSoftwareSuite().getId();
         this.instances = Lists.transform(instances, instance -> new InstanceDto(instance));
@@ -49,7 +51,8 @@ public class ApplicationDto extends AbstractConfManDto {
                 .setCode(getCode())
                 .setLabel(getLabel())
                 .setSoftwareSuite(new SoftwareSuite().setId(idSoftwareSuite))
-                .setVersion(getVersion());
+                .setVersion(getVersion())
+                .setActive(isActive());
     }
 
     public List<Instance> toInstances() {

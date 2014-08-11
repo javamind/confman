@@ -16,21 +16,21 @@ import java.util.List;
 public interface ApplicationFacade<T, ID extends Serializable> extends GenericFacade<T, ID> {
 
     /**
-     * @see com.ninjamind.confman.repository.ApplicationtRepository#findApplicationVersionByIdApp(Long)
+     * @see com.ninjamind.confman.repository.ApplicationtVersionRepository#findApplicationVersionByIdApp(Long)
      * @param id
      * @return
      */
     List<ApplicationVersion> findApplicationVersionByIdApp( Long id);
 
     /**
-     * @see com.ninjamind.confman.repository.ApplicationtRepository#findParameterByIdApp(Long)
+     * @see com.ninjamind.confman.repository.ParameterRepository#findParameterByIdApp(Long)
      * @param id
      * @return
      */
     List<Parameter> findParameterByIdApp( Long id);
 
     /**
-     * @see com.ninjamind.confman.repository.ApplicationtRepository#findInstanceByIdApp(Long)
+     * @see com.ninjamind.confman.repository.InstanceRepository#findInstanceByIdApp(Long)
      * @param id
      * @return
      */

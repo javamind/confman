@@ -9,7 +9,7 @@ import java.io.Serializable;
  *
  * @author EHRET_G
  */
-public abstract class AbstractConfManDto implements Serializable {
+public abstract class AbstractConfManDto<T extends AbstractConfManDto> implements Serializable {
     private Long id;
     /**
      * Code
@@ -23,6 +23,11 @@ public abstract class AbstractConfManDto implements Serializable {
      * Data version
      */
     private Long version = Long.valueOf(0);
+    /**
+     * Active
+     */
+    private boolean active;
+
 
     /**
      * Default constructor
@@ -45,43 +50,57 @@ public abstract class AbstractConfManDto implements Serializable {
      * @param code
      * @param label
      */
-    public AbstractConfManDto(Long id, String code, String label, Long version) {
+    public AbstractConfManDto(Long id, String code, String label, Long version, boolean active) {
         this.id=id;
         this.code = code;
         this.label = label;
         this.version = version;
+        this.active = active;
     }
 
     public String getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public T setCode(String code) {
         this.code = code;
+        return (T) this;
     }
 
     public String getLabel() {
         return label;
     }
 
-    public void setLabel(String label) {
+    public T setLabel(String label) {
         this.label = label;
+        return (T) this;
     }
 
     public Long getVersion() {
         return version;
     }
 
-    public void setVersion(Long version) {
+    public AbstractConfManDto setVersion(Long version) {
         this.version = version;
+        return this;
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public T setId(Long id) {
         this.id = id;
+        return (T) this;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public T setActive(boolean active) {
+        this.active = active;
+        return (T) this;
     }
 
     @Override

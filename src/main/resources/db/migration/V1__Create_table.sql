@@ -185,7 +185,7 @@ CREATE SEQUENCE seq_parameter
     CACHE 1;
 
 CREATE SEQUENCE seq_parameter_value
-    START WITH 10
+    START WITH 100
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE

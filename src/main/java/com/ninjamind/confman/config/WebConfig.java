@@ -1,5 +1,6 @@
 package com.ninjamind.confman.config;
 
+import com.ninjamind.confman.domain.ParameterValue;
 import com.ninjamind.confman.web.*;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
@@ -52,5 +53,10 @@ public class WebConfig {
     @Bean
     public ParameterController parameterController(){
         return new ParameterController();
+    }
+
+    @Bean
+    public ParameterValueController parameterValueController(){
+        return new ParameterValueController();
     }
 }

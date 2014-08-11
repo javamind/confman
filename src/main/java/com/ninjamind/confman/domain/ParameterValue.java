@@ -44,7 +44,7 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
         return id;
     }
 
-    ParameterValue setId(Long id) {
+    public ParameterValue setId(Long id) {
         this.id = id;
         return this;
     }
@@ -53,7 +53,7 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
      * In the hibernate entities value is mapped with the property label
      * @return
      */
-    String getValue() {
+    public String getValue() {
         return super.getLabel();
     }
 

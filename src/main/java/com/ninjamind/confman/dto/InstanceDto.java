@@ -21,7 +21,8 @@ public class InstanceDto extends AbstractConfManDto {
                 object.getId(),
                 object.getCode(),
                 object.getLabel(),
-                object.getVersion()
+                object.getVersion(),
+                object.isActive()
         );
         this.idApplication = object.getApplication().getId();
         this.idEnvironment = object.getEnvironment().getId();
@@ -33,6 +34,7 @@ public class InstanceDto extends AbstractConfManDto {
                 .setCode(getCode())
                 .setLabel(getLabel())
                 .setVersion(getVersion())
+                .setActive(isActive())
                 .setApplication(new Application().setId(idApplication))
                 .setEnvironment(new Environment().setId(idEnvironment));
     }

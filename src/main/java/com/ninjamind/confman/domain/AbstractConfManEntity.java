@@ -79,8 +79,9 @@ public abstract class AbstractConfManEntity<T extends AbstractConfManEntity> imp
         return active;
     }
 
-    public void setActive(boolean active) {
+    public T setActive(boolean active) {
         this.active = active;
+        return (T) this;
     }
 
     @Override

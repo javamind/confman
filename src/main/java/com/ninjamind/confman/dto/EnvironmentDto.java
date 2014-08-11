@@ -18,7 +18,8 @@ public class EnvironmentDto extends AbstractConfManDto {
                 environment.getId(),
                 environment.getCode(),
                 environment.getLabel(),
-                environment.getVersion()
+                environment.getVersion(),
+                environment.isActive()
         );
     }
 
@@ -27,6 +28,7 @@ public class EnvironmentDto extends AbstractConfManDto {
                 .setId(getId())
                 .setCode(getCode())
                 .setLabel(getLabel())
-                .setVersion(getVersion());
+                .setVersion(getVersion())
+                .setActive(isActive());
     }
 }

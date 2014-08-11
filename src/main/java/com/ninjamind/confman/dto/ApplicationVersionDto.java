@@ -18,7 +18,8 @@ public class ApplicationVersionDto extends AbstractConfManDto {
                 object.getId(),
                 object.getCode(),
                 object.getLabel(),
-                object.getVersion()
+                object.getVersion(),
+                object.isActive()
         );
     }
 
@@ -27,6 +28,7 @@ public class ApplicationVersionDto extends AbstractConfManDto {
                 .setId(getId())
                 .setCode(getCode())
                 .setLabel(getLabel())
-                .setVersion(getVersion());
+                .setVersion(getVersion())
+                .setActive(isActive());
     }
 }

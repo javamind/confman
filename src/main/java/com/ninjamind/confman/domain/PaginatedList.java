@@ -21,11 +21,11 @@ public class PaginatedList<T> extends ArrayList<T> {
     /**
      * The paginated list is partial but we need the complete size to calculate to calculate the next pages
      */
-    private int completeSize;
+    private int completeSize = 0;
     /**
      * Number of the current page
      */
-    private int currentPage;
+    private int currentPage = 1;
     /**
      * The page are determinated with the nb element by page. The default value is 25
      */

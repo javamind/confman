@@ -16,6 +16,11 @@ import java.util.List;
  */
 public interface ParameterValueRepository extends Repository<ParameterValue, Long> {
 
-    public List<ParameterValue> findParameterValueByIdApp(PaginatedList list, ParameterValue criteria);
+    /**
+     * Search the parameters values
+     * @param list
+     * @param criteria
+     */
+    public PaginatedList<ParameterValue> findParameterValue(PaginatedList<ParameterValue> list, SearchBuilder criteria);
 
 }

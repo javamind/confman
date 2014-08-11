@@ -18,7 +18,8 @@ public class ParameterGroupmentDto extends AbstractConfManDto {
                 object.getId(),
                 object.getCode(),
                 object.getLabel(),
-                object.getVersion()
+                object.getVersion(),
+                object.isActive()
         );
     }
 
@@ -27,6 +28,7 @@ public class ParameterGroupmentDto extends AbstractConfManDto {
                 .setId(getId())
                 .setCode(getCode())
                 .setLabel(getLabel())
-                .setVersion(getVersion());
+                .setVersion(getVersion())
+                .setActive(isActive());
     }
 }

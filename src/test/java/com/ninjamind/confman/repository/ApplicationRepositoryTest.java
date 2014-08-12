@@ -58,4 +58,18 @@ public class ApplicationRepositoryTest {
         assertThat(app.getParameters()).hasSize(2);
     }
 
+    @Test
+    public void shouldFindNoApplicationByIdEnvWhenNoAppIsConfiguredOnEnv() {
+        assertThat(applicationRepository.findApplicationByIdEnv(2L)).isEmpty();
+    }
+
+    @Test
+    public void shouldFindNoApplicationByIdEnvWhenIdEnvIsNull() {
+        assertThat(applicationRepository.findApplicationByIdEnv(null)).isEmpty();
+    }
+
+    @Test
+    public void shouldFindApplicationByIdEnv() {
+        assertThat(applicationRepository.findApplicationByIdEnv(1L)).hasSize(1).extracting("code").containsExactly("CFM");
+    }
 }

@@ -37,6 +37,9 @@ confman.config(function ($routeProvider) {
     $routeProvider
         .when('/', {templateUrl: 'main.html', controller:'MainCtrl'})
         .when('/application/:id', {templateUrl: 'view/applicationdetail.html', controller:'applicationDetailCtrl'})
+        .when('/config/search', {templateUrl: 'view/configsearch.html', controller:'configSearchCtrl'})
+        .when('/config/create', {templateUrl: 'view/configcreate.html', controller:'configCreateCtrl'})
+        .when('/config/compare', {templateUrl: 'view/configcompare.html', controller:'configCompareCtrl'})
         .otherwise({redirectTo: '/'});
 
     //Dynamic construction of the URI

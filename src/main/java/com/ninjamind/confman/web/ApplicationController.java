@@ -30,6 +30,11 @@ public class ApplicationController {
         return Lists.transform(genericFacade.findAll(), env -> new ApplicationDto(env));
     }
 
+    @Get("/application/environment/:id")
+    public List<ApplicationDto> listByEnv(Long id) {
+        return Lists.transform(genericFacade.findApplicationByIdEnv(id), env -> new ApplicationDto(env));
+    }
+
     @Get("/application/:id")
     public ApplicationDto get(Long id) {
         Application app = genericFacade.findOneWthDependencies(id);

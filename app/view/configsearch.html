@@ -1,0 +1,81 @@
+<material-content style="top:128px" ng-controller="configSearchCtrl">
+    <h4>Criteria</h4>
+
+    <form class="form confman-form" name="form" novalidate>
+        <div class="alert alert-danger confman-error row" role="alert" ng-show="error">
+            Error : {{error.message}}
+        </div>
+        <div class="container-fluid thumbnail">
+            <div class="row">
+                <div class="col-md-1">
+                    <label for="data-environment">&nbsp;Environment</label>
+                </div>
+                <div class="col-md-3">
+                    <select id="data-environment" ng-model="criteria.idEnvironment" class="form-control" ng-change="changeEnvironment()"
+                            ng-options="environment.id as environment.code for environment in environments">
+                        <option value="">Environment</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <label for="data-label">&nbsp;Application</label>
+                </div>
+                <div class="col-md-3">
+                    <select id="data-application" ng-model="criteria.idApplication" class="form-control" ng-change="changeApplication()"
+                            ng-options="application.id as application.code for application in applications">
+                        <option value="">Application</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <label for="data-code">&nbsp;Code</label>
+                </div>
+                <div class="col-md-3">
+                    <div class="col-xs-10"><input type="text" id="data-code"  ng-model="criteria.code" class="form-control"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    <label for="data-instance">&nbsp;Instance</label>
+                </div>
+                <div class="col-md-3">
+                    <select id="data-instance" ng-model="criteria.idInstance" class="form-control"
+                            ng-options="instance.id as instance.code for instance in instances">
+                        <option value="">Instance</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <label for="data-tracking">&nbsp;Tracking</label>
+                </div>
+                <div class="col-md-3">
+                    <select id="data-tracking" ng-model="criteria.idVersionTracking" class="form-control"
+                            ng-options="versionTracking.id as versionTracking.code for versionTracking in versionTrackings">
+                        <option value="">Version tracking</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <div class="confman-btn">
+                        <button class="btn btn-primary" ng-click="filter({})">
+                            <img src="../img/icon/ic_filter_24px.svg" title="Filter"/>
+                        </button>
+                        <button class="btn btn-default" ng-click="reset()">
+                            <img src="img/icon/ic_clear_24px.svg" title="Reset"/>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <h4>
+        nb parameters : {{parametervalues.length}}
+    </h4>
+    <material-list>
+        <material-item ng-repeat="param in parametervalues"">
+            <div class="material-tile-content">
+                <h2>{{param.code}}</h2>
+
+                <p>{{param.value}}</p>
+            </div>
+        </material-item>
+    </material-list>
+
+</material-content>

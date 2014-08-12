@@ -15,4 +15,10 @@ import java.util.List;
 public interface InstanceRepository extends JpaRepository<Instance, Long> {
     @Query(value = "SELECT s FROM Instance s WHERE s.application.id = :id order by s.code")
     List<Instance> findInstanceByIdApp(@Param("id") Long id);
+
+    @Query(value = "SELECT s FROM Instance s WHERE s.environment.id = :id order by s.code")
+    List<Instance> findInstanceByIdEnv(@Param("id") Long id);
+
+    @Query(value = "SELECT s FROM Instance s WHERE s.application.id = :idApp and s.environment.id = :idEnv order by s.code")
+    List<Instance> findInstanceByIdappAndEnv(@Param("idApp") Long idApp, @Param("idEnv") Long idEnv);
 }

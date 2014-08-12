@@ -2,8 +2,10 @@ package com.ninjamind.confman.web;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
+import com.ninjamind.confman.domain.Application;
 import com.ninjamind.confman.domain.Instance;
 import com.ninjamind.confman.dto.InstanceDto;
+import com.ninjamind.confman.service.ApplicationFacade;
 import com.ninjamind.confman.service.GenericFacade;
 import net.codestory.http.annotations.Delete;
 import net.codestory.http.annotations.Get;
@@ -24,9 +26,27 @@ public class InstanceController {
     @Qualifier("instanceFacade")
     private GenericFacade<Instance, Long> genericFacade;
 
+    @Autowired
+    private ApplicationFacade<Application, Long> applicationFacade;
+
     @Get("/instance")
     public List<InstanceDto> list() {
         return Lists.transform(genericFacade.findAll(), instance -> new InstanceDto(instance));
+    }
+
+    @Get("/instance/application/:id")
+    public List<InstanceDto> listApp(Long id) {
+        return Lists.transform(applicationFacade.findInstanceByIdAppOrEnv(id, null), instance -> new InstanceDto(instance));
+    }
+
+    @Get("/instance/application/:id/environment/:idEnv")
+    public List<InstanceDto> listApp(Long idApp, Long idEnv) {
+        return Lists.transform(applicationFacade.findInstanceByIdAppOrEnv(idApp, idEnv), instance -> new InstanceDto(instance));
+    }
+
+    @Get("/instance/environment/:id")
+    public List<InstanceDto> listEnv(Long id) {
+        return Lists.transform(applicationFacade.findInstanceByIdAppOrEnv(null, id), instance -> new InstanceDto(instance));
     }
 
     @Get("/instance/:id")

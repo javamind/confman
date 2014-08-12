@@ -38,9 +38,9 @@
             </p>
             <p>
                 <b>Configuration</b><br/>
-                <a href="#/configurations" ng-click="toggleLeft()">Find</a><br/>
-                <a href="#/configuration" ng-click="toggleLeft()">Create</a><br/>
-                <a href="#/compareconf" ng-click="toggleLeft()">Compare</a><br/>
+                <a href="#/config/search" ng-click="toggleLeft()">Find</a><br/>
+                <a href="#/config/create" ng-click="toggleLeft()">Create</a><br/>
+                <a href="#/config/compare" ng-click="toggleLeft()">Compare</a><br/>
             </p>
         </material-content>
     </material-sidenav>
@@ -107,20 +107,14 @@
 <!--<script src="/webjars/angularjs/1.2.16/angular-resource.min.js"></script>-->
 <!--<script src="/webjars/angularjs/1.2.16/angular-route.min.js"></script>-->
 <!--<script src="/webjars/angularjs/1.2.16/angular-animate.min.js"></script>-->
-<!--
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.14/angular.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.14/angular-animate.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.14/angular-route.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.14/angular-resource.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
--->
-<script src="styles/jquery.min.js"></script>
-<script src="styles/angular.min.js"></script>
-<script src="styles/angular-animate.min.js"></script>
-<script src="styles/angular-route.min.js"></script>
-<script src="styles/angular-resource.min.js"></script>
-<script src="styles/ui-bootstrap-tpls.min.js"></script>
+
+
 
 <script src="js/angular-animate-sequence/angular-animate-sequence.js"></script>
 <script src="js/angular-animate-sequence/angular-animate-stylers.js"></script>
@@ -132,6 +126,9 @@
 <script src="js/controller/environment.js"></script>
 <script src="js/controller/softwaresuite.js"></script>
 <script src="js/controller/application.js"></script>
+<script src="js/controller/configcompare.js"></script>
+<script src="js/controller/configcreate.js"></script>
+<script src="js/controller/configsearch.js"></script>
 <script src="js/service/entities.js"></script>
 </body>
 </html>

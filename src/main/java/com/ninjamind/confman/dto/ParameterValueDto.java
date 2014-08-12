@@ -8,14 +8,14 @@ import com.ninjamind.confman.domain.*;
  * @author EHRET_G
  */
 public class ParameterValueDto extends AbstractConfManDto {
-    private String value;
-    private Long idVersionTracking;
-    private String codeVersionTracking;
-    private Long idApplication;
-    private String codeApplication;
-    private Long idParameter;
-    private Long idInstance;
-    private String codeInstance;
+    protected String value;
+    protected Long idVersionTracking;
+    protected String codeVersionTracking;
+    protected Long idApplication;
+    protected String codeApplication;
+    protected Long idParameter;
+    protected Long idInstance;
+    protected String codeInstance;
 
 
     public ParameterValueDto() {

@@ -2,10 +2,7 @@ package com.ninjamind.confman.service;
 
 import com.google.common.base.Preconditions;
 import com.ninjamind.confman.domain.*;
-import com.ninjamind.confman.repository.ApplicationtRepository;
-import com.ninjamind.confman.repository.ApplicationtVersionRepository;
-import com.ninjamind.confman.repository.InstanceRepository;
-import com.ninjamind.confman.repository.ParameterRepository;
+import com.ninjamind.confman.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -32,6 +29,9 @@ public class ApplicationFacadeImpl implements ApplicationFacade<Application, Lon
     private ParameterRepository parameterRepository;
 
     @Autowired
+    private VersionTrackingRepository versionTrackingRepository;
+
+    @Autowired
     private ApplicationtVersionRepository applicationtVersionRepository;
 
     @Autowired
@@ -49,8 +49,18 @@ public class ApplicationFacadeImpl implements ApplicationFacade<Application, Lon
     }
 
     @Override
+    public List<Application> findApplicationByIdEnv(Long id) {
+        return applicationRepository.findApplicationByIdEnv(id);
+    }
+
+    @Override
     public List<ApplicationVersion> findApplicationVersionByIdApp(Long id) {
         return applicationtVersionRepository.findApplicationVersionByIdApp(id);
+    }
+
+    @Override
+    public List<VersionTracking> findVersionTrackingByIdApp(Long id) {
+        return versionTrackingRepository.findVersionTrackingByIdApp(id);
     }
 
     @Override
@@ -59,8 +69,17 @@ public class ApplicationFacadeImpl implements ApplicationFacade<Application, Lon
     }
 
     @Override
-    public List<Instance> findInstanceByIdApp(Long id) {
-        return instanceRepository.findInstanceByIdApp(id);
+    public List<Instance> findInstanceByIdAppOrEnv(Long idApp, Long idEnv) {
+        if(idApp==null && idEnv==null){
+            return instanceRepository.findAll();
+        }
+        if(idApp!=null && idEnv!=null){
+            return instanceRepository.findInstanceByIdappAndEnv(idApp, idEnv);
+        }
+        if(idApp!=null){
+            return instanceRepository.findInstanceByIdApp(idApp);
+        }
+        return instanceRepository.findInstanceByIdEnv(idEnv);
     }
 
     @Override
@@ -74,7 +93,7 @@ public class ApplicationFacadeImpl implements ApplicationFacade<Application, Lon
 
         if(app.getId()!=null && app.getId()>=0) {
             deleteDependenciesIfNecessary(findParameterByIdApp(app.getId()), parameters, parameterRepository);
-            deleteDependenciesIfNecessary(findInstanceByIdApp(app.getId()), instances, instanceRepository);
+            deleteDependenciesIfNecessary(findInstanceByIdAppOrEnv(app.getId(), null), instances, instanceRepository);
             deleteDependenciesIfNecessary(findApplicationVersionByIdApp(app.getId()), versions, applicationtVersionRepository);
         }
 

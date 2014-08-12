@@ -1,9 +1,6 @@
 package com.ninjamind.confman.service;
 
-import com.ninjamind.confman.domain.Application;
-import com.ninjamind.confman.domain.ApplicationVersion;
-import com.ninjamind.confman.domain.Instance;
-import com.ninjamind.confman.domain.Parameter;
+import com.ninjamind.confman.domain.*;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,11 +13,25 @@ import java.util.List;
 public interface ApplicationFacade<T, ID extends Serializable> extends GenericFacade<T, ID> {
 
     /**
+     * @see com.ninjamind.confman.repository.ApplicationtRepository#findApplicationByIdEnv(Long)
+     * @param id
+     * @return
+     */
+    List<Application> findApplicationByIdEnv(Long id);
+
+    /**
      * @see com.ninjamind.confman.repository.ApplicationtVersionRepository#findApplicationVersionByIdApp(Long)
      * @param id
      * @return
      */
     List<ApplicationVersion> findApplicationVersionByIdApp( Long id);
+
+    /**
+     * @see com.ninjamind.confman.repository.VersionTrackingRepository#findVersionTrackingByIdApp(Long) }
+     * @param id
+     * @return
+     */
+    List<VersionTracking> findVersionTrackingByIdApp( Long id);
 
     /**
      * @see com.ninjamind.confman.repository.ParameterRepository#findParameterByIdApp(Long)
@@ -31,10 +42,11 @@ public interface ApplicationFacade<T, ID extends Serializable> extends GenericFa
 
     /**
      * @see com.ninjamind.confman.repository.InstanceRepository#findInstanceByIdApp(Long)
-     * @param id
+     * @param idApp
+     * @param idEnv
      * @return
      */
-    List<Instance> findInstanceByIdApp( Long id);
+    List<Instance> findInstanceByIdAppOrEnv( Long idApp, Long idEnv);
 
     /**
      * @see com.ninjamind.confman.repository.ApplicationtRepository#findOneWithDependencies(Long)

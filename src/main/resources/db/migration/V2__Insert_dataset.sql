@@ -5,11 +5,11 @@ INSERT INTO environment (id, code, label, version, active) VALUES(3 ,'PRD', 'Pro
 INSERT INTO softwaresuite (id, code, label, version, active) VALUES(1 , 'SALES', 'The legacy app to manage sales', 1, true);
 INSERT INTO softwaresuite (id, code, label, version, active) VALUES(2 , 'CUSTOMER', 'Customer management', 1, true);
 
-INSERT INTO softwaresuite_environment (environment_id,softwaresuite_id,version,active) VALUES(1 , 1, 1, true);
-INSERT INTO softwaresuite_environment (environment_id,softwaresuite_id,version,active) VALUES(2 , 1, 1, true);
-INSERT INTO softwaresuite_environment (environment_id,softwaresuite_id,version,active) VALUES(3 , 1, 1, true);
-INSERT INTO softwaresuite_environment (environment_id,softwaresuite_id,version,active) VALUES(1 , 2, 1, true);
-INSERT INTO softwaresuite_environment (environment_id,softwaresuite_id,version,active) VALUES(2 , 2, 1, true);
+INSERT INTO softwaresuite_environment (environment_id, softwaresuite_id, version, active) VALUES(1 , 1, 1, true);
+INSERT INTO softwaresuite_environment (environment_id, softwaresuite_id, version, active) VALUES(2 , 1, 1, true);
+INSERT INTO softwaresuite_environment (environment_id, softwaresuite_id, version, active) VALUES(3 , 1, 1, true);
+INSERT INTO softwaresuite_environment (environment_id, softwaresuite_id, version, active) VALUES(1 , 2, 1, true);
+INSERT INTO softwaresuite_environment (environment_id, softwaresuite_id, version, active) VALUES(2 , 2, 1, true);
 
 INSERT INTO application (id, code, label, softwaresuite_id, version,active) VALUES(1 , 'SALES', 'articles prices, sales, and statistics', 1, 1, true);
 INSERT INTO application (id, code, label, softwaresuite_id, version,active) VALUES(2 , 'CUSWEB', 'Webapp to manage customer', 1, 1, true);

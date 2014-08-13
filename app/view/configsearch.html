@@ -18,11 +18,12 @@
                     </select>
                 </div>
                 <div class="col-md-1">
-                    <label for="data-label">&nbsp;Application</label>
+                    <label for="data-application">&nbsp;Application</label>
                 </div>
                 <div class="col-md-3">
                     <select id="data-application" ng-model="criteria.idApplication" class="form-control"
                             ng-change="changeApplication()"
+                            ng-show="applications"
                             ng-options="application.id as application.code for application in applications">
                         <option value="">Application</option>
                     </select>
@@ -41,6 +42,7 @@
                 </div>
                 <div class="col-md-3">
                     <select id="data-instance" ng-model="criteria.idInstance" class="form-control"
+                            ng-show="instances"
                             ng-options="instance.id as instance.code for instance in instances">
                         <option value="">Instance</option>
                     </select>
@@ -50,6 +52,7 @@
                 </div>
                 <div class="col-md-3">
                     <select id="data-tracking" ng-model="criteria.idVersionTracking" class="form-control"
+                            ng-show="versionTrackings"
                             ng-options="versionTracking.id as versionTracking.code for versionTracking in versionTrackings">
                         <option value="">Version tracking</option>
                     </select>

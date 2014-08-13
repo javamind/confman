@@ -1,4 +1,4 @@
-
+'use strict';
 
 angular.module('confman').controller('MainCtrl', function ($rootScope, $scope, $http, constants) {
     $rootScope.currentPage = {

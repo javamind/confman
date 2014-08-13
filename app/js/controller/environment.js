@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Controller linked to the env list
  */

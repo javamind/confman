@@ -1,1 +1,47 @@
-create config
+<material-content style="top:128px" ng-controller="configCreateCtrl">
+    <div class="confman-accroche">
+        A new configuration is created from an application version number. <b>Confman</b> display
+        a form with the last known values (last version tracking for the actual application
+        version number). You can change every parameters values but you won't be able to change
+        them after the saving. We choose this policy because all the changes have to be followed.
+    </div>
+    <form class="form confman-form" name="form" novalidate>
+        <div class="alert alert-danger confman-error row" role="alert" ng-show="error">
+            Error : {{error.message}}
+        </div>
+        <div class="container-fluid thumbnail">
+            <div class="row">
+                <div class="col-md-1">
+                    <label for="data-application">&nbsp;Application</label>
+                </div>
+                <div class="col-md-3">
+                    <select id="data-application" ng-model="criteria.idApplication" class="form-control"  required
+                            ng-change="changeApplication()" name="application"
+                            ng-options="application.id as application.code for application in applications">
+                        <option value="">Application</option>
+                    </select>
+                    <span ng-show="form.application.$error.required">Application is required</span>
+                </div>
+                <div class="col-md-1">
+                    <label for="data-tracking">&nbsp;Version</label>
+                </div>
+                <div class="col-md-3">
+                    <select id="data-tracking" ng-model="criteria.idApplicationVersion" class="form-control" required
+                           name="applicationVersion"
+                            ng-options="applicationVersion.id as applicationVersion.code for applicationVersion in applicationVersions">
+                        <option value="">Versions</option>
+                    </select>
+                    <span ng-show="form.applicationVersion.$error.required">application version is required</span>
+                </div>
+                <div class="col-md-4">
+                    <div class="confman-btn">
+                        <button class="btn btn-primary" ng-click="create()">
+                            <img src="../img/icon/ic_add_24px.svg" title="Create"/>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</material-content>

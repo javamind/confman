@@ -1,3 +1,4 @@
+'use strict';
 /**
  * Controller linked to the env list
  */
@@ -7,7 +8,7 @@ angular.module('confman').controller('configSearchCtrl', function ($rootScope, $
     $rootScope.currentPage = {
         name: 'Configurations',
         description: 'Search configuration and wath parameters values',
-        icon: 'ic_settings_24px'
+        icon: 'ic_satellite_24px'
     };
 
     //Load environment

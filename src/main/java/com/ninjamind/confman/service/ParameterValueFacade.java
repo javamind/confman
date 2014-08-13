@@ -20,4 +20,11 @@ public interface ParameterValueFacade<T, ID extends Serializable> extends Generi
      * @return
      */
     PaginatedList<ParameterValue> filter(Integer page, ParameterValueSearchBuilder criteria);
+
+    /**
+     * Find the last set of parameters for a version.
+     * @param idVersion
+     * @return
+     */
+    List<ParameterValue> getByIdAppVersion(Long idVersion);
 }

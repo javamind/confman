@@ -1,3 +1,4 @@
+'use strict';
 /**
  * Controller linked to the application's groupment list
  */
@@ -28,7 +29,7 @@ angular.module('confman').controller('softwaresuiteCtrl', function ($rootScope, 
                 .success(function (data) {
                     data.forEach(function(element){
                         //on parcours la liste des env
-                        for(i = 0 ; i<$scope.environments.length ; i++){
+                        for(var i = 0 ; i<$scope.environments.length ; i++){
                             var o = $scope.environments[i];
                             if(o.id===element.idEnvironmentDto){
                                 o.selected = true;

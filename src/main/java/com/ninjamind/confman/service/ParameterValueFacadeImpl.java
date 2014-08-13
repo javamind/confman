@@ -1,9 +1,8 @@
 package com.ninjamind.confman.service;
 
 import com.google.common.base.Objects;
-import com.ninjamind.confman.domain.PaginatedList;
-import com.ninjamind.confman.domain.Parameter;
-import com.ninjamind.confman.domain.ParameterValue;
+import com.google.common.base.Preconditions;
+import com.ninjamind.confman.domain.*;
 import com.ninjamind.confman.repository.ParameterValueRepository;
 import com.ninjamind.confman.repository.ParameterValueSearchBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +24,9 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
     private ParameterValueRepository parameterValueRepository;
 
     @Autowired
+    private JpaRepository<ApplicationVersion, Long> applicationVersionRepository;
+
+    @Autowired
     private JpaRepository<ParameterValue, Long> parameterValueRepositoryGeneric;
 
     @Override
@@ -42,6 +44,18 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
         //we instanciate our paginated list
         PaginatedList<ParameterValue> list = new PaginatedList<>().setCurrentPage(Objects.firstNonNull(page, 1));
         return parameterValueRepository.findParameterValue(list, criteria);
+    }
+
+    @Override
+    public List<ParameterValue> getByIdAppVersion(Long idVersion) {
+        Preconditions.checkNotNull(idVersion);
+
+        //We find the version in database
+        ApplicationVersion version = applicationVersionRepository.getOne(idVersion);
+        Preconditions.checkArgument(version!=null, "idVersion not exist");
+
+        //for(VersionTracking version : ve)
+        return null;
     }
 
 }

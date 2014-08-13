@@ -2,8 +2,11 @@ package com.ninjamind.confman.web;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
+import com.ninjamind.confman.domain.Application;
 import com.ninjamind.confman.domain.ApplicationVersion;
 import com.ninjamind.confman.dto.ApplicationVersionDto;
+import com.ninjamind.confman.dto.VersionTrackingDto;
+import com.ninjamind.confman.service.ApplicationFacade;
 import com.ninjamind.confman.service.GenericFacade;
 import net.codestory.http.annotations.Delete;
 import net.codestory.http.annotations.Get;
@@ -24,9 +27,17 @@ public class ApplicationVersionController {
     @Qualifier("applicationVersionFacade")
     private GenericFacade<ApplicationVersion, Long> genericFacade;
 
+    @Autowired
+    private ApplicationFacade<Application, Long> applicationFacade;
+
     @Get("/applicationversion")
     public List<ApplicationVersionDto> list() {
         return Lists.transform(genericFacade.findAll(), version -> new ApplicationVersionDto(version));
+    }
+
+    @Get("/applicationversion/application/:id")
+    public List<ApplicationVersionDto> getByApp(Long id) {
+        return Lists.transform(applicationFacade.findApplicationVersionByIdApp(id), instance -> new ApplicationVersionDto(instance));
     }
 
     @Get("/applicationversion/:id")

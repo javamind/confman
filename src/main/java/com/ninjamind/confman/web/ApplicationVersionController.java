@@ -6,7 +6,9 @@ import com.ninjamind.confman.domain.Application;
 import com.ninjamind.confman.domain.ApplicationVersion;
 import com.ninjamind.confman.dto.ApplicationVersionDto;
 import com.ninjamind.confman.dto.VersionTrackingDto;
+import com.ninjamind.confman.repository.ApplicationtVersionRepository;
 import com.ninjamind.confman.service.ApplicationFacade;
+import com.ninjamind.confman.service.ApplicationVersionFacade;
 import com.ninjamind.confman.service.GenericFacade;
 import net.codestory.http.annotations.Delete;
 import net.codestory.http.annotations.Get;
@@ -25,7 +27,7 @@ import java.util.List;
 public class ApplicationVersionController {
     @Autowired
     @Qualifier("applicationVersionFacade")
-    private GenericFacade<ApplicationVersion, Long> genericFacade;
+    private ApplicationVersionFacade<ApplicationVersion, Long> genericFacade;
 
     @Autowired
     private ApplicationFacade<Application, Long> applicationFacade;
@@ -38,6 +40,11 @@ public class ApplicationVersionController {
     @Get("/applicationversion/application/:id")
     public List<ApplicationVersionDto> getByApp(Long id) {
         return Lists.transform(applicationFacade.findApplicationVersionByIdApp(id), instance -> new ApplicationVersionDto(instance));
+    }
+
+    @Get("/applicationversion/check/:version")
+    public boolean check(String version) {
+        return genericFacade.checkVersionNumber(version);
     }
 
     @Get("/applicationversion/:id")
@@ -61,4 +68,6 @@ public class ApplicationVersionController {
     public void delete(Long id) {
         genericFacade.delete(id);
     }
+
+
 }

@@ -1,5 +1,7 @@
 package com.ninjamind.confman.service;
 
+import com.github.zafarkhaja.semver.Version;
+import com.github.zafarkhaja.semver.util.UnexpectedElementTypeException;
 import com.ninjamind.confman.domain.ApplicationVersion;
 import com.ninjamind.confman.domain.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service("applicationVersionFacade")
 @Transactional
-public class ApplicationVersionFacadeImpl implements GenericFacade<ApplicationVersion, Long>{
+public class ApplicationVersionFacadeImpl implements ApplicationVersionFacade<ApplicationVersion, Long>{
     @Autowired
     private JpaRepository<ApplicationVersion, Long> applicationVersionRepository;
 
@@ -28,4 +30,14 @@ public class ApplicationVersionFacadeImpl implements GenericFacade<ApplicationVe
         return ApplicationVersion.class;
     }
 
+    @Override
+    public boolean checkVersionNumber(String number) {
+        try{
+            Version.valueOf(number);
+            return true;
+        }
+        catch (NullPointerException | UnexpectedElementTypeException e){
+            return false;
+        }
+    }
 }

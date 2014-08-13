@@ -37,6 +37,10 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
     @JoinColumn(name = "application_id")
     private Application application;
 
+    @ManyToOne
+    @JoinColumn(name = "environment_id")
+    private Environment environment;
+
     public ParameterValue() {
     }
 
@@ -81,6 +85,15 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
 
     public ParameterValue setParameter(Parameter parameter) {
         this.parameter = parameter;
+        return this;
+    }
+
+    public Environment getEnvironment() {
+        return environment;
+    }
+
+    public ParameterValue setEnvironment(Environment environment) {
+        this.environment = environment;
         return this;
     }
 

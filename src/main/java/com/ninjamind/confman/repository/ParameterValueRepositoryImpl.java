@@ -26,22 +26,17 @@ public class ParameterValueRepositoryImpl implements ParameterValueRepository {
 
         //On commence par trouver le nb max des enreg
         Long nbElements = (Long) criteria
-                .populateQueryParam(em.createQuery("select count(p) from ParameterValue p " + criteria.buildWhereClause()))
+                .populateQueryParam(em.createQuery("select count(p) ".concat(criteria.buildFromClause().concat(criteria.buildWhereClause()))))
                 .getSingleResult();
 
         if(nbElements!=null && nbElements>0){
             list.setCompleteSize(nbElements.intValue());
             list.addAll(
-                    criteria.populateQueryParam(
-                            em.createQuery("from ParameterValue p "
-                                    .concat("left join fetch p.application ")
-                                    .concat("left join fetch p.versionTracking ")
-                                    .concat("left join fetch p.instance ")
-                                    .concat(criteria.buildWhereClause()))
-                    )
-                    .setFirstResult((list.getCurrentPage()-1) * list.getNbElementByPage())
-                    .setMaxResults(list.getNbElementByPage())
-                    .getResultList()
+                    criteria
+                            .populateQueryParam(em.createQuery("select p ".concat(criteria.buildFromClause().concat(criteria.buildWhereClause()))))
+                            .setFirstResult((list.getCurrentPage()-1) * list.getNbElementByPage())
+                            .setMaxResults(list.getNbElementByPage())
+                            .getResultList()
             );
         }
 

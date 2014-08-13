@@ -16,7 +16,8 @@ public class ParameterValueDto extends AbstractConfManDto {
     protected Long idParameter;
     protected Long idInstance;
     protected String codeInstance;
-
+    protected Long idEnvironment;
+    protected String codeEnvironment;
 
     public ParameterValueDto() {
         super();
@@ -36,6 +37,8 @@ public class ParameterValueDto extends AbstractConfManDto {
         this.idParameter = object.getParameter().getId();
         this.idVersionTracking = object.getVersionTracking().getId();
         this.codeVersionTracking = object.getVersionTracking().getCode();
+        this.idEnvironment = object.getEnvironment().getId();
+        this.codeEnvironment = object.getEnvironment().getCode();
         if(object.getInstance()!=null){
             this.idInstance = object.getInstance().getId();
             this.codeInstance = object.getInstance().getCode();

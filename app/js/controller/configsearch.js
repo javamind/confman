@@ -1,7 +1,7 @@
 /**
  * Controller linked to the env list
  */
-angular.module('confman').controller('configSearchCtrl', function ($rootScope, $scope, $http, constants, Environment) {
+angular.module('confman').controller('configSearchCtrl', function ($rootScope, $scope, $http, constants, Environment, TableService) {
 
     //Page definition
     $rootScope.currentPage = {
@@ -59,9 +59,14 @@ angular.module('confman').controller('configSearchCtrl', function ($rootScope, $
         $scope.versionTrackings = [];
     }
 
-    $scope.filter = function (){
+    $scope.pageActive = function (pageElt){
+        if($scope.page===pageElt){
+            return 'active';
+        }
+    }
+    $scope.filter = function (currentpage){
         var filterCriteria = {
-            page : $scope.page
+            page : currentpage
         };
         if($scope.criteria.idApplication > 0){
             filterCriteria.idApplication = $scope.criteria.idApplication;
@@ -72,6 +77,9 @@ angular.module('confman').controller('configSearchCtrl', function ($rootScope, $
         if($scope.criteria.idVersionTracking > 0){
             filterCriteria.idVersionTracking = $scope.criteria.idVersionTracking;
         }
+        if($scope.criteria.idEnvironment > 0){
+            filterCriteria.idEnvironment = $scope.criteria.idEnvironment;
+        }
         if($scope.criteria.code){
             filterCriteria.code = $scope.criteria.code;
         }
@@ -79,6 +87,10 @@ angular.module('confman').controller('configSearchCtrl', function ($rootScope, $
             .post(constants.urlserver + '/parametervalue', filterCriteria)
             .success(function (datas) {
                 $scope.parametervalues = datas;
+                $scope.page = datas.currentPage;
+                $scope.nbPageTotal =  TableService.getNumMaxPage(datas.completeSize, datas.nbElementByPage);
+                $scope.pageSelector = $scope.nbPageTotal > 1 ? TableService.getPageSelector(datas.currentPage, $scope.nbPageTotal) : null;
+                $scope.pageSelectorNext =  $scope.pageSelector ? $scope.pageSelector[$scope.pageSelector.length-1] : 0;
                 $scope.callbackOK();
             })
             .error($scope.callbackKO);

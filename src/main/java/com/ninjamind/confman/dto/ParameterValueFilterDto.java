@@ -24,6 +24,7 @@ public class ParameterValueFilterDto extends ParameterValueDto {
                 .setIdApplication(idApplication)
                 .setIdInstance(idInstance)
                 .setIdParameter(idParameter)
+                .setIdEnvironment(idEnvironment)
                 .setIdVersionTracking(idVersionTracking);
     }
 

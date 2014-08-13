@@ -81,15 +81,15 @@ public class CommonOperations {
 
     public static final Operation INSERT_PARAMETER_VALUE =
             insertInto(ParameterValue.TABLE_NAME)
-                    .columns("id", "code", "value", "versiontracking_id","parameter_id","instance_id", "application_id", "version", "active")
-                    .values(1, "app.maxuser", "5", 1, 1, null, 1, 0, true)
-                    .values(2, "server.name", "WWD450", 1, 2, 1, 1, 0, true)
-                    .values(3, "pagination1", "pagination1", 1, 2, 1, 1, 0, true)
-                    .values(4, "pagination2", "pagination2", 1, 2, 1, 1, 0, true)
-                    .values(5, "pagination3", "pagination3", 1, 2, 1, 1, 0, true)
-                    .values(6, "pagination4", "pagination4", 1, 2, 1, 1, 0, true)
-                    .values(7, "pagination5", "pagination5", 1, 2, 1, 1, 0, true)
-                    .values(8, "pagination6", "pagination6", 1, 2, 1, 1, 0, true)
-                    .values(9, "pagination7", "pagination7", 1, 2, 1, 1, 0, true)
+                    .columns("id", "code", "value", "environment_id", "versiontracking_id","parameter_id","instance_id", "application_id", "version", "active")
+                    .values(1, "app.maxuser", "5", 1, 1, 1, null, 1, 0, true)
+                    .values(2, "server.name", "WWD450", 1, 1, 2, 1, 1, 0, true)
+                    .values(3, "pagination1", "pagination1", 1, 1, 2, 1, 1, 0, true)
+                    .values(4, "pagination2", "pagination2", 1, 1, 2, 1, 1, 0, true)
+                    .values(5, "pagination3", "pagination3", 1, 1, 2, 1, 1, 0, true)
+                    .values(6, "pagination4", "pagination4", 1, 1, 2, 1, 1, 0, true)
+                    .values(7, "pagination5", "pagination5", 1, 1, 2, 1, 1, 0, true)
+                    .values(8, "pagination6", "pagination6", 1, 1, 2, 1, 1, 0, true)
+                    .values(9, "pagination7", "pagination7", 1, 1, 2, 1, 1, 0, true)
                     .build();
 }

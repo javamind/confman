@@ -1,6 +1,7 @@
 @menu-title_left: 64px;
 @image_size: 24px;
 @action_simple_color:#4285f4;
+@action_flash_color:#FFEB3B;
 
 body{
   min-height: 100%;
@@ -114,4 +115,30 @@ body{
 .material-theme-grey {
   background-color: #eeeeee !important;
   color: #111111 !important; }
+
+
+.confman-list-param {
+  border-radius: 32px;
+  width: 40px;
+  height: 40px;
+  font-weight: bold;
+  padding-top: 10px;
+  text-align: center;
+}
+.confman-list-param-app{
+  .confman-list-param;
+  background-color: @action_simple_color;
+  color: #ffffff;
+}
+.confman-list-param-instance{
+  .confman-list-param;
+  background-color: @action_flash_color;
+  color: #000000;
+}
+.confman-list-param-env{
+  .confman-list-param;
+  background-color: #cccccc;
+  color: #000000;
+}
+
 

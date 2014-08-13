@@ -69,6 +69,7 @@ public class ParameterValueRepositoryTest {
                 new ParameterValueSearchBuilder()
                         .setCode(".nam")
                         .setIdApplication(1L)
+                        .setIdEnvironment(1L)
                         .setIdInstance(1L)
                         .setIdParameter(2L)
                         .setIdVersionTracking(1L)))

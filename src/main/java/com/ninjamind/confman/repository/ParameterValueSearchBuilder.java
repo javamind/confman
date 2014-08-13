@@ -15,11 +15,17 @@ public class ParameterValueSearchBuilder implements  SearchBuilder{
     private Long idApplication;
     private Long idVersionTracking;
     private Long idParameter;
+    private Long idEnvironment;
     private Long idInstance;
     private String code;
 
     public ParameterValueSearchBuilder setIdApplication(Long idApplication) {
         this.idApplication = idApplication;
+        return this;
+    }
+
+    public ParameterValueSearchBuilder setIdEnvironment(Long idEnvironment) {
+        this.idEnvironment = idEnvironment;
         return this;
     }
 
@@ -44,6 +50,27 @@ public class ParameterValueSearchBuilder implements  SearchBuilder{
     }
 
     @Override
+    public String buildFromClause() {
+        StringBuilder from = new StringBuilder(" from ParameterValue p ");
+        if (idApplication != null) {
+            from.append("inner join p.application ");
+        }
+        if (idVersionTracking != null) {
+            from.append("inner join p.versionTracking ");
+        }
+        if (idParameter != null) {
+            from.append("inner join p.parameter ");
+        }
+        if (idInstance != null) {
+            from.append("inner join p.instance ");
+        }
+        if (idEnvironment != null) {
+            from.append("inner join p.environment ");
+        }
+        return from.toString();
+    }
+
+    @Override
     public String buildWhereClause() {
         StringBuilder query = new StringBuilder("where 1=1 ");
         if (!Strings.isNullOrEmpty(code)) {
@@ -60,6 +87,9 @@ public class ParameterValueSearchBuilder implements  SearchBuilder{
         }
         if (idInstance != null) {
             query.append("and p.instance.id = :idInstance ");
+        }
+        if (idEnvironment != null) {
+            query.append("and p.environment.id = :idEnvironment ");
         }
         return query.toString();
     }
@@ -80,6 +110,9 @@ public class ParameterValueSearchBuilder implements  SearchBuilder{
         }
         if (idInstance != null) {
             query.setParameter("idInstance", idInstance);
+        }
+        if (idEnvironment != null) {
+            query.setParameter("idEnvironment", idEnvironment);
         }
         return query;
     }

@@ -17,7 +17,7 @@ public class CommonOperations {
     public static final Operation DELETE_ALL =
             deleteAllFrom(
                     ParameterValue.TABLE_NAME,
-                    VersionTracking.TABLE_NAME,
+                    TrackingVersion.TABLE_NAME,
                     SoftwareSuiteEnvironment.TABLE_NAME,
                     Parameter.TABLE_NAME,
                     ParameterGroupment.TABLE_NAME,
@@ -74,14 +74,14 @@ public class CommonOperations {
                     .build();
 
     public static final Operation INSERT_VERSION_TRACKING =
-            insertInto(VersionTracking.TABLE_NAME)
+            insertInto(TrackingVersion.TABLE_NAME)
                     .columns("id", "code", "label", "applicationVersion_id", "version", "active", "blocked")
                     .values(1, "a.1", "version", 1, 0, true, false)
                     .build();
 
     public static final Operation INSERT_PARAMETER_VALUE =
             insertInto(ParameterValue.TABLE_NAME)
-                    .columns("id", "code", "value", "environment_id", "versiontracking_id","parameter_id","instance_id", "application_id", "version", "active")
+                    .columns("id", "code", "value", "environment_id", "trackingversion_id","parameter_id","instance_id", "application_id", "version", "active")
                     .values(1, "app.maxuser", "5", 1, 1, 1, null, 1, 0, true)
                     .values(2, "server.name", "WWD450", 1, 1, 2, 1, 1, 0, true)
                     .values(3, "pagination1", "pagination1", 1, 1, 2, 1, 1, 0, true)

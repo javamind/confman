@@ -142,7 +142,6 @@ angular.module('confman').controller('applicationDetailCtrl', function ($rootSco
         }
     };
 
-
     //Modal who manage versions
     $scope.manageVersion = function (version) {
         $scope.modalInstance = $modal.open({

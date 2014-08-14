@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.Application;
 import com.ninjamind.confman.dto.InstanceDto;
 import com.ninjamind.confman.dto.ParameterValueDto;
-import com.ninjamind.confman.dto.VersionTrackingDto;
+import com.ninjamind.confman.dto.TrackingVersionDto;
 import com.ninjamind.confman.service.ApplicationFacade;
 import com.ninjamind.confman.service.ParameterValueFacade;
 import net.codestory.http.annotations.Get;
@@ -18,14 +18,14 @@ import java.util.List;
  *
  * @author EHRET_G
  */
-public class VersionTrackingController {
+public class TrackingVersionController {
 
     @Autowired
     private ApplicationFacade<Application, Long> applicationFacade;
 
-    @Get("/versiontracking/application/:id")
-    public List<VersionTrackingDto> listTracking(Long id) {
-        return Lists.transform(applicationFacade.findVersionTrackingByIdApp(id), instance -> new VersionTrackingDto(instance));
+    @Get("/trackingversion/application/:id")
+    public List<TrackingVersionDto> listTracking(Long id) {
+        return Lists.transform(applicationFacade.findTrackingVersionByIdApp(id), instance -> new TrackingVersionDto(instance));
     }
 
 

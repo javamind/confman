@@ -14,14 +14,14 @@ import java.util.Set;
  * @author EHRET_G
  */
 @Entity
-@Table(name=VersionTracking.TABLE_NAME)
-public class VersionTracking extends AbstractConfManEntity<VersionTracking>{
-    public final static String TABLE_NAME="versiontracking";
+@Table(name=TrackingVersion.TABLE_NAME)
+public class TrackingVersion extends AbstractConfManEntity<TrackingVersion>{
+    public final static String TABLE_NAME="trackingversion";
     public final static String SEQ_NAME= "seq_version_tracking";
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO, generator = VersionTracking.SEQ_NAME)
-    @SequenceGenerator(name = VersionTracking.SEQ_NAME, sequenceName = VersionTracking.SEQ_NAME, allocationSize = 1)
+    @GeneratedValue(strategy= GenerationType.AUTO, generator = TrackingVersion.SEQ_NAME)
+    @SequenceGenerator(name = TrackingVersion.SEQ_NAME, sequenceName = TrackingVersion.SEQ_NAME, allocationSize = 1)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "applicationVersion_id")
@@ -32,14 +32,14 @@ public class VersionTracking extends AbstractConfManEntity<VersionTracking>{
     @OneToMany(mappedBy = "application")
     private Set<ParameterValue> parameterValues= new HashSet<>();
 
-    public VersionTracking() {
+    public TrackingVersion() {
     }
 
     public ApplicationVersion getApplicationVersion() {
         return applicationVersion;
     }
 
-    public VersionTracking setApplicationVersion(ApplicationVersion applicationVersion) {
+    public TrackingVersion setApplicationVersion(ApplicationVersion applicationVersion) {
         this.applicationVersion = applicationVersion;
         return this;
     }
@@ -56,16 +56,16 @@ public class VersionTracking extends AbstractConfManEntity<VersionTracking>{
         this.blocked = blocked;
     }
 
-    public VersionTracking setId(Long id) {
+    public TrackingVersion setId(Long id) {
         this.id = id;
         return this;
     }
-    public VersionTracking addParameterValue(ParameterValue parameter) {
+    public TrackingVersion addParameterValue(ParameterValue parameter) {
         parameterValues.add(parameter);
         return this;
     }
 
-    public VersionTracking removeParameterValue(ParameterValue o) {
+    public TrackingVersion removeParameterValue(ParameterValue o) {
         parameterValues.remove(o);
         return this;
     }
@@ -78,7 +78,7 @@ public class VersionTracking extends AbstractConfManEntity<VersionTracking>{
         return Collections.unmodifiableSet(parameterValues);
     }
 
-    public VersionTracking addAllParameters(Collection<ParameterValue> collection) {
+    public TrackingVersion addAllParameters(Collection<ParameterValue> collection) {
         parameterValues.addAll(collection);
         return this;
     }
@@ -88,7 +88,7 @@ public class VersionTracking extends AbstractConfManEntity<VersionTracking>{
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        VersionTracking that = (VersionTracking) o;
+        TrackingVersion that = (TrackingVersion) o;
 
         if (applicationVersion != null ? !applicationVersion.equals(that.applicationVersion) : that.applicationVersion != null)
             return false;

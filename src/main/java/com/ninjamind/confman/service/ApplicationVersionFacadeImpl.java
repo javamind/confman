@@ -1,5 +1,6 @@
 package com.ninjamind.confman.service;
 
+import com.github.zafarkhaja.semver.GrammarException;
 import com.github.zafarkhaja.semver.Version;
 import com.github.zafarkhaja.semver.util.UnexpectedElementTypeException;
 import com.ninjamind.confman.domain.ApplicationVersion;
@@ -36,7 +37,7 @@ public class ApplicationVersionFacadeImpl implements ApplicationVersionFacade<Ap
             Version.valueOf(number);
             return true;
         }
-        catch (NullPointerException | UnexpectedElementTypeException e){
+        catch (NullPointerException | UnexpectedElementTypeException | GrammarException e){
             return false;
         }
     }

@@ -27,11 +27,11 @@ public interface ApplicationFacade<T, ID extends Serializable> extends GenericFa
     List<ApplicationVersion> findApplicationVersionByIdApp( Long id);
 
     /**
-     * @see com.ninjamind.confman.repository.VersionTrackingRepository#findVersionTrackingByIdApp(Long) }
+     * @see com.ninjamind.confman.repository.TrackingVersionRepository#findTrackingVersionByIdApp(Long) }
      * @param id
      * @return
      */
-    List<VersionTracking> findVersionTrackingByIdApp( Long id);
+    List<TrackingVersion> findTrackingVersionByIdApp( Long id);
 
     /**
      * @see com.ninjamind.confman.repository.ParameterRepository#findParameterByIdApp(Long)

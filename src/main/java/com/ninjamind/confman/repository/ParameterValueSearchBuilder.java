@@ -13,7 +13,7 @@ import javax.persistence.Query;
 public class ParameterValueSearchBuilder implements  SearchBuilder{
 
     private Long idApplication;
-    private Long idVersionTracking;
+    private Long idTrackingVersion;
     private Long idParameter;
     private Long idEnvironment;
     private Long idInstance;
@@ -29,8 +29,8 @@ public class ParameterValueSearchBuilder implements  SearchBuilder{
         return this;
     }
 
-    public ParameterValueSearchBuilder setIdVersionTracking(Long idVersionTracking) {
-        this.idVersionTracking = idVersionTracking;
+    public ParameterValueSearchBuilder setIdTrackingVersion(Long idTrackingVersion) {
+        this.idTrackingVersion = idTrackingVersion;
         return this;
     }
 
@@ -55,8 +55,8 @@ public class ParameterValueSearchBuilder implements  SearchBuilder{
         if (idApplication != null) {
             from.append("inner join p.application ");
         }
-        if (idVersionTracking != null) {
-            from.append("inner join p.versionTracking ");
+        if (idTrackingVersion != null) {
+            from.append("inner join p.trackingVersion ");
         }
         if (idParameter != null) {
             from.append("inner join p.parameter ");
@@ -79,8 +79,8 @@ public class ParameterValueSearchBuilder implements  SearchBuilder{
         if (idApplication != null) {
             query.append("and p.application.id = :idApplication ");
         }
-        if (idVersionTracking != null) {
-            query.append("and p.versionTracking.id = :idVersionTracking ");
+        if (idTrackingVersion != null) {
+            query.append("and p.trackingVersion.id = :idTrackingVersion ");
         }
         if (idParameter != null) {
             query.append("and p.parameter.id = :idParameter ");
@@ -102,8 +102,8 @@ public class ParameterValueSearchBuilder implements  SearchBuilder{
         if (idApplication != null) {
             query.setParameter("idApplication", idApplication);
         }
-        if (idVersionTracking != null) {
-            query.setParameter("idVersionTracking", idVersionTracking);
+        if (idTrackingVersion != null) {
+            query.setParameter("idTrackingVersion", idTrackingVersion);
         }
         if (idParameter != null) {
             query.setParameter("idParameter", idParameter);

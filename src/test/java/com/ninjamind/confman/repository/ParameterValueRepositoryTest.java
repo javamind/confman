@@ -72,7 +72,7 @@ public class ParameterValueRepositoryTest {
                         .setIdEnvironment(1L)
                         .setIdInstance(1L)
                         .setIdParameter(2L)
-                        .setIdVersionTracking(1L)))
+                        .setIdTrackingVersion(1L)))
                 .hasSize(1)
                 .extracting("code")
                 .contains("server.name");

@@ -21,8 +21,8 @@ angular.module('confman')
     .factory('ApplicationVersion', function ApplicationVersion($resource, constants) {
         return $resource(constants.urlserver + 'applicationversion/:id', { id: '@_id' },restActions);
     })
-    .factory('VersionTracking', function VersionTracking($resource, constants) {
-        return $resource(constants.urlserver + 'versiontracking/:id', { id: '@_id' },restActions);
+    .factory('TrackingVersion', function TrackingVersion($resource, constants) {
+        return $resource(constants.urlserver + 'trackingversion/:id', { id: '@_id' },restActions);
     })
     .factory('Instance', function Instance($resource, constants) {
         return $resource(constants.urlserver + 'instance/:id', { id: '@_id' },restActions);

@@ -22,8 +22,8 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "versionTracking_id")
-    private VersionTracking versionTracking;
+    @JoinColumn(name = "trackingVersion_id")
+    private TrackingVersion trackingVersion;
 
     @ManyToOne
     @JoinColumn(name = "parameter_id")
@@ -70,12 +70,12 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
         return this;
     }
 
-    public VersionTracking getVersionTracking() {
-        return versionTracking;
+    public TrackingVersion getTrackingVersion() {
+        return trackingVersion;
     }
 
-    public ParameterValue setVersionTracking(VersionTracking versionTracking) {
-        this.versionTracking = versionTracking;
+    public ParameterValue setTrackingVersion(TrackingVersion trackingVersion) {
+        this.trackingVersion = trackingVersion;
         return this;
     }
 
@@ -126,7 +126,7 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
         if (application != null ? !application.equals(that.application) : that.application != null) return false;
         if (instance != null ? !instance.equals(that.instance) : that.instance != null) return false;
         if (parameter != null ? !parameter.equals(that.parameter) : that.parameter != null) return false;
-        if (versionTracking != null ? !versionTracking.equals(that.versionTracking) : that.versionTracking != null)
+        if (trackingVersion != null ? !trackingVersion.equals(that.trackingVersion) : that.trackingVersion != null)
             return false;
 
         return true;
@@ -135,7 +135,7 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (versionTracking != null ? versionTracking.hashCode() : 0);
+        result = 31 * result + (trackingVersion != null ? trackingVersion.hashCode() : 0);
         result = 31 * result + (parameter != null ? parameter.hashCode() : 0);
         result = 31 * result + (instance != null ? instance.hashCode() : 0);
         result = 31 * result + (application != null ? application.hashCode() : 0);

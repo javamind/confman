@@ -29,7 +29,7 @@ public class ApplicationFacadeImpl implements ApplicationFacade<Application, Lon
     private ParameterRepository parameterRepository;
 
     @Autowired
-    private VersionTrackingRepository versionTrackingRepository;
+    private TrackingVersionRepository trackingVersionRepository;
 
     @Autowired
     private ApplicationtVersionRepository applicationtVersionRepository;
@@ -59,8 +59,8 @@ public class ApplicationFacadeImpl implements ApplicationFacade<Application, Lon
     }
 
     @Override
-    public List<VersionTracking> findVersionTrackingByIdApp(Long id) {
-        return versionTrackingRepository.findVersionTrackingByIdApp(id);
+    public List<TrackingVersion> findTrackingVersionByIdApp(Long id) {
+        return trackingVersionRepository.findTrackingVersionByIdApp(id);
     }
 
     @Override

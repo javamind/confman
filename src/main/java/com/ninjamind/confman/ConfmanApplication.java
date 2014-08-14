@@ -25,7 +25,7 @@ public class ConfmanApplication {
                 .add(rootContext.getBean(InstanceController.class))
                 .add(rootContext.getBean(ApplicationVersionController.class))
                 .add(rootContext.getBean(ParameterController.class))
-                .add(rootContext.getBean(VersionTrackingController.class))
+                .add(rootContext.getBean(TrackingVersionController.class))
                 .add(rootContext.getBean(ParameterValueController.class))
         ).start(8082);
     }

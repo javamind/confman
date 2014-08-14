@@ -3,7 +3,7 @@ package com.ninjamind.confman.dto;
 import com.ninjamind.confman.domain.Application;
 import com.ninjamind.confman.domain.Parameter;
 import com.ninjamind.confman.domain.ParameterValue;
-import com.ninjamind.confman.domain.VersionTracking;
+import com.ninjamind.confman.domain.TrackingVersion;
 import com.ninjamind.confman.repository.ParameterValueSearchBuilder;
 
 /**
@@ -25,7 +25,7 @@ public class ParameterValueFilterDto extends ParameterValueDto {
                 .setIdInstance(idInstance)
                 .setIdParameter(idParameter)
                 .setIdEnvironment(idEnvironment)
-                .setIdVersionTracking(idVersionTracking);
+                .setIdTrackingVersion(idTrackingVersion);
     }
 
     public Integer getPage() {

@@ -23,7 +23,7 @@ public class ApplicationVersion extends AbstractConfManEntity<ApplicationVersion
     @SequenceGenerator(name = ApplicationVersion.SEQ_NAME, sequenceName = ApplicationVersion.SEQ_NAME, allocationSize = 1)
     private Long id;
     @OneToMany(mappedBy = "applicationVersion")
-    private Set<VersionTracking> versionTrackings= new HashSet<>();
+    private Set<TrackingVersion> trackingVersions= new HashSet<>();
     @ManyToOne
     @JoinColumn(name = "application_id")
     private Application application;
@@ -42,22 +42,22 @@ public class ApplicationVersion extends AbstractConfManEntity<ApplicationVersion
         return this;
     }
 
-    public ApplicationVersion addVersionTracking(VersionTracking versionTracking) {
-        versionTrackings.add(versionTracking);
+    public ApplicationVersion addTrackingVersion(TrackingVersion trackingVersion) {
+        trackingVersions.add(trackingVersion);
         return this;
     }
 
-    public ApplicationVersion removeVersionTracking(Object o) {
-        versionTrackings.remove(o);
+    public ApplicationVersion removeTrackingVersion(Object o) {
+        trackingVersions.remove(o);
         return this;
     }
 
-    public void clearVersionTracking() {
-        versionTrackings.clear();
+    public void clearTrackingVersion() {
+        trackingVersions.clear();
     }
 
-    public Set<VersionTracking> getVersionTrackings() {
-        return Collections.unmodifiableSet(versionTrackings);
+    public Set<TrackingVersion> getTrackingVersions() {
+        return Collections.unmodifiableSet(trackingVersions);
     }
 
     public boolean isBlocked() {

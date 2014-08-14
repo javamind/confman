@@ -51,9 +51,9 @@
                     <label for="data-tracking">&nbsp;Tracking</label>
                 </div>
                 <div class="col-md-3">
-                    <select id="data-tracking" ng-model="criteria.idVersionTracking" class="form-control"
-                            ng-show="versionTrackings"
-                            ng-options="versionTracking.id as versionTracking.code for versionTracking in versionTrackings">
+                    <select id="data-tracking" ng-model="criteria.idTrackingVersion" class="form-control"
+                            ng-show="trackingVersions"
+                            ng-options="trackingVersion.id as trackingVersion.code for trackingVersion in trackingVersions">
                         <option value="">Version tracking</option>
                     </select>
                 </div>
@@ -85,7 +85,7 @@
             <div class="material-tile-content">
                 <h2><b>{{param.code}}</b> : {{param.value}}</h2>
 
-                <h3>Application : {{param.codeApplication}} - tracking version : {{param.codeVersionTracking}}
+                <h3>Application : {{param.codeApplication}} - tracking version : {{param.codeTrackingVersion}}
                     <span ng-show="param.codeInstance">- instance : {{param.codeInstance}}</span>
                 </h3>
             </div>

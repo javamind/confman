@@ -9,8 +9,8 @@ import com.ninjamind.confman.domain.*;
  */
 public class ParameterValueDto extends AbstractConfManDto {
     protected String value;
-    protected Long idVersionTracking;
-    protected String codeVersionTracking;
+    protected Long idTrackingVersion;
+    protected String codeTrackingVersion;
     protected Long idApplication;
     protected String codeApplication;
     protected Long idParameter;
@@ -35,8 +35,8 @@ public class ParameterValueDto extends AbstractConfManDto {
         this.idApplication = object.getApplication().getId();
         this.codeApplication = object.getApplication().getCode();
         this.idParameter = object.getParameter().getId();
-        this.idVersionTracking = object.getVersionTracking().getId();
-        this.codeVersionTracking = object.getVersionTracking().getCode();
+        this.idTrackingVersion = object.getTrackingVersion().getId();
+        this.codeTrackingVersion = object.getTrackingVersion().getCode();
         this.idEnvironment = object.getEnvironment().getId();
         this.codeEnvironment = object.getEnvironment().getCode();
         if(object.getInstance()!=null){
@@ -54,6 +54,6 @@ public class ParameterValueDto extends AbstractConfManDto {
                 .setActive(isActive())
                 .setParameter(new Parameter().setId(idParameter))
                 .setApplication(new Application().setId(idApplication))
-                .setVersionTracking(new VersionTracking().setId(idVersionTracking));
+                .setTrackingVersion(new TrackingVersion().setId(idTrackingVersion));
     }
 }

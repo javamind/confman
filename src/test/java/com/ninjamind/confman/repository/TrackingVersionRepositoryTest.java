@@ -17,18 +17,18 @@ import static com.ninja_squad.dbsetup.Operations.sequenceOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Test of {@link com.ninjamind.confman.repository.VersionTrackingRepository}
+ * Test of {@link com.ninjamind.confman.repository.TrackingVersionRepository}
  *
  * @author EHRET_G
  */
 @ContextConfiguration(classes = {PersistenceConfig.class})
 @RunWith(SpringJUnit4ClassRunner.class)
-public class VersionTrackingRepositoryTest {
+public class TrackingVersionRepositoryTest {
     @Autowired
     private DataSource dataSource;
 
     @Autowired
-    private VersionTrackingRepository versionTrackingRepository;
+    private TrackingVersionRepository trackingVersionRepository;
 
     @Before
     public void setUp() {
@@ -49,12 +49,22 @@ public class VersionTrackingRepositoryTest {
     }
 
     @Test
-    public void shouldNotFindVersionTrackingByIdAppWhenIdAppIsNull(){
-        assertThat(versionTrackingRepository.findVersionTrackingByIdApp(null)).isEmpty();
+    public void shouldNotFindTrackingVersionByIdAppWhenIdAppIsNull(){
+        assertThat(trackingVersionRepository.findTrackingVersionByIdApp(null)).isEmpty();
     }
 
     @Test
-    public void shouldFindVersionTracking(){
-        assertThat(versionTrackingRepository.findVersionTrackingByIdApp(1L)).hasSize(1).extracting("code").contains("a.1");
+    public void shouldFindTrackingVersionByIdApp(){
+        assertThat(trackingVersionRepository.findTrackingVersionByIdApp(1L)).hasSize(1).extracting("code").contains("a.1");
+    }
+
+    @Test
+    public void shouldNotFindTrackingVersionByIdAppVersionWhenIdAppIsNull(){
+        assertThat(trackingVersionRepository.findTrackingVersionByIdAppVersion(null)).isEmpty();
+    }
+
+    @Test
+    public void shouldFindTrackingVersionByIdAppVersion(){
+        assertThat(trackingVersionRepository.findTrackingVersionByIdAppVersion(1L)).hasSize(1).extracting("code").contains("a.1");
     }
 }

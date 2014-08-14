@@ -27,14 +27,14 @@ angular.module('confman').controller('configSearchCtrl', function ($rootScope, $
                 $scope.instances = datas;
             });
             $http
-                .get(constants.urlserver + '/versiontracking/application/' + $scope.criteria.idApplication)
+                .get(constants.urlserver + '/trackingversion/application/' + $scope.criteria.idApplication)
                 .success(function (datas) {
-                    $scope.versionTrackings = datas;
+                    $scope.trackingVersions = datas;
                 });
         }
         else {
             $scope.instances = [];
-            $scope.versionTrackings = [];
+            $scope.trackingVersions = [];
         }
     };
 
@@ -49,7 +49,7 @@ angular.module('confman').controller('configSearchCtrl', function ($rootScope, $
         else {
             $scope.applications = [];
             $scope.instances = [];
-            $scope.versionTrackings = [];
+            $scope.trackingVersions = [];
         }
     };
 
@@ -57,7 +57,7 @@ angular.module('confman').controller('configSearchCtrl', function ($rootScope, $
         $scope.criteria = {};
         $scope.applications = [];
         $scope.instances = [];
-        $scope.versionTrackings = [];
+        $scope.trackingVersions = [];
     }
 
     $scope.pageActive = function (pageElt){
@@ -75,8 +75,8 @@ angular.module('confman').controller('configSearchCtrl', function ($rootScope, $
         if($scope.criteria.idInstance > 0){
             filterCriteria.idInstance = $scope.criteria.idInstance;
         }
-        if($scope.criteria.idVersionTracking > 0){
-            filterCriteria.idVersionTracking = $scope.criteria.idVersionTracking;
+        if($scope.criteria.idTrackingVersion > 0){
+            filterCriteria.idTrackingVersion = $scope.criteria.idTrackingVersion;
         }
         if($scope.criteria.idEnvironment > 0){
             filterCriteria.idEnvironment = $scope.criteria.idEnvironment;

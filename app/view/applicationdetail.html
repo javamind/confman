@@ -58,7 +58,7 @@
                         <material-list>
                             <material-item ng-repeat="instance in application.instances">
                                 <div class="material-tile-content" ng-dblClick="manageInstance(instance)">
-                                <h2>{{instance.code}}
+                                    <h2>{{instance.code}}
                                         <small>({{instance.codeEnvironment}})</small>
                                     </h2>
 
@@ -93,7 +93,7 @@
                         <material-list>
                             <material-item ng-repeat="version in application.versions">
                                 <div class="material-tile-content" ng-dblClick="manageVersion(version)">
-                                <h2>{{version.code}}</h2>
+                                    <h2>{{version.code}}</h2>
 
                                     <p>{{version.label}}</p>
                                 </div>
@@ -127,7 +127,7 @@
                         <material-list>
                             <material-item ng-repeat="parameter in application.parameters">
                                 <div class="material-tile-content" ng-dblClick="manageParameter(parameter)">
-                                <h2>{{parameter.code}}
+                                    <h2>{{parameter.code}}
                                         <small>{{parameter.type}}</small>
                                     </h2>
 
@@ -173,7 +173,7 @@
     </div>
     <div class="modal-body">
         <div class="alert alert-danger confman-error" role="alert" ng-show="error">
-        Error : {{error.message}}
+            Error : {{error.message}}
         </div>
         <form class="form confman-form" name="formInstance" novalidate>
             <div class="thumbnail">
@@ -227,7 +227,7 @@
     <div class="modal-footer confman-btn">
         <button class="btn" ng-click="ok(appelt.content)" ng-class="getClassActionForm(formInstance)"
                 ng-disabled="formInstance.$invalid">
-        <img ng-src="img/icon/{{appelt.icon}}" title="{{appelt.verb}}"/>
+            <img ng-src="img/icon/{{appelt.icon}}" title="{{appelt.verb}}"/>
         </button>
         <button class="btn btn-default" ng-click="cancel()">
             <img src="img/icon/ic_clear_24px.svg" title="Cancel"/>
@@ -238,14 +238,14 @@
 
 <!-- Modal to manage version-->
 <script type="text/ng-template" id="modalAddVersionToApplication.html">
-    <div class="modal-header">
-        <h3 class="modal-title">{{appelt.title}}</h3>
-    </div>
-    <div class="modal-body">
-        <div class="alert alert-danger confman-error" role="alert" ng-show="error">
-        Error : {{error.message}}
+    <form class="form confman-form" name="formVersion" novalidate>
+        <div class="modal-header">
+            <h3 class="modal-title">{{appelt.title}}</h3>
         </div>
-        <form class="form confman-form" name="formVersion" novalidate>
+        <div class="modal-body">
+            <div class="alert alert-danger confman-error" role="alert" ng-show="error">
+                Error : {{error.message}}
+            </div>
             <div class="thumbnail">
                 <div class="row" ng-show="appelt.content.id">
                     <div class="col-xs-2"><label for="data-id">&nbsp;Id</label></div>
@@ -255,10 +255,11 @@
                 <div class="row">
                     <div class="col-xs-2"><label class="control-label" for="data-code">&nbsp;Code</label></div>
                     <div class="col-xs-10"><input type="text" id="data-code" required ng-model="appelt.content.code"
-                                                  name="code"
+                                                  name="code"  semver-checker
                                                   class="form-control">
                         <span ng-show="formVersion.code.$error.required">Code is required</span>
-                        <span ng-show="formVersion.code.$error.required">Code is required</span>
+                        <span ng-show="formVersion.code.$error.semver">The version number is invalid (see <a
+                                href="http://semver.org/" target="_blank">semver</a>)</span>
                     </div>
                 </div>
                 <div class="row">
@@ -270,18 +271,19 @@
                     </div>
                 </div>
             </div>
-        </form>
-    </div>
-    <div class="modal-footer confman-btn">
-    <button class="btn" ng-click="ok(appelt.content)" ng-class="getClassActionForm(formVersion)"
-            ng-disabled="formVersion.$invalid">
-            <img ng-src="img/icon/{{appelt.icon}}" title="{{appelt.verb}}"/>
-        </button>
-        <button class="btn btn-default" ng-click="cancel()">
-            <img src="img/icon/ic_clear_24px.svg" title="Cancel"/>
-        </button>
-    </div>
-    </div>
+
+        </div>
+        <div class="modal-footer confman-btn">
+            <button class="btn" ng-click="ok(appelt.content)" ng-class="getClassActionForm(formVersion)"
+                    ng-disabled="formVersion.$invalid">
+                <img ng-src="img/icon/{{appelt.icon}}" title="{{appelt.verb}}"/>
+            </button>
+            <button class="btn btn-default" ng-click="cancel()">
+                <img src="img/icon/ic_clear_24px.svg" title="Cancel"/>
+            </button>
+        </div>
+        </div>
+    </form>
 </script>
 
 <!-- Modal to manage parameter -->
@@ -291,7 +293,7 @@
     </div>
     <div class="modal-body">
         <div class="alert alert-danger confman-error" role="alert" ng-show="error">
-        Error : {{error.message}}
+            Error : {{error.message}}
         </div>
         <form class="form confman-form" name="formParam" novalidate>
             <div class="thumbnail">
@@ -304,7 +306,8 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-2"><label class="control-label" for="data-codeparam">&nbsp;Code</label></div>
-                    <div class="col-xs-10"><input type="text" id="data-codeparam" required ng-model="appparam.content.code"
+                    <div class="col-xs-10"><input type="text" id="data-codeparam" required
+                                                  ng-model="appparam.content.code"
                                                   name="code"
                                                   class="form-control">
                         <span ng-show="formParam.code.$error.required">Code is required</span>
@@ -343,8 +346,8 @@
         </form>
     </div>
     <div class="modal-footer confman-btn">
-    <button class="btn" ng-click="ok(appparam.content)"  ng-class="getClassActionForm(formParam)"
-            ng-disabled="formParam.$invalid">
+        <button class="btn" ng-click="ok(appparam.content)" ng-class="getClassActionForm(formParam)"
+                ng-disabled="formParam.$invalid">
             <img ng-src="img/icon/{{appparam.icon}}" title="{{appparam.verb}}"/>
         </button>
         <button class="btn btn-default" ng-click="cancel()">

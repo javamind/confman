@@ -5,7 +5,7 @@ import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.Application;
 import com.ninjamind.confman.domain.ApplicationVersion;
 import com.ninjamind.confman.dto.ApplicationVersionDto;
-import com.ninjamind.confman.dto.VersionTrackingDto;
+import com.ninjamind.confman.dto.TrackingVersionDto;
 import com.ninjamind.confman.repository.ApplicationtVersionRepository;
 import com.ninjamind.confman.service.ApplicationFacade;
 import com.ninjamind.confman.service.ApplicationVersionFacade;

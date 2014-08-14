@@ -66,7 +66,7 @@ WITH (
   OIDS=FALSE
 );
 
-CREATE TABLE versiontracking
+CREATE TABLE trackingversion
 (
   id integer NOT NULL PRIMARY KEY,
   code character varying(40),
@@ -75,7 +75,7 @@ CREATE TABLE versiontracking
   version integer,
   active boolean,
   blocked boolean,
-  CONSTRAINT versiontracking_unique_key UNIQUE (code, applicationVersion_id)
+  CONSTRAINT trackingversion_unique_key UNIQUE (code, applicationVersion_id)
 )
 WITH (
   OIDS=FALSE
@@ -132,7 +132,7 @@ CREATE TABLE parametervalue
   code character varying(40),
   value character varying(2500),
   environment_id integer NOT NULL REFERENCES environment (id),
-  versionTracking_id integer NOT NULL REFERENCES versiontracking (id),
+  trackingVersion_id integer NOT NULL REFERENCES trackingversion (id),
   parameter_id integer NOT NULL REFERENCES parameter (id),
   instance_id integer REFERENCES instance (id),
   application_id integer NOT NULL REFERENCES application (id),

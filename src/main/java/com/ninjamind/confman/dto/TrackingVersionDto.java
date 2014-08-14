@@ -1,19 +1,19 @@
 package com.ninjamind.confman.dto;
 
-import com.ninjamind.confman.domain.VersionTracking;
+import com.ninjamind.confman.domain.TrackingVersion;
 
 /**
- * {@link com.ninjamind.confman.domain.VersionTracking}
+ * {@link com.ninjamind.confman.domain.TrackingVersion}
  *
  * @author EHRET_G
  */
-public class VersionTrackingDto extends AbstractConfManDto {
+public class TrackingVersionDto extends AbstractConfManDto {
 
-    public VersionTrackingDto() {
+    public TrackingVersionDto() {
         super();
     }
 
-    public VersionTrackingDto(VersionTracking object) {
+    public TrackingVersionDto(TrackingVersion object) {
         super(
                 object.getId(),
                 object.getCode(),
@@ -23,8 +23,8 @@ public class VersionTrackingDto extends AbstractConfManDto {
         );
     }
 
-    public VersionTracking toVersionTracking() {
-        return new VersionTracking()
+    public TrackingVersion toTrackingVersion() {
+        return new TrackingVersion()
                 .setId(getId())
                 .setCode(getCode())
                 .setLabel(getLabel())

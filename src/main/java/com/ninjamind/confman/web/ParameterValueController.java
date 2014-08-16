@@ -5,10 +5,8 @@ import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.Instance;
 import com.ninjamind.confman.domain.PaginatedList;
 import com.ninjamind.confman.domain.ParameterValue;
-import com.ninjamind.confman.dto.InstanceDto;
-import com.ninjamind.confman.dto.PaginatedListDto;
-import com.ninjamind.confman.dto.ParameterValueDto;
-import com.ninjamind.confman.dto.ParameterValueFilterDto;
+import com.ninjamind.confman.domain.TrackingVersion;
+import com.ninjamind.confman.dto.*;
 import com.ninjamind.confman.service.GenericFacade;
 import com.ninjamind.confman.service.ParameterValueFacade;
 import net.codestory.http.annotations.Delete;
@@ -29,10 +27,10 @@ public class ParameterValueController {
 
     @Autowired
     @Qualifier("parameterValueFacade")
-    private ParameterValueFacade parameterValueFacade;
+    private ParameterValueFacade<ParameterValue, Long> parameterValueFacade;
 
-    @Post("/parametervalue")
-    public PaginatedListDto<ParameterValueDto> filter(ParameterValueFilterDto criteria) {
+    @Post("/parametervalue/search")
+    public PaginatedListDto<ParameterValueDto> search(ParameterValueFilterDto criteria) {
         Preconditions.checkNotNull(criteria);
 
         PaginatedList<ParameterValue> parameterValues =
@@ -49,5 +47,28 @@ public class ParameterValueController {
                         Lists.transform(parameterValues, parameter -> new ParameterValueDto(parameter)));
     }
 
+    @Get("/parametervalue/:id")
+    public ParameterValueDto get(Long id) {
+        return new ParameterValueDto(parameterValueFacade.findOne(id));
+    }
 
+    @Put("/parametervalue")
+    public ParameterValueDto update(ParameterValueDto parameter) {
+        Preconditions.checkNotNull(parameter, "Object is required to update it");
+        return new ParameterValueDto(parameterValueFacade.save(parameter.toParameterValue()));
+    }
+
+    @Post("/parametervalue")
+    public List<ParameterValueDto> save(TrackingVersionDto trackingVersionDto) {
+        Preconditions.checkNotNull(trackingVersionDto, "The version is required to create the value parameters");
+        Preconditions.checkNotNull(trackingVersionDto.getId(), "The id version is required to create the value parameters");
+
+        return  Lists.transform(parameterValueFacade.create(trackingVersionDto.getId()), parameterValue -> new ParameterValueDto(parameterValue));
+    }
+
+    @Delete("/parametervalue/:id")
+    public void delete(Long id) {
+        parameterValueFacade.delete(id);
+    }
 }
+

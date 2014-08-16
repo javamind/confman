@@ -26,5 +26,5 @@ public interface ParameterValueFacade<T, ID extends Serializable> extends Generi
      * @param idVersion
      * @return
      */
-    List<ParameterValue> getByIdAppVersion(Long idVersion);
+    List<ParameterValue> create(Long idVersion);
 }

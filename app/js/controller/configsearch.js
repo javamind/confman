@@ -85,7 +85,7 @@ angular.module('confman').controller('configSearchCtrl', function ($rootScope, $
             filterCriteria.code = $scope.criteria.code;
         }
         $http
-            .post(constants.urlserver + '/parametervalue', filterCriteria)
+            .post(constants.urlserver + '/parametervalue/search', filterCriteria)
             .success(function (datas) {
                 $scope.parametervalues = datas;
                 $scope.page = datas.currentPage;

@@ -41,6 +41,11 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
     @JoinColumn(name = "environment_id")
     private Environment environment;
 
+    /**
+     * the old value
+     */
+    private String oldvalue;
+
     public ParameterValue() {
     }
 
@@ -112,6 +117,15 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
 
     public ParameterValue setApplication(Application application) {
         this.application = application;
+        return this;
+    }
+
+    public String getOldvalue() {
+        return oldvalue;
+    }
+
+    public ParameterValue setOldvalue(String oldvalue) {
+        this.oldvalue = oldvalue;
         return this;
     }
 

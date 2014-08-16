@@ -18,10 +18,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
- * {@link }
+ * {@link com.ninjamind.confman.service.ParameterValueFacade}
  *
  * @author EHRET_G
  */
@@ -61,7 +62,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
     }
 
     @Override
-    public List<ParameterValue> getByIdAppVersion(Long idVersion) {
+    public List<ParameterValue> create(Long idVersion) {
         Preconditions.checkNotNull(idVersion);
 
         TrackingVersion referenceTrackingVersion = null;
@@ -99,29 +100,73 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
 
 
         //If a reference tracking is find we search the param linked
-        List<ParameterValue> parameterValuesRef = referenceTrackingVersion == null ? new ArrayList<>() :
+        List<ParameterValue> parameterValuesRef = referenceTrackingVersion == null ? new ArrayList<ParameterValue>() :
                 parameterValueRepository.findParameterValue(
                         new PaginatedList<>().setNbElementByPage(99999),
                         new ParameterValueSearchBuilder().setIdTrackingVersion(referenceTrackingVersion.getId()));
+
+        List<ParameterValue> parameterValuesNew = new ArrayList<>(parameterValuesRef.size());
 
         //An application can be used on several environments
         for(SoftwareSuiteEnvironment ssenv : application.getSoftwareSuite().getSoftwareSuiteEnvironments()){
             Environment env = ssenv.getId().getEnvironment();
 
-            //We create all the values for all the paramaters atta
+            for (Parameter param : application.getParameters()) {
+
+                //The parameter can be specific for an application
+                if (ParameterType.APPLICATION.equals(param.getType())) {
+                    parameterValuesNew.add(createParameterValue(parameterValuesRef, application, env, trackingVersion, param, null));
+                } else {
+                    //or be defined for each instance
+                    for (Instance instance : application.getInstances()) {
+                        parameterValuesNew.add(createParameterValue(parameterValuesRef, application, env, trackingVersion, param, instance));
+                    }
+                }
+            }
         };
 
-        //Now we can find the last parameters linked to the application
-//        for(application.
-//        List<Parameter> parameterValuesNew = parameterValueRepository.findParameterValue(
-//                new PaginatedList<>().setNbElementByPage(99999),
-//                new ParameterValueSearchBuilder().setIdApplication(application.getId()));
-//
-
-
-        return null;
+        return parameterValuesNew;
     }
 
+    /**
+     * Create a new parameter value
+     * @param parameterValuesRef
+     * @param application
+     * @param env
+     * @param trackingVersion
+     * @param param
+     * @param instance
+     */
+    @VisibleForTesting
+    protected ParameterValue createParameterValue(List<ParameterValue> parameterValuesRef,
+                                        Application application,
+                                        Environment env,
+                                        TrackingVersion trackingVersion,
+                                        Parameter param,
+                                        Instance instance) {
+
+        ParameterValue paramValueRef =
+                parameterValuesRef
+                        .stream()
+                        .filter(p -> {
+                            boolean equals = instance != null ? instance.equals(p.getInstance()) : true;
+                            return equals && p.getId().equals(param.getId());
+                        })
+                        .findFirst()
+                        .get();
+
+        ParameterValue parameterValue =
+                new ParameterValue()
+                        .setValue(paramValueRef != null ? paramValueRef.getValue() : null)
+                        .setOldvalue(paramValueRef != null ? paramValueRef.getValue() : null)
+                        .setParameter(param)
+                        .setApplication(application)
+                        .setEnvironment(env)
+                        .setTrackingVersion(trackingVersion)
+                        .setInstance(instance);
+
+        return parameterValueRepositoryGeneric.save(parameterValue);
+    }
 
     /**
      * Read the list and return the last element

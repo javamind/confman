@@ -4,8 +4,6 @@ import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.ApplicationVersion;
 import com.ninjamind.confman.domain.TrackingVersion;
 import com.ninjamind.confman.repository.TrackingVersionRepository;
-import org.assertj.core.api.Assertions;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

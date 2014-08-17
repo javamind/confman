@@ -59,11 +59,10 @@ public class ParameterValueController {
     }
 
     @Post("/parametervalue")
-    public List<ParameterValueDto> save(TrackingVersionDto trackingVersionDto) {
-        Preconditions.checkNotNull(trackingVersionDto, "The version is required to create the value parameters");
-        Preconditions.checkNotNull(trackingVersionDto.getId(), "The id version is required to create the value parameters");
+    public List<ParameterValueDto> save(Long idTrackingVersionDto) {
+        Preconditions.checkNotNull(idTrackingVersionDto, "The id version is required to create the value parameters");
 
-        return  Lists.transform(parameterValueFacade.create(trackingVersionDto.getId()), parameterValue -> new ParameterValueDto(parameterValue));
+        return  Lists.transform(parameterValueFacade.create(idTrackingVersionDto), parameterValue -> new ParameterValueDto(parameterValue));
     }
 
     @Delete("/parametervalue/:id")

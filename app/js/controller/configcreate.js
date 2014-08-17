@@ -25,4 +25,21 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
             $scope.applicationVersions = [];
         }
     };
+
+    $scope.createParametersValues = function(){
+        if ($scope.criteria.idApplicationVersion > 0) {
+            $http
+                .get(constants.urlserver + '/parametervalue/',  $scope.criteria.idApplicationVersion)
+                .success(function (datas) {
+                    $scope.paramters = datas;
+                })
+                .error(function (datas) {
+                    $scope.paramters = [];
+                })
+            ;
+        }
+        else{
+            $scope.paramters = [];
+        }
+    }
 });

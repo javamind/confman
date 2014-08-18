@@ -20,26 +20,33 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
                 .success(function (datas) {
                     $scope.applicationVersions = datas;
                 });
+            $http
+                .get(constants.urlserver + '/environment/application/' + $scope.criteria.idApplication)
+                .success(function (datas) {
+                    $scope.environments = datas;
+                });
         }
         else {
             $scope.applicationVersions = [];
+            $scope.environments = [];
         }
     };
 
     $scope.createParametersValues = function(){
         if ($scope.criteria.idApplicationVersion > 0) {
             $http
-                .get(constants.urlserver + '/parametervalue/',  $scope.criteria.idApplicationVersion)
+                .post(constants.urlserver + '/parametervalue',  $scope.criteria.idApplicationVersion)
                 .success(function (datas) {
-                    $scope.paramters = datas;
+                    $scope.parameters = datas;
                 })
                 .error(function (datas) {
-                    $scope.paramters = [];
+                    $scope.parameters = [];
                 })
             ;
         }
         else{
-            $scope.paramters = [];
+            $scope.parameters = [];
         }
     }
+
 });

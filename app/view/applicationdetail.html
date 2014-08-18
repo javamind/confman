@@ -255,7 +255,7 @@
                 <div class="row">
                     <div class="col-xs-2"><label class="control-label" for="data-code">&nbsp;Code</label></div>
                     <div class="col-xs-10"><input type="text" id="data-code" required ng-model="appelt.content.code"
-                                                  name="code"  semver-checker
+                                                  name="code" semver-checker
                                                   class="form-control">
                         <span ng-show="formVersion.code.$error.required">Code is required</span>
                         <span ng-show="formVersion.code.$error.semver">The version number is invalid (see <a
@@ -281,7 +281,6 @@
             <button class="btn btn-default" ng-click="cancel()">
                 <img src="img/icon/ic_clear_24px.svg" title="Cancel"/>
             </button>
-        </div>
         </div>
     </form>
 </script>

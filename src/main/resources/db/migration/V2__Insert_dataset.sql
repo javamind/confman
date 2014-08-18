@@ -23,13 +23,13 @@ INSERT INTO applicationversion (id, code, label, application_id, blocked, versio
 INSERT INTO applicationversion (id, code, label, application_id, blocked, version,active) VALUES(5 ,'1.0.0','Version', 2, true, 1, true);
 INSERT INTO applicationversion (id, code, label, application_id, blocked, version,active) VALUES(6 ,'1.0.0','Version', 3, true, 1, true);
 
-INSERT INTO trackingversion (id, code, label, applicationVersion_id, blocked, version,active) VALUES(1 ,'3.0.0.a','New app version', 1, true, 1, true);
-INSERT INTO trackingversion (id, code, label, applicationVersion_id, blocked, version,active) VALUES(2 ,'3.0.1.a','New app version', 2, true, 1, true);
-INSERT INTO trackingversion (id, code, label, applicationVersion_id, blocked, version,active) VALUES(3 ,'3.0.2.a','New app version', 3, true, 1, true);
-INSERT INTO trackingversion (id, code, label, applicationVersion_id, blocked, version,active) VALUES(4 ,'3.0.3.b','Add new instance', 3, true, 1, true);
-INSERT INTO trackingversion (id, code, label, applicationVersion_id, blocked, version,active) VALUES(5 ,'1.0.0.a','New app version', 4, true, 1, true);
-INSERT INTO trackingversion (id, code, label, applicationVersion_id, blocked, version,active) VALUES(6 ,'1.0.0.a','New app version', 5, true, 1, true);
-INSERT INTO trackingversion (id, code, label, applicationVersion_id, blocked, version,active) VALUES(7 ,'1.0.0.a','New app version', 6, true, 1, true);
+INSERT INTO trackingversion (id, code, label, applicationVersion_id, blocked, version,active) VALUES(1 ,'3.0.0-track.1','New app version', 1, true, 1, true);
+INSERT INTO trackingversion (id, code, label, applicationVersion_id, blocked, version,active) VALUES(2 ,'3.0.1-track.1','New app version', 2, true, 1, true);
+INSERT INTO trackingversion (id, code, label, applicationVersion_id, blocked, version,active) VALUES(3 ,'3.0.2-track.1','New app version', 3, true, 1, true);
+INSERT INTO trackingversion (id, code, label, applicationVersion_id, blocked, version,active) VALUES(4 ,'3.0.3-track.2','Add new instance', 3, true, 1, true);
+INSERT INTO trackingversion (id, code, label, applicationVersion_id, blocked, version,active) VALUES(5 ,'1.0.0-track.1','New app version', 4, true, 1, true);
+INSERT INTO trackingversion (id, code, label, applicationVersion_id, blocked, version,active) VALUES(6 ,'1.0.0-track.1','New app version', 5, true, 1, true);
+INSERT INTO trackingversion (id, code, label, applicationVersion_id, blocked, version,active) VALUES(7 ,'1.0.0-track.1','New app version', 6, true, 1, true);
 
 INSERT INTO instance (id, code, label, application_id, environment_id, version,active) VALUES(1 ,'WD450','Dev server', 1, 1, 1, true);
 INSERT INTO instance (id, code, label, application_id, environment_id, version,active) VALUES(2 ,'WS450','Staging server', 1, 2, 1, true);

@@ -33,14 +33,18 @@ public class EnvironmentRepositoryTest {
     private DataSource dataSource;
 
     @Autowired
-    private JpaRepository<Environment, Long> environmentRepository;
+    private EnvironmentRepository environmentRepository;
 
     @Before
     public void setUp(){
         Operation operation =
                 sequenceOf(
                         CommonOperations.DELETE_ALL,
-                        CommonOperations.INSERT_ENVIRONMENT
+                        CommonOperations.INSERT_ENVIRONMENT,
+                        CommonOperations.INSERT_SOFTWARE_SUITE,
+                        CommonOperations.INSERT_APP,
+                        CommonOperations.INSERT_SOFTWARE_SUITE_ENV,
+                        CommonOperations.INSERT_INSTANCE
                 );
         DbSetup dbSetup = new DbSetup(new DataSourceDestination(dataSource), operation);
         dbSetup.launch();
@@ -49,5 +53,10 @@ public class EnvironmentRepositoryTest {
     @Test
     public void shouldFindOneEnvironment() {
         assertThat(environmentRepository.findOne(1L).getCode()).isEqualTo("dev");
+    }
+
+    @Test
+    public void shouldFindEnvironmentByIdApp() {
+        assertThat(environmentRepository.findEnvironmentByIdApp(1L)).extracting("code").containsExactly("dev");
     }
 }

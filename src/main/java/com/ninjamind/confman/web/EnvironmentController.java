@@ -3,8 +3,11 @@ package com.ninjamind.confman.web;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.Environment;
+import com.ninjamind.confman.dto.ApplicationDto;
 import com.ninjamind.confman.dto.EnvironmentDto;
+import com.ninjamind.confman.service.ApplicationFacade;
 import com.ninjamind.confman.service.GenericFacade;
+import javafx.application.Application;
 import net.codestory.http.annotations.Delete;
 import net.codestory.http.annotations.Get;
 import net.codestory.http.annotations.Post;
@@ -24,9 +27,17 @@ public class EnvironmentController {
     @Qualifier("environmentFacade")
     private GenericFacade<Environment, Long> genericFacade;
 
+    @Autowired
+    private ApplicationFacade<Application, Long> applicationFacade;
+
     @Get("/environment")
     public List<EnvironmentDto> list() {
         return Lists.transform(genericFacade.findAll(), env -> new EnvironmentDto(env));
+    }
+
+    @Get("/environment/application/:id")
+    public List<EnvironmentDto> listByApp(Long id) {
+        return Lists.transform(applicationFacade.findEnvironmentByIdApp(id), env -> new EnvironmentDto(env));
     }
 
     @Get("/environment/:id")

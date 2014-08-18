@@ -35,7 +35,7 @@ public class ApplicationFacadeImpl implements ApplicationFacade<Application, Lon
     private ApplicationtVersionRepository applicationtVersionRepository;
 
     @Autowired
-    private JpaRepository<Environment, Long> environmentRepository;
+    private EnvironmentRepository environmentRepository;
 
     @Override
     public JpaRepository<Application, Long> getRepository() {
@@ -61,6 +61,11 @@ public class ApplicationFacadeImpl implements ApplicationFacade<Application, Lon
     @Override
     public List<TrackingVersion> findTrackingVersionByIdApp(Long id) {
         return trackingVersionRepository.findTrackingVersionByIdApp(id);
+    }
+
+    @Override
+    public List<Environment> findEnvironmentByIdApp(Long id) {
+        return environmentRepository.findEnvironmentByIdApp(id);
     }
 
     @Override

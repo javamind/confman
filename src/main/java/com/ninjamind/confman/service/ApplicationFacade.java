@@ -34,6 +34,13 @@ public interface ApplicationFacade<T, ID extends Serializable> extends GenericFa
     List<TrackingVersion> findTrackingVersionByIdApp( Long id);
 
     /**
+     * @see com.ninjamind.confman.repository.EnvironmentRepository#findEnvironmentByIdApp(Long)  }
+     * @param id
+     * @return
+     */
+    List<Environment> findEnvironmentByIdApp( Long id);
+
+    /**
      * @see com.ninjamind.confman.repository.ParameterRepository#findParameterByIdApp(Long)
      * @param id
      * @return

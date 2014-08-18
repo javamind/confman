@@ -80,8 +80,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
 
             List<ApplicationVersion> versions = applicationVersionRepository.findApplicationVersionByIdApp(application.getId());
             referenceTrackingVersion = findLastTrackingVersionUsed(version, versions);
-        }
-        else {
+        } else {
             //The old version is keep to calculate the new parameters values
             referenceTrackingVersion = findLastTrackingVersion(trackingVersions).orElseThrow(VersionException::new);
 
@@ -108,7 +107,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
         List<ParameterValue> parameterValuesNew = new ArrayList<>(parameterValuesRef.size());
 
         //An application can be used on several environments
-        for(SoftwareSuiteEnvironment ssenv : application.getSoftwareSuite().getSoftwareSuiteEnvironments()){
+        for (SoftwareSuiteEnvironment ssenv : application.getSoftwareSuite().getSoftwareSuiteEnvironments()) {
             Environment env = ssenv.getId().getEnvironment();
 
             for (Parameter param : application.getParameters()) {
@@ -123,13 +122,15 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
                     }
                 }
             }
-        };
+        }
+        ;
 
         return parameterValuesNew;
     }
 
     /**
      * Create a new parameter value
+     *
      * @param parameterValuesRef
      * @param application
      * @param env
@@ -139,13 +140,13 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
      */
     @VisibleForTesting
     protected ParameterValue createParameterValue(List<ParameterValue> parameterValuesRef,
-                                        Application application,
-                                        Environment env,
-                                        TrackingVersion trackingVersion,
-                                        Parameter param,
-                                        Instance instance) {
+                                                  Application application,
+                                                  Environment env,
+                                                  TrackingVersion trackingVersion,
+                                                  Parameter param,
+                                                  Instance instance) {
 
-        ParameterValue paramValueRef =
+        ParameterValue paramValueRef = parameterValuesRef.isEmpty() ? null :
                 parameterValuesRef
                         .stream()
                         .filter(p -> {
@@ -170,7 +171,8 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
 
     /**
      * Read the list and return the last element
-      * @param trackingVersions
+     *
+     * @param trackingVersions
      * @return
      */
     @VisibleForTesting
@@ -184,6 +186,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
     /**
      * We need to find the last tracking version used before the actual version. It will be used like a reference
      * to create the new parameters values
+     *
      * @param applicationVersion
      * @param versions
      */
@@ -195,16 +198,15 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
         Optional<ApplicationVersion> previousVersion = versions.stream()
                 //We exclude all the version greater or equal to the actual
                 .filter(c -> Version.valueOf(applicationVersion.getCode()).greaterThan(Version.valueOf(c.getCode())))
-                //We keep the higher
+                        //We keep the higher
                 .max((c1, c2) -> Version.valueOf(c1.getCode()).compareTo(Version.valueOf(c2.getCode())));
 
-        if(previousVersion.isPresent()){
+        if (previousVersion.isPresent()) {
             //We search the max of the versions tracking
             List<TrackingVersion> trackingVersions = trackingVersionRepository.findTrackingVersionByIdAppVersion(previousVersion.get().getId());
-            if(trackingVersions != null && !trackingVersions.isEmpty()) {
+            if (trackingVersions != null && !trackingVersions.isEmpty()) {
                 return findLastTrackingVersion(trackingVersions).get();
-            }
-            else{
+            } else {
                 //recursively we try with the previous version
                 return findLastTrackingVersionUsed(previousVersion.get(), versions);
             }

@@ -117,9 +117,11 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
                     parameterValuesNew.add(createParameterValue(parameterValuesRef, application, env, trackingVersion, param, null));
                 } else {
                     //or be defined for each instance
-                    for (Instance instance : application.getInstances()) {
-                        parameterValuesNew.add(createParameterValue(parameterValuesRef, application, env, trackingVersion, param, instance));
-                    }
+                    application
+                            .getInstances()
+                            .stream()
+                            .filter(i -> env.getId().equals(i.getEnvironment().getId()))
+                            .forEach(instance -> parameterValuesNew.add(createParameterValue(parameterValuesRef, application, env, trackingVersion, param, instance)));
                 }
             }
         }
@@ -146,18 +148,22 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
                                                   Parameter param,
                                                   Instance instance) {
 
-        ParameterValue paramValueRef = parameterValuesRef.isEmpty() ? null :
-                parameterValuesRef
-                        .stream()
-                        .filter(p -> {
-                            boolean equals = instance != null ? instance.equals(p.getInstance()) : true;
-                            return equals && p.getId().equals(param.getId());
-                        })
-                        .findFirst()
-                        .get();
+        ParameterValue paramValueRef = null;
+
+        if(!parameterValuesRef.isEmpty()){
+            paramValueRef = parameterValuesRef
+                    .stream()
+                    .filter(p -> {
+                        boolean equals = instance != null ? instance.equals(p.getInstance()) : true;
+                        return equals && p.getId().equals(param.getId());
+                    })
+                    .findFirst()
+                    .orElse(null);
+        }
 
         ParameterValue parameterValue =
                 new ParameterValue()
+                        .setCode(param.getCode())
                         .setValue(paramValueRef != null ? paramValueRef.getValue() : null)
                         .setOldvalue(paramValueRef != null ? paramValueRef.getValue() : null)
                         .setParameter(param)

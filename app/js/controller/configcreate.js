@@ -38,6 +38,15 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
                 .post(constants.urlserver + '/parametervalue',  $scope.criteria.idApplicationVersion)
                 .success(function (datas) {
                     $scope.parameters = datas;
+                    if($scope.parameters.length>0){
+                        $scope.versionTrackiCode = $scope.parameters[0].codeTrackingVersion;
+                        if($scope.environments.length>0){
+                            $scope.onTabSelected($scope.environments[0]);
+                        }
+                        else{
+                            $scope.envparameters =  $scope.parameters;
+                        }
+                    }
                 })
                 .error(function (datas) {
                     $scope.parameters = [];
@@ -47,6 +56,14 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
         else{
             $scope.parameters = [];
         }
+    }
+
+    $scope.onTabSelected = function(env) {
+        $scope.envparameters =  $scope.parameters.filter(function(elt){
+            if(elt.codeEnvironment===env.code){
+                return true;
+            }
+        });
     }
 
 });

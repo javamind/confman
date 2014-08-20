@@ -8,7 +8,6 @@ import com.ninjamind.confman.domain.*;
  * @author EHRET_G
  */
 public class ParameterValueDto extends AbstractConfManDto {
-    protected String value;
     protected String oldValue;
     protected Long idTrackingVersion;
     protected String codeTrackingVersion;
@@ -32,7 +31,6 @@ public class ParameterValueDto extends AbstractConfManDto {
                 object.getVersion(),
                 object.isActive()
         );
-        this.value = object.getValue();
         this.oldValue = object.getOldvalue();
         this.idApplication = object.getApplication().getId();
         this.codeApplication = object.getApplication().getCode();

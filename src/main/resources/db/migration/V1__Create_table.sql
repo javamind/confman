@@ -130,7 +130,7 @@ CREATE TABLE parametervalue
 (
   id integer NOT NULL PRIMARY KEY,
   code character varying(40),
-  value character varying(2500),
+  label character varying(2500),
   oldvalue character varying(2500),
   environment_id integer NOT NULL REFERENCES environment (id),
   trackingVersion_id integer NOT NULL REFERENCES trackingversion (id),

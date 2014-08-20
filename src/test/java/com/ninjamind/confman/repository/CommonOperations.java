@@ -81,7 +81,7 @@ public class CommonOperations {
 
     public static final Operation INSERT_PARAMETER_VALUE =
             insertInto(ParameterValue.TABLE_NAME)
-                    .columns("id", "code", "value", "environment_id", "trackingversion_id","parameter_id","instance_id", "application_id", "version", "active")
+                    .columns("id", "code", "label", "environment_id", "trackingversion_id","parameter_id","instance_id", "application_id", "version", "active")
                     .values(1, "app.maxuser", "5", 1, 1, 1, null, 1, 0, true)
                     .values(2, "server.name", "WWD450", 1, 1, 2, 1, 1, 0, true)
                     .values(3, "pagination1", "pagination1", 1, 1, 2, 1, 1, 0, true)

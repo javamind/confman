@@ -1,10 +1,10 @@
 <material-content style="top:128px" ng-controller="configSearchCtrl">
     <h4>Criteria</h4>
-
+    <div class="confman-error" ng-show="error">
+        Error : {{error.message}}
+    </div>
     <form class="form confman-form" name="form" novalidate>
-        <div class="alert alert-danger confman-error row" role="alert" ng-show="error">
-            Error : {{error.message}}
-        </div>
+
         <div class="container-fluid thumbnail">
             <div class="row">
                 <div class="col-md-1">
@@ -83,7 +83,7 @@
                 <div class="confman-list-param-env">{{param.codeEnvironment | uppercase | limitTo : 3}}</div>
             </div>
             <div class="material-tile-content">
-                <h2><b>{{param.code}}</b> : {{param.value}}</h2>
+                <h2>{{param.code}} : <b>{{param.label}}</b></h2>
 
                 <h3>Application : {{param.codeApplication}} - tracking version : {{param.codeTrackingVersion}}
                     <span ng-show="param.codeInstance">- instance : {{param.codeInstance}}</span>

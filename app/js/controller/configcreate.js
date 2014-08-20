@@ -63,9 +63,11 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
                                 $scope.envparameters = $scope.parameters;
                             }
                         }
+                        $rootScope.callbackOK();
                     })
                     .error(function (datas) {
                         $scope.parameters = [];
+                        $rootScope.setError('An error occured');
                     })
                 ;
             }

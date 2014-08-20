@@ -9,6 +9,8 @@ import net.codestory.http.annotations.Delete;
 import net.codestory.http.annotations.Get;
 import net.codestory.http.annotations.Post;
 import net.codestory.http.annotations.Put;
+import net.codestory.http.payload.Payload;
+import net.codestory.http.templating.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -40,7 +42,6 @@ public class ApplicationController {
         Application app = genericFacade.findOneWthDependencies(id);
         return app!=null ? getApplicationDto(app) : new ApplicationDto();
     }
-
 
     @Put("/application")
     public ApplicationDto update(ApplicationDto app) {

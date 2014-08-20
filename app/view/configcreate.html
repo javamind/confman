@@ -5,10 +5,10 @@
         version number). You can change every parameters values but you won't be able to change
         them after the saving. We choose this policy because all the changes have to be followed.
     </div>
+    <div class="confman-error" ng-show="error">
+        Error : {{error.message}}
+    </div>
     <form class="form confman-form" name="form" novalidate>
-        <div class="alert alert-danger confman-error row" role="alert" ng-show="error">
-            Error : {{error.message}}
-        </div>
         <div class="container-fluid thumbnail">
             <div class="row">
                 <div class="col-md-1">
@@ -50,7 +50,7 @@
             </div>
         </div>
         <material-tabs selected="selectedIndex" noink ng-show="environments" >
-            <material-tab label="{{env.code}}" ng-repeat="env in environments" on-select="onTabSelected(env)"></material-tab>
+            <material-tab label="{{env.code}} - {{env.label}}" ng-repeat="env in environments" on-select="onTabSelected(env)"></material-tab>
         </material-tabs>
 
         <material-list>
@@ -61,14 +61,14 @@
                 <div class="material-tile-content">
                     <div class="row">
                         <div class="col-md-2">
-                            <h2><b>{{param.code}}</b> :</h2>
+                            <h2>{{param.code}} :</h2>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" id="data-param{{param.id}}" ng-model="param.value"
-                                   class="form-control">
+                            <input type="text" id="data-param{{param.id}}" ng-model="param.label"
+                                   class="form-control" style="font-weight: bold">
                         </div>
                         <div class="col-md-3">
-                            <small>old value: {{param.oldvalue}} </small>
+                            <small>old value: {{param.oldValue}} </small>
                         </div>
                     </div>
 

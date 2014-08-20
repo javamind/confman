@@ -152,23 +152,26 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
                                                   Parameter param,
                                                   Instance instance) {
 
-        Optional<ParameterValue> paramValueRef = null;
-        if (!parameterValuesRef.isPresent()) {
+        ParameterValue paramValueRef = null;
+        if (parameterValuesRef.isPresent()) {
             paramValueRef = parameterValuesRef
                     .get()
                     .stream()
                     .filter(p -> {
-                        boolean equals = instance != null ? instance.equals(p.getInstance()) : true;
-                        return equals && p.getId().equals(param.getId());
+                        return
+                                instance != null ? instance.equals(p.getInstance()) : true &&
+                                        application.getId().equals(p.getApplication().getId()) &&
+                                        env.getId().equals(p.getEnvironment().getId()) &&
+                                        param.getId().equals(p.getId());
                     })
-                    .findFirst();
+                    .findFirst()
+                    .orElse(null);
         }
-
         ParameterValue parameterValue =
                 new ParameterValue()
                         .setCode(param.getCode())
-                        .setValue(paramValueRef.map(p -> p.getValue()).orElse(null))
-                        .setOldvalue(paramValueRef.map(p -> p.getValue()).orElse(null))
+                        .setLabel(paramValueRef != null ? paramValueRef.getLabel() : null)
+                        .setOldvalue(paramValueRef != null ? paramValueRef.getLabel() : null)
                         .setParameter(param)
                         .setApplication(application)
                         .setEnvironment(env)

@@ -11,7 +11,6 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name= ParameterValue.TABLE_NAME)
-@AttributeOverride(name = "label", column = @Column(name = "value"))
 public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
     public final static String TABLE_NAME="parametervalue";
     public final static String SEQ_NAME= "seq_parameter_value";
@@ -55,23 +54,6 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
 
     public ParameterValue setId(Long id) {
         this.id = id;
-        return this;
-    }
-
-    /**
-     * In the hibernate entities value is mapped with the property label
-     * @return
-     */
-    public String getValue() {
-        return super.getLabel();
-    }
-
-    /**
-     * In the hibernate entities value is mapped with the property label
-     * @return
-     */
-    public ParameterValue setValue(String value) {
-        setLabel(value);
         return this;
     }
 

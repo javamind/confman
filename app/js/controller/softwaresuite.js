@@ -2,7 +2,7 @@
 /**
  * Controller linked to the application's groupment list
  */
-angular.module('confman').controller('softwaresuiteCtrl', function ($rootScope, $scope, $http, $modal, modalConfirmDeleteCtrl, SoftwareSuite, Environment, constants) {
+angular.module('confman').controller('softwaresuiteCtrl', function ($rootScope, $scope, $http, $modal, SoftwareSuite, Environment, constants) {
 
     //Page definition
     $rootScope.currentPage = {
@@ -54,7 +54,15 @@ angular.module('confman').controller('softwaresuiteCtrl', function ($rootScope, 
     $scope.delete =  function (elt, $event){
         var modalInstance = $modal.open({
             templateUrl: 'modalConfirmDelete.html',
-            controller: modalConfirmDeleteCtrl,
+            controller: function ($scope, $modalInstance, entity_todelete) {
+                $scope.entity_todelete = entity_todelete;
+                $scope.ok = function () {
+                    $modalInstance.close(true);
+                };
+                $scope.cancel = function () {
+                    $modalInstance.dismiss(false);
+                };
+            },
             resolve: {
                 entity_todelete : function () {
                     return 'software suite ' + elt.code;

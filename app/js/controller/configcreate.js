@@ -2,7 +2,7 @@
 /**
  * Controller linked to the env list
  */
-angular.module('confman').controller('configCreateCtrl', function ($rootScope, $scope, $http, constants, Application) {
+angular.module('confman').controller('configCreateCtrl', function ($rootScope, $scope, $http, $modal, constants, Application) {
 
     //Page definition
     $rootScope.currentPage = {
@@ -19,11 +19,13 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
                 .get(constants.urlserver + '/applicationversion/application/' + $scope.criteria.idApplication)
                 .success(function (datas) {
                     $scope.applicationVersions = datas;
+                    $rootScope.callbackOK();
                 });
             $http
                 .get(constants.urlserver + '/environment/application/' + $scope.criteria.idApplication)
                 .success(function (datas) {
                     $scope.environments = datas;
+                    $rootScope.callbackKO();
                 });
         }
         else {
@@ -33,28 +35,43 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
     };
 
     $scope.createParametersValues = function(){
-        if ($scope.criteria.idApplicationVersion > 0) {
-            $http
-                .post(constants.urlserver + '/parametervalue',  $scope.criteria.idApplicationVersion)
-                .success(function (datas) {
-                    $scope.parameters = datas;
-                    if($scope.parameters.length>0){
-                        $scope.versionTrackiCode = $scope.parameters[0].codeTrackingVersion;
-                        if($scope.environments.length>0){
-                            $scope.onTabSelected($scope.environments[0]);
+        $modal.open({
+            templateUrl: 'modalConfirmCreation.html',
+            controller: ['$scope', '$modalInstance', function ($scope, $modalInstance) {
+               $scope.cancel = function () {
+                    $modalInstance.dismiss(false);
+                };
+                $scope.ok = function (filename) {
+                    callBackCreation();
+                    $modalInstance.close(true);
+                };
+            }]
+        });
+
+        var callBackCreation = function() {
+            if ($scope.criteria.idApplicationVersion > 0) {
+                $http
+                    .post(constants.urlserver + '/parametervalue', $scope.criteria.idApplicationVersion)
+                    .success(function (datas) {
+                        $scope.parameters = datas;
+                        if ($scope.parameters.length > 0) {
+                            $scope.versionTrackiCode = $scope.parameters[0].codeTrackingVersion;
+                            if ($scope.environments.length > 0) {
+                                $scope.onTabSelected($scope.environments[0]);
+                            }
+                            else {
+                                $scope.envparameters = $scope.parameters;
+                            }
                         }
-                        else{
-                            $scope.envparameters =  $scope.parameters;
-                        }
-                    }
-                })
-                .error(function (datas) {
-                    $scope.parameters = [];
-                })
-            ;
-        }
-        else{
-            $scope.parameters = [];
+                    })
+                    .error(function (datas) {
+                        $scope.parameters = [];
+                    })
+                ;
+            }
+            else {
+                $scope.parameters = [];
+            }
         }
     }
 
@@ -65,5 +82,6 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
             }
         });
     }
+
 
 });

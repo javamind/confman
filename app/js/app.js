@@ -15,20 +15,7 @@ confman.constant('constants', {
     }
 );
 
-/**
- * Dialog controler use to confirm a deletion
- */
-confman.value('modalConfirmDeleteCtrl', function ($scope, $modalInstance, entity_todelete) {
-    $scope.entity_todelete = entity_todelete;
 
-    $scope.ok = function () {
-        $modalInstance.close(true);
-    };
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss(false);
-    };
-});
 
 /**
  * Routes definitions

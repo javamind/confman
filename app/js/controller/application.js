@@ -24,7 +24,7 @@ angular.module('confman').controller('applicationCtrl', function ($rootScope, $s
 
 });
 
-angular.module('confman').controller('applicationDetailCtrl', function ($rootScope, $scope, $modal, modalConfirmDeleteCtrl, $routeParams, Application, Environment, SoftwareSuite, Instance, $location) {
+angular.module('confman').controller('applicationDetailCtrl', function ($rootScope, $scope, $modal, $routeParams, Application, Environment, SoftwareSuite, Instance, $location) {
 
     //Page definition
     $rootScope.currentPage = {
@@ -205,10 +205,18 @@ angular.module('confman').controller('applicationDetailCtrl', function ($rootSco
     }
 
     //DElete some dependencies
-    var deleteEntities = function($modal, modalConfirmDeleteCtrl, entities, nameentities, callback){
+    var deleteEntities = function($modal, entities, nameentities, callback){
         var modalInstance = $modal.open({
             templateUrl: 'modalConfirmDelete.html',
-            controller: modalConfirmDeleteCtrl,
+            controller: function ($scope, $modalInstance, entity_todelete) {
+                $scope.entity_todelete = entity_todelete;
+                $scope.ok = function () {
+                    $modalInstance.close(true);
+                };
+                $scope.cancel = function () {
+                    $modalInstance.dismiss(false);
+                };
+            },
             resolve: {
                 entity_todelete : function () {
                     return nameentities + ' selected';
@@ -223,7 +231,7 @@ angular.module('confman').controller('applicationDetailCtrl', function ($rootSco
         });
     }
     $scope.deleteInstance = function(){
-        deleteEntities($modal, modalConfirmDeleteCtrl, $scope.application.instances, 'instances', function(liste){
+        deleteEntities($modal, $scope.application.instances, 'instances', function(liste){
             $scope.application.instances = liste;
         });
     }
@@ -236,7 +244,7 @@ angular.module('confman').controller('applicationDetailCtrl', function ($rootSco
         })
     }
     $scope.deleteVersion = function(){
-        deleteEntities($modal, modalConfirmDeleteCtrl, $scope.application.versions, 'versions', function(liste){
+        deleteEntities($modal, $scope.application.versions, 'versions', function(liste){
             $scope.application.versions = liste;
         });
     }
@@ -249,7 +257,7 @@ angular.module('confman').controller('applicationDetailCtrl', function ($rootSco
         })
     }
     $scope.deleteParameter = function(){
-        deleteEntities($modal, modalConfirmDeleteCtrl, $scope.application.parameters, 'parameters', function(liste){
+        deleteEntities($modal, $scope.application.parameters, 'parameters', function(liste){
             $scope.application.parameters = liste;
         });
     }

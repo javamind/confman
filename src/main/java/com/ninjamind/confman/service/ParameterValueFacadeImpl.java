@@ -10,6 +10,7 @@ import com.ninjamind.confman.repository.ApplicationtVersionRepository;
 import com.ninjamind.confman.repository.ParameterValueRepository;
 import com.ninjamind.confman.repository.ParameterValueSearchBuilder;
 import com.ninjamind.confman.repository.TrackingVersionRepository;
+import com.ninjamind.confman.utils.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -18,8 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
+import java.util.logging.Logger;
 
 /**
  * {@link com.ninjamind.confman.service.ParameterValueFacade}
@@ -30,19 +30,15 @@ import java.util.stream.Collectors;
 @Transactional
 public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterValue, Long> {
     @Autowired
+    TrackingVersionFacade<TrackingVersion, Long> trackingVersionFacade;
+    @Autowired
     private ParameterValueRepository parameterValueRepository;
-
     @Autowired
     private TrackingVersionRepository trackingVersionRepository;
-
     @Autowired
     private ApplicationtVersionRepository applicationVersionRepository;
-
     @Autowired
     private JpaRepository<ParameterValue, Long> parameterValueRepositoryGeneric;
-
-    @Autowired
-    TrackingVersionFacade<TrackingVersion, Long> trackingVersionFacade;
 
     @Override
     public JpaRepository<ParameterValue, Long> getRepository() {
@@ -53,6 +49,8 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
     public Class<ParameterValue> getClassEntity() {
         return ParameterValue.class;
     }
+
+    private static Logger LOG = LoggerFactory.make();
 
     @Override
     public PaginatedList<ParameterValue> filter(Integer page, ParameterValueSearchBuilder criteria) {
@@ -65,7 +63,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
     public List<ParameterValue> create(Long idVersion) {
         Preconditions.checkNotNull(idVersion);
 
-        TrackingVersion referenceTrackingVersion = null;
+        Optional<TrackingVersion> referenceTrackingVersion = Optional.empty();
         String newTrackingVersion = null;
 
         //We find the version in database
@@ -79,13 +77,14 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
             newTrackingVersion = trackingVersionFacade.createTrackingVersion(version.getCode());
 
             List<ApplicationVersion> versions = applicationVersionRepository.findApplicationVersionByIdApp(application.getId());
-            referenceTrackingVersion = findLastTrackingVersionUsed(version, versions);
-        } else {
+            referenceTrackingVersion = Optional.of(findLastTrackingVersionUsed(version, versions));
+        }
+        else {
             //The old version is keep to calculate the new parameters values
-            referenceTrackingVersion = findLastTrackingVersion(trackingVersions).orElseThrow(VersionException::new);
+            referenceTrackingVersion = findLastTrackingVersion(trackingVersions);
 
             //The tracking version is construct with the version
-            newTrackingVersion = trackingVersionFacade.incrementTrackingVersion(referenceTrackingVersion.getCode());
+            newTrackingVersion = trackingVersionFacade.incrementTrackingVersion(referenceTrackingVersion.orElseThrow(VersionException::new).getCode());
         }
 
         //create the tracking version
@@ -97,25 +96,29 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
 
         trackingVersionRepository.save(trackingVersion);
 
-
         //If a reference tracking is find we search the param linked
-        List<ParameterValue> parameterValuesRef = referenceTrackingVersion == null ? new ArrayList<ParameterValue>() :
-                parameterValueRepository.findParameterValue(
+        LOG.info("If a reference tracking is find we search the param linked for id tracking " + referenceTrackingVersion.orElse(null));
+        Optional<List<ParameterValue>> parameterValuesRef =
+                referenceTrackingVersion.map(ref -> parameterValueRepository.findParameterValue(
                         new PaginatedList<>().setNbElementByPage(99999),
-                        new ParameterValueSearchBuilder().setIdTrackingVersion(referenceTrackingVersion.getId()));
+                        new ParameterValueSearchBuilder().setIdTrackingVersion(ref.getId())));
 
-        List<ParameterValue> parameterValuesNew = new ArrayList<>(parameterValuesRef.size());
+        int size = parameterValuesRef.orElse(new ArrayList<>()).size();
+        LOG.info(String.format("... %d elements find ", size));
+        List<ParameterValue> parameterValuesNew = new ArrayList<>(size);
 
         //An application can be used on several environments
         for (SoftwareSuiteEnvironment ssenv : application.getSoftwareSuite().getSoftwareSuiteEnvironments()) {
             Environment env = ssenv.getId().getEnvironment();
 
+            //We create paramaters values associated to the application
             for (Parameter param : application.getParameters()) {
 
                 //The parameter can be specific for an application
                 if (ParameterType.APPLICATION.equals(param.getType())) {
                     parameterValuesNew.add(createParameterValue(parameterValuesRef, application, env, trackingVersion, param, null));
-                } else {
+                }
+                else {
                     //or be defined for each instance
                     application
                             .getInstances()
@@ -124,6 +127,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
                             .forEach(instance -> parameterValuesNew.add(createParameterValue(parameterValuesRef, application, env, trackingVersion, param, instance)));
                 }
             }
+
         }
         ;
 
@@ -141,36 +145,36 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
      * @param instance
      */
     @VisibleForTesting
-    protected ParameterValue createParameterValue(List<ParameterValue> parameterValuesRef,
+    protected ParameterValue createParameterValue(Optional<List<ParameterValue>> parameterValuesRef,
                                                   Application application,
                                                   Environment env,
                                                   TrackingVersion trackingVersion,
                                                   Parameter param,
                                                   Instance instance) {
 
-        ParameterValue paramValueRef = null;
-
-        if(!parameterValuesRef.isEmpty()){
+        Optional<ParameterValue> paramValueRef = null;
+        if (!parameterValuesRef.isPresent()) {
             paramValueRef = parameterValuesRef
+                    .get()
                     .stream()
                     .filter(p -> {
                         boolean equals = instance != null ? instance.equals(p.getInstance()) : true;
                         return equals && p.getId().equals(param.getId());
                     })
-                    .findFirst()
-                    .orElse(null);
+                    .findFirst();
         }
 
         ParameterValue parameterValue =
                 new ParameterValue()
                         .setCode(param.getCode())
-                        .setValue(paramValueRef != null ? paramValueRef.getValue() : null)
-                        .setOldvalue(paramValueRef != null ? paramValueRef.getValue() : null)
+                        .setValue(paramValueRef.map(p -> p.getValue()).orElse(null))
+                        .setOldvalue(paramValueRef.map(p -> p.getValue()).orElse(null))
                         .setParameter(param)
                         .setApplication(application)
                         .setEnvironment(env)
                         .setTrackingVersion(trackingVersion)
-                        .setInstance(instance);
+                        .setInstance(instance)
+                        .setActive(true);
 
         return parameterValueRepositoryGeneric.save(parameterValue);
     }
@@ -212,7 +216,8 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
             List<TrackingVersion> trackingVersions = trackingVersionRepository.findTrackingVersionByIdAppVersion(previousVersion.get().getId());
             if (trackingVersions != null && !trackingVersions.isEmpty()) {
                 return findLastTrackingVersion(trackingVersions).get();
-            } else {
+            }
+            else {
                 //recursively we try with the previous version
                 return findLastTrackingVersionUsed(previousVersion.get(), versions);
             }

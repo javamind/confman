@@ -3,7 +3,7 @@
 /**
  * Controller linked to the env list
  */
-angular.module('confman').controller('environmentCtrl', function ($rootScope, $scope, $modal, modalConfirmDeleteCtrl, Environment) {
+angular.module('confman').controller('environmentCtrl', function ($rootScope, $scope, $modal, Environment) {
 
     //Page definition
     $rootScope.currentPage = {
@@ -32,7 +32,15 @@ angular.module('confman').controller('environmentCtrl', function ($rootScope, $s
     $scope.delete =  function (elt, $event){
         var modalInstance = $modal.open({
             templateUrl: 'modalConfirmDelete.html',
-            controller: modalConfirmDeleteCtrl,
+            controller: function ($scope, $modalInstance, entity_todelete) {
+                $scope.entity_todelete = entity_todelete;
+                $scope.ok = function () {
+                    $modalInstance.close(true);
+                };
+                $scope.cancel = function () {
+                    $modalInstance.dismiss(false);
+                };
+            },
             resolve: {
                 entity_todelete : function () {
                     return 'environment ' + elt.code;

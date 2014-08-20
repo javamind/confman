@@ -1,15 +1,11 @@
 package com.ninjamind.confman.service;
 
-import com.ninjamind.confman.domain.Environment;
 import com.ninjamind.confman.repository.HibernateUtil;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.ninjamind.confman.utils.LoggerFactory;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * {@link }

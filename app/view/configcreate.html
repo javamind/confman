@@ -35,21 +35,26 @@
                 </div>
                 <div class="col-md-4">
                     <div class="confman-btn">
-                        <button class="btn btn-primary" ng-click="createParametersValues()">
+                        <button class="btn btn-primary" ng-click="createParametersValues()" ng-disabled="form.$invalid">
                         <img src="../img/icon/ic_add_24px.svg" title="Create"/>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-        <h3 ng-show="versionTrackiCode">Version tracking <b>{{versionTrackiCode}}</b></h3>
-
+        <div class="row" ng-show="versionTrackiCode">
+            <div class="col-md-12">
+            <h3>Version tracking <b>{{versionTrackiCode}}</b></h3>
+            Change the values or delete lines if necessary and click on the save button. After, this version tracking will be locked and no
+            parameter value won't be able to change
+            </div>
+        </div>
         <material-tabs selected="selectedIndex" noink ng-show="environments" >
             <material-tab label="{{env.code}}" ng-repeat="env in environments" on-select="onTabSelected(env)"></material-tab>
         </material-tabs>
 
         <material-list>
-            <material-item ng-repeat="param in envparameters">
+            <material-item ng-repeat="param in envparameters | orderBy:code">
                 <div class="material-tile-left">
                     <div class="confman-list-param-env">{{param.codeEnvironment | uppercase | limitTo : 3}}</div>
                 </div>
@@ -78,19 +83,7 @@
             </material-item>
         </material-list>
 
-        <div class="animate-switch-container" ng-switch on="selectedIndex" >
-            <div class="animate-switch" ng-switch-when="0" >
-                View for Item #1<br/>
-                Selection index = 0
-            </div>
-            <div class="animate-switch" ng-switch-when="1" >
-                View for Item #1<br/>
-                Selection index = 0
-            </div>
-        </div>
-
-
-        <div class="modal-footer confman-btn">
+        <div class="modal-footer confman-btn" ng-show="versionTrackiCode">
             <button class="btn btn-primary" ng-click="ok(appelt.content)">
                 <img ng-src="img/icon/ic_save_24px.svg" title="Save"/>
             </button>
@@ -100,3 +93,20 @@
         </div>
     </form>
 </material-content>
+
+<script type="text/ng-template" id="modalConfirmCreation.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Create new tracking version</h3>
+    </div>
+    <div class="modal-body">
+        Are you sure you want to create a new version tracking for the app version {{appVersion}} ?
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">
+            <img src="img/icon/ic_add_24px.svg" title="Create"/>
+        </button>
+        <button class="btn btn-default" ng-click="cancel()">
+            <img src="img/icon/ic_clear_24px.svg" title="Cancel"/>
+        </button>
+    </div>
+</script>

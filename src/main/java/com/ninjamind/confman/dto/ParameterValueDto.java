@@ -18,6 +18,7 @@ public class ParameterValueDto extends AbstractConfManDto {
     protected String codeInstance;
     protected Long idEnvironment;
     protected String codeEnvironment;
+    protected boolean toDelete;
 
     public ParameterValueDto() {
         super();
@@ -56,5 +57,9 @@ public class ParameterValueDto extends AbstractConfManDto {
                 .setParameter(new Parameter().setId(idParameter))
                 .setApplication(new Application().setId(idApplication))
                 .setTrackingVersion(new TrackingVersion().setId(idTrackingVersion));
+    }
+
+    public boolean isToDelete() {
+        return toDelete;
     }
 }

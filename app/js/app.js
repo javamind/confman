@@ -64,7 +64,12 @@ confman.run(function ($rootScope) {
         $rootScope.error=null;
     };
     $rootScope.callbackKO = function(data){
-        $rootScope.error= { message : data.data, code : data.status};
+        if(data){
+            $rootScope.error= { message : data.data, code : data.status};
+        }
+        else{
+            $rootScope.error= { message : 'server error', code : 500};
+        }
     };
     $rootScope.setError = function(msgError, codeError){
         $rootScope.error= { message : msgError, code : codeError};
@@ -74,6 +79,12 @@ confman.run(function ($rootScope) {
             return '';
         }
         return 'btn-primary'
+    };
+    $rootScope.setClassError = function(boolean){
+        if(boolean){
+            return 'confman-line-error';
+        }
+        return ''
     };
 })
 

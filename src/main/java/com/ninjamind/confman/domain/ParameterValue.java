@@ -122,8 +122,20 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
         if (application != null ? !application.equals(that.application) : that.application != null) return false;
         if (instance != null ? !instance.equals(that.instance) : that.instance != null) return false;
         if (parameter != null ? !parameter.equals(that.parameter) : that.parameter != null) return false;
-        if (trackingVersion != null ? !trackingVersion.equals(that.trackingVersion) : that.trackingVersion != null)
-            return false;
+        if (trackingVersion != null ? !trackingVersion.equals(that.trackingVersion) : that.trackingVersion != null) return false;
+
+        return true;
+    }
+
+    public boolean compareWithOldTrackingVersion(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ParameterValue that = (ParameterValue) o;
+
+        if (application != null ? !application.equals(that.application) : that.application != null) return false;
+        if (instance != null ? !instance.equals(that.instance) : that.instance != null) return false;
+        if (parameter != null ? !parameter.equals(that.parameter) : that.parameter != null) return false;
 
         return true;
     }

@@ -27,4 +27,11 @@ public interface ParameterValueFacade<T, ID extends Serializable> extends Generi
      * @return
      */
     List<ParameterValue> create(Long idVersion);
+
+    /**
+     * Update a set of parameters
+     * @param parameterValues
+     * @return
+     */
+    void update(List<ParameterValue> parameterValues);
 }

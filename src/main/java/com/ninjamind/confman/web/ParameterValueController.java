@@ -13,10 +13,12 @@ import net.codestory.http.annotations.Delete;
 import net.codestory.http.annotations.Get;
 import net.codestory.http.annotations.Post;
 import net.codestory.http.annotations.Put;
+import net.codestory.http.payload.Payload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * {@link }
@@ -53,9 +55,11 @@ public class ParameterValueController {
     }
 
     @Put("/parametervalue")
-    public ParameterValueDto update(ParameterValueDto parameter) {
-        Preconditions.checkNotNull(parameter, "Object is required to update it");
-        return new ParameterValueDto(parameterValueFacade.save(parameter.toParameterValue()));
+    public Payload update(List<ParameterValueDto> parameters) {
+        Preconditions.checkNotNull(parameters, "List is required to update it");
+        parameterValueFacade.update(
+                parameters.stream().filter(p -> ! p.isToDelete()).map(p -> p.toParameterValue()).collect(Collectors.toList()));
+        return Payload.created("/#/config/search");
     }
 
     @Post("/parametervalue")

@@ -75,7 +75,7 @@ INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id
 INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(18 ,'jdbc.username','SALESUSR', 3, 1, 2, null, 1, 1, true);
 INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(19 ,'jdbc.password','SALESPWD', 3, 1, 3, null, 1, 1, true);
 INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(20 ,'jdbc.driver','oracle.jdbc.driver.OracleDriver', 3, 1, 4, null, 1, 1, true);
-INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(21 ,'server.name','WP450', 3, 1, 5, 4, 1, 1, true);
+INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(21 ,'server.name','WP450', 3, 1, 5, 3, 1, 1, true);
 INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(22 ,'server.port','8082', 3, 1, 6, 3, 1, 1, true);
 INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(23 ,'tomcatdir','d:\\tomcat', 3, 1, 7, 3, 1, 1, true);
 INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(24 ,'server.loglevel','DEBUG', 3, 1, 8, 3, 1, 1, true);
@@ -159,10 +159,10 @@ INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id
 INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(90 ,'jdbc.username','SALESUSR', 3, 4, 2, null, 1, 1, true);
 INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(91 ,'jdbc.password','SALESPWD', 3, 4, 3, null, 1, 1, true);
 INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(92 ,'jdbc.driver','oracle.jdbc.driver.OracleDriver', 3, 4, 4, null, 1, 1, true);
-INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(93 ,'server.name','WP451', 3, 4, 5, 5, 1, 1, true);
-INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(94 ,'server.port','8082', 3, 4, 6, 3, 1, 1, true);
-INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(95 ,'tomcatdir','d:\\tomcat', 3, 4, 7, 3, 1, 1, true);
+INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(93 ,'server.name','WP451', 3, 4, 5, 4, 1, 1, true);
+INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(94 ,'server.port','8082', 3, 4, 6, 4, 1, 1, true);
+INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(95 ,'tomcatdir','d:\\tomcat', 3, 4, 7, 4, 1, 1, true);
 INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(96 ,'server.loglevel','DEBUG', 3, 4, 8, 3, 1, 1, true);
-INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(97 ,'server.name','WP450', 3, 4, 5, 4, 1, 1, true);
+INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(97 ,'server.name','WP450', 3, 4, 5, 3, 1, 1, true);
 INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(98 ,'server.port','8082', 3, 4, 6, 3, 1, 1, true);
 INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(99 ,'tomcatdir','d:\\tomcat', 3, 4, 7, 3, 1, 1, true);

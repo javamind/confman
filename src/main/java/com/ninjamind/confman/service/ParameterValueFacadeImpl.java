@@ -29,6 +29,7 @@ import java.util.logging.Logger;
 @Service("parameterValueFacade")
 @Transactional
 public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterValue, Long> {
+    private static Logger LOG = LoggerFactory.make();
     @Autowired
     TrackingVersionFacade<TrackingVersion, Long> trackingVersionFacade;
     @Autowired
@@ -49,8 +50,6 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
     public Class<ParameterValue> getClassEntity() {
         return ParameterValue.class;
     }
-
-    private static Logger LOG = LoggerFactory.make();
 
     @Override
     public PaginatedList<ParameterValue> filter(Integer page, ParameterValueSearchBuilder criteria) {
@@ -116,7 +115,19 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
 
                 //The parameter can be specific for an application
                 if (ParameterType.APPLICATION.equals(param.getType())) {
-                    parameterValuesNew.add(createParameterValue(parameterValuesRef, application, env, trackingVersion, param, null));
+                    parameterValuesNew
+                            .add(
+                                    createParameterValue(
+                                            parameterValuesRef,
+                                            trackingVersion,
+                                            new ParameterValue()
+                                                    .setCode(param.getCode())
+                                                    .setParameter(param)
+                                                    .setApplication(application)
+                                                    .setEnvironment(env)
+                                                    .setActive(true)
+                                    )
+                            );
                 }
                 else {
                     //or be defined for each instance
@@ -124,62 +135,60 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
                             .getInstances()
                             .stream()
                             .filter(i -> env.getId().equals(i.getEnvironment().getId()))
-                            .forEach(instance -> parameterValuesNew.add(createParameterValue(parameterValuesRef, application, env, trackingVersion, param, instance)));
+                            .forEach(instance -> parameterValuesNew
+                                    .add(
+                                            createParameterValue(
+                                                    parameterValuesRef,
+                                                    trackingVersion,
+                                                    new ParameterValue()
+                                                            .setCode(param.getCode())
+                                                            .setParameter(param)
+                                                            .setApplication(application)
+                                                            .setEnvironment(env)
+                                                            .setInstance(instance)
+                                                            .setActive(true)
+                                            )
+                                    ));
                 }
             }
-
         }
-        ;
 
         return parameterValuesNew;
+    }
+
+    @Override
+    public void update(List<ParameterValue> parameterValues) {
+        //TODO
     }
 
     /**
      * Create a new parameter value
      *
      * @param parameterValuesRef
-     * @param application
-     * @param env
      * @param trackingVersion
-     * @param param
-     * @param instance
+     * @param parameterValueTarget
      */
     @VisibleForTesting
     protected ParameterValue createParameterValue(Optional<List<ParameterValue>> parameterValuesRef,
-                                                  Application application,
-                                                  Environment env,
                                                   TrackingVersion trackingVersion,
-                                                  Parameter param,
-                                                  Instance instance) {
+                                                  ParameterValue parameterValueTarget) {
 
         ParameterValue paramValueRef = null;
         if (parameterValuesRef.isPresent()) {
             paramValueRef = parameterValuesRef
                     .get()
                     .stream()
-                    .filter(p -> {
-                        return
-                                instance != null ? instance.equals(p.getInstance()) : true &&
-                                        application.getId().equals(p.getApplication().getId()) &&
-                                        env.getId().equals(p.getEnvironment().getId()) &&
-                                        param.getId().equals(p.getId());
-                    })
+                    .filter(p -> p.compareWithOldTrackingVersion(parameterValueTarget))
                     .findFirst()
                     .orElse(null);
         }
-        ParameterValue parameterValue =
-                new ParameterValue()
-                        .setCode(param.getCode())
-                        .setLabel(paramValueRef != null ? paramValueRef.getLabel() : null)
-                        .setOldvalue(paramValueRef != null ? paramValueRef.getLabel() : null)
-                        .setParameter(param)
-                        .setApplication(application)
-                        .setEnvironment(env)
-                        .setTrackingVersion(trackingVersion)
-                        .setInstance(instance)
-                        .setActive(true);
 
-        return parameterValueRepositoryGeneric.save(parameterValue);
+        parameterValueTarget
+                .setLabel(paramValueRef != null ? paramValueRef.getLabel() : null)
+                .setOldvalue(paramValueRef != null ? paramValueRef.getLabel() : null)
+                .setTrackingVersion(trackingVersion);
+
+        return parameterValueRepositoryGeneric.save(parameterValueTarget);
     }
 
     /**
@@ -227,5 +236,6 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
         }
         return null;
     }
+
 
 }

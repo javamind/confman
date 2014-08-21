@@ -15,7 +15,7 @@
                     <label for="data-application">&nbsp;Application</label>
                 </div>
                 <div class="col-md-3">
-                    <select id="data-application" ng-model="criteria.idApplication" class="form-control"  required
+                    <select id="data-application" ng-model="criteria.idApplication" class="form-control" required
                             ng-change="changeApplication()" name="application"
                             ng-options="application.id as application.code for application in applications">
                         <option value="">Application</option>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-md-3">
                     <select id="data-tracking" ng-model="criteria.idApplicationVersion" class="form-control" required
-                           name="applicationVersion"
+                            name="applicationVersion"
                             ng-options="applicationVersion.id as applicationVersion.code for applicationVersion in applicationVersions">
                         <option value="">Versions</option>
                     </select>
@@ -36,7 +36,7 @@
                 <div class="col-md-4">
                     <div class="confman-btn">
                         <button class="btn btn-primary" ng-click="createParametersValues()" ng-disabled="form.$invalid">
-                        <img src="../img/icon/ic_add_24px.svg" title="Create"/>
+                            <img src="../img/icon/ic_add_24px.svg" title="Create"/>
                         </button>
                     </div>
                 </div>
@@ -44,19 +44,22 @@
         </div>
         <div class="row" ng-show="versionTrackiCode">
             <div class="col-md-12">
-            <h3>Version tracking <b>{{versionTrackiCode}}</b></h3>
-            Change the values or delete lines if necessary and click on the save button. After, this version tracking will be locked and no
-            parameter value won't be able to change
+                <h3>Version tracking <b>{{versionTrackiCode}}</b></h3>
+                Change the values or delete lines if necessary and click on the save button. After, this version
+                tracking will be locked and no
+                parameter value won't be able to change
             </div>
         </div>
-        <material-tabs selected="selectedIndex" noink ng-show="environments" >
-            <material-tab label="{{env.code}} - {{env.label}}" ng-repeat="env in environments" on-select="onTabSelected(env)"></material-tab>
+        <material-tabs selected="selectedIndex" noink ng-show="environments">
+            <material-tab label="{{env.code}} - {{env.label}}" ng-repeat="env in environments"
+                          on-select="onTabSelected(env)"></material-tab>
         </material-tabs>
 
         <material-list>
-            <material-item ng-repeat="param in envparameters | orderBy:code">
+            <material-item ng-repeat="param in envparameters | orderBy:['codeInstance', 'code']" ng-class="setClassError(param.todelete)">
                 <div class="material-tile-left">
-                    <div class="confman-list-param-env">{{param.codeEnvironment | uppercase | limitTo : 3}}</div>
+                    <div class="confman-list-param-app" ng-hide="param.codeInstance">APP</div>
+                    <div class="confman-list-param-instance" ng-show="param.codeInstance">INS</div>
                 </div>
                 <div class="material-tile-content">
                     <div class="row">
@@ -65,30 +68,35 @@
                         </div>
                         <div class="col-md-3">
                             <input type="text" id="data-param{{param.id}}" ng-model="param.label"
-                                   class="form-control" style="font-weight: bold">
+                                   class="form-control confman-input-param-env">
                         </div>
                         <div class="col-md-3">
-                            <small>old value: {{param.oldValue}} </small>
+                            <small>old value: {{param.oldValue}}</small>
+                        </div>
+                        <div class="col-md-3">
+                            <small ng-show="param.todelete"><b>will be deleted on saving</b></small>
                         </div>
                     </div>
-
-                    <h3>Application : {{param.codeApplication}} - tracking version : {{param.codeTrackingVersion}}
-                        <span ng-show="param.codeInstance">- instance : {{param.codeInstance}}</span>
-                    </h3>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Application : {{param.codeApplication}} - tracking version :
+                                {{param.codeTrackingVersion}}
+                                <span ng-show="param.codeInstance">- instance : {{param.codeInstance}}</span>
+                            </h3>
+                        </div>
+                    </div>
                 </div>
                 <div class="material-tile-right">
-                    <div class="confman-list-param-app" ng-hide="param.codeInstance">APP</div>
-                    <div class="confman-list-param-instance" ng-show="param.codeInstance">INS</div>
+                    <material-checkbox>
+                        <input type="checkbox" ng-model="param.todelete">
+                    </material-checkbox>
                 </div>
             </material-item>
         </material-list>
 
         <div class="modal-footer confman-btn" ng-show="versionTrackiCode">
-            <button class="btn btn-primary" ng-click="ok(appelt.content)">
+            <button class="btn btn-primary" ng-click="saveParametersValues()">
                 <img ng-src="img/icon/ic_save_24px.svg" title="Save"/>
-            </button>
-            <button class="btn btn-default" ng-click="cancel()">
-                <img src="img/icon/ic_clear_24px.svg" title="Cancel"/>
             </button>
         </div>
     </form>

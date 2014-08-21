@@ -25,7 +25,8 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
                 .get(constants.urlserver + '/environment/application/' + $scope.criteria.idApplication)
                 .success(function (datas) {
                     $scope.environments = datas;
-                    $rootScope.callbackKO();
+                    $scope.selectedIndex = 0;
+                    $rootScope.callbackOK();
                 });
         }
         else {
@@ -77,12 +78,40 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
         }
     }
 
-    $scope.onTabSelected = function(env) {
-        $scope.envparameters =  $scope.parameters.filter(function(elt){
-            if(elt.codeEnvironment===env.code){
-                return true;
-            }
+    $scope.saveParametersValues = function(){
+        $modal.open({
+            templateUrl: 'modalConfirmCreation.html',
+            controller: ['$scope', '$modalInstance', function ($scope, $modalInstance) {
+                $scope.cancel = function () {
+                    $modalInstance.dismiss(false);
+                };
+                $scope.ok = function () {
+                    callBackUpdate();
+                    $modalInstance.close(true);
+                };
+            }]
         });
+
+        var callBackUpdate = function() {
+            $http
+                .put(constants.urlserver + '/parametervalue', $scope.criteria.parameters)
+                .success(function (datas) {
+                    $rootScope.callbackOK();
+                })
+                .error(function (datas) {
+                    $rootScope.setError('An error occured');
+                });
+        }
+    }
+
+    $scope.onTabSelected = function(env) {
+        if($scope.parameters) {
+            $scope.envparameters = $scope.parameters.filter(function (elt) {
+                if (elt.codeEnvironment === env.code) {
+                    return true;
+                }
+            });
+        }
     }
 
 

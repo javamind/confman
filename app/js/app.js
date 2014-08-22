@@ -15,8 +15,6 @@ confman.constant('constants', {
     }
 );
 
-
-
 /**
  * Routes definitions
  */

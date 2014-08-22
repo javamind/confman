@@ -136,7 +136,7 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
         if (application != null ? !application.equals(that.application) : that.application != null) return false;
         if (instance != null ? !instance.equals(that.instance) : that.instance != null) return false;
         if (parameter != null ? !parameter.equals(that.parameter) : that.parameter != null) return false;
-
+        if (!getCode().equals(that.getCode())) return false;
         return true;
     }
 

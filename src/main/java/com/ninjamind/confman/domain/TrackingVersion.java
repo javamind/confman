@@ -52,8 +52,9 @@ public class TrackingVersion extends AbstractConfManEntity<TrackingVersion>{
         return blocked;
     }
 
-    public void setBlocked(boolean blocked) {
+    public TrackingVersion setBlocked(boolean blocked) {
         this.blocked = blocked;
+        return this;
     }
 
     public TrackingVersion setId(Long id) {

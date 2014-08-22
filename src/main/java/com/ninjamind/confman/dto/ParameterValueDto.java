@@ -1,6 +1,9 @@
 package com.ninjamind.confman.dto;
 
 import com.ninjamind.confman.domain.*;
+import com.ninjamind.confman.utils.Converter;
+
+import java.util.LinkedHashMap;
 
 /**
  * {@link com.ninjamind.confman.domain.Parameter}
@@ -57,6 +60,19 @@ public class ParameterValueDto extends AbstractConfManDto {
                 .setParameter(new Parameter().setId(idParameter))
                 .setApplication(new Application().setId(idApplication))
                 .setTrackingVersion(new TrackingVersion().setId(idTrackingVersion));
+    }
+
+    public static ParameterValue toParameterValue(LinkedHashMap map){
+        return new ParameterValue()
+                .setId(Converter.convertId(map.get("id")))
+                .setCode(Converter.convert(map.get("code"), String.class))
+                .setLabel(Converter.convert(map.get("label"), String.class))
+                .setOldvalue(Converter.convert(map.get("oldValue"), String.class))
+                .setVersion(Converter.convertId(map.get("version")))
+                .setActive(Converter.convert(map.get("active"), Boolean.class))
+                .setParameter(new Parameter().setId(Converter.convertId(map.get("idParameter"))))
+                .setApplication(new Application().setId(Converter.convertId(map.get("idApplication"))))
+                .setTrackingVersion(new TrackingVersion().setId(Converter.convertId(map.get("idTrackingVersion"))));
     }
 
     public boolean isToDelete() {

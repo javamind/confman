@@ -18,6 +18,8 @@ import java.util.Collection;
  * </ul>
  */
 public class PaginatedList<T> extends ArrayList<T> {
+    public static int NB_MAX = 99999;
+    public static int NB_DEFAULT = 25;
     /**
      * The paginated list is partial but we need the complete size to calculate to calculate the next pages
      */
@@ -29,7 +31,7 @@ public class PaginatedList<T> extends ArrayList<T> {
     /**
      * The page are determinated with the nb element by page. The default value is 25
      */
-    private int nbElementByPage = 25;
+    private int nbElementByPage = NB_DEFAULT;
 
     /**
      * Constructs an empty list with an initial capacity

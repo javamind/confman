@@ -132,12 +132,6 @@ public class Application extends AbstractConfManEntity<Application>{
         if (this == o) return true;
         if (!(o instanceof Application)) return false;
         if (!super.equals(o)) return false;
-
-        Application that = (Application) o;
-
-        if (softwareSuite != null ? !softwareSuite.equals(that.softwareSuite) : that.softwareSuite != null)
-            return false;
-
         return true;
     }
 

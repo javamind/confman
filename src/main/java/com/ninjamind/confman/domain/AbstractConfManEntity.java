@@ -90,10 +90,7 @@ public abstract class AbstractConfManEntity<T extends AbstractConfManEntity> imp
         if (o == null || getClass() != o.getClass()) return false;
 
         AbstractConfManEntity that = (AbstractConfManEntity) o;
-
         if (!code.equals(that.code)) return false;
-        if (!label.equals(that.label)) return false;
-
         return true;
     }
 

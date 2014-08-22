@@ -9,7 +9,7 @@
         Error : {{error.message}}
     </div>
     <form class="form confman-form" name="form" novalidate>
-        <div class="container-fluid thumbnail">
+        <div class="container-fluid thumbnail" ng-hide="lockVersion">
             <div class="row">
                 <div class="col-md-1">
                     <label for="data-application">&nbsp;Application</label>
@@ -56,7 +56,7 @@
         </material-tabs>
 
         <material-list>
-            <material-item ng-repeat="param in envparameters | orderBy:['codeInstance', 'code']" ng-class="setClassError(param.todelete)">
+            <material-item ng-repeat="param in envparameters | orderBy:['codeInstance', 'code']" ng-class="setClassError(param.toDelete)">
                 <div class="material-tile-left">
                     <div class="confman-list-param-app" ng-hide="param.codeInstance">APP</div>
                     <div class="confman-list-param-instance" ng-show="param.codeInstance">INS</div>
@@ -74,7 +74,7 @@
                             <small>old value: {{param.oldValue}}</small>
                         </div>
                         <div class="col-md-3">
-                            <small ng-show="param.todelete"><b>will be deleted on saving</b></small>
+                            <small ng-show="param.toDelete"><b>will be deleted on saving</b></small>
                         </div>
                     </div>
                     <div class="row">
@@ -87,16 +87,19 @@
                     </div>
                 </div>
                 <div class="material-tile-right">
-                    <material-checkbox>
-                        <input type="checkbox" ng-model="param.todelete">
+                    <material-checkbox ng-hide="lockVersion">
+                        <input type="checkbox" ng-model="param.toDelete" >
                     </material-checkbox>
                 </div>
             </material-item>
         </material-list>
 
         <div class="modal-footer confman-btn" ng-show="versionTrackiCode">
-            <button class="btn btn-primary" ng-click="saveParametersValues()">
+            <button class="btn btn-primary" ng-click="saveParametersValues()" ng-hide="lockVersion">
                 <img ng-src="img/icon/ic_save_24px.svg" title="Save"/>
+            </button>
+            <button class="btn btn-disabled" ng-show="lockVersion">
+                <img ng-src="img/icon/ic_https_24px.svg" title="The version is locked"/>
             </button>
         </div>
     </form>
@@ -111,7 +114,7 @@
     </div>
     <div class="modal-footer">
         <button class="btn btn-primary" ng-click="ok()">
-            <img src="img/icon/ic_add_24px.svg" title="Create"/>
+            <img ng-src="img/icon/{{icon}}" title="Create"/>
         </button>
         <button class="btn btn-default" ng-click="cancel()">
             <img src="img/icon/ic_clear_24px.svg" title="Cancel"/>

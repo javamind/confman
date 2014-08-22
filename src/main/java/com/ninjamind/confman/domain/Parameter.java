@@ -77,11 +77,7 @@ public class Parameter extends AbstractConfManEntity<Parameter>{
         if (!super.equals(o)) return false;
 
         Parameter parameter = (Parameter) o;
-
-        if (type != null ? !type.equals(parameter.type) : parameter.type != null) return false;
         if (application != null ? !application.equals(parameter.application) : parameter.application != null) return false;
-        if (parameterGroupment != null ? !parameterGroupment.equals(parameter.parameterGroupment) : parameter.parameterGroupment != null)
-            return false;
 
         return true;
     }

@@ -13,7 +13,7 @@ import com.ninjamind.confman.repository.ParameterValueSearchBuilder;
  */
 public class ParameterValueFilterDto extends ParameterValueDto {
     private Integer page;
-
+    private Integer nbEltPerPage;
     public ParameterValueFilterDto() {
         super();
     }
@@ -30,5 +30,9 @@ public class ParameterValueFilterDto extends ParameterValueDto {
 
     public Integer getPage() {
         return page;
+    }
+
+    public Integer getNbEltPerPage() {
+        return nbEltPerPage;
     }
 }

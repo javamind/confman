@@ -39,6 +39,7 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
         $modal.open({
             templateUrl: 'modalConfirmCreation.html',
             controller: ['$scope', '$modalInstance', function ($scope, $modalInstance) {
+                $scope.icon='ic_add_24px.svg';
                $scope.cancel = function () {
                     $modalInstance.dismiss(false);
                 };
@@ -57,6 +58,7 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
                         $scope.parameters = datas;
                         if ($scope.parameters.length > 0) {
                             $scope.versionTrackiCode = $scope.parameters[0].codeTrackingVersion;
+                            $scope.versionTrackiId = $scope.parameters[0].idTrackingVersion;
                             if ($scope.environments.length > 0) {
                                 $scope.onTabSelected($scope.environments[0]);
                             }
@@ -82,6 +84,7 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
         $modal.open({
             templateUrl: 'modalConfirmCreation.html',
             controller: ['$scope', '$modalInstance', function ($scope, $modalInstance) {
+                $scope.icon='ic_save_24px.svg';
                 $scope.cancel = function () {
                     $modalInstance.dismiss(false);
                 };
@@ -94,12 +97,25 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
 
         var callBackUpdate = function() {
             $http
-                .put(constants.urlserver + '/parametervalue', $scope.criteria.parameters)
+                .put(constants.urlserver + '/parametervalue', $scope.parameters)
                 .success(function (datas) {
                     $rootScope.callbackOK();
+                    $scope.lockVersion = true;
+                    //Refresh of paramaters
+                    $http
+                        .post(constants.urlserver + '/parametervalue/search', {nbEltPerPage : 99999, idTrackingVersion: $scope.versionTrackiId})
+                        .success(function (datas) {
+                            $scope.parameters = datas.list;
+                            $scope.onTabSelected($scope.environments[0]);
+                            $scope.selectedIndex = 0;
+                            $scope.callbackOK();
+                        })
+                        .error(function (datas) {
+                            $rootScope.setError('An error occured when we search the changes in database');
+                        });
                 })
                 .error(function (datas) {
-                    $rootScope.setError('An error occured');
+                    $rootScope.setError('An error occured on saving changes');
                 });
         }
     }

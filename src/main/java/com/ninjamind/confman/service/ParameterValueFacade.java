@@ -16,10 +16,11 @@ public interface ParameterValueFacade<T, ID extends Serializable> extends Generi
     /**
      * Serach parameters values and return a paginated list
      * @param page
+     * @param nbEltPerPage
      * @param criteria
      * @return
      */
-    PaginatedList<ParameterValue> filter(Integer page, ParameterValueSearchBuilder criteria);
+    PaginatedList<ParameterValue> filter(Integer page, Integer nbEltPerPage, ParameterValueSearchBuilder criteria);
 
     /**
      * Find the last set of parameters for a version.

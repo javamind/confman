@@ -1,5 +1,6 @@
 package com.ninjamind.confman.web;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.Instance;
@@ -17,6 +18,7 @@ import net.codestory.http.payload.Payload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,6 +40,7 @@ public class ParameterValueController {
         PaginatedList<ParameterValue> parameterValues =
                 parameterValueFacade.filter(
                         criteria.getPage(),
+                        criteria.getNbEltPerPage(),
                         criteria.toParameterValueSearchBuilder());
 
         //The DOs are transformed in DTOs
@@ -55,11 +58,15 @@ public class ParameterValueController {
     }
 
     @Put("/parametervalue")
-    public Payload update(List<ParameterValueDto> parameters) {
+    public Payload update(List<LinkedHashMap> parameters) {
         Preconditions.checkNotNull(parameters, "List is required to update it");
         parameterValueFacade.update(
-                parameters.stream().filter(p -> ! p.isToDelete()).map(p -> p.toParameterValue()).collect(Collectors.toList()));
-        return Payload.created("/#/config/search");
+                parameters
+                        .stream()
+                        .filter(p -> !(Boolean)p.get("toDelete"))
+                        .map(p -> ParameterValueDto.toParameterValue(p))
+                        .collect(Collectors.toList()));
+        return Payload.created();
     }
 
     @Post("/parametervalue")

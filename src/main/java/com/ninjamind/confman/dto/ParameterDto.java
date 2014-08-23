@@ -40,6 +40,6 @@ public class ParameterDto extends AbstractConfManDto {
                 .setActive(isActive())
                 .setApplication(new Application().setId(idApplication))
                 .setParameterGroupment(new ParameterGroupment().setId(idParameterGroupment))
-                .setType(ParameterType.valueOf(type));
+                .setType(Enum.valueOf(ParameterType.class, type));
     }
 }

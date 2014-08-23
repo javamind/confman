@@ -33,7 +33,6 @@ public class Parameter extends AbstractConfManEntity<Parameter>{
 
     public Parameter setApplication(Application application) {
         this.application = application;
-        this.type = ParameterType.APPLICATION;
         return this;
     }
 

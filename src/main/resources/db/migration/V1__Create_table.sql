@@ -109,7 +109,7 @@ WITH (
   OIDS=FALSE
 );
 
-
+CREATE TYPE typeparameter AS ENUM ('APPLICATION', 'INSTANCE');
 CREATE TABLE parameter
 (
   id integer NOT NULL PRIMARY KEY,
@@ -119,7 +119,7 @@ CREATE TABLE parameter
   application_id integer NOT NULL REFERENCES application (id),
   version integer,
   active boolean,
-  type character varying(40),
+  type character varying(40) NOT NULL,
   CONSTRAINT parameter_unique_key UNIQUE (code, application_id)
 )
 WITH (

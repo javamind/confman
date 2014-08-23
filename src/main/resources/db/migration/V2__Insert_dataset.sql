@@ -165,4 +165,4 @@ INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id
 INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(96 ,'server.loglevel','DEBUG', 3, 4, 8, 3, 1, 1, true);
 INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(97 ,'server.name','WP450', 3, 4, 5, 3, 1, 1, true);
 INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(98 ,'server.port','8082', 3, 4, 6, 3, 1, 1, true);
-INSERT INTO parametervalue (id, code, label, environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(99 ,'tomcatdir','d:\\tomcat', 3, 4, 7, 3, 1, 1, true);
+INSERT INTO parametervalue (id, code, label,     environment_id,  trackingVersion_id, parameter_id, instance_id, application_id, version, active) VALUES(99 ,'tomcatdir','d:\\tomcat', 3, 4, 7, 3, 1, 1, true);

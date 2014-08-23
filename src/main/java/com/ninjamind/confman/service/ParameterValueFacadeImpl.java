@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -66,99 +67,16 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
     public List<ParameterValue> create(Long idVersion) {
         Preconditions.checkNotNull(idVersion);
 
-        Optional<TrackingVersion> referenceTrackingVersion = Optional.empty();
-        String newTrackingVersion = null;
-
         //We find the version in database
         ApplicationVersion version = applicationVersionRepository.getOne(idVersion);
         Application application = version.getApplication();
-        Preconditions.checkArgument(version != null, "idVersion not exist");
-        List<TrackingVersion> trackingVersions = trackingVersionRepository.findTrackingVersionByIdAppVersion(version.getId());
 
-        if (trackingVersions == null || trackingVersions.isEmpty()) {
-            //The version tracking is construct via the app version number
-            newTrackingVersion = trackingVersionFacade.createTrackingVersion(version.getCode());
-
-            List<ApplicationVersion> versions = applicationVersionRepository.findApplicationVersionByIdApp(application.getId());
-            referenceTrackingVersion = Optional.of(findLastTrackingVersionUsed(version, versions));
+        //Snapshot ?
+        if(version.getCode().toUpperCase().endsWith("SNAPSHOT")){
+            return createParametersForSnapshot(version, application);
         }
-        else {
-            //The old version is keep to calculate the new parameters values
-            referenceTrackingVersion = findLastTrackingVersion(trackingVersions);
-
-            //The tracking version is construct with the version
-            newTrackingVersion = trackingVersionFacade.incrementTrackingVersion(referenceTrackingVersion.orElseThrow(VersionException::new).getCode());
-        }
-
-        //create the tracking version
-        TrackingVersion trackingVersion = new TrackingVersion()
-                .setApplicationVersion(version)
-                .setCode(newTrackingVersion)
-                .setActive(true)
-                .setBlocked(false)
-                .setLabel("Linked to version " + version.getCode());
-
-        trackingVersionRepository.save(trackingVersion);
-
-        //If a reference tracking is find we search the param linked
-        LOG.info("If a reference tracking is find we search the param linked for id tracking " + referenceTrackingVersion.orElse(null));
-        Optional<List<ParameterValue>> parameterValuesRef =
-                referenceTrackingVersion.map(ref -> parameterValueRepository.findParameterValue(
-                        new PaginatedList<>().setNbElementByPage(PaginatedList.NB_MAX),
-                        new ParameterValueSearchBuilder().setIdTrackingVersion(ref.getId())));
-
-        int size = parameterValuesRef.orElse(new ArrayList<>()).size();
-        LOG.info(String.format("... %d elements find ", size));
-        List<ParameterValue> parameterValuesNew = new ArrayList<>(size);
-
-        //An application can be used on several environments
-        for (SoftwareSuiteEnvironment ssenv : application.getSoftwareSuite().getSoftwareSuiteEnvironments()) {
-            Environment env = ssenv.getId().getEnvironment();
-
-            //We create paramaters values associated to the application
-            for (Parameter param : application.getParameters()) {
-
-                //The parameter can be specific for an application
-                if (ParameterType.APPLICATION.equals(param.getType())) {
-                    parameterValuesNew
-                            .add(
-                                    createParameterValue(
-                                            parameterValuesRef,
-                                            trackingVersion,
-                                            new ParameterValue()
-                                                    .setCode(param.getCode())
-                                                    .setParameter(param)
-                                                    .setApplication(application)
-                                                    .setEnvironment(env)
-                                                    .setActive(true)
-                                    )
-                            );
-                }
-                else {
-                    //or be defined for each instance
-                    application
-                            .getInstances()
-                            .stream()
-                            .filter(i -> env.getId().equals(i.getEnvironment().getId()))
-                            .forEach(instance -> parameterValuesNew
-                                    .add(
-                                            createParameterValue(
-                                                    parameterValuesRef,
-                                                    trackingVersion,
-                                                    new ParameterValue()
-                                                            .setCode(param.getCode())
-                                                            .setParameter(param)
-                                                            .setApplication(application)
-                                                            .setEnvironment(env)
-                                                            .setInstance(instance)
-                                                            .setActive(true)
-                                            )
-                                    ));
-                }
-            }
-        }
-
-        return parameterValuesNew;
+        //or release ?
+        return createParametersForRelease(version, application);
     }
 
     @Override
@@ -194,13 +112,162 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
                     .forEach(p -> parameterValueRepositoryGeneric.delete(p));
 
             //Now we have to modify all the paramaters values
-            parameterValuesInDb
+            parameterValues
                     .stream()
-                    .filter(p -> !paramValueToDelete(parameterValues, p))
-                    .forEach(p -> parameterValueRepositoryGeneric.getOne(p.getId()).setLabel(p.getLabel()));
+                    .forEach(p -> parameterValueRepositoryGeneric.save(parameterValueRepositoryGeneric.getOne(p.getId()).setLabel(p.getLabel())));
         }
     }
 
+    /**
+     * For a snapshot the version is not locked and all the values can change
+     *
+     * @param version
+     * @param application
+     * @return
+     */
+    @VisibleForTesting
+    protected List<ParameterValue> createParametersForSnapshot(ApplicationVersion version, Application application) {
+        Preconditions.checkNotNull(version);
+        Preconditions.checkNotNull(application);
+
+        //Load the last version tracking linked to this snapshot
+        List<TrackingVersion> trackingVersions = trackingVersionRepository.findTrackingVersionByIdAppVersion(version.getId());
+        TrackingVersion trackingVersion = null;
+
+        //A new tracking version is only create if no one is present for the app version
+        if (trackingVersions == null || trackingVersions.isEmpty()) {
+            trackingVersion = new TrackingVersion()
+                    .setApplicationVersion(version)
+                    //For a snapshot the tracking version is the same than the app version
+                    .setCode(version.getCode())
+                    .setActive(true)
+                    .setLabel("Linked to version " + version.getCode());
+        } else {
+            //We keep the last
+            trackingVersion = trackingVersions
+                    .stream()
+                    .max(new Comparator<TrackingVersion>() {
+                        @Override
+                        public int compare(TrackingVersion o1, TrackingVersion o2) {
+                            return o1.getId().compareTo(o2.getId());
+                        }
+                    })
+                    .get();
+        }
+        trackingVersion.setBlocked(false);
+        trackingVersionRepository.save(trackingVersion);
+
+        //For a snapshot the reference version is itself
+        return createParametersValues(version, application, trackingVersion, Optional.of(trackingVersion));
+    }
+
+    /**
+     * For a release each change is tracked
+     *
+     * @param version
+     * @param application
+     * @return
+     */
+    @VisibleForTesting
+    protected List<ParameterValue> createParametersForRelease(ApplicationVersion version, Application application) {
+        Preconditions.checkNotNull(version);
+        Preconditions.checkNotNull(application);
+
+        Optional<TrackingVersion> referenceTrackingVersion = Optional.empty();
+        String newTrackingVersion = null;
+
+        Preconditions.checkArgument(version != null, "idVersion not exist");
+        List<TrackingVersion> trackingVersions = trackingVersionRepository.findTrackingVersionByIdAppVersion(version.getId());
+
+        if (trackingVersions == null || trackingVersions.isEmpty()) {
+            //The version tracking is construct via the app version number
+            newTrackingVersion = trackingVersionFacade.createTrackingVersion(version.getCode());
+
+            List<ApplicationVersion> versions = applicationVersionRepository.findApplicationVersionByIdApp(application.getId());
+            referenceTrackingVersion = Optional.of(findLastTrackingVersionUsed(version, versions));
+        } else {
+            //The old version is keep to calculate the new parameters values
+            referenceTrackingVersion = findLastTrackingVersion(trackingVersions);
+
+            //The tracking version is construct with the version
+            newTrackingVersion = trackingVersionFacade.incrementTrackingVersion(referenceTrackingVersion.orElseThrow(VersionException::new).getCode());
+        }
+
+        //create the tracking version
+        TrackingVersion trackingVersion = new TrackingVersion()
+                .setApplicationVersion(version)
+                .setCode(newTrackingVersion)
+                .setActive(true)
+                .setBlocked(false)
+                .setLabel("Linked to version " + version.getCode());
+
+        trackingVersionRepository.save(trackingVersion);
+
+        return createParametersValues(version, application, trackingVersion, referenceTrackingVersion);
+    }
+
+
+    @VisibleForTesting
+    protected List<ParameterValue> createParametersValues(ApplicationVersion version, Application application, TrackingVersion trackingVersion, Optional<TrackingVersion> referenceTrackingVersion) {
+        //If a reference tracking is find we search the param linked
+        LOG.info("If a reference tracking is find we search the param linked for id tracking " + referenceTrackingVersion.orElse(null));
+        Optional<List<ParameterValue>> parameterValuesRef =
+                referenceTrackingVersion.map(ref -> parameterValueRepository.findParameterValue(
+                        new PaginatedList<>().setNbElementByPage(PaginatedList.NB_MAX),
+                        new ParameterValueSearchBuilder().setIdTrackingVersion(ref.getId())));
+
+        int size = parameterValuesRef.orElse(new ArrayList<ParameterValue>()).size();
+        LOG.info(String.format("... %d elements find ", size));
+        List<ParameterValue> parameterValuesNew = new ArrayList<>(size);
+
+        //An application can be used on several environments
+        for (SoftwareSuiteEnvironment ssenv : application.getSoftwareSuite().getSoftwareSuiteEnvironments()) {
+            Environment env = ssenv.getId().getEnvironment();
+
+            //We create paramaters values associated to the application
+            for (Parameter param : application.getParameters()) {
+
+                //The parameter can be specific for an application
+                if (ParameterType.APPLICATION.equals(param.getType())) {
+                    parameterValuesNew
+                            .add(
+                                    createParameterValue(
+                                            parameterValuesRef,
+                                            trackingVersion,
+                                            new ParameterValue()
+                                                    .setCode(param.getCode())
+                                                    .setParameter(param)
+                                                    .setApplication(application)
+                                                    .setEnvironment(env)
+                                                    .setActive(true)
+                                    )
+                            );
+                } else {
+                    //or be defined for each instance
+                    application
+                            .getInstances()
+                            .stream()
+                            .filter(i -> env.getId().equals(i.getEnvironment().getId()))
+                            .forEach(instance -> parameterValuesNew
+                                    .add(
+                                            createParameterValue(
+                                                    parameterValuesRef,
+                                                    trackingVersion,
+                                                    new ParameterValue()
+                                                            .setCode(param.getCode())
+                                                            .setParameter(param)
+                                                            .setApplication(application)
+                                                            .setEnvironment(env)
+                                                            .setInstance(instance)
+                                                            .setActive(true)
+                                            )
+                                    ));
+                }
+            }
+        }
+
+        return parameterValuesNew;
+    }
     /**
      * Create a new parameter value
      *
@@ -259,9 +326,9 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
         Preconditions.checkNotNull(parameterValues);
         Preconditions.checkNotNull(parameterValueDb);
 
-        return parameterValues
+        return !parameterValues
                 .stream()
-                .filter(p -> p.getId().equals(parameterValueDb))
+                .filter(p -> p.getId().equals(parameterValueDb.getId()))
                 .findFirst()
                 .isPresent();
     }

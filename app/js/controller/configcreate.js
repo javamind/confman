@@ -12,6 +12,7 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
     };
     $scope.criteria = {};
     $scope.applications = Application.query();
+    $scope.envSelected = {};
 
     $scope.changeApplication = function () {
         if ($scope.criteria.idApplication > 0) {
@@ -60,7 +61,7 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
                             $scope.versionTrackiCode = $scope.parameters[0].codeTrackingVersion;
                             $scope.versionTrackiId = $scope.parameters[0].idTrackingVersion;
                             if ($scope.environments.length > 0) {
-                                $scope.onTabSelected($scope.environments[0]);
+                                $scope.onTabSelected($scope.environments[0],0);
                             }
                             else {
                                 $scope.envparameters = $scope.parameters;
@@ -106,8 +107,7 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
                         .post(constants.urlserver + '/parametervalue/search', {nbEltPerPage : 99999, idTrackingVersion: $scope.versionTrackiId})
                         .success(function (datas) {
                             $scope.parameters = datas.list;
-                            $scope.onTabSelected($scope.environments[0]);
-                            $scope.selectedIndex = 0;
+                            $scope.onTabSelected($scope.environments[0], 0);
                             $scope.callbackOK();
                         })
                         .error(function (datas) {
@@ -120,8 +120,14 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
         }
     }
 
-    $scope.onTabSelected = function(env) {
+    $scope.onTabSelected = function(env, index) {
+        $scope.envSelected = env;
+        //$('#myTab a[href="#tab' + env.code + '"]').tab('show')
+
         if($scope.parameters) {
+            if(index){
+                $scope.selectedIndex = index;
+            }
             $scope.envparameters = $scope.parameters.filter(function (elt) {
                 if (elt.codeEnvironment === env.code) {
                     return true;
@@ -130,5 +136,10 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
         }
     }
 
-
+    $scope.classTabSelected = function(env) {
+        if($scope.envSelected.code===env.code) {
+            return 'active confman-tab-pane';
+        }
+        return '';
+    }
 });

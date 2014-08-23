@@ -3,7 +3,7 @@
         A new configuration is created from an application version number. <b>Confman</b> display
         a form with the last known values (last version tracking for the actual application
         version number). You can change every parameters values but you won't be able to change
-        them after the saving. We choose this policy because all the changes have to be followed.
+        them after the saving (expect for SNAPSHOT version). We choose this policy because all the changes have to be followed.
     </div>
     <div class="confman-error" ng-show="error">
         Error : {{error.message}}
@@ -50,13 +50,16 @@
                 parameter value won't be able to change
             </div>
         </div>
-        <material-tabs selected="selectedIndex" noink ng-show="environments">
-            <material-tab label="{{env.code}} - {{env.label}}" ng-repeat="env in environments"
-                          on-select="onTabSelected(env)"></material-tab>
-        </material-tabs>
 
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTab" ng-show="versionTrackiCode">
+            <li ng-repeat="env in environments" id="#tab{{env.code}}" ng-class="classTabSelected(env)">
+                <a role="tab" data-toggle="tab" ng-click="onTabSelected(env)">{{env.code}} - {{env.label}}</a>
+            </li>
+        </ul>
         <material-list>
-            <material-item ng-repeat="param in envparameters | orderBy:['codeInstance', 'code']" ng-class="setClassError(param.toDelete)">
+            <material-item ng-repeat="param in envparameters | orderBy:['codeInstance', 'code']"
+                           ng-class="setClassError(param.toDelete)">
                 <div class="material-tile-left">
                     <div class="confman-list-param-app" ng-hide="param.codeInstance">APP</div>
                     <div class="confman-list-param-instance" ng-show="param.codeInstance">INS</div>
@@ -88,11 +91,12 @@
                 </div>
                 <div class="material-tile-right">
                     <material-checkbox ng-hide="lockVersion">
-                        <input type="checkbox" ng-model="param.toDelete" >
+                        <input type="checkbox" ng-model="param.toDelete">
                     </material-checkbox>
                 </div>
             </material-item>
         </material-list>
+
 
         <div class="modal-footer confman-btn" ng-show="versionTrackiCode">
             <button class="btn btn-primary" ng-click="saveParametersValues()" ng-hide="lockVersion">
@@ -112,8 +116,8 @@
     <div class="modal-body">
         Are you sure you want to create a new version tracking for the app version {{appVersion}} ?
     </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="ok()">
+    <div class="modal-footer confman-btn">
+    <button class="btn btn-primary" ng-click="ok()">
             <img ng-src="img/icon/{{icon}}" title="Create"/>
         </button>
         <button class="btn btn-default" ng-click="cancel()">

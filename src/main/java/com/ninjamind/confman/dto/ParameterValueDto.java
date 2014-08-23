@@ -57,6 +57,7 @@ public class ParameterValueDto extends AbstractConfManDto {
                 .setOldvalue(oldValue)
                 .setVersion(getVersion())
                 .setActive(isActive())
+                .setEnvironment(new Environment().setId(idEnvironment))
                 .setParameter(new Parameter().setId(idParameter))
                 .setApplication(new Application().setId(idApplication))
                 .setTrackingVersion(new TrackingVersion().setId(idTrackingVersion));
@@ -72,6 +73,7 @@ public class ParameterValueDto extends AbstractConfManDto {
                 .setActive(Converter.convert(map.get("active"), Boolean.class))
                 .setParameter(new Parameter().setId(Converter.convertId(map.get("idParameter"))))
                 .setApplication(new Application().setId(Converter.convertId(map.get("idApplication"))))
+                .setEnvironment(new Environment().setId(Converter.convertId(map.get("idEnvironment"))))
                 .setTrackingVersion(new TrackingVersion().setId(Converter.convertId(map.get("idTrackingVersion"))));
     }
 

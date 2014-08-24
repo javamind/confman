@@ -6,6 +6,7 @@ angular.module('confman').controller('configCompareCtrl', function ($rootScope, 
 
     //Page definition
     $rootScope.currentPage = {
+        code: 'confcomp',
         name: 'Configurations',
         description: 'Compare two configurations',
         icon: 'ic_settings_24px'

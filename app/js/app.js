@@ -52,6 +52,17 @@ confman.controller('AppCtrl', function($scope, $timeout, $materialSidenav) {
     $scope.close = function() {
         leftNav.close();
     };
+    $scope.isConfmanPageSelected = function(pages) {
+        if($scope.currentPage) {
+            if(pages.filter(function(elt){
+                if ($scope.currentPage.code === elt) {
+                    return true;
+                }
+            }).length>0)
+                return true;
+        }
+        return false;
+    };
 });
 
 /**

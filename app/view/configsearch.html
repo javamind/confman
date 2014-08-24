@@ -1,4 +1,5 @@
 <material-content style="top:128px" ng-controller="configSearchCtrl">
+    <div class="container-fluid">
     <h4>Criteria</h4>
     <div class="confman-error" ng-show="error">
         Error : {{error.message}}
@@ -101,5 +102,6 @@
             <li ng-class="pageActive(pageElt)" ng-repeat="pageElt in pageSelector"><a ng-click="filter(pageElt)">{{pageElt}}</a></li>
             <li ng-hide="pageSelectorNext===page"><a ng-click="filter(page+1)"><span class="glyphicon glyphicon-forward"></span></a></li>
         </ul>
+    </div>
     </div>
 </material-content>

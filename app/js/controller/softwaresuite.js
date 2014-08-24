@@ -6,6 +6,7 @@ angular.module('confman').controller('softwaresuiteCtrl', function ($rootScope, 
 
     //Page definition
     $rootScope.currentPage = {
+        code: 'soft',
         name : 'Software Suite',
         description : 'In a complex context you have often a set of of software',
         icon : 'ic_settings_24px'

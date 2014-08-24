@@ -11,78 +11,78 @@
     <!--<link rel="stylesheet" href="styles/grid.css"/>-->
     <link rel="shortcut icon" href="img/favicon.ico"/>
 </head>
-<body>
-<div ng-controller="AppCtrl">
-    <material-sidenav class="material-sidenav-left material-whiteframe-z3" component-id="left">
+<body ng-controller="AppCtrl" layout="horizontal">
 
-        <material-toolbar class="material-theme-light">
-            <button class="material-button" ng-click="close()"><img src="img/icon/ic_arrow_drop_down_circle_48px.svg"
-                                                                    width="24" height="24"/></button>
-            <div class="menu-title material-theme-light">
-                <img src="img/icone64.png"/>
 
-                <h2>&nbsp;Confman</h2>
-                <small>your app's parameter management is now easy</small>
-            </div>
-        </material-toolbar>
-        <material-content class="menu-content">
-            <p>
-                <a href="/" ng-click="toggleLeft()"><img src="img/icon/ic_home_48px.svg" width="24" height="24"></a>
-            </p>
+<material-sidenav class="material-sidenav-left material-whiteframe-z3 " component-id="left">
 
-            <p>
-                <b>Settings</b><br/>
-                <a href="#/environment" ng-click="toggleLeft()">Environment</a><br/>
-                <a href="#/softwaresuite" ng-click="toggleLeft()">Software suite</a><br/>
-                <a href="#/application" ng-click="toggleLeft()">Application</a><br/>
-            </p>
-            <p>
-                <b>Configuration</b><br/>
-                <a href="#/config/search" ng-click="toggleLeft()">Find</a><br/>
-                <a href="#/config/create" ng-click="toggleLeft()">Create</a><br/>
-                <a href="#/config/compare" ng-click="toggleLeft()">Compare</a><br/>
-            </p>
-        </material-content>
-    </material-sidenav>
+    <material-toolbar class="material-theme-light">
+        <div class="confman-menu-title material-theme-light">
+            <img src="img/icone64.png"/>
 
-    <div class="sidenav-content material-whiteframe-z2">
-        <material-toolbar class="material-theme-light">
-            <div class="material-toolbar-tools">
-                <button class="material-button" ng-click="toggleLeft()"><img src="img/icon/ic_menu_48px.svg" width="24"
-                                                                             height="24"/></button>
+            <h2>&nbsp;Confman</h2>
+        </div>
+    </material-toolbar>
 
-                <span ng-bind="currentPage.name || 'Confman'" style="margin-left: 9px"></span>
+    <material-content  flex>
+        <p>&nbsp;</p>
+        <a class="menu-item menu-title" href="/" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['home'])}">Home</a>
 
-                <div class="material-display-flex material-flex menu_toolbox">
-                    <!-- use up the third space so the button is on the right -->
-                </div>
+        <button class="menu-item menu-title" ng-class="{active : isConfmanPageSelected(['env','soft','app'])}">Settings</button>
+        <a class="menu-item menu-sub-item" href="#/environment" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['env'])}">
+            <span>Environment</span>
 
-                <button class="material-button " style="position: static; display: block;"
-                        ng-show="currentPage.actionbar"
-                        ng-repeat="act in currentPage.actionbar" ng-click="act.action()">
-                    <img ng-src="/img/icon/{{act.icon}}.svg" style="width: 24px; height: 24px;"/>
-                </button>
-            </div>
-        </material-toolbar>
-        <material-toolbar id="header-bar" class="material-theme-grey" scroll-header condensed-height="60"
-                          ng-show="currentPage.description">
-            <div class="material-toolbar-tools material-toolbar-tools-top">
-                <span class="material-flex"></span>
-            </div>
-            <div class="material-toolbar-tools material-toolbar-tools-bottom">
-                <span class="material-flex material-indent"><small>{{currentPage.description}}</small></span>
+        </a>
+        <a class="menu-item menu-sub-item" href="#/softwaresuite" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['soft'])}">Software suite</a>
+        <a class="menu-item menu-sub-item" href="#/application" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['app'])}">Application</a>
+
+        <button class="menu-item menu-title" ng-class="{active : isConfmanPageSelected(['confcreate','confcomp','confsearch'])}">Configuration</button>
+           <a class="menu-item menu-sub-item" href="#/config/search" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['confsearch'])}">Find</a>
+            <a class="menu-item menu-sub-item" href="#/config/create" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['confcreate'])}">Create</a>
+            <a class="menu-item menu-sub-item" href="#/config/compare" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['confcomp'])}">Compare</a>
+
+    </material-content>
+</material-sidenav>
+
+<div layout="vertical" layout-fill>
+    <material-toolbar class="material-theme-light">
+        <div class="material-toolbar-tools">
+            <div class="menu-icon" ng-click="toggleLeft()" hide-md>
+                <material-icon icon="img/icon/ic_menu_24px.svg"></material-icon>
             </div>
 
-            <button class="material-button material-button-fab material-button-fab-bottom-right material-theme-yellow">
-                <img ng-src="img/icon/{{currentPage.icon}}.svg"/>
+            <span ng-bind="currentPage.name || 'Confman'" style="margin-left: 9px"></span>
+
+            <div class="material-display-flex material-flex menu_toolbox">
+                <!-- use up the third space so the button is on the right -->
+            </div>
+
+            <button class="material-button " style="position: static; display: block;"
+                    ng-show="currentPage.actionbar"
+                    ng-repeat="act in currentPage.actionbar" ng-click="act.action()">
+                <img ng-src="/img/icon/{{act.icon}}.svg" style="width: 24px; height: 24px;"/>
             </button>
+        </div>
+    </material-toolbar>
+    <material-toolbar class="material-theme-grey" scroll-header condensed-height="60"
+                      ng-show="currentPage.description">
 
-        </material-toolbar>
+        <div class="material-toolbar-tools material-toolbar-tools-bottom">
+            <span class="material-flex material-indent"><small>{{currentPage.description}}</small></span>
+        </div>
 
-        <ng-view class="sliding-view">
+        <material-button class="material-button-fab material-button-fab-bottom-right material-theme-yellow">
+            <!--<material-icon icon="img/icon/{{currentPage.icon}}.svg" style="width: 24px;height: 24px"/>
+             en attente correction bug dans material -->
+            <img src="img/icon/{{currentPage.icon}}.svg" style="width: 24px;height: 24px"/>
+        </material-button>
 
-        </ng-view>
-    </div>
+
+    </material-toolbar>
+
+    <ng-view class="sliding-view">
+
+    </ng-view>
 </div>
 
 <script type="text/ng-template" id="modalConfirmDelete.html">

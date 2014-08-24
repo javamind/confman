@@ -2,6 +2,7 @@
 
 angular.module('confman').controller('MainCtrl', function ($rootScope, $scope, $http, constants) {
     $rootScope.currentPage = {
+        code: 'home',
         name : "Welcome in Confman",
         actionbar : []
     };

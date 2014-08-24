@@ -6,6 +6,7 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
 
     //Page definition
     $rootScope.currentPage = {
+        code: 'confcreate',
         name: 'Configurations',
         description: 'Create new configuration',
         icon: 'ic_satellite_24px'

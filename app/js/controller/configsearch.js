@@ -6,6 +6,7 @@ angular.module('confman').controller('configSearchCtrl', function ($rootScope, $
 
     //Page definition
     $rootScope.currentPage = {
+        code: 'confsearch',
         name: 'Configurations',
         description: 'Search configuration and wath parameters values',
         icon: 'ic_satellite_24px'

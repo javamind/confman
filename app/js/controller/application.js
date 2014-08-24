@@ -6,6 +6,7 @@ angular.module('confman').controller('applicationCtrl', function ($rootScope, $s
 
     //Page definition
     $rootScope.currentPage = {
+        code: 'app',
         name: 'Applications',
         description: 'List of yours apps',
         icon: 'ic_settings_24px'
@@ -28,6 +29,7 @@ angular.module('confman').controller('applicationDetailCtrl', function ($rootSco
 
     //Page definition
     $rootScope.currentPage = {
+        code: 'app',
         name: 'Application',
         description: $routeParams.id > 0 ? 'Update Application' : 'Create new application',
         icon: 'ic_settings_24px',

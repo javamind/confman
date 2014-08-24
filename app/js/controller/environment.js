@@ -7,6 +7,7 @@ angular.module('confman').controller('environmentCtrl', function ($rootScope, $s
 
     //Page definition
     $rootScope.currentPage = {
+        code: 'env',
         name : 'Environment',
         description : 'You can use several environments to offer different context for developers, testers, the final users... ' +
             'For example you can have development, staging, production...',

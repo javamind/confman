@@ -1,1 +1,54 @@
-compare config
+<material-content style="top:128px " ng-controller="configCompareCtrl">
+    <div class="container-fluid">
+        <br>
+        <div class="confman-error" ng-show="error">
+            Error : {{error.message}}
+        </div>
+        <form class="form confman-form" name="form" novalidate>
+            <div class="container-fluid thumbnail" ng-hide="lockVersion">
+                <div class="row">
+                    <div class="col-md-1">
+                        <label for="data-application">&nbsp;Application</label>
+                    </div>
+                    <div class="col-md-3">
+                        <select id="data-application" ng-model="criteria.idApplication" class="form-control" required
+                                ng-change="changeApplication()" name="application"
+                                ng-options="application.id as application.code for application in applications">
+                            <option value="">Application</option>
+                        </select>
+                        <span ng-show="form.application.$error.required">Application is required</span>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="data-tracking">&nbsp;Versions</label>
+                    </div>
+                    <div class="col-md-3">
+                        <select id="data-tracking" ng-model="criteria.idApplicationVersion" class="form-control"
+                                required
+                                name="applicationVersion"
+                                ng-options="applicationVersion.id as applicationVersion.code for applicationVersion in applicationVersions">
+                            <option value="">Versions</option>
+                        </select>
+                        <span ng-show="form.applicationVersion.$error.required">application version is required</span>
+                    </div>
+                    <div class="col-md-3">
+                        <select id="data-tracking" ng-model="criteria.idApplicationVersion" class="form-control"
+                                required
+                                name="applicationVersion"
+                                ng-options="applicationVersion.id as applicationVersion.code for applicationVersion in applicationVersions">
+                            <option value="">Versions</option>
+                        </select>
+                        <span ng-show="form.applicationVersion.$error.required">application version is required</span>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="confman-btn">
+                            <button class="btn btn-primary" ng-click="createParametersValues()"
+                                    ng-disabled="form.$invalid">
+                                <img src="../img/icon/ic_developer_mode_tv_24px.svg" title="Create"/>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</material-content>

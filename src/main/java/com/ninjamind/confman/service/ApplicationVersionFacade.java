@@ -19,4 +19,6 @@ public interface ApplicationVersionFacade<T, ID extends Serializable> extends Ge
      * @return
      */
     boolean checkVersionNumber(String number);
+
+
 }

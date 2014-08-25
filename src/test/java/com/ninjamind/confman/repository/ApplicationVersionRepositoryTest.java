@@ -54,11 +54,11 @@ public class ApplicationVersionRepositoryTest {
 
     @Test
     public void shouldNotFindApplicationVersionByCodeWhenCodeIsNull() {
-        assertThat(applicationtVersionRepository.findApplicationVersionByCode(null)).isNull();
+        assertThat(applicationtVersionRepository.findApplicationVersionByCode(null, null)).isNull();
     }
 
     @Test
     public void shouldFindApplicationVersionByCode() {
-        assertThat(applicationtVersionRepository.findApplicationVersionByCode("1.0.0").getLabel()).isEqualTo("app version");
+        assertThat(applicationtVersionRepository.findApplicationVersionByCode("CFM", "1.0.0").getLabel()).isEqualTo("app version");
     }
 }

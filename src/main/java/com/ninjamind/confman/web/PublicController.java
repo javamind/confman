@@ -1,8 +1,12 @@
 package com.ninjamind.confman.web;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
+import com.ninjamind.confman.domain.ParameterValue;
 import com.ninjamind.confman.dto.ParameterValueDto;
+import com.ninjamind.confman.service.ParameterValueFacade;
 import net.codestory.http.annotations.Get;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -13,18 +17,16 @@ import java.util.List;
  */
 public class PublicController {
 
+    @Autowired
+    private ParameterValueFacade<ParameterValue, Long> parameterValueFacade;
 
-    @Get("/confman/params/:version")
-    public List<ParameterValueDto> getByVersion(String version) {
-       Preconditions.checkNotNull(version, "version is required");
-
-       return null;
+    @Get("/confman/params/:codeApp/version/:version")
+    public List<ParameterValueDto> getByVersion(String codeApp, String version) {
+       return Lists.transform(parameterValueFacade.findParamatersByCodeVersion(codeApp, version), p -> new ParameterValueDto(p));
     }
 
-    @Get("/confman/params/:version/env/:env")
-    public List<ParameterValueDto> getByVersionAndEnv(String version, String env) {
-        Preconditions.checkNotNull(version, "version is required");
-        Preconditions.checkNotNull(env, "environnement is required");
-        return null;
+    @Get("/confman/params/:codeApp/version/:version/env/:env")
+    public List<ParameterValueDto> getByVersionAndEnv(String codeApp, String version, String env) {
+        return Lists.transform(parameterValueFacade.findParamatersByCodeVersionAndEnv(codeApp, version, env), p -> new ParameterValueDto(p));
     }
 }

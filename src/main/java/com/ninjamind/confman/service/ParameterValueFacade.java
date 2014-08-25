@@ -35,4 +35,23 @@ public interface ParameterValueFacade<T, ID extends Serializable> extends Generi
      * @return
      */
     void update(List<ParameterValue> parameterValues);
+
+    /**
+     * Find the parameter linked to this version
+     * @param codeApp
+     * @param codeVersion
+     * @return
+     * @throws com.ninjamind.confman.exception.VersionException
+     */
+    List<ParameterValue> findParamatersByCodeVersion(String codeApp,String codeVersion);
+
+    /**
+     * Find the parameter linked to this version
+     * @param codeVersion
+     * @param codeApp
+     * @param env
+     * @return
+     * @throws com.ninjamind.confman.exception.VersionException, com.ninjamind.confman.exception.VersionTrackingException
+     */
+    List<ParameterValue> findParamatersByCodeVersionAndEnv(String codeApp, String codeVersion, String env);
 }

@@ -45,7 +45,7 @@ CREATE TABLE application
   softwaresuite_id integer REFERENCES softwaresuite (id),
   version integer,
   active boolean,
-  CONSTRAINT application_unique_key UNIQUE (code, softwaresuite_id)
+  CONSTRAINT application_unique_key UNIQUE (code)
 )
 WITH (
   OIDS=FALSE

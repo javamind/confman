@@ -6,10 +6,8 @@ import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import com.ninjamind.confman.domain.*;
 import com.ninjamind.confman.exception.VersionException;
-import com.ninjamind.confman.repository.ApplicationtVersionRepository;
-import com.ninjamind.confman.repository.ParameterValueRepository;
-import com.ninjamind.confman.repository.ParameterValueSearchBuilder;
-import com.ninjamind.confman.repository.TrackingVersionRepository;
+import com.ninjamind.confman.exception.VersionTrackingException;
+import com.ninjamind.confman.repository.*;
 import com.ninjamind.confman.utils.LoggerFactory;
 import net.codestory.http.errors.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -40,6 +37,8 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
     private TrackingVersionRepository trackingVersionRepository;
     @Autowired
     private ApplicationtVersionRepository applicationVersionRepository;
+    @Autowired
+    private EnvironmentRepository environmentRepository;
     @Autowired
     private JpaRepository<ParameterValue, Long> parameterValueRepositoryGeneric;
 
@@ -146,12 +145,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
             //We keep the last
             trackingVersion = trackingVersions
                     .stream()
-                    .max(new Comparator<TrackingVersion>() {
-                        @Override
-                        public int compare(TrackingVersion o1, TrackingVersion o2) {
-                            return o1.getId().compareTo(o2.getId());
-                        }
-                    })
+                    .max((o1, o2) -> o1.getId().compareTo(o2.getId()))
                     .get();
         }
         trackingVersion.setBlocked(false);
@@ -366,4 +360,50 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
     }
 
 
+    @Override
+    public List<ParameterValue> findParamatersByCodeVersion(String codeApp, String codeVersion) {
+        return findParameters(codeApp, codeVersion, null);
+    }
+
+    @Override
+    public List<ParameterValue> findParamatersByCodeVersionAndEnv(String codeApp, String codeVersion, String env) {
+        Preconditions.checkNotNull(env, "environnement is required");
+        return findParameters(codeApp, codeVersion, env);
+    }
+
+    /***
+     * Load the parameters value
+     * @param codeVersion
+     * @param env
+     * @return
+     */
+    @VisibleForTesting
+    protected List<ParameterValue> findParameters(String codeApp, String codeVersion, String env){
+        Preconditions.checkNotNull(codeApp, "application is required");
+        Preconditions.checkNotNull(codeVersion, "version is required");
+
+        ApplicationVersion version = applicationVersionRepository.findApplicationVersionByCode(codeApp, codeVersion);
+        if(version==null){
+            throw new VersionException(String.format("the version %s don't exist", codeVersion));
+        }
+
+        if(version.getTrackingVersions()==null || version.getTrackingVersions().isEmpty()){
+            throw new VersionTrackingException(String.format("You have to create a tracking version in Confman for the app version %s", codeVersion));
+        }
+
+        //We keep the last tracking version if one exist
+        ParameterValueSearchBuilder criteria = new ParameterValueSearchBuilder().setIdTrackingVersion(
+                version.getTrackingVersions().stream().max((v1, v2) -> Long.compare(v1.getId(), v2.getId())).get().getId()
+        );
+
+        if(env!=null){
+            Environment environment = environmentRepository.findEnvironmentByCode(env);
+            if(environment==null){
+                throw new VersionException(String.format("the environment %s don't exist", env));
+            }
+            criteria.setIdEnvironment(environment.getId());
+        }
+
+        return parameterValueRepository.findParameterValue(new PaginatedList<>().setNbElementByPage(PaginatedList.NB_MAX), criteria);
+    }
 }

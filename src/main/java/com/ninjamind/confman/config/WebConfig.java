@@ -51,4 +51,9 @@ public class WebConfig {
     public ParameterValueController parameterValueController(){
         return new ParameterValueController();
     }
+
+    @Bean
+    public PublicController publicController() {
+        return new PublicController();
+    }
 }

@@ -16,4 +16,7 @@ public interface ApplicationtVersionRepository extends JpaRepository<Application
     @Query(value = "SELECT s FROM ApplicationVersion s WHERE s.application.id = :id order by s.code")
     List<ApplicationVersion> findApplicationVersionByIdApp(@Param("id") Long id);
 
+    @Query(value = "SELECT v FROM ApplicationVersion v WHERE v.code = :code")
+    ApplicationVersion findApplicationVersionByCode(@Param("code") String code);
+
 }

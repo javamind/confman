@@ -52,4 +52,13 @@ public class ApplicationVersionRepositoryTest {
         assertThat(applicationtVersionRepository.findApplicationVersionByIdApp(1L)).hasSize(1).extracting("code").containsExactly("1.0.0");
     }
 
+    @Test
+    public void shouldNotFindApplicationVersionByCodeWhenCodeIsNull() {
+        assertThat(applicationtVersionRepository.findApplicationVersionByCode(null)).isNull();
+    }
+
+    @Test
+    public void shouldFindApplicationVersionByCode() {
+        assertThat(applicationtVersionRepository.findApplicationVersionByCode("1.0.0").getLabel()).isEqualTo("app version");
+    }
 }

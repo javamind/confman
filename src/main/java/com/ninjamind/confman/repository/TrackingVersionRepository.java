@@ -1,6 +1,5 @@
 package com.ninjamind.confman.repository;
 
-import com.ninjamind.confman.domain.Parameter;
 import com.ninjamind.confman.domain.TrackingVersion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

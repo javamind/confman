@@ -1,14 +1,10 @@
 package com.ninjamind.confman.web;
 
-import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
-import com.ninjamind.confman.domain.Instance;
 import com.ninjamind.confman.domain.PaginatedList;
 import com.ninjamind.confman.domain.ParameterValue;
-import com.ninjamind.confman.domain.TrackingVersion;
 import com.ninjamind.confman.dto.*;
-import com.ninjamind.confman.service.GenericFacade;
 import com.ninjamind.confman.service.ParameterValueFacade;
 import net.codestory.http.annotations.Delete;
 import net.codestory.http.annotations.Get;
@@ -63,9 +59,10 @@ public class ParameterValueController {
         parameterValueFacade.update(
                 parameters
                         .stream()
-                        .filter(p -> !(Boolean)p.get("toDelete"))
+                        .filter(p -> !(Boolean) p.get("toDelete"))
                         .map(p -> ParameterValueDto.toParameterValue(p))
-                        .collect(Collectors.toList()));
+                        .collect(Collectors.toList())
+        );
         return Payload.created();
     }
 

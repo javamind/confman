@@ -1,6 +1,5 @@
 package com.ninjamind.confman.repository;
 
-import com.ninjamind.confman.domain.Application;
 import com.ninjamind.confman.domain.Environment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,4 +16,7 @@ public interface EnvironmentRepository extends JpaRepository<Environment, Long> 
 
     @Query(value = "SELECT e FROM Environment e  left join fetch e.softwareSuiteEnvironments se left join fetch se.id.softwareSuite s left join fetch s.applications a WHERE a.id = :id")
     List<Environment> findEnvironmentByIdApp(@Param("id") Long id);
+
+    @Query(value = "SELECT e FROM Environment e WHERE lower(e.code) = :code or upper(e.code) = :code")
+    Environment findEnvironmentByCode(@Param("code") String code);
 }

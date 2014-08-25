@@ -24,7 +24,7 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 /**
- * {@link com.ninjamind.confman.service.ParameterValueFacade}
+ * {@link ParameterValueFacade}
  *
  * @author EHRET_G
  */

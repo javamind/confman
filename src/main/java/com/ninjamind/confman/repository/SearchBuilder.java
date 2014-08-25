@@ -1,8 +1,5 @@
 package com.ninjamind.confman.repository;
 
-import com.google.common.base.Strings;
-import org.springframework.stereotype.Repository;
-
 import javax.persistence.Query;
 
 /**

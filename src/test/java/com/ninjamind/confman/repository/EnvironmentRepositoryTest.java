@@ -59,4 +59,14 @@ public class EnvironmentRepositoryTest {
     public void shouldFindEnvironmentByIdApp() {
         assertThat(environmentRepository.findEnvironmentByIdApp(1L)).extracting("code").containsExactly("dev");
     }
+
+    @Test
+    public void shouldNotFindEnvironmentByCodeWhenCodeIsNull() {
+        assertThat(environmentRepository.findEnvironmentByCode(null)).isNull();
+    }
+
+    @Test
+    public void shouldFindEnvironmentByCode() {
+        assertThat(environmentRepository.findEnvironmentByCode("DEV").getCode()).isEqualTo("dev");
+    }
 }

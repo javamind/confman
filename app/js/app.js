@@ -68,7 +68,7 @@ confman.controller('AppCtrl', function($scope, $timeout, $materialSidenav) {
 /**
  * Commons callback
  */
-confman.run(function ($rootScope) {
+confman.run(function ($rootScope, translations) {
     $rootScope.callbackOK = function(){
         $rootScope.error=null;
     };
@@ -95,7 +95,10 @@ confman.run(function ($rootScope) {
         }
         return ''
     };
+
+    $rootScope.getI18n = function(key){
+        return translations[key];
+    };
+
 })
-
-
 

@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author EHRET_G
  */
-public class PublicController {
+public class ApiPublicController {
 
     @Autowired
     private ParameterValueFacade<ParameterValue, Long> parameterValueFacade;

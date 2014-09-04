@@ -53,7 +53,7 @@ public class WebConfig {
     }
 
     @Bean
-    public PublicController publicController() {
-        return new PublicController();
+    public ApiPublicController publicController() {
+        return new ApiPublicController();
     }
 }

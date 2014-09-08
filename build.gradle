@@ -77,10 +77,6 @@ processTestResources {
     ]
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.11'
-}
-
 sonar {
     server {
         url = "http://localhost:9000"
@@ -92,3 +88,9 @@ sonar {
         password = "sonar"
     }
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.1'
+}
+
+

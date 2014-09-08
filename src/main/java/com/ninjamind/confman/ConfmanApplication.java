@@ -9,7 +9,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 /**
  * Lanceur de l'application web
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class ConfmanApplication {
 

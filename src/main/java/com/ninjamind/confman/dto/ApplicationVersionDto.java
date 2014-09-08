@@ -5,7 +5,7 @@ import com.ninjamind.confman.domain.ApplicationVersion;
 /**
  * {@link com.ninjamind.confman.domain.ApplicationVersion}
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class ApplicationVersionDto extends AbstractConfManDto {
 

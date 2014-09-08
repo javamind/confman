@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * {@link }
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 @Service("parameterGroupmentFacade")
 @Transactional

@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * An application can be installed on several servers
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 @Entity
 @Table(name=Instance.TABLE_NAME)

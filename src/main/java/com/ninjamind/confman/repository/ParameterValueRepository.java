@@ -7,7 +7,7 @@ import org.springframework.data.repository.Repository;
 /**
  * Repository associé au {@link com.ninjamind.confman.domain.Application}
  *
- * @author ehret_g
+ * @author Guillaume EHRET
  */
 public interface ParameterValueRepository extends Repository<ParameterValue, Long> {
 

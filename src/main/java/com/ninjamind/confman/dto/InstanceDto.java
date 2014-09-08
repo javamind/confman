@@ -7,7 +7,7 @@ import com.ninjamind.confman.domain.Instance;
 /**
  * {@link com.ninjamind.confman.domain.Instance}
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class InstanceDto extends AbstractConfManDto {
     private Long idApplication;

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * {@link com.ninjamind.confman.domain.ParameterValue}
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public interface ParameterValueFacade<T, ID extends Serializable> extends GenericFacade<T, ID> {
     /**

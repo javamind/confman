@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * To respond to a user's demand you often need to install several applications
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 @Entity
 @Table(name= SoftwareSuite.TABLE_NAME)

@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Test of {@link ParameterValueRepositoryImpl}
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 @ContextConfiguration(classes = {PersistenceConfig.class})
 @RunWith(SpringJUnit4ClassRunner.class)

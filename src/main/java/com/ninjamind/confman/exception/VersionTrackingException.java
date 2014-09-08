@@ -3,7 +3,7 @@ package com.ninjamind.confman.exception;
 /**
  * {@link }
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class VersionTrackingException extends RuntimeException{
     public VersionTrackingException() {

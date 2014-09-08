@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * {@link com.ninjamind.confman.domain.Application}
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class ApplicationDto extends AbstractConfManDto {
     private Long idSoftwareSuite;

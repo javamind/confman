@@ -2,7 +2,7 @@
 /**
  * Controller linked to the env list
  */
-angular.module('confman').controller('configCreateCtrl', function ($rootScope, $scope, $http, $modal, constants, Application) {
+angular.module('confman').controller('configCreateCtrl', function ($rootScope, $scope, $http, $modal, constants, Application, Params) {
 
     //Page definition
     $rootScope.currentPage = {
@@ -16,33 +16,26 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
     $scope.envSelected = {};
 
     $scope.changeApplication = function () {
+        $scope.applicationVersions = [];
+        $scope.environments = [];
+
         if ($scope.criteria.idApplication > 0) {
-            $http
-                .get(constants.urlserver + '/applicationversion/application/' + $scope.criteria.idApplication)
-                .success(function (datas) {
-                    $scope.applicationVersions = datas;
-                    $rootScope.callbackOK();
-                });
-            $http
-                .get(constants.urlserver + '/environment/application/' + $scope.criteria.idApplication)
-                .success(function (datas) {
-                    $scope.environments = datas;
-                    $scope.selectedIndex = 0;
-                    $rootScope.callbackOK();
-                });
-        }
-        else {
-            $scope.applicationVersions = [];
-            $scope.environments = [];
+            Params.getAppVersionByIdApp($scope.criteria.idApplication, function (datas) {
+                $scope.applicationVersions = datas;
+            });
+            Params.getEnvByIdApp($scope.criteria.idApplication, function (datas) {
+                $scope.environments = datas;
+                $scope.selectedIndex = 0;
+            });
         }
     };
 
-    $scope.createParametersValues = function(){
+    $scope.createParametersValues = function () {
         $modal.open({
             templateUrl: 'modalConfirmCreation.html',
             controller: ['$scope', '$modalInstance', function ($scope, $modalInstance) {
-                $scope.icon='ic_add_24px.svg';
-               $scope.cancel = function () {
+                $scope.icon = 'ic_add_24px.svg';
+                $scope.cancel = function () {
                     $modalInstance.dismiss(false);
                 };
                 $scope.ok = function (filename) {
@@ -52,7 +45,7 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
             }]
         });
 
-        var callBackCreation = function() {
+        var callBackCreation = function () {
             if ($scope.criteria.idApplicationVersion > 0) {
                 $http
                     .post(constants.urlserver + '/parametervalue', $scope.criteria.idApplicationVersion)
@@ -62,7 +55,7 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
                             $scope.versionTrackiCode = $scope.parameters[0].codeTrackingVersion;
                             $scope.versionTrackiId = $scope.parameters[0].idTrackingVersion;
                             if ($scope.environments.length > 0) {
-                                $scope.onTabSelected($scope.environments[0],0);
+                                $scope.onTabSelected($scope.environments[0], 0);
                             }
                             else {
                                 $scope.envparameters = $scope.parameters;
@@ -82,11 +75,11 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
         }
     }
 
-    $scope.saveParametersValues = function(){
+    $scope.saveParametersValues = function () {
         $modal.open({
             templateUrl: 'modalConfirmCreation.html',
             controller: ['$scope', '$modalInstance', function ($scope, $modalInstance) {
-                $scope.icon='ic_save_24px.svg';
+                $scope.icon = 'ic_save_24px.svg';
                 $scope.cancel = function () {
                     $modalInstance.dismiss(false);
                 };
@@ -97,7 +90,7 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
             }]
         });
 
-        var callBackUpdate = function() {
+        var callBackUpdate = function () {
             $http
                 .put(constants.urlserver + '/parametervalue', $scope.parameters)
                 .success(function (datas) {
@@ -105,7 +98,7 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
                     $scope.lockVersion = true;
                     //Refresh of paramaters
                     $http
-                        .post(constants.urlserver + '/parametervalue/search', {nbEltPerPage : 99999, idTrackingVersion: $scope.versionTrackiId})
+                        .post(constants.urlserver + '/parametervalue/search', {nbEltPerPage: 99999, idTrackingVersion: $scope.versionTrackiId})
                         .success(function (datas) {
                             $scope.parameters = datas.list;
                             $scope.onTabSelected($scope.environments[0], 0);
@@ -121,12 +114,12 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
         }
     }
 
-    $scope.onTabSelected = function(env, index) {
+    $scope.onTabSelected = function (env, index) {
         $scope.envSelected = env;
         //$('#myTab a[href="#tab' + env.code + '"]').tab('show')
 
-        if($scope.parameters) {
-            if(index){
+        if ($scope.parameters) {
+            if (index) {
                 $scope.selectedIndex = index;
             }
             $scope.envparameters = $scope.parameters.filter(function (elt) {
@@ -137,8 +130,8 @@ angular.module('confman').controller('configCreateCtrl', function ($rootScope, $
         }
     }
 
-    $scope.classTabSelected = function(env) {
-        if($scope.envSelected.code===env.code) {
+    $scope.classTabSelected = function (env) {
+        if ($scope.envSelected.code === env.code) {
             return 'active confman-tab-pane';
         }
         return '';

@@ -29,16 +29,16 @@
                     <div class="thumbnail">
                     <div class="row" ng-show="entity.content.id">
                         <div class="col-xs-2"><label for="data-id">&nbsp;Id</label></div>
-                        <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="entity.content.id" class="form-control"></div>
+                        <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="entity.content.id" class="form-control input-sm"></div>
                     </div>
                     <div class="row">
                         <div class="col-xs-2"><label class="control-label"  for="data-code">&nbsp;Code</label></div>
-                        <div class="col-xs-10"><input type="text" id="data-code" required ng-model="entity.content.code" class="form-control" name="code">
+                        <div class="col-xs-10"><input type="text" id="data-code" required ng-model="entity.content.code" class="form-control input-sm" name="code">
                             <span ng-show="form.code.$error.required">Code is required</span></div>
                     </div>
                     <div class="row">
                         <div class="col-xs-2"><label class="control-label" for="data-label">&nbsp;Label</label></div>
-                        <div class="col-xs-10"><input type="text" id="data-label" size="50" required ng-model="entity.content.label" class="form-control" name="label">
+                        <div class="col-xs-10"><input type="text" id="data-label" size="50" required ng-model="entity.content.label" class="form-control input-sm" name="label">
                             <span ng-show="form.label.$error.required">Label is required</span></div>
                     </div>
 

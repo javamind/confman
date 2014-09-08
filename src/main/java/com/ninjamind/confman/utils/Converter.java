@@ -3,7 +3,7 @@ package com.ninjamind.confman.utils;
 /**
  * {@link }
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class Converter {
 

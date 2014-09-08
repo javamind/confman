@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Test of {@link com.ninjamind.confman.repository.ApplicationtRepository}
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 @ContextConfiguration(classes = {PersistenceConfig.class})
 @RunWith(SpringJUnit4ClassRunner.class)

@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * {@link }
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class ApplicationVersionController {
     @Autowired

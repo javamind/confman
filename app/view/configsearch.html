@@ -12,7 +12,7 @@
                     <label for="data-environment">&nbsp;Environment</label>
                 </div>
                 <div class="col-md-3">
-                    <select id="data-environment" ng-model="criteria.idEnvironment" class="form-control"
+                    <select id="data-environment" ng-model="criteria.idEnvironment" class="form-control input-sm"
                             ng-change="changeEnvironment()"
                             ng-options="environment.id as environment.code for environment in environments">
                         <option value="">Environment</option>
@@ -22,7 +22,7 @@
                     <label for="data-application">&nbsp;Application</label>
                 </div>
                 <div class="col-md-3">
-                    <select id="data-application" ng-model="criteria.idApplication" class="form-control"
+                    <select id="data-application" ng-model="criteria.idApplication" class="form-control input-sm"
                             ng-change="changeApplication()"
                             ng-show="applications"
                             ng-options="application.id as application.code for application in applications">
@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="col-xs-10"><input type="text" id="data-code" ng-model="criteria.code"
-                                                  class="form-control"></div>
+                                                  class="form-control input-sm"></div>
                 </div>
             </div>
             <div class="row">
@@ -42,7 +42,7 @@
                     <label for="data-instance">&nbsp;Instance</label>
                 </div>
                 <div class="col-md-3">
-                    <select id="data-instance" ng-model="criteria.idInstance" class="form-control"
+                    <select id="data-instance" ng-model="criteria.idInstance" class="form-control input-sm"
                             ng-show="instances"
                             ng-options="instance.id as instance.code for instance in instances">
                         <option value="">Instance</option>
@@ -52,7 +52,7 @@
                     <label for="data-tracking">&nbsp;Tracking</label>
                 </div>
                 <div class="col-md-3">
-                    <select id="data-tracking" ng-model="criteria.idTrackingVersion" class="form-control"
+                    <select id="data-tracking" ng-model="criteria.idTrackingVersion" class="form-control input-sm"
                             ng-show="trackingVersions"
                             ng-options="trackingVersion.id as trackingVersion.code for trackingVersion in trackingVersions">
                         <option value="">Version tracking</option>

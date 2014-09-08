@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * A tracking version represent a little modification in the conf made without make a release
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 @Entity
 @Table(name=TrackingVersion.TABLE_NAME)

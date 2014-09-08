@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * {@link }
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class TrackingVersionFacadeImplTest {
 

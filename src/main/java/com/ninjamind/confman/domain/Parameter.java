@@ -7,7 +7,7 @@ import javax.persistence.*;
 /**
  * Each instances have paramaters
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 @Entity
 @Table(name=Parameter.TABLE_NAME)

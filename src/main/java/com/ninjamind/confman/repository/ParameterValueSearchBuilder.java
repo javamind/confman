@@ -7,7 +7,7 @@ import javax.persistence.Query;
 /**
  * Helper to build the request to search {@link com.ninjamind.confman.domain.ParameterValue}
  *
- * @author ehret_g
+ * @author Guillaume EHRET
  */
 public class ParameterValueSearchBuilder implements  SearchBuilder{
 

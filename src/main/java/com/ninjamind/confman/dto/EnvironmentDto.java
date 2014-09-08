@@ -5,7 +5,7 @@ import com.ninjamind.confman.domain.Environment;
 /**
  * {@link com.ninjamind.confman.domain.Environment}
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class EnvironmentDto extends AbstractConfManDto {
 

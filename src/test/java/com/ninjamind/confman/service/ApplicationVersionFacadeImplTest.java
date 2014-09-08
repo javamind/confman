@@ -9,7 +9,7 @@ import org.junit.Test;
 /**
  * {@link }
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class ApplicationVersionFacadeImplTest {
     private ApplicationVersionFacade<ApplicationVersion, Long> applicationVersionFacade;

@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Linked between {@link Environment} and
  * {@link SoftwareSuite}
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 
 @Embeddable

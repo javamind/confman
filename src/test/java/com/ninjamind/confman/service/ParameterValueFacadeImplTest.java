@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * {@link }
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 @RunWith(MockitoJUnitRunner.class)
 public class ParameterValueFacadeImplTest {

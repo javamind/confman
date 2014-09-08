@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * This controller is the public API which can be use by script to read datas from confman
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class ApiPublicController {
 

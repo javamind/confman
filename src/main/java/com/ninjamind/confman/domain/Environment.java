@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * you always need several environment when you develop an application : development, staging, production
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 @Entity
 @Table(name=Environment.TABLE_NAME)

@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * All our entities have common fields
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 @MappedSuperclass
 public abstract class AbstractConfManEntity<T extends AbstractConfManEntity> implements Serializable{

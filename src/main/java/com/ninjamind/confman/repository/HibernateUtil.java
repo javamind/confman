@@ -5,7 +5,7 @@ import org.hibernate.proxy.HibernateProxy;
 /**
  * {@link }
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class HibernateUtil {
     /**

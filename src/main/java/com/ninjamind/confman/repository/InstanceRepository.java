@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Repository associé au {@link com.ninjamind.confman.domain.Instance}
  *
- * @author ehret_g
+ * @author Guillaume EHRET
  */
 public interface InstanceRepository extends JpaRepository<Instance, Long> {
     @Query(value = "SELECT s FROM Instance s WHERE s.application.id = :id order by s.code")

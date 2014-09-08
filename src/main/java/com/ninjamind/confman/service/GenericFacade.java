@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * {@link }
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 @Transactional
 public interface GenericFacade<T, ID extends Serializable> {

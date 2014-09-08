@@ -8,7 +8,7 @@ import com.ninjamind.confman.domain.ParameterType;
 /**
  * {@link com.ninjamind.confman.domain.Parameter}
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class ParameterDto extends AbstractConfManDto {
     private Long idApplication;

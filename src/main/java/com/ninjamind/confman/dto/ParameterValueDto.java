@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 /**
  * {@link com.ninjamind.confman.domain.Parameter}
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class ParameterValueDto extends AbstractConfManDto {
     protected String oldValue;

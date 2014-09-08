@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.PaginatedList;
 import com.ninjamind.confman.domain.ParameterValue;
 import com.ninjamind.confman.dto.*;
+import com.ninjamind.confman.repository.ParameterValueSearchBuilder;
 import com.ninjamind.confman.service.ParameterValueFacade;
 import net.codestory.http.annotations.Delete;
 import net.codestory.http.annotations.Get;
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
 /**
  * {@link }
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class ParameterValueController {
 

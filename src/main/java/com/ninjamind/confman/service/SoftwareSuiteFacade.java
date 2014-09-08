@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * {@link }
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public interface SoftwareSuiteFacade<T, ID extends Serializable> extends GenericFacade<T, ID> {
 

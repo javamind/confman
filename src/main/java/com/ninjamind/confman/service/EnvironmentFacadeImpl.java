@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 /**
  * {@link }
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 @Service("environmentFacade")
 @Transactional

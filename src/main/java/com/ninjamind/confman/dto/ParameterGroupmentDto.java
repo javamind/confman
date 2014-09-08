@@ -5,7 +5,7 @@ import com.ninjamind.confman.domain.ParameterGroupment;
 /**
  * {@link com.ninjamind.confman.domain.ParameterGroupment}
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class ParameterGroupmentDto extends AbstractConfManDto {
 

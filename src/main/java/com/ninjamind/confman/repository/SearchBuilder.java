@@ -4,7 +4,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author ehret_g
+ * @author Guillaume EHRET
  */
 public interface SearchBuilder {
 

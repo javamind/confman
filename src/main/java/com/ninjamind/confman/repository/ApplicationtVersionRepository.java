@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Repository associé au {@link com.ninjamind.confman.domain.ApplicationVersion}
  *
- * @author ehret_g
+ * @author Guillaume EHRET
  */
 public interface ApplicationtVersionRepository extends JpaRepository<ApplicationVersion, Long> {
     @Query(value = "SELECT s FROM ApplicationVersion s WHERE s.application.id = :id order by s.code")

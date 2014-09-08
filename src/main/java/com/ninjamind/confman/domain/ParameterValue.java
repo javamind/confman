@@ -7,7 +7,7 @@ import javax.persistence.*;
 /**
  * For one tracking, each parameter has a value for the entire applicaton or one instance
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 @Entity
 @Table(name= ParameterValue.TABLE_NAME)

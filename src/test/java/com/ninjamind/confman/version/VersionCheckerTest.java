@@ -6,7 +6,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 /**
- * Created by ehret_g on 13/08/14.
+ * Created by Guillaume EHRET on 13/08/14.
  */
 public class VersionCheckerTest {
 

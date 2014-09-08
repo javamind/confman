@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * All our entities have common fields
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public abstract class AbstractConfManDto<T extends AbstractConfManDto> implements Serializable {
     private Long id;

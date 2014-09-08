@@ -11,7 +11,7 @@ import static com.ninja_squad.dbsetup.Operations.sequenceOf;
 /**
  * {@link }
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class CommonOperations {
     public static final Operation DELETE_ALL =

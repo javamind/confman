@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Linked between {@link com.ninjamind.confman.domain.Environment} and
  * {@link com.ninjamind.confman.domain.SoftwareSuite}
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 @Entity
 @Table(name= SoftwareSuiteEnvironment.TABLE_NAME)

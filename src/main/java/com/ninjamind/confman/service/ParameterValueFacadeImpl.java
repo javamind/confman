@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 /**
  * {@link ParameterValueFacade}
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 @Service("parameterValueFacade")
 @Transactional

@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * one application evolve in the time and we do several release
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 @Entity
 @Table(name=Application.TABLE_NAME)

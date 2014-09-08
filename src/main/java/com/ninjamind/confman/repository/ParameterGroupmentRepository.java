@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * Repository associé au {@link com.ninjamind.confman.domain.ParameterGroupment}
  *
- * @author ehret_g
+ * @author Guillaume EHRET
  */
 public interface ParameterGroupmentRepository extends JpaRepository<ParameterGroupment, Long> {
 

@@ -5,7 +5,7 @@ import com.ninjamind.confman.domain.TrackingVersion;
 /**
  * {@link com.ninjamind.confman.domain.TrackingVersion}
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class TrackingVersionDto extends AbstractConfManDto {
 

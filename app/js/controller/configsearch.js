@@ -2,7 +2,7 @@
 /**
  * Controller linked to the env list
  */
-angular.module('confman').controller('configSearchCtrl', function ($rootScope, $scope, $http, constants, Environment, TableService) {
+angular.module('confman').controller('configSearchCtrl', function ($rootScope, $scope, $http, constants, Environment, TableService, Params) {
 
     //Page definition
     $rootScope.currentPage = {
@@ -21,31 +21,25 @@ angular.module('confman').controller('configSearchCtrl', function ($rootScope, $
 
     //If application change we load instance and tracking version
     $scope.changeApplication = function () {
+        $scope.instances = [];
+        $scope.trackingVersions = [];
+
         if ($scope.criteria.idApplication > 0) {
-            $http
-                .get(constants.urlserver + '/instance/application/' + $scope.criteria.idApplication + '/environment/' + $scope.criteria.idEnvironment)
-                .success(function (datas) {
+            Params.getInstanceByIdAppAndIdEnv($scope.criteria.idApplication, $scope.criteria.idEnvironment, function (datas) {
                 $scope.instances = datas;
             });
-            $http
-                .get(constants.urlserver + '/trackingversion/application/' + $scope.criteria.idApplication)
-                .success(function (datas) {
-                    $scope.trackingVersions = datas;
-                });
+            Params.getTrackingVersionByIdApp($scope.criteria.idApplication, function (datas) {
+                $scope.trackingVersions = datas;
+            });
         }
-        else {
-            $scope.instances = [];
-            $scope.trackingVersions = [];
-        }
+
     };
 
     $scope.changeEnvironment = function () {
         if ($scope.criteria.idEnvironment > 0) {
-            $http
-                .get(constants.urlserver + '/application/environment/' + $scope.criteria.idEnvironment)
-                .success(function (datas) {
-                    $scope.applications = datas;
-                });
+            Params.getAppByIdEnv($scope.criteria.idEnvironment, function (datas) {
+                $scope.applications = datas;
+            });
         }
         else {
             $scope.applications = [];
@@ -85,16 +79,18 @@ angular.module('confman').controller('configSearchCtrl', function ($rootScope, $
         if($scope.criteria.code){
             filterCriteria.code = $scope.criteria.code;
         }
-        $http
-            .post(constants.urlserver + '/parametervalue/search', filterCriteria)
-            .success(function (datas) {
+
+        Params.getParamValueByCriteria(
+            filterCriteria,
+            function (datas) {
                 $scope.parametervalues = datas;
                 $scope.page = datas.currentPage;
                 $scope.nbPageTotal =  TableService.getNumMaxPage(datas.completeSize, datas.nbElementByPage);
                 $scope.pageSelector = $scope.nbPageTotal > 1 ? TableService.getPageSelector(datas.currentPage, $scope.nbPageTotal) : null;
                 $scope.pageSelectorNext =  $scope.pageSelector ? $scope.pageSelector[$scope.pageSelector.length-1] : 0;
                 $scope.callbackOK();
-            })
-            .error($scope.callbackKO);
+            },
+            $scope.callbackKO
+        );
     }
 });

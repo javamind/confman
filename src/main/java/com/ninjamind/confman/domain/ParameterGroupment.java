@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * Parameters can be grouped
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 @Entity
 @Table(name=ParameterGroupment.TABLE_NAME)

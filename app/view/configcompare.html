@@ -11,37 +11,60 @@
                         <label for="data-application">&nbsp;Application</label>
                     </div>
                     <div class="col-md-3">
-                        <select id="data-application" ng-model="criteria.idApplication" class="form-control" required
+                        <select id="data-application" ng-model="criteria.idApplication" class="form-control input-sm input-sm input-sm" required
                                 ng-change="changeApplication()" name="application"
                                 ng-options="application.id as application.code for application in applications">
                             <option value="">Application</option>
                         </select>
-                        <span ng-show="form.application.$error.required">Application is required</span>
+                        <span ng-show="form.application.$error.required"><small>Application is required</small></span>
                     </div>
                     <div class="col-md-1">
-                        <label for="data-tracking">&nbsp;Versions</label>
+                        <label>&nbsp;Versions</label>
                     </div>
                     <div class="col-md-3">
-                        <select id="data-tracking" ng-model="criteria.idApplicationVersion" class="form-control"
-                                required
-                                name="applicationVersion"
+                        <select ng-model="criteria.idApplicationVersion1" class="form-control input-sm"
+                                required name="idApplicationVersion1"
                                 ng-options="applicationVersion.id as applicationVersion.code for applicationVersion in applicationVersions">
                             <option value="">Versions</option>
                         </select>
-                        <span ng-show="form.applicationVersion.$error.required">application version 1 is required</span>
+                        <span ng-show="form.idApplicationVersion1.$error.required"><small>application version 1 is required</small></span>
                     </div>
                     <div class="col-md-3">
-                        <select id="data-tracking" ng-model="criteria.idApplicationVersion" class="form-control"
-                                required
-                                name="applicationVersion"
+                        <select ng-model="criteria.idApplicationVersion2" class="form-control input-sm"
+                                required name="idApplicationVersion2"
                                 ng-options="applicationVersion.id as applicationVersion.code for applicationVersion in applicationVersions">
                             <option value="">Versions</option>
                         </select>
-                        <span ng-show="form.applicationVersion.$error.required">application version 2 is required</span>
+                        <span ng-show="form.idApplicationVersion2.$error.required"><small>application version 2 is required</small></span>
+                    </div>
+                    <div class="col-md-1">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">&nbsp;</div>
+                    <div class="col-md-1">
+                        <label>&nbsp;Env.</label>
+                    </div>
+                    <div class="col-md-3">
+                        <select ng-model="criteria.idEnvironment1" class="form-control input-sm"
+                                required  name="idEnvironment1"
+                                ng-options="env.id as env.code for env in environments">
+                            <option value="">Environment</option>
+                        </select>
+                        <span ng-show="form.idEnvironment1.$error.required"><small>application env 1 is required</small></span>
+                    </div>
+                    <div class="col-md-3">
+                        <select ng-model="criteria.idEnvironment2" class="form-control input-sm"
+                                required  name="idEnvironment2"
+                                ng-options="env.id as env.code for env in environments">
+                            <option value="">Environment</option>
+                        </select>
+                        <span ng-show="form.idEnvironment2.$error.required"><small>application env 2 is required</small></span>
                     </div>
                     <div class="col-md-1">
                         <div class="confman-btn">
-                            <button class="btn btn-primary" ng-click="createParametersValues()"
+                            <button class="btn btn-primary" ng-click="compareVersion()"
                                     ng-disabled="form.$invalid">
                                 <img src="../img/icon/ic_developer_mode_tv_24px.svg" title="Create"/>
                             </button>
@@ -50,5 +73,26 @@
                 </div>
             </div>
         </form>
+        <material-list>
+            <material-item ng-repeat="param in listecomp">
+                <div class="material-tile-left">
+                    <div class="confman-list-param-env">{{param.elt1.codeEnvironment | uppercase | limitTo : 3}}</div>
+                </div>
+                <div class="material-tile-content">
+                    <div class="container thumbnail">
+                        {{param}}
+                    </div>
+                    Hello
+                    <h2>{{param.code}} : <b>{{param.label}}</b></h2>
+
+                    <h3>Application : {{param.codeApplication}} - tracking version : {{param.codeTrackingVersion}}
+                        <span ng-show="param.codeInstance">- instance : {{param.codeInstance}}</span>
+                    </h3>
+                </div>
+                <div class="material-tile-right">
+                    <div class="confman-list-param-env">{{param.elt2.codeEnvironment | uppercase | limitTo : 3}}</div>
+                </div>
+            </material-item>
+        </material-list>
     </div>
 </material-content>

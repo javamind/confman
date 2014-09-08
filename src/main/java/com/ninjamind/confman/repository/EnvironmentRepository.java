@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Repository associé au {@link com.ninjamind.confman.domain.Environment}
  *
- * @author ehret_g
+ * @author Guillaume EHRET
  */
 public interface EnvironmentRepository extends JpaRepository<Environment, Long> {
 

@@ -11,7 +11,7 @@ import javax.persistence.PersistenceContext;
 /**
  * Repository associé au {@link com.ninjamind.confman.domain.Application}
  *
- * @author ehret_g
+ * @author Guillaume EHRET
  */
 @Repository
 public class ParameterValueRepositoryImpl implements ParameterValueRepository {

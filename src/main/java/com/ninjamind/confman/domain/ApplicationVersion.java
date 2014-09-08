@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * A version is fixed but sometimes we have to change only one parameter in the conf without make a release
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 @Entity
 @Table(name=ApplicationVersion.TABLE_NAME)

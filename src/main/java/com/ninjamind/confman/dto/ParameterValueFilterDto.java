@@ -9,7 +9,7 @@ import com.ninjamind.confman.repository.ParameterValueSearchBuilder;
 /**
  * {@link com.ninjamind.confman.domain.Parameter}
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class ParameterValueFilterDto extends ParameterValueDto {
     private Integer page;

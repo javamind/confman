@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * {@link com.ninjamind.confman.domain.SoftwareSuite}
  * {@link com.ninjamind.confman.domain.Environment}
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class SoftwareSuiteEnvironmentDto implements Serializable {
 

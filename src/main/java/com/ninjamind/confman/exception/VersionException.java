@@ -5,7 +5,7 @@ import com.github.rjeschke.txtmark.Run;
 /**
  * {@link }
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class VersionException extends RuntimeException{
     public VersionException() {

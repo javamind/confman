@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 /**
  * {@link }
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class ApplicationController {
     @Autowired

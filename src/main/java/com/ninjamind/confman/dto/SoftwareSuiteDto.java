@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * {@link com.ninjamind.confman.domain.SoftwareSuite}
  *
- * @author EHRET_G
+ * @author Guillaume EHRET
  */
 public class SoftwareSuiteDto extends AbstractConfManDto {
 

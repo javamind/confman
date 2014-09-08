@@ -79,15 +79,15 @@
     </h4>
 
     <material-list>
-        <material-item ng-repeat="param in parametervalues.list">
+        <material-item ng-repeat="param in parametervalues.list | orderBy:['codeInstance', 'code']">
             <div class="material-tile-left">
                 <div class="confman-list-param-env">{{param.codeEnvironment | uppercase | limitTo : 3}}</div>
             </div>
             <div class="material-tile-content">
                 <h2>{{param.code}} : <b>{{param.label}}</b></h2>
 
-                <h3>Application : {{param.codeApplication}} - tracking version : {{param.codeTrackingVersion}}
-                    <span ng-show="param.codeInstance">- instance : {{param.codeInstance}}</span>
+                <h3>Application : {{param.codeApplication}} - tracking version : <div class="badge badge-version">{{param.codeTrackingVersion}}</div>
+                    <span ng-show="param.codeInstance">- instance : <div class="badge badge-instance">{{param.codeInstance}}</div></span>
                 </h3>
             </div>
             <div class="material-tile-right">

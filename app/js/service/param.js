@@ -56,7 +56,13 @@ angular.module('confman')
                                     var eltBinded = $scope.liste2.filter(function (elt2){
                                         return elt2.code === elt1.code;
                                     });
-                                    finalList.push({'elt1' : elt1, 'elt2': eltBinded.length>0 ? eltBinded[0] : {}});
+                                    var find = eltBinded.length>0;
+                                    finalList.push({
+                                        elt1 : elt1,
+                                        elt2:  find ? eltBinded[0] : {},
+                                        codeInstance : find ? eltBinded[0].codeInstance : elt1.codeInstance,
+                                        code : find ? eltBinded[0].code : elt1.code
+                                    });
 
                                 });
 
@@ -66,7 +72,12 @@ angular.module('confman')
                                     if($scope.liste1.filter(function (elt1){
                                         return elt2.code === elt1.code;
                                     }).length==0){
-                                        finalList.push({'elt1' : {}, 'elt2': elt2});
+                                        finalList.push({
+                                            elt1 : {},
+                                            elt2: elt2,
+                                            codeInstance: elt2.codeInstance,
+                                            code: elt2.code
+                                        });
                                     }
                                 });
 

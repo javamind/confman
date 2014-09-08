@@ -72,7 +72,7 @@
                             <h2>{{param.code}} :</h2>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" id="data-param{{param.id}}" ng-model="param.label"
+                            <input type="text" id="data-param{{param.id}}" ng-model="param.label" ng-readonly="lockVersion"
                                    class="form-control input-sm confman-input-param-env">
                         </div>
                         <div class="col-md-3">
@@ -85,8 +85,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h3>Application : {{param.codeApplication}} - tracking version :
-                                {{param.codeTrackingVersion}}
-                                <span ng-show="param.codeInstance">- instance : {{param.codeInstance}}</span>
+                                <div class="badge badge-version">{{param.codeTrackingVersion}}</div>
+                                <span ng-show="param.codeInstance">- instance : <div class="badge badge-instance">{{param.codeInstance}}</div></span>
                             </h3>
                         </div>
                     </div>

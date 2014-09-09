@@ -8,7 +8,7 @@ buildscript {
     dependencies {
         classpath 'org.postgresql:postgresql:9.3-1102-jdbc41'
         classpath 'org.flywaydb:flyway-gradle-plugin:3.0'
-        classpath 'com.oracle:ojdbc6:11.2.0.3'
+        classpath 'com.oracle:ojdbc6:11.2.0.4'
     }
 }
 
@@ -17,8 +17,7 @@ apply plugin: 'idea'
 apply plugin: 'flyway'
 apply plugin: 'sonar'
 
-version = '1.0'
-
+version = '1.0.0-SNAPSHOT'
 compileJava {
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
@@ -34,7 +33,7 @@ dependencies {
     compile group: 'org.webjars', name: 'bootstrap', version: '3.1.1'
     compile group: 'org.webjars', name: 'angularjs', version: '1.2.16'
     compile group: 'org.postgresql', name: 'postgresql', version: '9.3-1102-jdbc41'
-    compile group: 'com.oracle', name: 'ojdbc6', version: '11.2.0.3'
+    compile group: 'com.oracle', name: 'ojdbc6', version: '11.2.0.4'
     compile group: 'com.google.guava', name: 'guava', version: '16.0.1'
     compile group: 'com.github.zafarkhaja', name: 'java-semver', version: '0.7.2'
 
@@ -52,17 +51,40 @@ dependencies {
     testCompile group: 'com.ninja-squad', name: 'DbSetup', version: '1.3.0'
 }
 
+//The artifact is a jar. We have to define classpath
 jar {
     baseName = 'conf-manager'
-    version = '0.0.1-SNAPSHOT'
     manifest {
         attributes(
                 "Manifest-Version" : "1.0",
+                "Confman-version" : version,
                 "Main-Class" : "com.ninjamind.confman.ConfmanApplication",
-                "Class-Path" : configurations.runtime.files.collect { it.name }.join(' ')
+                "Class-Path" : configurations.runtime.files.collect { 'dependencies/' + it.name }.join(' ') + ' application.properties log4j.properties'
         )
     }
+    //We want a jar without any version in the name
+    version=''
+    exclude '**/*.properties'
 }
+//The dependencies must be present for the livraison
+task copyLibForClasspath(type: Copy)  {
+    into "$buildDir/libs/dependencies"
+    from configurations.runtime
+}
+//... and the webapp too
+task copyWebapp(type: Copy) {
+    into "$buildDir/libs/app"
+    from "app"
+}
+//... and the properties
+task copyResources(type: Copy) {
+    into "$buildDir/libs"
+    from "$buildDir/resources/main"
+    include '*.properties'
+}
+jar.dependsOn copyLibForClasspath
+jar.dependsOn copyWebapp
+jar.dependsOn copyResources
 
 //You can change the default database
 String myDataBase = "postgresql"

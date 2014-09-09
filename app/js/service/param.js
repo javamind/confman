@@ -59,7 +59,7 @@ angular.module('confman')
                                     var find = eltBinded.length>0;
                                     finalList.push({
                                         elt1 : elt1,
-                                        elt2:  find ? eltBinded[0] : {},
+                                        elt2 :  find ? eltBinded[0] : {},
                                         codeInstance : find ? eltBinded[0].codeInstance : elt1.codeInstance,
                                         code : find ? eltBinded[0].code : elt1.code
                                     });

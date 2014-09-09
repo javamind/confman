@@ -14,17 +14,25 @@ The lifecycle is managed with Gradle. To configure gradle you can add a gradle.p
 project. For example
 
     org.gradle.daemon=true
-    db.driver=org.postgresql.Driver
-    db.url=jdbc:postgresql://localhost:5432/confman
-    db.username=confman
-    db.password=confman
-    db.supressclose=true
-    hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
-    hibernate.show_sql=true
-    flyway.user=confman
-    flyway.password=confman
-    flyway.url=jdbc:postgresql://localhost:5432/confman
-    flyway.schemas=confman
+    #DB properties Postgre SQL (default)
+    db.postgresql.driver=org.postgresql.Driver
+    db.postgresql.url=jdbc:postgresql://localhost:5432/confman
+    db.postgresql.username=confman
+    db.postgresql.password=confman
+    db.postgresql.supressclose=true
+    db.postgresql.schemas=confman
+    db.postgresql.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+    db.postgresql.hibernate.show_sql=true
+
+    #DB properties Postgre SQL (default)
+    db.oracle.driver=org.postgresql.Driver
+    db.oracle.url=jdbc:postgresql://localhost:5432/confman
+    db.oracle.username=confman
+    db.oracle.password=confman
+    db.oracle.supressclose=true
+    db.oracle.schemas=confman
+    db.oracle.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+    db.oracle.hibernate.show_sql=true
 
 install database
 ==========

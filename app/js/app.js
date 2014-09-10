@@ -7,13 +7,9 @@
 var confman = angular.module('confman', ['ngResource','ngRoute','ngMaterial','ui.bootstrap']);
 
 /**
- *  TODO externalize
+ *  Constants
  */
-confman.constant('constants', {
-        //
-        urlserver: 'http://localhost:8082/'
-    }
-);
+confman.constant('constants', config);
 
 /**
  * Routes definitions

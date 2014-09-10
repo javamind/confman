@@ -11,7 +11,7 @@
                 </div>
             </h4>
             <material-list>
-                <material-item ng-repeat="obj in softwaresuites" ng-dblClick="update(obj)">
+                <material-item ng-repeat="obj in softwaresuites orderBy:'code'" ng-dblClick="update(obj)">
                     <div class="material-tile-content">
                         <h2>{{obj.code}}</h2>
                         <p>{{obj.label}}</p>

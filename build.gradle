@@ -82,6 +82,7 @@ task copyResources(type: Copy) {
     from "$buildDir/resources/main"
     include '*.properties'
 }
+//We have to make the job before the jar completude
 jar.dependsOn copyLibForClasspath
 jar.dependsOn copyWebapp
 jar.dependsOn copyResources

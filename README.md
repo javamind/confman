@@ -3,17 +3,16 @@ confman
 
 Do you want to implement continuous delivery or continuous deployment on your own tools ? We were in this situation. We had to implement continuous deployment but we did'nt want to use a big solution like Puppet, Chef, Go...
 
-Our need is only to use a simple configuration manager. One repository where all our conf is stocked and no other tools to run scripts. For that we usually use Jenkins and our ops wanted to keep their scripts.
+Our need is only to use a simple configuration manager. One repository where all our conf are stocked and no other tools to run scripts. For that we usually use Jenkins and our ops wanted to keep their scripts.
 
-So we decided to develop a very simple conf manager and share it for every people who have the same needing.
+So we decided to develop a very simple configuration manager and share it for every people who have the same needing.
 
-Gradle
+Build confman
 ==========
-
-The lifecycle is managed with Gradle. To configure gradle you can add a gradle.properties on the root of the
-project. For example
+The project lifecycle is managed with Gradle. To configure gradle you can add a gradle.properties in the root of the project. For example
 
     org.gradle.daemon=true
+
     #DB properties Postgre SQL (default)
     db.postgresql.driver=org.postgresql.Driver
     db.postgresql.url=jdbc:postgresql://localhost:5432/confman
@@ -34,17 +33,33 @@ project. For example
     db.oracle.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
     db.oracle.hibernate.show_sql=true
 
-install database
-==========
+You can easily add a new database. For this, you have to complete the file gradle.properties
 
-For this first version, we choose a DBMS. You can use PostgreSql or Oracle, but you will be able to use others
-databases in next versions. To manage database we use http://flywaydb.org/
+    db.[myOwnDatabase].driver=...
+    db.[myOwnDatabase].url=...
+    db.[myOwnDatabase].username=...
+    db.[myOwnDatabase].password=...
+    db.[myOwnDatabase].supressclose=...
+    db.[myOwnDatabase].schemas=...
+    db.[myOwnDatabase].hibernate.dialect=...
+    db.[myOwnDatabase].hibernate.show_sql=...
+
+When you launch gradle you have to specify your database name. For example gradlew.bat -Pdatabase=oracle clean build
+
+The default database is PostgreSql, but you can easily use Oracle or add your own.
+
+To manage database scripts we use Flyway Db (http://flywaydb.org/). With gradle you can use
 
 To clean the database use
-    gradle flywayClean -i
+    gradlew flywayClean -i
 
 To migrate the database use
-    gradle flywayMigrate -i
+    gradlew flywayMigrate -i
 
 To see all the revisions use
-    gradle flywayInfo -i
+    gradlew flywayInfo -i
+
+
+Install confman
+==========
+To use Confman you have to create a new schema in your favorite DBMS. For the moment postgreSQL is the default database but you can use Oracle or configure your own.

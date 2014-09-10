@@ -51,49 +51,11 @@ dependencies {
     testCompile group: 'com.ninja-squad', name: 'DbSetup', version: '1.3.0'
 }
 
-//The artifact is a jar. We have to define classpath
-jar {
-    baseName = 'conf-manager'
-    manifest {
-        attributes(
-                "Manifest-Version" : "1.0",
-                "Confman-version" : version,
-                "Main-Class" : "com.ninjamind.confman.ConfmanApplication",
-                "Class-Path" : configurations.runtime.files.collect { 'dependencies/' + it.name }.join(' ') + ' application.properties log4j.properties'
-        )
-    }
-    //We want a jar without any version in the name
-    version=''
-    exclude '**/*.properties'
-}
-//The dependencies must be present for the livraison
-task copyLibForClasspath(type: Copy)  {
-    into "$buildDir/libs/dependencies"
-    from configurations.runtime
-}
-//... and the webapp too
-task copyWebapp(type: Copy) {
-    into "$buildDir/libs/app"
-    from "app"
-}
-//... and the properties
-task copyResources(type: Copy) {
-    into "$buildDir/libs"
-    from "$buildDir/resources/main"
-    include '*.properties'
-}
-//We have to make the job before the jar completude
-jar.dependsOn copyLibForClasspath
-jar.dependsOn copyWebapp
-jar.dependsOn copyResources
-
-//You can change the default database
+//You can change the default database which is postgreSQL
 String myDataBase = "postgresql"
 if (project.properties.containsKey("database")) {
     myDataBase = project.property("database")
 }
-
-//The default database is postgreSQL
 processResources {
     println "The database used is " + myDataBase
     filter ReplaceTokens, tokens: [
@@ -107,6 +69,7 @@ processResources {
     ]
 }
 
+//local sonar
 sonar {
     server {
         url = "http://localhost:9000"
@@ -133,4 +96,75 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.0'
 }
 
+//Artifact and release build.
+//We have to define classpath
+jar {
+    baseName = 'conf-manager'
+    manifest {
+        attributes(
+                "Manifest-Version" : "1.0",
+                "Confman-version" : version,
+                "Main-Class" : "com.ninjamind.confman.ConfmanApplication",
+                "Class-Path" : configurations.runtime.files.collect { 'dependencies/' + it.name }.join(' ') + ' . '
+        )
+    }
+    //We want a jar without any version in the name
+    version=''
+    exclude '**/*.properties'
+}
 
+//Several files and directories have to be present in the delivery directory
+task copyForDelivery << {
+    //The dependencies must be present
+    copy  {
+        into "$buildDir/libs/dependencies"
+        from configurations.runtime
+    }
+    //... and the webapp too
+    copy{
+        into "$buildDir/libs/app"
+        from "app"
+    }
+    //... and the properties
+    copy {
+        into "$buildDir/libs"
+        from "$buildDir/resources/main"
+        include '*.properties'
+    }
+    //Flyway copmmand line
+    copy {
+        into "$buildDir/libs/database"
+        from "src/main/database"
+    }
+    //Database script
+    copy {
+        into "$buildDir/libs/database/sql"
+        from "src/main/resources/db/migration/" + myDataBase
+    }
+    //Driver jdbc
+    copy {
+        into "$buildDir/libs/database/jars"
+        if (myDataBase.equals("oracle")) {
+            from configurations.runtime
+            include '**/ojdbc6*.jar'
+        }
+        else{
+            from configurations.runtime
+            include '**/postgresql*.jar'
+        }
+    }
+    //Create the flyway property file
+    def props = new Properties()
+    props.setProperty('flyway.user', project.property("db." + myDataBase + ".username"))
+    props.setProperty('flyway.password', project.property("db." + myDataBase + ".password"))
+    if (project.properties.containsKey("flyway.schemas") && !project.properties.containsKey("flyway.schemas").equals("")) {
+        props.setProperty('flyway.schemas', project.property("db." + myDataBase + ".schemas"))
+    }
+    props.setProperty('flyway.url', project.property("db." + myDataBase + ".url"))
+    new File("$buildDir/libs/database/conf/flyway.properties").withWriter {
+        fileWriter -> props.each { key, value -> fileWriter.writeLine "$key=$value" }
+    }
+}
+
+//We have to make the job before the jar completude
+jar.dependsOn copyForDelivery

@@ -1,4 +1,3 @@
-
 <material-content style="top:128px" ng-controller="environmentCtrl">
     <div class="container-fluid">
         <div class="col-md-5">
@@ -11,7 +10,7 @@
                 </div>
             </h4>
             <material-list>
-                <material-item ng-repeat="env in environments" ng-dblClick="update(env)">
+                <material-item ng-repeat="env in environments | orderBy:code" ng-dblClick="update(env)">
                     <div class="material-tile-content">
                         <h2>{{env.code}}</h2>
                         <p>{{env.label}}</p>

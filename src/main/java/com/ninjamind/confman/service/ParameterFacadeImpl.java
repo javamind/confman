@@ -2,6 +2,7 @@ package com.ninjamind.confman.service;
 
 import com.ninjamind.confman.domain.Environment;
 import com.ninjamind.confman.domain.Parameter;
+import com.ninjamind.confman.repository.ParameterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -14,9 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service("parameterFacade")
 @Transactional
-public class ParameterFacadeImpl implements GenericFacade<Parameter, Long>{
+public class ParameterFacadeImpl implements ParameterFacade<Parameter, Long>{
     @Autowired
-    private JpaRepository<Parameter, Long> parameterRepository;
+    private ParameterRepository parameterRepository;
 
     @Override
     public JpaRepository<Parameter, Long> getRepository() {
@@ -28,4 +29,14 @@ public class ParameterFacadeImpl implements GenericFacade<Parameter, Long>{
         return Parameter.class;
     }
 
+
+    @Override
+    public void addParameterToApplication(String codeApp, String codeParam, String labelParam) {
+        //
+    }
+
+    @Override
+    public Parameter findParameterApplication(String codeApp, String codeParam) {
+        return null;
+    }
 }

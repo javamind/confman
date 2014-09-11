@@ -4,7 +4,6 @@ import com.ninja_squad.dbsetup.DbSetup;
 import com.ninja_squad.dbsetup.destination.DataSourceDestination;
 import com.ninja_squad.dbsetup.operation.Operation;
 import com.ninjamind.confman.config.PersistenceConfig;
-import com.ninjamind.confman.domain.Application;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -49,5 +48,10 @@ public class ParameterRepositoryTest {
     @Test
     public void shouldFindTwoParameter() {
         assertThat(parameterRepository.findParameterByIdApp(1L)).hasSize(2).extracting("code").containsExactly("app.maxuser","server.name");
+    }
+
+    @Test
+    public void shouldFindOneParameter() {
+        assertThat(parameterRepository.findByCode("CFM", "app.maxuser").getId()).isEqualTo(1L);
     }
 }

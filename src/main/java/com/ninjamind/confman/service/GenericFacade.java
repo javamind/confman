@@ -45,6 +45,8 @@ public interface GenericFacade<T, ID extends Serializable> {
     default T findOne(ID id){
         return HibernateUtil.unproxy(getRepository().getOne(id), getClassEntity());
     }
+
+
     /**
      * Saves a given entity. Use the returned instance for further operations as the save operation might have changed the
      * entity instance completely.

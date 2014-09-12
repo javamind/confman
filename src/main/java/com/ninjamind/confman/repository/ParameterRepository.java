@@ -16,4 +16,6 @@ public interface ParameterRepository extends JpaRepository<Parameter, Long> {
     @Query(value = "SELECT s FROM Parameter s WHERE s.application.id = :id order by s.code" )
     List<Parameter> findParameterByIdApp(@Param("id") Long id);
 
+    @Query(value = "SELECT s FROM Parameter s inner join s.application a WHERE s.code = :codeParam and a.code = :codeApp" )
+    Parameter findByCode(@Param("codeApp") String codeApp, @Param("codeParam") String codeParam);
 }

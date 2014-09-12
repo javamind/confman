@@ -170,3 +170,5 @@ task copyForDelivery << {
 
 //We have to make the job before the jar completude
 jar.dependsOn copyForDelivery
+
+task hello << {task -> println "I'm the main " }

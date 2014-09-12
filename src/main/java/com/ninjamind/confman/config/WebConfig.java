@@ -1,6 +1,7 @@
 package com.ninjamind.confman.config;
 
-import com.ninjamind.confman.web.*;
+import com.ninjamind.confman.web.gui.*;
+import com.ninjamind.confman.web.gui.ParameterController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -48,12 +49,12 @@ public class WebConfig {
     }
 
     @Bean
-    public ParameterValueController parameterValueController(){
-        return new ParameterValueController();
+    public com.ninjamind.confman.web.gui.ParameterValueController parameterValueController(){
+        return new com.ninjamind.confman.web.gui.ParameterValueController();
     }
 
     @Bean
-    public ApiPublicController publicController() {
-        return new ApiPublicController();
+    public com.ninjamind.confman.web.api.ParameterValueController publicController() {
+        return new com.ninjamind.confman.web.api.ParameterValueController();
     }
 }

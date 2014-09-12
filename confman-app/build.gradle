@@ -1,0 +1,1 @@
+task hello << {task -> println "I'm my app" }

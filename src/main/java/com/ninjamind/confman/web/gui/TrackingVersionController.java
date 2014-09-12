@@ -1,4 +1,4 @@
-package com.ninjamind.confman.web;
+package com.ninjamind.confman.web.gui;
 
 import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.Application;

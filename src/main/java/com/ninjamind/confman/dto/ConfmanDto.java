@@ -30,7 +30,8 @@ public class ConfmanDto {
     protected String value;
     protected String codeParameter;
     protected String version;
-
+    protected String typeParameter;
+    protected boolean generateWithLastParameterValuesSet;
 
     public ConfmanDto() {
         super();
@@ -114,6 +115,24 @@ public class ConfmanDto {
 
     public ConfmanDto setVersion(String version) {
         this.version = version;
+        return this;
+    }
+
+    public String getTypeParameter() {
+        return typeParameter;
+    }
+
+    public ConfmanDto setTypeParameter(String typeParameter) {
+        this.typeParameter = typeParameter;
+        return this;
+    }
+
+    public boolean isGenerateWithLastParameterValuesSet() {
+        return generateWithLastParameterValuesSet;
+    }
+
+    public ConfmanDto setGenerateWithLastParameterValuesSet(boolean generateWithLastParameterValuesSet) {
+        this.generateWithLastParameterValuesSet = generateWithLastParameterValuesSet;
         return this;
     }
 }

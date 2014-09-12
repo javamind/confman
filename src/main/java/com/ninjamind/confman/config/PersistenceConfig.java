@@ -68,4 +68,8 @@ public class PersistenceConfig {
         return transactionManager;
     }
 
+    @Bean
+    public Integer serverPort(){
+        return Integer.valueOf(env.getProperty("server.port", "8082"));
+    }
 }

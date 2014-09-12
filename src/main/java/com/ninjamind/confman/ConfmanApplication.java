@@ -28,6 +28,6 @@ public class ConfmanApplication {
                 .add(rootContext.getBean(TrackingVersionController.class))
                 .add(rootContext.getBean(ParameterValueController.class))
                 .add(rootContext.getBean(ApiPublicController.class))
-        ).start(8082);
+        ).start((Integer) rootContext.getBean("serverPort"));
     }
 }

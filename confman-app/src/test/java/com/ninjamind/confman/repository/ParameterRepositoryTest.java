@@ -47,7 +47,7 @@ public class ParameterRepositoryTest {
 
     @Test
     public void shouldFindTwoParameter() {
-        assertThat(parameterRepository.findParameterByIdApp(1L)).hasSize(2).extracting("code").containsExactly("app.maxuser","server.name");
+        assertThat(parameterRepository.findByIdApp(1L)).hasSize(2).extracting("code").containsExactly("app.maxuser","server.name");
     }
 
     @Test

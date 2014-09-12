@@ -46,12 +46,12 @@ public class SofwareSuiteEnvironmentRepositoryTest{
 
     @Test
     public void shouldNotFindSoftwareSuiteEnvironmentByIdEnvWhenIdNotFound() {
-        assertThat(sofwareSuiteEnvironmentRepository.findSoftwareSuiteEnvironmentByIdEnv(2L)).isEmpty();
+        assertThat(sofwareSuiteEnvironmentRepository.findByIdEnv(2L)).isEmpty();
     }
 
     @Test
     public void shouldindSoftwareSuiteEnvironmentByIdEnv() {
-        assertThat(sofwareSuiteEnvironmentRepository.findSoftwareSuiteEnvironmentByIdEnv(1L))
+        assertThat(sofwareSuiteEnvironmentRepository.findByIdEnv(1L))
                 .isNotEmpty()
                 .extracting("id")
                 .extracting("softwareSuite")

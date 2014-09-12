@@ -50,27 +50,27 @@ public class ApplicationFacadeImpl implements ApplicationFacade<Application, Lon
 
     @Override
     public List<Application> findApplicationByIdEnv(Long id) {
-        return applicationRepository.findApplicationByIdEnv(id);
+        return applicationRepository.findByIdEnv(id);
     }
 
     @Override
     public List<ApplicationVersion> findApplicationVersionByIdApp(Long id) {
-        return applicationtVersionRepository.findApplicationVersionByIdApp(id);
+        return applicationtVersionRepository.findByIdApp(id);
     }
 
     @Override
     public List<TrackingVersion> findTrackingVersionByIdApp(Long id) {
-        return trackingVersionRepository.findTrackingVersionByIdApp(id);
+        return trackingVersionRepository.findByIdApp(id);
     }
 
     @Override
     public List<Environment> findEnvironmentByIdApp(Long id) {
-        return environmentRepository.findEnvironmentByIdApp(id);
+        return environmentRepository.findByIdApp(id);
     }
 
     @Override
     public List<Parameter> findParameterByIdApp(Long id) {
-        return parameterRepository.findParameterByIdApp(id);
+        return parameterRepository.findByIdApp(id);
     }
 
     @Override
@@ -79,12 +79,12 @@ public class ApplicationFacadeImpl implements ApplicationFacade<Application, Lon
             return instanceRepository.findAll();
         }
         if(idApp!=null && idEnv!=null){
-            return instanceRepository.findInstanceByIdappAndEnv(idApp, idEnv);
+            return instanceRepository.findByIdappAndEnv(idApp, idEnv);
         }
         if(idApp!=null){
-            return instanceRepository.findInstanceByIdApp(idApp);
+            return instanceRepository.findByIdApp(idApp);
         }
-        return instanceRepository.findInstanceByIdEnv(idEnv);
+        return instanceRepository.findByIdEnv(idEnv);
     }
 
     @Override

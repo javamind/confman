@@ -51,7 +51,7 @@ public class ParameterFacadeImpl implements ParameterFacade<Parameter, Long>{
         if(creation){
             //If we want to create a new one we throw an exception if parameter exist
             FoundException.foundIfNotNull(parameter);
-            parameter = new Parameter().setCode(codeParam);
+            parameter = new Parameter().setCode(codeParam).setApplication(application);
         }
 
         parameter.setLabel(labelParam) ;
@@ -60,8 +60,4 @@ public class ParameterFacadeImpl implements ParameterFacade<Parameter, Long>{
         parameterRepository.save(parameter);
     }
 
-    @Override
-    public Parameter findParameterApplication(String codeApp, String codeParam) {
-        return parameterRepository.findByCode(codeApp, codeParam);
-    }
 }

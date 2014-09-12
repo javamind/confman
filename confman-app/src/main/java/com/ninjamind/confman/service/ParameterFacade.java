@@ -1,7 +1,5 @@
 package com.ninjamind.confman.service;
 
-import com.ninjamind.confman.domain.Parameter;
-
 import java.io.Serializable;
 
 /**
@@ -21,12 +19,5 @@ public interface ParameterFacade<T, ID extends Serializable> extends GenericFaca
      * @throws com.ninjamind.confman.exception.NotFoundException if app don't exist
      */
     void saveParameterToApplication(String codeApp, String codeParam, String labelParam, String typeParam, boolean creation);
-
-    /**
-     * Find a parameter by application code and parameter code
-     * @param codeApp
-     * @param codeParam
-     */
-    Parameter findParameterApplication(String codeApp, String codeParam);
 
 }

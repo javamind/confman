@@ -15,7 +15,7 @@ import java.util.Set;
 public interface SoftwareSuiteFacade<T, ID extends Serializable> extends GenericFacade<T, ID> {
 
     /**
-     * @see com.ninjamind.confman.repository.SofwareSuiteEnvironmentRepository#findSoftwareSuiteEnvironmentByIdSoft(Long)
+     * @see com.ninjamind.confman.repository.SofwareSuiteEnvironmentRepository#findByIdSoft(Long)
      * @param id
      * @return
      */

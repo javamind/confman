@@ -1,4 +1,4 @@
-package com.ninjamind.confman.web.api;
+package com.ninjamind.confman.controller.api;
 
 import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.ParameterValue;
@@ -11,11 +11,11 @@ import java.util.List;
 
 /**
  * This controller is the public API which can be use by script to read or add datas from confman. The
- * param are less restrictive than the web GUI.
+ * param are less restrictive than the controller GUI.
  *
  * @author Guillaume EHRET
  */
-public class ParameterValueController {
+public class ParameterValueApiController {
 
     @Autowired
     private ParameterValueFacade<ParameterValue, Long> parameterValueFacade;

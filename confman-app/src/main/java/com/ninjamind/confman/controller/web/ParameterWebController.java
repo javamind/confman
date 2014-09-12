@@ -1,4 +1,4 @@
-package com.ninjamind.confman.web.gui;
+package com.ninjamind.confman.controller.web;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -19,7 +19,7 @@ import java.util.List;
  *
  * @author Guillaume EHRET
  */
-public class ParameterController {
+public class ParameterWebController {
     @Autowired
     @Qualifier("parameterFacade")
     private GenericFacade<Parameter, Long> genericFacade;

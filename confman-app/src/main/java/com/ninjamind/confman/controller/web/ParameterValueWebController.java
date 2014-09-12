@@ -1,4 +1,4 @@
-package com.ninjamind.confman.web.gui;
+package com.ninjamind.confman.controller.web;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  *
  * @author Guillaume EHRET
  */
-public class ParameterValueController {
+public class ParameterValueWebController {
 
     @Autowired
     @Qualifier("parameterValueFacade")

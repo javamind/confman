@@ -15,9 +15,9 @@ import java.util.List;
 public interface TrackingVersionRepository extends JpaRepository<TrackingVersion, Long> {
 
     @Query(value = "SELECT v FROM TrackingVersion v inner join v.applicationVersion as a WHERE a.application.id = :id order by v.code" )
-    List<TrackingVersion> findTrackingVersionByIdApp(@Param("id") Long id);
+    List<TrackingVersion> findByIdApp(@Param("id") Long id);
 
     @Query(value = "SELECT v FROM TrackingVersion v inner join v.applicationVersion as a WHERE a.id = :id order by v.code" )
-    List<TrackingVersion> findTrackingVersionByIdAppVersion(@Param("id") Long id);
+    List<TrackingVersion> findByIdAppVersion(@Param("id") Long id);
 
 }

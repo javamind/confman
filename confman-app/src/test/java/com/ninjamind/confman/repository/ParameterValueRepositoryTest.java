@@ -54,17 +54,17 @@ public class ParameterValueRepositoryTest {
 
     @Test(expected = NullPointerException.class)
     public void shouldThrowNullPointerExceptionWhenFindParameterValueByIdAppWithNoPaginatedList() {
-        parameterValueRepository.findParameterValue(null, new ParameterValueSearchBuilder());
+        parameterValueRepository.findByCriteria(null, new ParameterValueSearchBuilder());
     }
 
     @Test(expected = NullPointerException.class)
     public void shouldThrowNullPointerExceptionWhenFindParameterValueByIdAppWithNoCriteria() {
-        parameterValueRepository.findParameterValue(new PaginatedList(), null);
+        parameterValueRepository.findByCriteria(new PaginatedList(), null);
     }
 
     @Test
     public void shouldFindParameterValueWhenCriteriaIsValid() {
-        assertThat(parameterValueRepository.findParameterValue(
+        assertThat(parameterValueRepository.findByCriteria(
                 new PaginatedList(),
                 new ParameterValueSearchBuilder()
                         .setCode(".nam")
@@ -80,7 +80,7 @@ public class ParameterValueRepositoryTest {
 
     @Test
     public void shouldFindAllParameterValueWhenNoCriteriaIsDefined() {
-        assertThat(parameterValueRepository.findParameterValue(
+        assertThat(parameterValueRepository.findByCriteria(
                 new PaginatedList(),
                 new ParameterValueSearchBuilder()))
                 .hasSize(9);
@@ -88,7 +88,7 @@ public class ParameterValueRepositoryTest {
 
     @Test
     public void shouldFindParameterValuePaginated() {
-        PaginatedList<ParameterValue> list = parameterValueRepository.findParameterValue(
+        PaginatedList<ParameterValue> list = parameterValueRepository.findByCriteria(
                 new PaginatedList().setCurrentPage(2).setNbElementByPage(3),
                 new ParameterValueSearchBuilder().setCode("pagin"));
 
@@ -98,7 +98,7 @@ public class ParameterValueRepositoryTest {
 
     @Test
     public void shouldFindNoParameterValueIfPageIsTooHigh() {
-        PaginatedList<ParameterValue> list = parameterValueRepository.findParameterValue(
+        PaginatedList<ParameterValue> list = parameterValueRepository.findByCriteria(
                 new PaginatedList().setCurrentPage(8).setNbElementByPage(3),
                 new ParameterValueSearchBuilder().setCode("pagin"));
 

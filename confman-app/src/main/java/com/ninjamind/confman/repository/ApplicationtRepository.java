@@ -21,5 +21,5 @@ public interface ApplicationtRepository extends JpaRepository<Application, Long>
     Application findOneWithDependencies(@Param("id") Long id);
 
     @Query(value = "SELECT a FROM Application a left join fetch a.softwareSuite s left join fetch s.softwareSuiteEnvironments se WHERE se.id.environment.id = :id")
-    List<Application> findApplicationByIdEnv(@Param("id") Long id);
+    List<Application> findByIdEnv(@Param("id") Long id);
 }

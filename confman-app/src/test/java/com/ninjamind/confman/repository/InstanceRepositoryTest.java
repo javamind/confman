@@ -48,21 +48,21 @@ public class InstanceRepositoryTest {
 
     @Test
     public void shouldFindOneInstanceByIdApp() {
-        assertThat(instanceRepository.findInstanceByIdApp(1L)).hasSize(1).extracting("code").containsExactly("WWD450");
+        assertThat(instanceRepository.findByIdApp(1L)).hasSize(1).extracting("code").containsExactly("WWD450");
     }
 
     @Test
     public void shouldFindOneInstanceByIdEnv() {
-        assertThat(instanceRepository.findInstanceByIdEnv(1L)).hasSize(1).extracting("code").containsExactly("WWD450");
+        assertThat(instanceRepository.findByIdEnv(1L)).hasSize(1).extracting("code").containsExactly("WWD450");
     }
 
     @Test
     public void shouldFindOneInstanceByIdAppAndEnv() {
-        assertThat(instanceRepository.findInstanceByIdappAndEnv(1L, 1L)).hasSize(1).extracting("code").containsExactly("WWD450");
+        assertThat(instanceRepository.findByIdappAndEnv(1L, 1L)).hasSize(1).extracting("code").containsExactly("WWD450");
     }
 
     @Test
     public void shouldFindNoInstanceByIdAppAndEnv() {
-        assertThat(instanceRepository.findInstanceByIdappAndEnv(1L, 4L)).isEmpty();
+        assertThat(instanceRepository.findByIdappAndEnv(1L, 4L)).isEmpty();
     }
 }

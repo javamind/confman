@@ -1,4 +1,5 @@
 rootProject.name = 'confman'
+include('confman-app', 'confman-console')
 
 
 

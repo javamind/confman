@@ -59,7 +59,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
                 new PaginatedList<>()
                         .setCurrentPage(Objects.firstNonNull(page, 1))
                         .setNbElementByPage(Objects.firstNonNull(nbEltPerPage, PaginatedList.NB_DEFAULT));
-        return parameterValueRepository.findParameterValue(list, criteria);
+        return parameterValueRepository.findByCriteria(list, criteria);
     }
 
     @Override
@@ -100,7 +100,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
             //If not it's now blocked
             version.setBlocked(true);
 
-            List<ParameterValue> parameterValuesInDb = parameterValueRepository.findParameterValue(
+            List<ParameterValue> parameterValuesInDb = parameterValueRepository.findByCriteria(
                     new PaginatedList<>().setNbElementByPage(PaginatedList.NB_MAX),
                     new ParameterValueSearchBuilder().setIdTrackingVersion(version.getId()));
 
@@ -130,7 +130,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
         Preconditions.checkNotNull(application);
 
         //Load the last version tracking linked to this snapshot
-        List<TrackingVersion> trackingVersions = trackingVersionRepository.findTrackingVersionByIdAppVersion(version.getId());
+        List<TrackingVersion> trackingVersions = trackingVersionRepository.findByIdAppVersion(version.getId());
         TrackingVersion trackingVersion = null;
 
         //A new tracking version is only create if no one is present for the app version
@@ -171,13 +171,13 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
         String newTrackingVersion = null;
 
         Preconditions.checkArgument(version != null, "idVersion not exist");
-        List<TrackingVersion> trackingVersions = trackingVersionRepository.findTrackingVersionByIdAppVersion(version.getId());
+        List<TrackingVersion> trackingVersions = trackingVersionRepository.findByIdAppVersion(version.getId());
 
         if (trackingVersions == null || trackingVersions.isEmpty()) {
             //The version tracking is construct via the app version number
             newTrackingVersion = trackingVersionFacade.createTrackingVersion(version.getCode());
 
-            List<ApplicationVersion> versions = applicationVersionRepository.findApplicationVersionByIdApp(application.getId());
+            List<ApplicationVersion> versions = applicationVersionRepository.findByIdApp(application.getId());
             referenceTrackingVersion = Optional.of(findLastTrackingVersionUsed(version, versions));
         } else {
             //The old version is keep to calculate the new parameters values
@@ -206,7 +206,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
         //If a reference tracking is find we search the param linked
         LOG.info("If a reference tracking is find we search the param linked for id tracking " + referenceTrackingVersion.orElse(null));
         Optional<List<ParameterValue>> parameterValuesRef =
-                referenceTrackingVersion.map(ref -> parameterValueRepository.findParameterValue(
+                referenceTrackingVersion.map(ref -> parameterValueRepository.findByCriteria(
                         new PaginatedList<>().setNbElementByPage(PaginatedList.NB_MAX),
                         new ParameterValueSearchBuilder().setIdTrackingVersion(ref.getId())));
 
@@ -347,7 +347,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
 
         if (previousVersion.isPresent()) {
             //We search the max of the versions tracking
-            List<TrackingVersion> trackingVersions = trackingVersionRepository.findTrackingVersionByIdAppVersion(previousVersion.get().getId());
+            List<TrackingVersion> trackingVersions = trackingVersionRepository.findByIdAppVersion(previousVersion.get().getId());
             if (trackingVersions != null && !trackingVersions.isEmpty()) {
                 return findLastTrackingVersion(trackingVersions).get();
             }
@@ -382,7 +382,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
         Preconditions.checkNotNull(codeApp, "application is required");
         Preconditions.checkNotNull(codeVersion, "version is required");
 
-        ApplicationVersion version = applicationVersionRepository.findApplicationVersionByCode(codeApp, codeVersion);
+        ApplicationVersion version = applicationVersionRepository.findByCode(codeApp, codeVersion);
         if(version==null){
             throw new VersionException(String.format("the version %s don't exist", codeVersion));
         }
@@ -397,13 +397,13 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
         );
 
         if(env!=null){
-            Environment environment = environmentRepository.findEnvironmentByCode(env);
+            Environment environment = environmentRepository.findByCode(env);
             if(environment==null){
                 throw new VersionException(String.format("the environment %s don't exist", env));
             }
             criteria.setIdEnvironment(environment.getId());
         }
 
-        return parameterValueRepository.findParameterValue(new PaginatedList<>().setNbElementByPage(PaginatedList.NB_MAX), criteria);
+        return parameterValueRepository.findByCriteria(new PaginatedList<>().setNbElementByPage(PaginatedList.NB_MAX), criteria);
     }
 }

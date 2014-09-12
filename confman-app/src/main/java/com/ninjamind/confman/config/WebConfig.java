@@ -1,7 +1,12 @@
 package com.ninjamind.confman.config;
 
-import com.ninjamind.confman.web.gui.*;
-import com.ninjamind.confman.web.gui.ParameterController;
+import com.ninjamind.confman.controller.api.ApplicationVersionApiController;
+import com.ninjamind.confman.controller.api.InstanceApiController;
+import com.ninjamind.confman.controller.api.ParameterApiController;
+import com.ninjamind.confman.controller.api.ParameterValueApiController;
+import com.ninjamind.confman.controller.web.*;
+import com.ninjamind.confman.controller.web.ParameterWebController;
+import com.ninjamind.confman.repository.ApplicationtVersionRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -14,47 +19,62 @@ import org.springframework.transaction.annotation.Transactional;
 public class WebConfig {
 
     @Bean
-    public EnvironmentController environmentController(){
-        return new EnvironmentController();
+    public EnvironmentWebController environmentController(){
+        return new EnvironmentWebController();
     }
 
     @Bean
-    public SoftwareSuiteController softwareSuiteController(){
-        return new SoftwareSuiteController();
+    public SoftwareSuiteWebController softwareSuiteController(){
+        return new SoftwareSuiteWebController();
     }
 
     @Bean
-    public ApplicationController applicationController(){
-        return new ApplicationController();
+    public ApplicationWebController applicationController(){
+        return new ApplicationWebController();
     }
 
     @Bean
-    public ApplicationVersionController applicationVersionController(){
-        return new ApplicationVersionController();
+    public ApplicationVersionWebController applicationVersionController(){
+        return new ApplicationVersionWebController();
     }
 
     @Bean
-    public TrackingVersionController trackingVersionController(){
-        return new TrackingVersionController();
+    public TrackingVersionWebController trackingVersionController(){
+        return new TrackingVersionWebController();
     }
 
     @Bean
-    public InstanceController instanceController(){
-        return new InstanceController();
+    public InstanceWebController instanceController(){
+        return new InstanceWebController();
     }
 
     @Bean
-    public ParameterController parameterController(){
-        return new ParameterController();
+    public ParameterWebController parameterController(){
+        return new ParameterWebController();
     }
 
     @Bean
-    public com.ninjamind.confman.web.gui.ParameterValueController parameterValueController(){
-        return new com.ninjamind.confman.web.gui.ParameterValueController();
+    public ParameterValueWebController parameterValueController(){
+        return new ParameterValueWebController();
     }
 
     @Bean
-    public com.ninjamind.confman.web.api.ParameterValueController publicController() {
-        return new com.ninjamind.confman.web.api.ParameterValueController();
+    public ParameterValueApiController publicController() {
+        return new ParameterValueApiController();
+    }
+
+    @Bean
+    public ApplicationVersionApiController applicationVersionApiController() {
+        return new ApplicationVersionApiController();
+    }
+
+    @Bean
+    InstanceApiController instanceApiController(){
+        return new InstanceApiController();
+    }
+
+    @Bean
+    ParameterApiController parameterApiController(){
+        return new ParameterApiController();
     }
 }

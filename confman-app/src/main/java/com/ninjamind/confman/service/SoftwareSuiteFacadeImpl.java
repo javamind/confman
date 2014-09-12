@@ -42,7 +42,7 @@ public class SoftwareSuiteFacadeImpl implements SoftwareSuiteFacade<SoftwareSuit
 
     @Override
     public List<SoftwareSuiteEnvironment> findSoftwareSuiteEnvironmentByIdSoft(Long id) {
-        return softwareSuiteEnvironmentRepository.findSoftwareSuiteEnvironmentByIdSoft(id);
+        return softwareSuiteEnvironmentRepository.findByIdSoft(id);
     }
 
     @Override

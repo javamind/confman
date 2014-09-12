@@ -50,21 +50,21 @@ public class TrackingVersionRepositoryTest {
 
     @Test
     public void shouldNotFindTrackingVersionByIdAppWhenIdAppIsNull(){
-        assertThat(trackingVersionRepository.findTrackingVersionByIdApp(null)).isEmpty();
+        assertThat(trackingVersionRepository.findByIdApp(null)).isEmpty();
     }
 
     @Test
     public void shouldFindTrackingVersionByIdApp(){
-        assertThat(trackingVersionRepository.findTrackingVersionByIdApp(1L)).hasSize(1).extracting("code").contains("a.1");
+        assertThat(trackingVersionRepository.findByIdApp(1L)).hasSize(1).extracting("code").contains("a.1");
     }
 
     @Test
     public void shouldNotFindTrackingVersionByIdAppVersionWhenIdAppIsNull(){
-        assertThat(trackingVersionRepository.findTrackingVersionByIdAppVersion(null)).isEmpty();
+        assertThat(trackingVersionRepository.findByIdAppVersion(null)).isEmpty();
     }
 
     @Test
     public void shouldFindTrackingVersionByIdAppVersion(){
-        assertThat(trackingVersionRepository.findTrackingVersionByIdAppVersion(1L)).hasSize(1).extracting("code").contains("a.1");
+        assertThat(trackingVersionRepository.findByIdAppVersion(1L)).hasSize(1).extracting("code").contains("a.1");
     }
 }

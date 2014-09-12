@@ -16,6 +16,6 @@ public interface ParameterValueRepository extends Repository<ParameterValue, Lon
      * @param list
      * @param criteria
      */
-    public PaginatedList<ParameterValue> findParameterValue(PaginatedList<ParameterValue> list, SearchBuilder criteria);
+    public PaginatedList<ParameterValue> findByCriteria(PaginatedList<ParameterValue> list, SearchBuilder criteria);
 
 }

@@ -20,7 +20,7 @@ public class ParameterValueRepositoryImpl implements ParameterValueRepository {
     private EntityManager em;
 
     @Override
-    public PaginatedList<ParameterValue> findParameterValue(PaginatedList<ParameterValue> list, SearchBuilder criteria) {
+    public PaginatedList<ParameterValue> findByCriteria(PaginatedList<ParameterValue> list, SearchBuilder criteria) {
         Preconditions.checkNotNull(list, "the list must be instanciated before the call");
         Preconditions.checkNotNull(criteria, "criteria is required");
 

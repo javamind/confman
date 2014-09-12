@@ -1,4 +1,4 @@
-package com.ninjamind.confman.web.gui;
+package com.ninjamind.confman.controller.web;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -21,7 +21,7 @@ import java.util.List;
  *
  * @author Guillaume EHRET
  */
-public class ApplicationVersionController {
+public class ApplicationVersionWebController {
     @Autowired
     @Qualifier("applicationVersionFacade")
     private ApplicationVersionFacade<ApplicationVersion, Long> genericFacade;

@@ -80,13 +80,13 @@ public class ParameterValueFacadeImplTest {
 
     @Test
     public void shouldNotFindLastTrackingVersionUsedIfNoTrackingVersionIsAttachedToApp(){
-        Mockito.when(trackingVersionRepository.findTrackingVersionByIdAppVersion(Mockito.anyLong())).thenReturn(new ArrayList<>());
+        Mockito.when(trackingVersionRepository.findByIdAppVersion(Mockito.anyLong())).thenReturn(new ArrayList<>());
         assertThat(parameterValueFacade.findLastTrackingVersionUsed(new ApplicationVersion().setCode("1.2.1"), getApplicationVersions())).isNull();
     }
 
     @Test
     public void shouldFindLastTrackingVersionUsed(){
-        Mockito.when(trackingVersionRepository.findTrackingVersionByIdAppVersion(Mockito.anyLong())).thenReturn(Lists.newArrayList(
+        Mockito.when(trackingVersionRepository.findByIdAppVersion(Mockito.anyLong())).thenReturn(Lists.newArrayList(
                 new TrackingVersion().setId(3L).setCode("0.2.1-track.1"),
                 new TrackingVersion().setId(1L).setCode("0.2.1-track.5"),
                 new TrackingVersion().setId(2L).setCode("0.2.1-track.2")));
@@ -98,7 +98,7 @@ public class ParameterValueFacadeImplTest {
 
     @Test
     public void shouldFindLastTrackingVersionUsedWhenTheFirstSonIsEmpty(){
-        Mockito.when(trackingVersionRepository.findTrackingVersionByIdAppVersion(Mockito.anyLong())).thenReturn(
+        Mockito.when(trackingVersionRepository.findByIdAppVersion(Mockito.anyLong())).thenReturn(
                 new ArrayList<>(),
                 Lists.newArrayList(
                     new TrackingVersion().setId(3L).setCode("0.2.1-track.1"),

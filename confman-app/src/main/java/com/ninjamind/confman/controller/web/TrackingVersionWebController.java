@@ -1,4 +1,4 @@
-package com.ninjamind.confman.web.gui;
+package com.ninjamind.confman.controller.web;
 
 import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.Application;
@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Guillaume EHRET
  */
-public class TrackingVersionController {
+public class TrackingVersionWebController {
 
     @Autowired
     private ApplicationFacade<Application, Long> applicationFacade;

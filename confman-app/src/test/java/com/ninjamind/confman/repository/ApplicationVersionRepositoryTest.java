@@ -48,16 +48,16 @@ public class ApplicationVersionRepositoryTest {
 
     @Test
     public void shouldFindOneApplicationVersion() {
-        assertThat(applicationtVersionRepository.findApplicationVersionByIdApp(1L)).hasSize(1).extracting("code").containsExactly("1.0.0");
+        assertThat(applicationtVersionRepository.findByIdApp(1L)).hasSize(1).extracting("code").containsExactly("1.0.0");
     }
 
     @Test
     public void shouldNotFindApplicationVersionByCodeWhenCodeIsNull() {
-        assertThat(applicationtVersionRepository.findApplicationVersionByCode(null, null)).isNull();
+        assertThat(applicationtVersionRepository.findByCode(null, null)).isNull();
     }
 
     @Test
     public void shouldFindApplicationVersionByCode() {
-        assertThat(applicationtVersionRepository.findApplicationVersionByCode("CFM", "1.0.0").getLabel()).isEqualTo("app version");
+        assertThat(applicationtVersionRepository.findByCode("CFM", "1.0.0").getLabel()).isEqualTo("app version");
     }
 }

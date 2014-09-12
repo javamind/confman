@@ -16,9 +16,9 @@ import java.util.List;
 public interface SofwareSuiteEnvironmentRepository extends JpaRepository<SoftwareSuiteEnvironment, SoftwareSuiteEnvironmentId> {
 
     @Query(value = "SELECT s FROM SoftwareSuiteEnvironment s WHERE s.id.softwareSuite.id = :id")
-    List<SoftwareSuiteEnvironment> findSoftwareSuiteEnvironmentByIdSoft(@Param("id") Long id);
+    List<SoftwareSuiteEnvironment> findByIdSoft(@Param("id") Long id);
 
     @Query(value = "SELECT s FROM SoftwareSuiteEnvironment s WHERE s.id.environment.id = :id")
-    List<SoftwareSuiteEnvironment> findSoftwareSuiteEnvironmentByIdEnv(@Param("id") Long id);
+    List<SoftwareSuiteEnvironment> findByIdEnv(@Param("id") Long id);
 
 }

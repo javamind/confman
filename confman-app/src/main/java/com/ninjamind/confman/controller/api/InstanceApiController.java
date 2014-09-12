@@ -1,9 +1,10 @@
-package com.ninjamind.confman.web.api;
+package com.ninjamind.confman.controller.api;
 
 import com.google.common.base.Preconditions;
-import com.ninjamind.confman.domain.Parameter;
+import com.ninjamind.confman.domain.Instance;
 import com.ninjamind.confman.dto.ConfmanDto;
-import com.ninjamind.confman.service.ParameterFacade;
+import com.ninjamind.confman.repository.InstanceRepository;
+import com.ninjamind.confman.service.InstanceFacade;
 import net.codestory.http.annotations.Get;
 import net.codestory.http.annotations.Post;
 import net.codestory.http.annotations.Put;
@@ -11,20 +12,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * This controller is the public API which can be use by script to read or add datas from confman. The
- * param are less restrictive than the web GUI.
+ * param are less restrictive than the controller GUI.
  *
  * @author Guillaume EHRET
  */
-public class ParameterController {
+public class InstanceApiController {
 
     @Autowired
-    private ParameterFacade<Parameter, Long> parameterFacade;
+    private InstanceFacade<Instance, Long> instanceFacade;
 
     /**
-     * Create a parameter in Confman for an application
+     * Create a instance in Confman for an application
      * @param confmanDto dto which have to contain application code and param code and label
      */
-    @Post("/confman/param")
+    @Post("/confman/instance")
     public void addParam(ConfmanDto confmanDto) {
         saveparam(confmanDto, true);
     }
@@ -37,42 +38,41 @@ public class ParameterController {
     private void saveparam(ConfmanDto confmanDto, boolean creation) {
         Preconditions.checkNotNull(confmanDto, "DTO ConfmanDto is required");
         Preconditions.checkNotNull(confmanDto.getCodeApplication(), "application code is required");
-        Preconditions.checkNotNull(confmanDto.getCodeParameter(), "parameter code is required");
-        Preconditions.checkNotNull(confmanDto.getLabel(), "parameter label is required");
+        Preconditions.checkNotNull(confmanDto.getCodeInstance(), "instance code is required");
+        Preconditions.checkNotNull(confmanDto.getLabel(), "instance label is required");
 
-        parameterFacade.saveParameterToApplication(
+        instanceFacade.saveInstanceToApplication(
                 confmanDto.getCodeApplication(),
-                confmanDto.getCodeParameter(),
+                confmanDto.getCodeInstance(),
                 confmanDto.getLabel(),
-                confmanDto.getTypeParameter(),
                 creation);
     }
 
     /**
-     * Update a parameter in Confman for an application
+     * Update a instance in Confman for an application
      * @param confmanDto dto which have to contain application code and param code and label
      */
-    @Put("/confman/param")
+    @Put("/confman/instance")
     public void updateParam(ConfmanDto confmanDto) {
         saveparam(confmanDto, false);
     }
 
     /**
-     * Read a parameter
+     * Read a instance
      * @param codeApp
-     * @param codeParam
+     * @param codeInstance
      * @return
      */
-    @Get("/confman/param/:param/app/:codeApp")
-    public ConfmanDto getParam(String codeParam, String codeApp) {
+    @Get("/confman/instance/:codeInstance/app/:codeApp")
+    public ConfmanDto getParam(String codeInstance, String codeApp) {
         Preconditions.checkNotNull(codeApp, "application code is required");
-        Preconditions.checkNotNull(codeParam, "parameter code is required");
-        Parameter parameter = parameterFacade.findParameterApplication(codeApp, codeParam);
+        Preconditions.checkNotNull(codeInstance, "instance code is required");
+        Instance instance = ((InstanceRepository)instanceFacade.getRepository()).findByCode(codeApp, codeInstance);
 
-        if(parameter==null){
+        if(instance==null){
             return null;
         }
-        return new ConfmanDto().setCodeParameter(parameter.getCode()).setLabel(parameter.getLabel()).setCodeApplication(parameter.getApplication().getCode())
-                .setId(parameter.getId());
+        return new ConfmanDto().setCodeInstance(instance.getCode()).setLabel(instance.getLabel()).setCodeApplication(instance.getApplication().getCode())
+                .setId(instance.getId());
     }
 }

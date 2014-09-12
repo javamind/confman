@@ -14,11 +14,14 @@ import java.util.List;
  */
 public interface InstanceRepository extends JpaRepository<Instance, Long> {
     @Query(value = "SELECT s FROM Instance s WHERE s.application.id = :id order by s.code")
-    List<Instance> findInstanceByIdApp(@Param("id") Long id);
+    List<Instance> findByIdApp(@Param("id") Long id);
 
     @Query(value = "SELECT s FROM Instance s WHERE s.environment.id = :id order by s.code")
-    List<Instance> findInstanceByIdEnv(@Param("id") Long id);
+    List<Instance> findByIdEnv(@Param("id") Long id);
 
     @Query(value = "SELECT s FROM Instance s WHERE s.application.id = :idApp and s.environment.id = :idEnv order by s.code")
-    List<Instance> findInstanceByIdappAndEnv(@Param("idApp") Long idApp, @Param("idEnv") Long idEnv);
+    List<Instance> findByIdappAndEnv(@Param("idApp") Long idApp, @Param("idEnv") Long idEnv);
+
+    @Query(value = "SELECT s FROM Instance s inner join s.application a WHERE s.code = :codeInstance and a.code = :codeApp" )
+    Instance findByCode(@Param("codeApp") String codeApp, @Param("codeInstance") String codeInstance);
 }

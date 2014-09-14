@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ParameterApiController {
 
     @Autowired
-    private ParameterFacade<Parameter, Long> parameterFacade;
+    private ParameterFacade parameterFacade;
 
     /**
      * Create a parameter in Confman for an application
@@ -68,7 +68,7 @@ public class ParameterApiController {
     public ConfmanDto getParam(String codeParam, String codeApp) {
         Preconditions.checkNotNull(codeApp, "application code is required");
         Preconditions.checkNotNull(codeParam, "parameter code is required");
-        Parameter parameter = ((ParameterRepository)parameterFacade.getRepository()).findByCode(codeApp, codeParam);
+        Parameter parameter = parameterFacade.getRepository().findByCode(codeApp, codeParam);
 
         if(parameter==null){
             return null;

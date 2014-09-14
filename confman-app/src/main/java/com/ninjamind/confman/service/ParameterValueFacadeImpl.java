@@ -11,7 +11,6 @@ import com.ninjamind.confman.repository.*;
 import com.ninjamind.confman.utils.LoggerFactory;
 import net.codestory.http.errors.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,23 +26,23 @@ import java.util.logging.Logger;
  */
 @Service("parameterValueFacade")
 @Transactional
-public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterValue, Long> {
+public class ParameterValueFacadeImpl implements ParameterValueFacade {
     private static Logger LOG = LoggerFactory.make();
     @Autowired
-    TrackingVersionFacade<TrackingVersion, Long> trackingVersionFacade;
+    TrackingVersionFacade trackingVersionFacade;
     @Autowired
     private ParameterValueRepository parameterValueRepository;
     @Autowired
     private TrackingVersionRepository trackingVersionRepository;
     @Autowired
-    private ApplicationtVersionRepository applicationVersionRepository;
+    private ApplicationVersionRepository applicationVersionRepository;
     @Autowired
     private EnvironmentRepository environmentRepository;
     @Autowired
-    private JpaRepository<ParameterValue, Long> parameterValueRepositoryGeneric;
+    private ParameterValueGenericRepository parameterValueRepositoryGeneric;
 
     @Override
-    public JpaRepository<ParameterValue, Long> getRepository() {
+    public ParameterValueGenericRepository getRepository() {
         return parameterValueRepositoryGeneric;
     }
 
@@ -60,6 +59,12 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade<ParameterV
                         .setCurrentPage(Objects.firstNonNull(page, 1))
                         .setNbElementByPage(Objects.firstNonNull(nbEltPerPage, PaginatedList.NB_DEFAULT));
         return parameterValueRepository.findByCriteria(list, criteria);
+    }
+
+    @Override
+    public ParameterValue create(ParameterValue entity) {
+        //We hav'nt a functional unicity constraint
+        return getRepository().save(entity.setActive(true));
     }
 
     @Override

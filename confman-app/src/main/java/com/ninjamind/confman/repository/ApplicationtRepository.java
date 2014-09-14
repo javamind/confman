@@ -12,7 +12,10 @@ import java.util.List;
  *
  * @author Guillaume EHRET
  */
-public interface ApplicationtRepository extends JpaRepository<Application, Long> {
+public interface ApplicationtRepository extends ConfmanRepository<Application, Long> {
+
+    @Query(value = "SELECT a FROM Application a WHERE a.active = true")
+    List<Application> findAllActive();
 
     @Query(value = "SELECT a FROM Application a WHERE a.code = :code")
     Application findByCode(@Param("code") String code);

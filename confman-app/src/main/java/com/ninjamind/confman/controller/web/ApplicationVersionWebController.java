@@ -24,10 +24,10 @@ import java.util.List;
 public class ApplicationVersionWebController {
     @Autowired
     @Qualifier("applicationVersionFacade")
-    private ApplicationVersionFacade<ApplicationVersion, Long> genericFacade;
+    private ApplicationVersionFacade genericFacade;
 
     @Autowired
-    private ApplicationFacade<Application, Long> applicationFacade;
+    private ApplicationFacade applicationFacade;
 
     @Get("/applicationversion")
     public List<ApplicationVersionDto> list() {
@@ -52,13 +52,13 @@ public class ApplicationVersionWebController {
     @Put("/applicationversion")
     public ApplicationVersionDto update(ApplicationVersionDto version) {
         Preconditions.checkNotNull(version, "Object is required to update it");
-        return new ApplicationVersionDto(genericFacade.save(version.toApplicationVersion()));
+        return new ApplicationVersionDto(genericFacade.update(version.toApplicationVersion()));
     }
 
     @Post("/applicationversion")
     public ApplicationVersionDto save(ApplicationVersionDto version) {
         Preconditions.checkNotNull(version, "Object is required to save it");
-        return new ApplicationVersionDto(genericFacade.save(version.toApplicationVersion()));
+        return new ApplicationVersionDto(genericFacade.create(version.toApplicationVersion()));
     }
 
     @Delete("/applicationversion/:id")

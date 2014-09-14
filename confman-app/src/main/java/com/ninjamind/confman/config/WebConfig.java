@@ -6,7 +6,6 @@ import com.ninjamind.confman.controller.api.ParameterApiController;
 import com.ninjamind.confman.controller.api.ParameterValueApiController;
 import com.ninjamind.confman.controller.web.*;
 import com.ninjamind.confman.controller.web.ParameterWebController;
-import com.ninjamind.confman.repository.ApplicationtVersionRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

@@ -3,7 +3,7 @@ package com.ninjamind.confman.controller.api;
 import com.google.common.base.Preconditions;
 import com.ninjamind.confman.domain.ApplicationVersion;
 import com.ninjamind.confman.dto.ConfmanDto;
-import com.ninjamind.confman.repository.ApplicationtVersionRepository;
+import com.ninjamind.confman.repository.ApplicationVersionRepository;
 import com.ninjamind.confman.service.ApplicationVersionFacade;
 import net.codestory.http.annotations.Get;
 import net.codestory.http.annotations.Post;
@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ApplicationVersionApiController {
 
     @Autowired
-    private ApplicationVersionFacade<ApplicationVersion, Long> applicationversionFacade;
+    private ApplicationVersionFacade applicationversionFacade;
 
     /**
      * Create a applicationversion in Confman for an application
@@ -67,7 +67,7 @@ public class ApplicationVersionApiController {
     public ConfmanDto getParam(String version, String codeApp) {
         Preconditions.checkNotNull(codeApp, "application code is required");
         Preconditions.checkNotNull(version, "applicationversion code is required");
-        ApplicationVersion applicationversion = ((ApplicationtVersionRepository)applicationversionFacade.getRepository()).findByCode(codeApp, version);
+        ApplicationVersion applicationversion = applicationversionFacade.getRepository().findByCode(codeApp, version);
 
         if(applicationversion==null){
             return null;

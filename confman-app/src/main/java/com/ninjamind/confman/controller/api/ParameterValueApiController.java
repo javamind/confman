@@ -18,7 +18,7 @@ import java.util.List;
 public class ParameterValueApiController {
 
     @Autowired
-    private ParameterValueFacade<ParameterValue, Long> parameterValueFacade;
+    private ParameterValueFacade parameterValueFacade;
 
     /**
      * @param codeApp

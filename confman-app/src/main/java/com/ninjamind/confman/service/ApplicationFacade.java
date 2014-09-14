@@ -1,8 +1,8 @@
 package com.ninjamind.confman.service;
 
 import com.ninjamind.confman.domain.*;
+import com.ninjamind.confman.repository.ApplicationtRepository;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author Guillaume EHRET
  */
-public interface ApplicationFacade<T, ID extends Serializable> extends GenericFacade<T, ID> {
+public interface ApplicationFacade extends GenericFacade<Application, Long, ApplicationtRepository> {
 
     /**
      * @see com.ninjamind.confman.repository.ApplicationtRepository#findByIdEnv(Long)
@@ -20,7 +20,7 @@ public interface ApplicationFacade<T, ID extends Serializable> extends GenericFa
     List<Application> findApplicationByIdEnv(Long id);
 
     /**
-     * @see com.ninjamind.confman.repository.ApplicationtVersionRepository#findByIdApp(Long)
+     * @see com.ninjamind.confman.repository.ApplicationVersionRepository#findByIdApp(Long)
      * @param id
      * @return
      */

@@ -9,7 +9,7 @@
         </div>
     </h4>
     <material-list>
-        <material-item ng-repeat="env in applications orderBy:'code'" ng-dblClick="update(env)">
+        <material-item ng-repeat="env in applications | orderBy:'code'" ng-dblClick="update(env)">
             <div class="material-tile-content">
                 <h2>{{env.code}}</h2>
                 <p>{{env.label}}</p>

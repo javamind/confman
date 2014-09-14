@@ -2,6 +2,8 @@ package com.ninjamind.confman.service;
 
 import com.ninjamind.confman.domain.PaginatedList;
 import com.ninjamind.confman.domain.ParameterValue;
+import com.ninjamind.confman.repository.ParameterValueGenericRepository;
+import com.ninjamind.confman.repository.ParameterValueRepository;
 import com.ninjamind.confman.repository.ParameterValueSearchBuilder;
 
 import java.io.Serializable;
@@ -12,7 +14,7 @@ import java.util.List;
  *
  * @author Guillaume EHRET
  */
-public interface ParameterValueFacade<T, ID extends Serializable> extends GenericFacade<T, ID> {
+public interface ParameterValueFacade extends GenericFacade<ParameterValue, Long, ParameterValueGenericRepository> {
     /**
      * Serach parameters values and return a paginated list
      * @param page

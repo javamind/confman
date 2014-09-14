@@ -1,8 +1,8 @@
 <material-content style="top:128px" ng-controller="applicationDetailCtrl">
     <div class="container-fluid">
     <form class="form confman-form" name="form" novalidate>
-        <div class="alert alert-danger confman-error row" role="alert" ng-show="error">
-            Error : {{error.message}}
+        <div class="alert alert-danger confman-alert-error container-fluid" role="alert" ng-show="error">
+            Error cc: {{error.message}}
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -18,7 +18,7 @@
                     <div class="col-xs-10"><input type="text" id="data-code" required ng-model="application.code"
                                                   name="code"
                                                   class="form-control input-sm input-sm">
-                        <span ng-show="form.code.$error.required">Code is required</span>
+                        <span ng-show="form.code.$error.required" class="confman-label-error">Code is required</span>
                     </div>
 
                 </div>
@@ -26,7 +26,7 @@
                     <div class="col-xs-2"><label for="data-label">&nbsp;Label</label></div>
                     <div class="col-xs-10"><input type="text" id="data-label" size="50" required class="form-control input-sm input-sm"
                                                   ng-model="application.label" name="label">
-                        <span ng-show="form.label.$error.required">Label is required</span>
+                        <span ng-show="form.label.$error.required" class="confman-label-error">Label is required</span>
                     </div>
                 </div>
                 <div class="row">
@@ -42,7 +42,7 @@
                     <br>&nbsp;
                     <br>&nbsp;
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" style="min-height: 350px">
                     <h4>Instances
                         <small>{{application.instances.length}}</small>
                         <div class="confman-btn" style="width: 50%">
@@ -66,8 +66,7 @@
                                     <p>{{instance.label}}</p>
                                 </div>
                                 <div class="material-tile-right">
-                                    <material-checkbox>
-                                        <input type="checkbox" ng-model="instance.deleted"
+                                    <material-checkbox ng-model="instance.deleted"
                                                ng-change="chgInstanceToDelete()">
                                     </material-checkbox>
                                 </div>
@@ -99,8 +98,7 @@
                                     <p>{{version.label}}</p>
                                 </div>
                                 <div class="material-tile-right">
-                                    <material-checkbox>
-                                        <input type="checkbox" ng-model="version.deleted"
+                                    <material-checkbox ng-model="version.deleted"
                                                ng-change="chgVersionToDelete()">
                                     </material-checkbox>
                                 </div>
@@ -135,8 +133,7 @@
                                     <p>{{parameter.label}}</p>
                                 </div>
                                 <div class="material-tile-right">
-                                    <material-checkbox>
-                                        <input type="checkbox" ng-model="parameter.deleted"
+                                    <material-checkbox ng-model="parameter.deleted"
                                                ng-change="chgParameterToDelete()">
                                     </material-checkbox>
                                 </div>
@@ -150,8 +147,7 @@
                 </div>
             </div>
         </div>
-    </form>
-    <footer class="footer-confman">
+        <footer class="footer-confman">
         <div class="confman-btn">
             <button class="btn" ng-click="save()" ng-class="getClassActionForm(form)"
                     ng-disabled="form.$invalid">
@@ -164,7 +160,11 @@
                 <img src="img/icon/ic_clear_24px.svg" title="Cancel"/>
             </button>
         </div>
-    </footer>
+        </footer>
+    </form>
+
+
+
     </div>
 </material-content>
 
@@ -174,8 +174,8 @@
         <h3 class="modal-title">{{appelt.title}}</h3>
     </div>
     <div class="modal-body">
-        <div class="alert alert-danger confman-error" role="alert" ng-show="error">
-            Error : {{error.message}}
+        <div class="alert alert-danger confman-alert-error container-fluid" role="alert" ng-show="error">
+            Error cc: {{error.message}}
         </div>
         <form class="form confman-form" name="formInstance" novalidate>
             <div class="thumbnail">
@@ -189,7 +189,7 @@
                     <div class="col-xs-10"><input type="text" id="data-code" required ng-model="appelt.content.code"
                                                   name="code"
                                                   class="form-control input-sm input-sm">
-                        <span ng-show="formInstance.code.$error.required">Code is required</span>
+                        <span ng-show="formInstance.code.$error.required" class="confman-label-error">Code is required</span>
                     </div>
                 </div>
                 <div class="row">
@@ -197,7 +197,7 @@
                     <div class="col-xs-10"><input type="text" id="data-label" size="50" required class="form-control input-sm input-sm"
                                                   name="label"
                                                   ng-model="appelt.content.label">
-                        <span ng-show="formInstance.label.$error.required">Label is required</span>
+                        <span ng-show="formInstance.label.$error.required" class="confman-label-error">Label is required</span>
                     </div>
                 </div>
                 <div class="row">
@@ -218,7 +218,7 @@
                             <option value="" ng-hide="appelt.content.idEnvironment">S&eacute;lection environment
                             </option>
                         </select>
-                        <span ng-show="formInstance.env.$error.required">Environment is required</span>
+                        <span ng-show="formInstance.env.$error.required" class="confman-label-error">Environment is required</span>
                     </div>
                     <br>
 
@@ -245,8 +245,8 @@
             <h3 class="modal-title">{{appelt.title}}</h3>
         </div>
         <div class="modal-body">
-            <div class="alert alert-danger confman-error" role="alert" ng-show="error">
-                Error : {{error.message}}
+            <div class="alert alert-danger confman-alert-error container-fluid" role="alert" ng-show="error">
+                Error cc: {{error.message}}
             </div>
             <div class="thumbnail">
                 <div class="row" ng-show="appelt.content.id">
@@ -259,7 +259,7 @@
                     <div class="col-xs-10"><input type="text" id="data-code" required ng-model="appelt.content.code"
                                                   name="code" semver-checker ng-readonly="appelt.content.id"
                                                   class="form-control input-sm input-sm">
-                        <span ng-show="formVersion.code.$error.required">Code is required</span>
+                        <span ng-show="formVersion.code.$error.required" class="confman-label-error">Code is required</span>
                         <span ng-show="formVersion.code.$error.semver">The version number is invalid (see <a
                                 href="http://semver.org/" target="_blank">semver</a>)</span>
                     </div>
@@ -269,7 +269,7 @@
                     <div class="col-xs-10"><input type="text" id="data-label" size="50" required class="form-control input-sm input-sm"
                                                   name="label"
                                                   ng-model="appelt.content.label">
-                        <span ng-show="formVersion.label.$error.required">Label is required</span>
+                        <span ng-show="formVersion.label.$error.required" class="confman-label-error">Label is required</span>
                     </div>
                 </div>
             </div>
@@ -293,8 +293,8 @@
         <h3 class="modal-title">{{appparam.title}}</h3>
     </div>
     <div class="modal-body">
-        <div class="alert alert-danger confman-error" role="alert" ng-show="error">
-            Error : {{error.message}}
+        <div class="alert alert-danger confman-alert-error container-fluid" role="alert" ng-show="error">
+            Error cc: {{error.message}}
         </div>
         <form class="form confman-form" name="formParam" novalidate>
             <div class="thumbnail">
@@ -311,7 +311,7 @@
                                                   ng-model="appparam.content.code"
                                                   name="code"
                                                   class="form-control input-sm input-sm">
-                        <span ng-show="formParam.code.$error.required">Code is required</span>
+                        <span ng-show="formParam.code.$error.required" class="confman-label-error">Code is required</span>
                     </div>
                 </div>
                 <div class="row">
@@ -319,7 +319,7 @@
                     <div class="col-xs-10"><input type="text" id="data-label" size="50" required class="form-control input-sm input-sm"
                                                   name="label"
                                                   ng-model="appparam.content.label">
-                        <span ng-show="formParam.label.$error.required">Label is required</span>
+                        <span ng-show="formParam.label.$error.required" class="confman-label-error">Label is required</span>
                     </div>
                 </div>
                 <div class="row">
@@ -338,7 +338,7 @@
                             <option value="" ng-hide="appparam.content.type">S&eacute;lection type
                             </option>
                         </select>
-                        <span ng-show="formParam.type.$error.required">Type is required</span>
+                        <span ng-show="formParam.type.$error.required" class="confman-label-error">Type is required</span>
                     </div>
                     <br>
 

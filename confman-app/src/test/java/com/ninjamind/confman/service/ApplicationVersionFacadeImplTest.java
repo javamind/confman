@@ -11,7 +11,7 @@ import org.junit.Test;
  * @author Guillaume EHRET
  */
 public class ApplicationVersionFacadeImplTest {
-    private ApplicationVersionFacade<ApplicationVersion, Long> applicationVersionFacade;
+    private ApplicationVersionFacade applicationVersionFacade;
 
     @Before
     public void setUp() throws Exception {

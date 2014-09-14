@@ -23,7 +23,7 @@ import java.util.List;
 public class SoftwareSuiteWebController {
     @Autowired
     @Qualifier("softwareSuiteFacade")
-    private SoftwareSuiteFacade<SoftwareSuite, Long> genericFacade;
+    private SoftwareSuiteFacade genericFacade;
 
 
     @Get("/softwaresuite")
@@ -51,7 +51,7 @@ public class SoftwareSuiteWebController {
     @Post("/softwaresuite")
     public SoftwareSuiteDto save(SoftwareSuiteDto env) {
         Preconditions.checkNotNull(env, "Object is required to save it");
-        return new SoftwareSuiteDto(genericFacade.save(env.toSoftwareSuite()));
+        return new SoftwareSuiteDto(genericFacade.create(env.toSoftwareSuite()));
     }
 
     @Delete("/softwaresuite/:id")

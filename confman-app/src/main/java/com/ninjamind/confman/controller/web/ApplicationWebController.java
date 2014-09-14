@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 public class ApplicationWebController {
     @Autowired
     @Qualifier("applicationFacade")
-    private ApplicationFacade<Application, Long> genericFacade;
+    private ApplicationFacade genericFacade;
 
     @Get("/application")
     public List<ApplicationDto> list() {

@@ -1,5 +1,8 @@
 package com.ninjamind.confman.service;
 
+import com.ninjamind.confman.domain.TrackingVersion;
+import com.ninjamind.confman.repository.TrackingVersionRepository;
+
 import java.io.Serializable;
 
 /**
@@ -7,7 +10,7 @@ import java.io.Serializable;
  *
  * @author Guillaume EHRET
  */
-public interface TrackingVersionFacade<T, ID extends Serializable> extends GenericFacade<T, ID> {
+public interface TrackingVersionFacade extends GenericFacade<TrackingVersion, Long, TrackingVersionRepository> {
 
     /**
      * This method build a valid tracking version from an application version number. The traking

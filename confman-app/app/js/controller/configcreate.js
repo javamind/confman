@@ -3,6 +3,7 @@
  * Controller linked to the env list
  */
 angular.module('confman').controller('configCreateCtrl', function ($rootScope, $scope, $http, $modal, constants, Application, Params) {
+    $rootScope.callbackOK();
 
     //Page definition
     $rootScope.currentPage = {

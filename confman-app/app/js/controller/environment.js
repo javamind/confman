@@ -4,6 +4,7 @@
  * Controller linked to the env list
  */
 angular.module('confman').controller('environmentCtrl', function ($rootScope, $scope, $modal, Environment) {
+    $rootScope.callbackOK();
 
     //Page definition
     $rootScope.currentPage = {
@@ -16,6 +17,7 @@ angular.module('confman').controller('environmentCtrl', function ($rootScope, $s
 
     //Load environments
     $scope.environments = Environment.query();
+
 
     //Actions
     $scope.update =  function (elt){

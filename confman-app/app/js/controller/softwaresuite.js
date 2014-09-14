@@ -3,6 +3,7 @@
  * Controller linked to the application's groupment list
  */
 angular.module('confman').controller('softwaresuiteCtrl', function ($rootScope, $scope, $http, $modal, SoftwareSuite, Environment, constants) {
+    $rootScope.callbackOK();
 
     //Page definition
     $rootScope.currentPage = {

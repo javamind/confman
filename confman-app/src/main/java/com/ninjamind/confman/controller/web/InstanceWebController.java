@@ -7,6 +7,7 @@ import com.ninjamind.confman.domain.Instance;
 import com.ninjamind.confman.dto.InstanceDto;
 import com.ninjamind.confman.service.ApplicationFacade;
 import com.ninjamind.confman.service.GenericFacade;
+import com.ninjamind.confman.service.InstanceFacade;
 import net.codestory.http.annotations.Delete;
 import net.codestory.http.annotations.Get;
 import net.codestory.http.annotations.Post;
@@ -24,10 +25,10 @@ import java.util.List;
 public class InstanceWebController {
     @Autowired
     @Qualifier("instanceFacade")
-    private GenericFacade<Instance, Long> genericFacade;
+    private InstanceFacade genericFacade;
 
     @Autowired
-    private ApplicationFacade<Application, Long> applicationFacade;
+    private ApplicationFacade applicationFacade;
 
     @Get("/instance")
     public List<InstanceDto> list() {
@@ -57,13 +58,13 @@ public class InstanceWebController {
     @Put("/instance")
     public InstanceDto update(InstanceDto instance) {
         Preconditions.checkNotNull(instance, "Object is required to update it");
-        return new InstanceDto(genericFacade.save(instance.toInstance()));
+        return new InstanceDto(genericFacade.update(instance.toInstance()));
     }
 
     @Post("/instance")
     public InstanceDto save(InstanceDto instance) {
         Preconditions.checkNotNull(instance, "Object is required to save it");
-        return new InstanceDto(genericFacade.save(instance.toInstance()));
+        return new InstanceDto(genericFacade.create(instance.toInstance()));
     }
 
     @Delete("/instance/:id")

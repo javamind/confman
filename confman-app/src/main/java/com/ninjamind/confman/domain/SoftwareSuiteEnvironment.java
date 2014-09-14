@@ -36,6 +36,11 @@ public class SoftwareSuiteEnvironment implements Serializable{
         return id;
     }
 
+    public SoftwareSuiteEnvironment setId(SoftwareSuiteEnvironmentId id) {
+        this.id = id;
+        return this;
+    }
+
     public boolean isActive() {
         return active;
     }

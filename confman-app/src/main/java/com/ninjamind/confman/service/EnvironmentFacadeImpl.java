@@ -1,7 +1,10 @@
 package com.ninjamind.confman.service;
 
+import com.ninjamind.confman.domain.ApplicationVersion;
 import com.ninjamind.confman.domain.Environment;
+import com.ninjamind.confman.repository.ConfmanRepository;
 import com.ninjamind.confman.repository.EnvironmentRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -14,12 +17,12 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service("environmentFacade")
 @Transactional
-public class EnvironmentFacadeImpl implements GenericFacade<Environment, Long>{
+public class EnvironmentFacadeImpl implements EnvironmentFacade{
     @Autowired
     private EnvironmentRepository environmentRepository;
 
     @Override
-    public JpaRepository<Environment, Long> getRepository() {
+    public EnvironmentRepository getRepository() {
         return environmentRepository;
     }
 
@@ -29,5 +32,15 @@ public class EnvironmentFacadeImpl implements GenericFacade<Environment, Long>{
     }
 
 
-
+    @Override
+    public Environment create(Environment entity) {
+        //We see if an entity exist
+        Environment env = environmentRepository.findByCode(entity.getCode());
+        if(env!=null){
+            //All the proprieties are copied except the version number
+            BeanUtils.copyProperties(entity, env, "id", "version");
+            return env.setActive(true);
+        }
+        return getRepository().save(entity.setActive(true));
+    }
 }

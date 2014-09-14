@@ -1,8 +1,8 @@
 <material-content style="top:128px " ng-controller="configCompareCtrl">
     <div class="container-fluid">
         <br>
-        <div class="confman-error" ng-show="error">
-            Error : {{error.message}}
+        <div class="alert alert-danger confman-alert-error container-fluid" role="alert" ng-show="error">
+            Error cc: {{error.message}}
         </div>
         <form class="form confman-form" name="form" novalidate>
             <div class="container-fluid thumbnail" ng-hide="lockVersion">
@@ -16,7 +16,7 @@
                                 ng-options="application.id as application.code for application in applications">
                             <option value="">Application</option>
                         </select>
-                        <span ng-show="form.application.$error.required"><small>Application is required</small></span>
+                        <span ng-show="form.application.$error.required" class="confman-label-error"><small>Application is required</small></span>
                     </div>
                     <div class="col-md-1">
                         <label>&nbsp;Versions</label>
@@ -27,7 +27,7 @@
                                 ng-options="applicationVersion.id as applicationVersion.code for applicationVersion in applicationVersions">
                             <option value="">Versions</option>
                         </select>
-                        <span ng-show="form.idApplicationVersion1.$error.required"><small>application version 1 is required</small></span>
+                        <span ng-show="form.idApplicationVersion1.$error.required" class="confman-label-error"><small>application version 1 is required</small></span>
                     </div>
                     <div class="col-md-3">
                         <select ng-model="criteria.idApplicationVersion2" class="form-control input-sm"
@@ -35,7 +35,7 @@
                                 ng-options="applicationVersion.id as applicationVersion.code for applicationVersion in applicationVersions">
                             <option value="">Versions</option>
                         </select>
-                        <span ng-show="form.idApplicationVersion2.$error.required"><small>application version 2 is required</small></span>
+                        <span ng-show="form.idApplicationVersion2.$error.required" class="confman-label-error"><small>application version 2 is required</small></span>
                     </div>
                     <div class="col-md-1">
                         &nbsp;
@@ -52,7 +52,7 @@
                                 ng-options="env.id as env.code for env in environments">
                             <option value="">Environment</option>
                         </select>
-                        <span ng-show="form.idEnvironment1.$error.required"><small>application env 1 is required</small></span>
+                        <span ng-show="form.idEnvironment1.$error.required" class="confman-label-error"><small>application env 1 is required</small></span>
                     </div>
                     <div class="col-md-3">
                         <select ng-model="criteria.idEnvironment2" class="form-control input-sm"
@@ -60,7 +60,7 @@
                                 ng-options="env.id as env.code for env in environments">
                             <option value="">Environment</option>
                         </select>
-                        <span ng-show="form.idEnvironment2.$error.required"><small>application env 2 is required</small></span>
+                        <span ng-show="form.idEnvironment2.$error.required" class="confman-label-error"><small>application env 2 is required</small></span>
                     </div>
                     <div class="col-md-1">
                         <div class="confman-btn">

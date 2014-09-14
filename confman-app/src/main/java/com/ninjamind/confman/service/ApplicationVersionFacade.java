@@ -1,5 +1,8 @@
 package com.ninjamind.confman.service;
 
+import com.ninjamind.confman.domain.ApplicationVersion;
+import com.ninjamind.confman.repository.ApplicationVersionRepository;
+
 import java.io.Serializable;
 
 /**
@@ -7,7 +10,7 @@ import java.io.Serializable;
  *
  * @author Guillaume EHRET
  */
-public interface ApplicationVersionFacade<T, ID extends Serializable> extends GenericFacade<T, ID> {
+public interface ApplicationVersionFacade extends GenericFacade<ApplicationVersion, Long, ApplicationVersionRepository> {
 
     /**
      * We use the standard way to design our applications wersions (http://semver.org/). If the

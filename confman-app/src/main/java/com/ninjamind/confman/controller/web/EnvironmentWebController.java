@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.Environment;
 import com.ninjamind.confman.dto.EnvironmentDto;
 import com.ninjamind.confman.service.ApplicationFacade;
+import com.ninjamind.confman.service.EnvironmentFacade;
 import com.ninjamind.confman.service.GenericFacade;
 import javafx.application.Application;
 import net.codestory.http.annotations.Delete;
@@ -24,14 +25,14 @@ import java.util.List;
 public class EnvironmentWebController {
     @Autowired
     @Qualifier("environmentFacade")
-    private GenericFacade<Environment, Long> genericFacade;
+    private EnvironmentFacade environmentFacade;
 
     @Autowired
-    private ApplicationFacade<Application, Long> applicationFacade;
+    private ApplicationFacade applicationFacade;
 
     @Get("/environment")
     public List<EnvironmentDto> list() {
-        return Lists.transform(genericFacade.findAll(), env -> new EnvironmentDto(env));
+        return Lists.transform(environmentFacade.findAll(), env -> new EnvironmentDto(env));
     }
 
     @Get("/environment/application/:id")
@@ -41,23 +42,23 @@ public class EnvironmentWebController {
 
     @Get("/environment/:id")
     public EnvironmentDto get(Long id) {
-        return new EnvironmentDto(genericFacade.findOne(id));
+        return new EnvironmentDto(environmentFacade.findOne(id));
     }
 
     @Put("/environment")
     public EnvironmentDto update(EnvironmentDto env) {
         Preconditions.checkNotNull(env, "Object is required to update it");
-        return new EnvironmentDto(genericFacade.save(env.toEnvironment()));
+        return new EnvironmentDto(environmentFacade.update(env.toEnvironment()));
     }
 
     @Post("/environment")
     public EnvironmentDto save(EnvironmentDto env) {
         Preconditions.checkNotNull(env, "Object is required to save it");
-        return new EnvironmentDto(genericFacade.save(env.toEnvironment()));
+        return new EnvironmentDto(environmentFacade.create(env.toEnvironment()));
     }
 
     @Delete("/environment/:id")
     public void delete(Long id) {
-        genericFacade.delete(id);
+        environmentFacade.delete(id);
     }
 }

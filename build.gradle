@@ -21,7 +21,11 @@ allprojects {
         mavenCentral()
     }
 
-
+    idea {
+        module {
+            inheritOutputDirs = true
+        }
+    }
 
     dependencies {
         compile group: 'com.google.guava', name: 'guava', version: '16.0.1'

@@ -2,6 +2,7 @@ package com.ninjamind.confman.service;
 
 import com.ninjamind.confman.domain.SoftwareSuite;
 import com.ninjamind.confman.domain.SoftwareSuiteEnvironment;
+import com.ninjamind.confman.repository.SofwareSuiteRepository;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.Set;
  *
  * @author Guillaume EHRET
  */
-public interface SoftwareSuiteFacade<T, ID extends Serializable> extends GenericFacade<T, ID> {
+public interface SoftwareSuiteFacade extends GenericFacade<SoftwareSuite, Long, SofwareSuiteRepository> {
 
     /**
      * @see com.ninjamind.confman.repository.SofwareSuiteEnvironmentRepository#findByIdSoft(Long)

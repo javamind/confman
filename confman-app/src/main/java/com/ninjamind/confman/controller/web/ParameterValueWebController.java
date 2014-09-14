@@ -27,7 +27,7 @@ public class ParameterValueWebController {
 
     @Autowired
     @Qualifier("parameterValueFacade")
-    private ParameterValueFacade<ParameterValue, Long> parameterValueFacade;
+    private ParameterValueFacade parameterValueFacade;
 
     @Post("/parametervalue/search")
     public PaginatedListDto<ParameterValueDto> search(ParameterValueFilterDto criteria) {

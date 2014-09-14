@@ -55,7 +55,7 @@ public class TrackingVersionRepositoryTest {
 
     @Test
     public void shouldFindTrackingVersionByIdApp(){
-        assertThat(trackingVersionRepository.findByIdApp(1L)).hasSize(1).extracting("code").contains("a.1");
+        assertThat(trackingVersionRepository.findByIdApp(1L)).hasSize(1).extracting("code").contains("1.0.0-track.1");
     }
 
     @Test
@@ -65,6 +65,6 @@ public class TrackingVersionRepositoryTest {
 
     @Test
     public void shouldFindTrackingVersionByIdAppVersion(){
-        assertThat(trackingVersionRepository.findByIdAppVersion(1L)).hasSize(1).extracting("code").contains("a.1");
+        assertThat(trackingVersionRepository.findByIdAppVersion(1L)).hasSize(1).extracting("code").contains("1.0.0-track.1");
     }
 }

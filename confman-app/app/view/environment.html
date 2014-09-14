@@ -22,7 +22,7 @@
             <form class="form confman-form" name="form" novalidate ng-show="entity.content">
                 <div class="" style="height: 100%">
                     <h4>{{entity.verb}}</h4>
-                    <div class="alert alert-danger confman-error" role="alert" ng-show="error">
+                    <div class="alert alert-danger confman-alert-error container-fluid" role="alert" ng-show="error">
                         Error : {{error.message}}
                     </div>
                     <div class="thumbnail">
@@ -32,13 +32,13 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-2"><label class="control-label"  for="data-code">&nbsp;Code</label></div>
-                        <div class="col-xs-10"><input type="text" id="data-code" required ng-model="entity.content.code" class="form-control input-sm" name="code">
-                            <span ng-show="form.code.$error.required">Code is required</span></div>
+                        <div class="col-xs-10"><input type="text" id="data-code" required="true" ng-model="entity.content.code" class="form-control input-sm" name="code">
+                            <span ng-show="form.code.$error.required" class="confman-label-error">Code is required</span></div>
                     </div>
                     <div class="row">
                         <div class="col-xs-2"><label class="control-label" for="data-label">&nbsp;Label</label></div>
                         <div class="col-xs-10"><input type="text" id="data-label" size="50" required ng-model="entity.content.label" class="form-control input-sm" name="label">
-                            <span ng-show="form.label.$error.required">Label is required</span></div>
+                            <span ng-show="form.label.$error.required" class="confman-label-error">Label is required</span></div>
                     </div>
 
                     <div class="confman-btn">

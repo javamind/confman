@@ -8,8 +8,8 @@ import com.ninjamind.confman.exception.FoundException;
 import com.ninjamind.confman.repository.ApplicationtRepository;
 import com.ninjamind.confman.repository.ParameterRepository;
 import net.codestory.http.errors.NotFoundException;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,14 +20,14 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service("parameterFacade")
 @Transactional
-public class ParameterFacadeImpl implements ParameterFacade<Parameter, Long>{
+public class ParameterFacadeImpl implements ParameterFacade {
     @Autowired
     private ParameterRepository parameterRepository;
     @Autowired
     private ApplicationtRepository applicationtRepository;
 
     @Override
-    public JpaRepository<Parameter, Long> getRepository() {
+    public ParameterRepository getRepository() {
         return parameterRepository;
     }
 
@@ -50,14 +50,30 @@ public class ParameterFacadeImpl implements ParameterFacade<Parameter, Long>{
 
         if(creation){
             //If we want to create a new one we throw an exception if parameter exist
-            FoundException.foundIfNotNull(parameter);
+            FoundException.foundExceptionIfNotNullAndActive(parameter);
             parameter = new Parameter().setCode(codeParam).setApplication(application);
         }
 
         parameter.setLabel(labelParam) ;
         parameter.setType(type);
 
+        if (creation) {
+            create(parameter);
+        } else {
+            update(parameter);
+        }
         parameterRepository.save(parameter);
     }
 
+    @Override
+    public Parameter create(Parameter entity) {
+        //We see if an entity exist
+        Parameter param = parameterRepository.findByCode(entity.getApplication().getCode(), entity.getCode());
+        if (param != null) {
+            //All the proprieties are copied except the version number
+            BeanUtils.copyProperties(entity, param, "id", "version");
+            return param.setActive(true);
+        }
+        return getRepository().save(entity.setActive(true));
+    }
 }

@@ -3,8 +3,9 @@ package com.ninjamind.confman.service;
 import com.github.zafarkhaja.semver.Version;
 import com.google.common.base.Preconditions;
 import com.ninjamind.confman.domain.TrackingVersion;
+import com.ninjamind.confman.repository.TrackingVersionRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,12 +17,12 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service("trackingVersionFacade")
 @Transactional
-public class TrackingVersionFacadeImpl implements TrackingVersionFacade<TrackingVersion, Long> {
+public class TrackingVersionFacadeImpl implements TrackingVersionFacade {
     @Autowired
-    private JpaRepository<TrackingVersion, Long> trackingVersionRepository;
+    private TrackingVersionRepository trackingVersionRepository;
 
     @Override
-    public JpaRepository<TrackingVersion, Long> getRepository() {
+    public TrackingVersionRepository getRepository() {
         return trackingVersionRepository;
     }
 
@@ -43,5 +44,17 @@ public class TrackingVersionFacadeImpl implements TrackingVersionFacade<Tracking
         Preconditions.checkNotNull(trackingVersion);
         //we use java-semserv to determine the next version number
         return Version.valueOf(trackingVersion).incrementPreReleaseVersion().toString();
+    }
+
+    @Override
+    public TrackingVersion create(TrackingVersion entity) {
+        //We see if an entity exist
+        TrackingVersion version = trackingVersionRepository.findByCode(entity.getCode());
+        if (version != null) {
+            //All the proprieties are copied except the version number
+            BeanUtils.copyProperties(entity, version, "id", "version");
+            return version.setActive(true);
+        }
+        return getRepository().save(entity.setActive(true));
     }
 }

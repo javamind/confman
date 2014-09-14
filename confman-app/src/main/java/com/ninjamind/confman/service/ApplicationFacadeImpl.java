@@ -2,7 +2,8 @@ package com.ninjamind.confman.service;
 
 import com.google.common.base.Preconditions;
 import com.ninjamind.confman.domain.*;
-import com.ninjamind.confman.repository.*;
+import com.ninjamind.confman.repository.ApplicationtRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -18,27 +19,27 @@ import java.util.stream.Collectors;
  */
 @Service("applicationFacade")
 @Transactional
-public class ApplicationFacadeImpl implements ApplicationFacade<Application, Long>{
+public class ApplicationFacadeImpl implements ApplicationFacade {
     @Autowired
     private ApplicationtRepository applicationRepository;
 
     @Autowired
-    private InstanceRepository instanceRepository;
+    private InstanceFacade instanceFacade;
 
     @Autowired
-    private ParameterRepository parameterRepository;
+    private ParameterFacade parameterFacade;
 
     @Autowired
-    private TrackingVersionRepository trackingVersionRepository;
+    private TrackingVersionFacade trackingVersionFacade;
 
     @Autowired
-    private ApplicationtVersionRepository applicationtVersionRepository;
+    private ApplicationVersionFacade applicationVersionFacade;
 
     @Autowired
-    private EnvironmentRepository environmentRepository;
+    private EnvironmentFacade environmentFacade;
 
     @Override
-    public JpaRepository<Application, Long> getRepository() {
+    public ApplicationtRepository getRepository() {
         return applicationRepository;
     }
 
@@ -49,42 +50,54 @@ public class ApplicationFacadeImpl implements ApplicationFacade<Application, Lon
     }
 
     @Override
+    public Application create(Application entity) {
+        //We see if an entity exist
+        Application app = applicationRepository.findByCode(entity.getCode());
+        if (app != null) {
+            //All the proprieties are copied except the version number
+            BeanUtils.copyProperties(entity, app, "id", "version");
+            return app.setActive(true);
+        }
+        return getRepository().save(entity.setActive(true));
+    }
+
+    @Override
     public List<Application> findApplicationByIdEnv(Long id) {
         return applicationRepository.findByIdEnv(id);
     }
 
     @Override
     public List<ApplicationVersion> findApplicationVersionByIdApp(Long id) {
-        return applicationtVersionRepository.findByIdApp(id);
+        return applicationVersionFacade.getRepository().findByIdApp(id);
     }
 
     @Override
     public List<TrackingVersion> findTrackingVersionByIdApp(Long id) {
-        return trackingVersionRepository.findByIdApp(id);
+        return trackingVersionFacade.getRepository().findByIdApp(id);
     }
 
     @Override
     public List<Environment> findEnvironmentByIdApp(Long id) {
-        return environmentRepository.findByIdApp(id);
+        return environmentFacade.getRepository().findByIdApp(id);
     }
 
     @Override
     public List<Parameter> findParameterByIdApp(Long id) {
-        return parameterRepository.findByIdApp(id);
+        return parameterFacade.getRepository().findByIdApp(id);
     }
 
     @Override
     public List<Instance> findInstanceByIdAppOrEnv(Long idApp, Long idEnv) {
         if(idApp==null && idEnv==null){
-            return instanceRepository.findAll();
+            return instanceFacade.getRepository().findAll();
         }
         if(idApp!=null && idEnv!=null){
-            return instanceRepository.findByIdappAndEnv(idApp, idEnv);
+            return instanceFacade.getRepository().findByIdappAndEnv(idApp, idEnv);
         }
         if(idApp!=null){
-            return instanceRepository.findByIdApp(idApp);
+            return instanceFacade.getRepository().findByIdApp(idApp);
         }
-        return instanceRepository.findByIdEnv(idEnv);
+        return instanceFacade.getRepository().findByIdEnv(idEnv);
     }
 
     @Override
@@ -97,31 +110,43 @@ public class ApplicationFacadeImpl implements ApplicationFacade<Application, Lon
         Preconditions.checkNotNull(app);
 
         if(app.getId()!=null && app.getId()>=0) {
-            deleteDependenciesIfNecessary(findParameterByIdApp(app.getId()), parameters, parameterRepository);
-            deleteDependenciesIfNecessary(findInstanceByIdAppOrEnv(app.getId(), null), instances, instanceRepository);
-            deleteDependenciesIfNecessary(findApplicationVersionByIdApp(app.getId()), versions, applicationtVersionRepository);
+            deleteDependenciesIfNecessary(findParameterByIdApp(app.getId()), parameters, parameterFacade.getRepository());
+            deleteDependenciesIfNecessary(findInstanceByIdAppOrEnv(app.getId(), null), instances, instanceFacade.getRepository());
+            deleteDependenciesIfNecessary(findApplicationVersionByIdApp(app.getId()), versions, applicationVersionFacade.getRepository());
         }
 
         //We clear the dependencies
         app.clearInstances();
         app.clearApplicationVersion();
         app.clearParameters();
-        final Application newapp = applicationRepository.save(app);
+        final Application newapp = app.getId() != null ? update(app) : create(app);
 
         //Depenencies are saved
         parameters.stream().forEach(p -> {
             p.setApplication(newapp);
             p.setParameterGroupment(null);
-            parameterRepository.save(p);
+            if (p.getId() != null) {
+                parameterFacade.update(p);
+            } else {
+                parameterFacade.create(p);
+            }
         });
         instances.stream().forEach(i -> {
             i.setApplication(newapp);
-            i.setEnvironment(environmentRepository.getOne(i.getEnvironment().getId()));
-            instanceRepository.save(i);
+            i.setEnvironment(environmentFacade.getRepository().getOne(i.getEnvironment().getId()));
+            if (i.getId() != null) {
+                instanceFacade.update(i);
+            } else {
+                instanceFacade.create(i);
+            }
         });
         versions.stream().forEach(v -> {
             v.setApplication(newapp);
-            applicationtVersionRepository.save(v);
+            if (v.getId() != null) {
+                applicationVersionFacade.update(v);
+            } else {
+                applicationVersionFacade.create(v);
+            }
         });
 
         return findOneWthDependencies(newapp.getId());

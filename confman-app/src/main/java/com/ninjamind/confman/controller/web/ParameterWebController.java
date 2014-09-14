@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.Parameter;
 import com.ninjamind.confman.dto.ParameterDto;
 import com.ninjamind.confman.service.GenericFacade;
+import com.ninjamind.confman.service.ParameterFacade;
 import net.codestory.http.annotations.Delete;
 import net.codestory.http.annotations.Get;
 import net.codestory.http.annotations.Post;
@@ -22,7 +23,7 @@ import java.util.List;
 public class ParameterWebController {
     @Autowired
     @Qualifier("parameterFacade")
-    private GenericFacade<Parameter, Long> genericFacade;
+    private ParameterFacade genericFacade;
 
     @Get("/parameter")
     public List<ParameterDto> list() {
@@ -37,13 +38,13 @@ public class ParameterWebController {
     @Put("/parameter")
     public ParameterDto update(ParameterDto parameter) {
         Preconditions.checkNotNull(parameter, "Object is required to update it");
-        return new ParameterDto(genericFacade.save(parameter.toParameter()));
+        return new ParameterDto(genericFacade.update(parameter.toParameter()));
     }
 
     @Post("/parameter")
     public ParameterDto save(ParameterDto parameter) {
         Preconditions.checkNotNull(parameter, "Object is required to save it");
-        return new ParameterDto(genericFacade.save(parameter.toParameter()));
+        return new ParameterDto(genericFacade.create(parameter.toParameter()));
     }
 
     @Delete("/parameter/:id")

@@ -75,7 +75,7 @@ public class CommonOperations {
     public static final Operation INSERT_VERSION_TRACKING =
             insertInto(TrackingVersion.TABLE_NAME)
                     .columns("id", "code", "label", "applicationVersion_id", "version", "active", "blocked")
-                    .values(1, "a.1", "version", 1, 0, true, false)
+                    .values(1, "1.0.0-track.1", "version", 1, 0, true, false)
                     .build();
 
     public static final Operation INSERT_PARAMETER_VALUE =

@@ -3,6 +3,7 @@
  * Controller linked to the env list
  */
 angular.module('confman').controller('configSearchCtrl', function ($rootScope, $scope, $http, constants, Environment, TableService, Params) {
+    $rootScope.callbackOK();
 
     //Page definition
     $rootScope.currentPage = {

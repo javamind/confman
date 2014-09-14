@@ -17,7 +17,7 @@ import static com.ninja_squad.dbsetup.Operations.sequenceOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Test of {@link com.ninjamind.confman.repository.ApplicationtVersionRepository}
+ * Test of {@link ApplicationVersionRepository}
  *
  * @author Guillaume EHRET
  */
@@ -29,7 +29,7 @@ public class ApplicationVersionRepositoryTest {
     private DataSource dataSource;
 
     @Autowired
-    private ApplicationtVersionRepository applicationtVersionRepository;
+    private ApplicationVersionRepository applicationtVersionRepository;
 
     @Before
     public void setUp(){

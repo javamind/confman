@@ -17,7 +17,7 @@ import java.util.List;
 public class TrackingVersionWebController {
 
     @Autowired
-    private ApplicationFacade<Application, Long> applicationFacade;
+    private ApplicationFacade applicationFacade;
 
     @Get("/trackingversion/application/:id")
     public List<TrackingVersionDto> listTracking(Long id) {

@@ -3,6 +3,7 @@
  * Controller linked to the env list
  */
 angular.module('confman').controller('applicationCtrl', function ($rootScope, $scope, $modal, $location, Application) {
+    $rootScope.callbackOK();
 
     //Page definition
     $rootScope.currentPage = {

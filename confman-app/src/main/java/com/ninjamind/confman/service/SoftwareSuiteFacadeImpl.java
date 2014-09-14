@@ -1,9 +1,14 @@
 package com.ninjamind.confman.service;
 
 import com.ninjamind.confman.domain.Environment;
+import com.ninjamind.confman.domain.ParameterGroupment;
 import com.ninjamind.confman.domain.SoftwareSuite;
 import com.ninjamind.confman.domain.SoftwareSuiteEnvironment;
+import com.ninjamind.confman.repository.ConfmanRepository;
+import com.ninjamind.confman.repository.EnvironmentRepository;
 import com.ninjamind.confman.repository.SofwareSuiteEnvironmentRepository;
+import com.ninjamind.confman.repository.SofwareSuiteRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -19,18 +24,18 @@ import java.util.Set;
  */
 @Service("softwareSuiteFacade")
 @Transactional
-public class SoftwareSuiteFacadeImpl implements SoftwareSuiteFacade<SoftwareSuite, Long>{
+public class SoftwareSuiteFacadeImpl implements SoftwareSuiteFacade{
     @Autowired
-    private JpaRepository<SoftwareSuite, Long> softwareSuiteRepository;
+    private SofwareSuiteRepository softwareSuiteRepository;
 
     @Autowired
-    private JpaRepository<Environment, Long> environmentRepository;
+    private EnvironmentRepository environmentRepository;
 
     @Autowired
     private SofwareSuiteEnvironmentRepository softwareSuiteEnvironmentRepository;
 
     @Override
-    public JpaRepository<SoftwareSuite, Long> getRepository() {
+    public SofwareSuiteRepository getRepository() {
         return softwareSuiteRepository;
     }
 
@@ -49,19 +54,27 @@ public class SoftwareSuiteFacadeImpl implements SoftwareSuiteFacade<SoftwareSuit
     public SoftwareSuite update(SoftwareSuite softwareSuite, Set<SoftwareSuiteEnvironment> suiteEnvironmentSet) {
         //we delete all the linked
         softwareSuiteEnvironmentRepository.delete(findSoftwareSuiteEnvironmentByIdSoft(softwareSuite.getId()));
+        softwareSuite.clearSoftwareSuiteEnvironments();
+        SoftwareSuite suiteSaved = getRepository().save(softwareSuite);
 
         if(suiteEnvironmentSet!=null && !suiteEnvironmentSet.isEmpty()) {
             //Attach the objects to the session
             for(SoftwareSuiteEnvironment softwareSuiteEnvironment : suiteEnvironmentSet){
+                softwareSuiteEnvironment.setId(null);
                 softwareSuiteEnvironmentRepository.save(
                         new SoftwareSuiteEnvironment(
-                                softwareSuiteRepository.findOne(softwareSuiteEnvironment.getId().getSoftwareSuite().getId()),
+                                suiteSaved,
                                 environmentRepository.findOne(softwareSuiteEnvironment.getId().getEnvironment().getId())
                 ));
             }
         }
-        return save(softwareSuite);
+        return suiteSaved;
     }
 
 
+    @Override
+    public SoftwareSuite create(SoftwareSuite entity) {
+        //We have no logical deletion
+        return getRepository().save(entity.setActive(true));
+    }
 }

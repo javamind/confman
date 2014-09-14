@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class InstanceApiController {
 
     @Autowired
-    private InstanceFacade<Instance, Long> instanceFacade;
+    private InstanceFacade instanceFacade;
 
     /**
      * Create a instance in Confman for an application
@@ -39,11 +39,13 @@ public class InstanceApiController {
         Preconditions.checkNotNull(confmanDto, "DTO ConfmanDto is required");
         Preconditions.checkNotNull(confmanDto.getCodeApplication(), "application code is required");
         Preconditions.checkNotNull(confmanDto.getCodeInstance(), "instance code is required");
+        Preconditions.checkNotNull(confmanDto.getCodeEnvironment(), "environment code is required");
         Preconditions.checkNotNull(confmanDto.getLabel(), "instance label is required");
 
         instanceFacade.saveInstanceToApplication(
                 confmanDto.getCodeApplication(),
                 confmanDto.getCodeInstance(),
+                confmanDto.getCodeEnvironment(),
                 confmanDto.getLabel(),
                 creation);
     }
@@ -58,16 +60,18 @@ public class InstanceApiController {
     }
 
     /**
-     * Read a instance
+     * Read an instance
      * @param codeApp
      * @param codeInstance
+     * @param codeEnv
      * @return
      */
-    @Get("/confman/instance/:codeInstance/app/:codeApp")
-    public ConfmanDto getParam(String codeInstance, String codeApp) {
+    @Get("/confman/instance/:codeInstance/app/:codeApp/env:codeEnv")
+    public ConfmanDto getParam(String codeInstance, String codeApp, String codeEnv) {
         Preconditions.checkNotNull(codeApp, "application code is required");
         Preconditions.checkNotNull(codeInstance, "instance code is required");
-        Instance instance = ((InstanceRepository)instanceFacade.getRepository()).findByCode(codeApp, codeInstance);
+        Preconditions.checkNotNull(codeInstance, "instance code is required");
+        Instance instance = instanceFacade.getRepository().findByCode(codeInstance, codeApp, codeEnv);
 
         if(instance==null){
             return null;

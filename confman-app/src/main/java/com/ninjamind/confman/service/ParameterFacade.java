@@ -1,5 +1,8 @@
 package com.ninjamind.confman.service;
 
+import com.ninjamind.confman.domain.Parameter;
+import com.ninjamind.confman.repository.ParameterRepository;
+
 import java.io.Serializable;
 
 /**
@@ -7,7 +10,7 @@ import java.io.Serializable;
  *
  * @author Guillaume EHRET
  */
-public interface ParameterFacade<T, ID extends Serializable> extends GenericFacade<T, ID> {
+public interface ParameterFacade extends GenericFacade<Parameter, Long, ParameterRepository> {
 
     /**
      * Add a parameter to an existent application.

@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class TrackingVersionFacadeImplTest {
 
-    private TrackingVersionFacade<TrackingVersion, Long> trackingVersionFacade;
+    private TrackingVersionFacade trackingVersionFacade;
 
     @Before
     public void setUp() throws Exception {

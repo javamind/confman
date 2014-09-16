@@ -17,7 +17,7 @@ angular.module('confman').controller('environmentCtrl', function ($rootScope, $s
 
     //Load environments
     $scope.environments = Environment.query();
-
+    //$scope.entity = { verb :null, content: { code:' ', label:' '}}
 
     //Actions
     $scope.update =  function (elt){

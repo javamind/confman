@@ -2,11 +2,8 @@
   <library name="Gradle: http-1.50">
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/net/code-story/http/1.50/http-1.50.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.code-story/http/1.50/f09413e531125ba94c97e9b91ea389d8a98e55f9/http-1.50.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.code-story/http/1.50/e16295b89bb1c2dc45dc0823d0ce656914159310/http-1.50-sources.jar!/" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>

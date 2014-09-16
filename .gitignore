@@ -4,5 +4,11 @@
 **/*.iml
 target
 build
+confman-app/wrapper
+confman-app/gradlew
+confman-app/gradlew.bat
+confman-console/wrapper
+confman-console/gradlew
+confman-console/gradlew.bat
 manager/build
 gradle.properties

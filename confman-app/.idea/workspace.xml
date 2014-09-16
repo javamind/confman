@@ -2,46 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2737792f-0b4d-402e-b95e-0dbc9d03af00" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../confman-addons/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java-test/src/test/java/com/ninjamind/confman/utils/RestCallServiceTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java-test/src/test/java/com/ninjamind/confman/utils/RestCallTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java-test/pom.xml" />
-      <change type="DELETED" beforePath="D:\diboiron\projet\Technique\confman-addons\confman-java\src\main\java\com\ninjamind\confman\Operation.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\diboiron\projet\Technique\confman-addons\confman-java\src\main\java\com\ninjamind\confman\conf\ApplicationConfig.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\diboiron\projet\Technique\confman-addons\confman-java\src\main\java\com\ninjamind\confman\conf\ConfChecker.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\diboiron\projet\Technique\confman-addons\confman-java\src\main\java\com\ninjamind\confman\conf\ServerConfig.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\diboiron\projet\Technique\confman-addons\confman-java\src\main\test\java\com\ninjamind\confman\service\RestCallTest.java" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/utils/rest/AbstractHttpCall.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/utils/HttpCalls.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java-test/src/test/java/com/ninjamind/confman/utils/HttpCallsTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/utils/rest/HttpGetCall.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/utils/rest/HttpPostCall.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../confman-addons/confman-java-test/src/test/java/com/ninjamind/confman/utils/RestCallServiceTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/utils/RestCallService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__bootstrap_3_1_1_1.xml" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/utils/RestCallException.java" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/utils/rest/HttpCallException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.gitignore" afterPath="$PROJECT_DIR$/../.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/AbstractConfmanOperation.java" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/AbstractConfmanOperation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/confman-maven/plugin/src/main/java/com/ninjamind/maven/plugin/AbstractReaderConfmanMojo.java" afterPath="$PROJECT_DIR$/../../confman-addons/confman-maven/plugin/src/main/java/com/ninjamind/maven/plugin/AbstractReaderConfmanMojo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/ConfmanAddApplicationParameter.java" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/ConfmanAddApplicationParameter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/ConfmanReadParameters.java" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/ConfmanReadParameters.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/ParameterFacadeImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/ParameterFacadeImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/api/ParameterValueApiController.java" afterPath="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/api/ParameterValueApiController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../build.gradle" afterPath="$PROJECT_DIR$/../build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/.idea/compiler.xml" afterPath="$PROJECT_DIR$/../../confman-addons/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/confman-addons.iml" afterPath="$PROJECT_DIR$/../../confman-addons/confman-addons.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/confman-java/confman-java.iml" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/confman-java.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/confman-maven/plugin/confman-maven-plugin.iml" afterPath="$PROJECT_DIR$/../../confman-addons/confman-maven/plugin/confman-maven-plugin.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/confman-maven/test/confman-maven-test.iml" afterPath="$PROJECT_DIR$/../../confman-addons/confman-maven/test/confman-maven-test.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/confman-java/src/test/java/com/ninjamind/confman/utils/ConfmanReadParametersTest.java" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/src/test/java/com/ninjamind/confman/utils/ConfmanReadParametersTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__http_1_50.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__http_1_50.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__jcl_over_slf4j_1_7_7.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__jcl_over_slf4j_1_7_7.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/confman-maven/confman-maven.iml" afterPath="$PROJECT_DIR$/../../confman-addons/confman-maven/confman-maven.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/.idea/encodings.xml" afterPath="$PROJECT_DIR$/../../confman-addons/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/.idea/misc.xml" afterPath="$PROJECT_DIR$/../../confman-addons/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/.idea/modules.xml" afterPath="$PROJECT_DIR$/../../confman-addons/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/pom.xml" afterPath="$PROJECT_DIR$/../../confman-addons/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/confman-java/pom.xml" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/.idea/vcs.xml" afterPath="$PROJECT_DIR$/../../confman-addons/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../confman-addons/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="D:\diboiron\projet\Technique\confman-addons\confman-java\src\main\java\com\ninjamind\confman\service\Preconditions.java" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/utils/Preconditions.java" />
-      <change type="MOVED" beforePath="D:\diboiron\projet\Technique\confman-addons\confman-java\src\main\java\com\ninjamind\confman\service\RestCall.java" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/utils/RestCallService.java" />
-      <change type="MOVED" beforePath="D:\diboiron\projet\Technique\confman-addons\confman-java\src\main\java\com\ninjamind\confman\service\RestCallException.java" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/utils/RestCallException.java" />
-      <change type="MOVED" beforePath="D:\diboiron\projet\Technique\confman-addons\confman-java\src\main\test\java\com\ninjamind\confman\service\ConfmanReadParametersTest.java" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/src/test/java/com/ninjamind/confman/utils/ConfmanReadParametersTest.java" />
     </list>
     <ignored path="confman.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,6 +44,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties converted="true" />
     <breakpoint_any converted="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -100,7 +81,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties converted="true" />
     <breakpoint_rules converted="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
@@ -109,61 +89,61 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="build.gradle" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="build.gradle" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7265416" vertical-offset="477" max-vertical-offset="850">
-              <caret line="44" column="44" selection-start-line="44" selection-start-column="1" selection-end-line="44" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="750">
+              <caret line="44" column="1" selection-start-line="44" selection-start-column="1" selection-end-line="44" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ApplicationRepositoryTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/ninjamind/confman/repository/ApplicationRepositoryTest.java">
+      <file leaf-file-name="DataSourceDestination.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/com/ninja-squad/DbSetup/1.3.0/DbSetup-1.3.0-sources.jar!/com/ninja_squad/dbsetup/destination/DataSourceDestination.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="208" max-vertical-offset="1122">
-              <caret line="47" column="47" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="63" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="690" max-vertical-offset="1695">
+              <caret line="46" column="11" selection-start-line="46" selection-start-column="11" selection-end-line="46" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataSourceDestination.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/com/ninja-squad/DbSetup/1.3.0/DbSetup-1.3.0.jar!/com/ninja_squad/dbsetup/destination/DataSourceDestination.class">
+      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.12" vertical-offset="0" max-vertical-offset="442">
-              <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="300">
+              <caret line="11" column="15" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConfmanApplication.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/ConfmanApplication.java">
+      <file leaf-file-name="gradle.properties" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../gradle.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="646">
-              <caret line="31" column="68" selection-start-line="31" selection-start-column="68" selection-end-line="31" selection-end-column="68" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="255">
+              <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EnvironmentWebController.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/web/EnvironmentWebController.java">
+      <file leaf-file-name="settings.gradle" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../settings.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="334" max-vertical-offset="867">
-              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ApplicationVersionRepositoryTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/ninjamind/confman/repository/ApplicationVersionRepositoryTest.java">
+      <file leaf-file-name="gradle-wrapper.properties" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="263" max-vertical-offset="935">
-              <caret line="37" column="51" selection-start-line="37" selection-start-column="41" selection-end-line="37" selection-end-column="51" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="180">
+              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -172,8 +152,18 @@
       <file leaf-file-name="CommonOperations.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/ninjamind/confman/repository/CommonOperations.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="1598">
-              <caret line="83" column="31" selection-start-line="83" selection-start-column="31" selection-end-line="83" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="177" max-vertical-offset="1410">
+              <caret line="52" column="35" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConfmanApplication.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/ConfmanApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="465" max-vertical-offset="720">
+              <caret line="31" column="68" selection-start-line="31" selection-start-column="68" selection-end-line="31" selection-end-column="68" />
               <folding />
             </state>
           </provider>
@@ -182,18 +172,18 @@
       <file leaf-file-name="ParameterApiController.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/api/ParameterApiController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="1241">
+            <state vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="1275">
               <caret line="66" column="16" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ParameterValueApiController.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ParameterValueApiController.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/api/ParameterValueApiController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="833">
-              <caret line="39" column="58" selection-start-line="39" selection-start-column="58" selection-end-line="39" selection-end-column="58" />
+            <state vertical-scroll-proportion="0.22692889" vertical-offset="0" max-vertical-offset="735">
+              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -335,28 +325,9 @@
           <value>
             <list>
               <ExternalTaskPojo>
-                <option name="description" value="Assembles and tests this project and all projects it depends on." />
+                <option name="description" value="Assembles classes 'main'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="buildNeeded" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Assembles classes 'test'." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="testClasses" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Runs the unit tests." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="test" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Migrates the schema to the latest version." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="flywayMigrate" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="copyForDelivery" />
+                <option name="name" value="classes" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Repairs the Flyway metadata table." />
@@ -364,24 +335,24 @@
                 <option name="name" value="flywayRepair" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Runs all checks." />
+                <option name="description" value="Generates Javadoc API documentation for the main source code." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="check" />
+                <option name="name" value="javadoc" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Compiles Java source 'test:java'." />
+                <option name="description" value="Migrates the schema to the latest version." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="compileTestJava" />
+                <option name="name" value="flywayMigrate" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Creates and initializes the metadata table in the schema." />
+                <option name="description" value="Installs the 'archives' artifacts into the local Maven repository." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="flywayInit" />
+                <option name="name" value="install" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Assembles the outputs of this project." />
+                <option name="description" value="Runs the unit tests." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="assemble" />
+                <option name="name" value="test" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Deletes the build directory." />
@@ -389,14 +360,18 @@
                 <option name="name" value="clean" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Compiles Java source 'main:java'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="compileJava" />
+                <option name="name" value="copyForDelivery" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Generates Javadoc API documentation for the main source code." />
+                <option name="description" value="Processes resources 'main:resources'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="javadoc" />
+                <option name="name" value="processResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Compiles Java source 'test:java'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileTestJava" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Assembles a jar archive containing the main classes." />
@@ -409,16 +384,6 @@
                 <option name="name" value="build" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Assembles and tests this project and all projects that depend on it." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="buildDependents" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Assembles classes 'main'." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="classes" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="description" value="Prints the details and status information about all the migrations." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="flywayInfo" />
@@ -429,9 +394,34 @@
                 <option name="name" value="processTestResources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Processes resources 'main:resources'." />
+                <option name="description" value="Assembles and tests this project and all projects that depend on it." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="processResources" />
+                <option name="name" value="buildDependents" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project and all projects it depends on." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="buildNeeded" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Drops all objects in the configured schemas." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="flywayClean" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles classes 'test'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="testClasses" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs all checks." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="check" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Compiles Java source 'main:java'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileJava" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Validates the applied migrations against the ones available on the classpath." />
@@ -443,9 +433,14 @@
                 <option name="name" value="wrapper" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Drops all objects in the configured schemas." />
+                <option name="description" value="Creates and initializes the metadata table in the schema." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="flywayClean" />
+                <option name="name" value="flywayInit" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles the outputs of this project." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="assemble" />
               </ExternalTaskPojo>
             </list>
           </value>
@@ -557,14 +552,12 @@
                       <ExternalModuleBuildClasspathPojo>
                         <option name="entries">
                           <list>
-                            <option value="$MAVEN_REPOSITORY$/com/google/guava/guava/16.0.1/guava-16.0.1-sources.jar" />
                             <option value="$MAVEN_REPOSITORY$/com/google/guava/guava/16.0.1/guava-16.0.1.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/springframework/spring-context/4.0.5.RELEASE/spring-context-4.0.5.RELEASE.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.0.5.RELEASE/spring-aop-4.0.5.RELEASE.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.0.5.RELEASE/spring-beans-4.0.5.RELEASE.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/springframework/spring-core/4.0.5.RELEASE/spring-core-4.0.5.RELEASE.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/springframework/spring-expression/4.0.5.RELEASE/spring-expression-4.0.5.RELEASE.jar" />
-                            <option value="$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar" />
                             <option value="$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" />
                             <option value="$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3.jar" />
                           </list>
@@ -578,21 +571,18 @@
                       <ExternalModuleBuildClasspathPojo>
                         <option name="entries">
                           <list>
-                            <option value="$MAVEN_REPOSITORY$/com/google/guava/guava/16.0.1/guava-16.0.1-sources.jar" />
                             <option value="$MAVEN_REPOSITORY$/com/google/guava/guava/16.0.1/guava-16.0.1.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/springframework/spring-context/4.0.5.RELEASE/spring-context-4.0.5.RELEASE.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.0.5.RELEASE/spring-aop-4.0.5.RELEASE.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.0.5.RELEASE/spring-beans-4.0.5.RELEASE.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/springframework/spring-core/4.0.5.RELEASE/spring-core-4.0.5.RELEASE.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/springframework/spring-expression/4.0.5.RELEASE/spring-expression-4.0.5.RELEASE.jar" />
-                            <option value="$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar" />
                             <option value="$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" />
                             <option value="$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.postgresql/postgresql/9.3-1102-jdbc41/3c0023d857e0d156088df3d57619e064dc5a8f6b/postgresql-9.3-1102-jdbc41-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.postgresql/postgresql/9.3-1102-jdbc41/e01373bd6ed64d1b3bf1476e5ed6a7652a5fbfcb/postgresql-9.3-1102-jdbc41.jar" />
                             <option value="$MAVEN_REPOSITORY$/com/oracle/ojdbc6/11.2.0.4/ojdbc6-11.2.0.4.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.code-story/http/1.50/e16295b89bb1c2dc45dc0823d0ce656914159310/http-1.50-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.code-story/http/1.50/f09413e531125ba94c97e9b91ea389d8a98e55f9/http-1.50.jar" />
+                            <option value="$MAVEN_REPOSITORY$/net/code-story/http/1.50/http-1.50.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.webjars/angularjs/1.3.0-rc.1/cb6beeb38250b7e2df2a3fd480190914a78a8a16/angularjs-1.3.0-rc.1-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.webjars/angularjs/1.3.0-rc.1/cf96c4767470f5cb27110316566120310373fb08/angularjs-1.3.0-rc.1.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.webjars/angular-ui-bootstrap/0.11.0-2/b15333ad6de9b8bc9a49664b14c2607f2fd82e68/angular-ui-bootstrap-0.11.0-2-sources.jar" />
@@ -627,21 +617,19 @@
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-orm/3.2.9.RELEASE/24d1aa9860d3cc94454bfecd42a69a7bb33f1b4d/spring-orm-3.2.9.RELEASE.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjrt/1.8.0/6922ad7eed511396a245f8e05aeacfdfeaacfaaf/aspectjrt-1.8.0-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjrt/1.8.0/302d0fe0abba26bbf5f31c3cd5337b3125c744e3/aspectjrt-1.8.0.jar" />
-                            <option value="$MAVEN_REPOSITORY$/org/slf4j/jcl-over-slf4j/1.7.7/jcl-over-slf4j-1.7.7.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/jcl-over-slf4j/1.7.7/b5a646b81b899e930f8600c5f45766dd82743d93/jcl-over-slf4j-1.7.7-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/jcl-over-slf4j/1.7.7/56003dcd0a31deea6391b9e2ef2f2dc90b205a92/jcl-over-slf4j-1.7.7.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/jboss/logging/jboss-logging/3.1.3.GA/jboss-logging-3.1.3.GA.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/jboss/logging/jboss-logging-annotations/1.2.0.Beta1/jboss-logging-annotations-1.2.0.Beta1.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/jboss/spec/javax/transaction/jboss-transaction-api_1.2_spec/1.0.0.Final/jboss-transaction-api_1.2_spec-1.0.0.Final.jar" />
-                            <option value="$MAVEN_REPOSITORY$/dom4j/dom4j/1.6.1/dom4j-1.6.1-sources.jar" />
                             <option value="$MAVEN_REPOSITORY$/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/hibernate/common/hibernate-commons-annotations/4.0.4.Final/hibernate-commons-annotations-4.0.4.Final.jar" />
-                            <option value="$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final-sources.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/javassist/javassist/3.18.1-GA/javassist-3.18.1-GA.jar" />
                             <option value="$MAVEN_REPOSITORY$/antlr/antlr/2.7.7/antlr-2.7.7.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/jboss/jandex/1.1.0.Final/jandex-1.1.0.Final.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/antlr/antlr-runtime/3.4/antlr-runtime-3.4.jar" />
                             <option value="$MAVEN_REPOSITORY$/commons-io/commons-io/2.3/commons-io-2.3.jar" />
-                            <option value="$MAVEN_REPOSITORY$/commons-beanutils/commons-beanutils/1.8.3/commons-beanutils-1.8.3-sources.jar" />
                             <option value="$MAVEN_REPOSITORY$/commons-beanutils/commons-beanutils/1.8.3/commons-beanutils-1.8.3.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/json/json/20090211/json-20090211.jar" />
                             <option value="$MAVEN_REPOSITORY$/com/google/protobuf/protobuf-java/2.5.0/protobuf-java-2.5.0.jar" />
@@ -650,7 +638,6 @@
                             <option value="$MAVEN_REPOSITORY$/org/mozilla/rhino/1.7R4/rhino-1.7R4.jar" />
                             <option value="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-annotations/2.3.0/jackson-annotations-2.3.0.jar" />
                             <option value="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-core/2.3.2/jackson-core-2.3.2.jar" />
-                            <option value="$MAVEN_REPOSITORY$/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2-sources.jar" />
                             <option value="$MAVEN_REPOSITORY$/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.webjars/bootstrap/3.1.1-1/7c0287a03ac0f0820defec126d2543ecc4ebabf9/bootstrap-3.1.1-1-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.webjars/bootstrap/3.1.1-1/282be07598004c33d769d267eccb48b5c503c38b/bootstrap-3.1.1-1.jar" />
@@ -668,14 +655,12 @@
                       <ExternalModuleBuildClasspathPojo>
                         <option name="entries">
                           <list>
-                            <option value="$MAVEN_REPOSITORY$/com/google/guava/guava/16.0.1/guava-16.0.1-sources.jar" />
                             <option value="$MAVEN_REPOSITORY$/com/google/guava/guava/16.0.1/guava-16.0.1.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/springframework/spring-context/4.0.5.RELEASE/spring-context-4.0.5.RELEASE.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.0.5.RELEASE/spring-aop-4.0.5.RELEASE.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.0.5.RELEASE/spring-beans-4.0.5.RELEASE.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/springframework/spring-core/4.0.5.RELEASE/spring-core-4.0.5.RELEASE.jar" />
                             <option value="$MAVEN_REPOSITORY$/org/springframework/spring-expression/4.0.5.RELEASE/spring-expression-4.0.5.RELEASE.jar" />
-                            <option value="$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar" />
                             <option value="$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" />
                             <option value="$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3.jar" />
                           </list>
@@ -689,50 +674,50 @@
               <option name="name" value="confman-app" />
               <option name="projectBuildClasspath">
                 <list>
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/ant-1.9.3.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/ant-launcher-1.9.3.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-base-services-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-base-services-groovy-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-cli-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-core-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-docs-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-launcher-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-messaging-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-native-2.0.jar" />
                   <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-open-api-2.0.jar" />
                   <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-resources-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-tooling-api-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-ui-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-wrapper-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-base-services-groovy-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-launcher-2.0.jar" />
                   <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/groovy-all-2.3.3.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/ant-antlr-1.9.3.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-announce-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-antlr-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-build-comparison-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-build-init-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-code-quality-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/ant-launcher-1.9.3.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-base-services-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-docs-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/ant-1.9.3.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-wrapper-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-ui-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-native-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-messaging-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-cli-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-tooling-api-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/gradle-core-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-signing-2.0.jar" />
                   <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-core-impl-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-cpp-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-reporting-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-build-comparison-2.0.jar" />
                   <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-diagnostics-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-ear-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-ide-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-ivy-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-jacoco-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-javascript-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-jetty-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-language-base-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-language-jvm-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-maven-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-osgi-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-scala-2.0.jar" />
                   <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-plugin-use-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-build-init-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-ear-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/ivy-2.2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-cpp-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-maven-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-sonar-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-ide-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-jetty-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-announce-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-ivy-2.0.jar" />
                   <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-plugins-2.0.jar" />
                   <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-publish-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-reporting-2.0.jar" />
                   <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-resources-http-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-scala-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-signing-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-sonar-2.0.jar" />
-                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/ivy-2.2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-antlr-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-javascript-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-language-jvm-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/ant-antlr-1.9.3.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-code-quality-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-language-base-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-jacoco-2.0.jar" />
+                  <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-2.0-bin/5h57m9vra0mjv9qs45oqtsb5c0/gradle-2.0/lib/plugins/gradle-osgi-2.0.jar" />
                   <option value="$PROJECT_DIR$/buildSrc/src/main/java" />
                   <option value="$PROJECT_DIR$/buildSrc/src/main/groovy" />
                 </list>
@@ -787,7 +772,6 @@
         <option value="$PROJECT_DIR$/app/view/applicationdetail.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/SoftwareSuiteFacadeImpl.java" />
         <option value="$PROJECT_DIR$/app/view/softwaresuite.html" />
-        <option value="$PROJECT_DIR$/../.gitignore" />
         <option value="$PROJECT_DIR$/../gradle/wrapper/gradle-wrapper.properties" />
         <option value="$PROJECT_DIR$/app/styles/style.less" />
         <option value="$PROJECT_DIR$/app/js/controller/environment.js" />
@@ -797,6 +781,7 @@
         <option value="$PROJECT_DIR$/../build.gradle" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/api/ParameterValueApiController.java" />
+        <option value="$PROJECT_DIR$/../.gitignore" />
       </list>
     </option>
   </component>
@@ -805,10 +790,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-4" />
-    <option name="y" value="-4" />
-    <option name="width" value="1288" />
-    <option name="height" value="774" />
+    <option name="x" value="65" />
+    <option name="y" value="24" />
+    <option name="width" value="1855" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -836,8 +821,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -852,8 +837,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="confmanager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemId" value="confman" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -862,40 +847,222 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="confmanager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gradle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
               <option name="myItemId" value="confman" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="confmanager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="confman-console" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="confman" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="confmanager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="confman-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman-app" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman-app" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman-app" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="repository" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman-app" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman-app" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman-app" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman-app" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="confman" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="api" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -914,6 +1081,13 @@
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../confman-addons" />
     <property name="FullScreen" value="false" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="options.lastSelected" value="MavenSettings" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -975,18 +1149,33 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
-      <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
-      <option name="PROGRAM_PARAMETERS" />
-      <method />
-    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
       <method />
     </configuration>
     <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
@@ -1007,6 +1196,25 @@
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="myFilePath" />
@@ -1024,19 +1232,6 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -1082,27 +1277,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
     <list size="2">
       <item index="0" class="java.lang.String" itemvalue="JUnit.All in confman-app" />
       <item index="1" class="java.lang.String" itemvalue="Application.ConfmanApplication" />
@@ -1132,53 +1306,56 @@
       <workItem from="1410853303433" duration="8095000" />
       <workItem from="1410871272138" duration="1307000" />
       <workItem from="1410876861710" duration="4223000" />
+      <workItem from="1410888529074" duration="42000" />
+      <workItem from="1410888582394" duration="1221000" />
+      <workItem from="1410899717403" duration="2461000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26471000" />
+    <option name="totallyTimeSpent" value="30195000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1288" height="774" extended-state="6" />
-    <editor active="false" />
+    <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25541794" sideWeight="0.4997242" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.399361" sideWeight="0.5002758" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32744783" sideWeight="0.4997242" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30613893" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2520064" sideWeight="0.4997242" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.64205456" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Sonar" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32694355" sideWeight="0.4997242" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18189234" sideWeight="0.6313214" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38009787" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.399361" sideWeight="0.5002758" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24387646" sideWeight="0.4997242" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="SVN Properties" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901135" sideWeight="0.6264274" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30612245" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25541794" sideWeight="0.4997242" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905295" sideWeight="0.4997242" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="SVN Properties" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Sonar" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18189234" sideWeight="0.6313214" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38009787" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901135" sideWeight="0.6264274" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.64205456" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905295" sideWeight="0.4997242" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1207,23 +1384,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/domain/AbstractConfManEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="504" max-vertical-offset="1635">
-          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding>
-            <element signature="e#968#969#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/ApplicationVersionFacadeImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="469" max-vertical-offset="1065">
-          <caret line="76" column="36" selection-start-line="76" selection-start-column="36" selection-end-line="76" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/ApplicationFacadeImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="452" max-vertical-offset="2490">
@@ -1399,20 +1559,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.4" vertical-offset="0" max-vertical-offset="238">
-          <caret line="5" column="75" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gradle.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
-          <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../gradle/wrapper/gradle-wrapper.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
@@ -1431,7 +1577,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1545">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1439,7 +1584,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
           <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1447,7 +1591,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1116" max-vertical-offset="3043">
           <caret line="86" column="1" selection-start-line="86" selection-start-column="1" selection-end-line="86" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1455,7 +1598,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="66" max-vertical-offset="1802">
           <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1463,7 +1605,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1156">
           <caret line="37" column="120" selection-start-line="37" selection-start-column="120" selection-end-line="37" selection-end-column="120" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1471,15 +1612,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1683" max-vertical-offset="2329">
           <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../settings.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="576">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1487,7 +1619,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1207">
           <caret line="55" column="25" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1495,7 +1626,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="474" max-vertical-offset="1292">
           <caret line="44" column="44" selection-start-line="44" selection-start-column="44" selection-end-line="44" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1503,7 +1633,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="682" max-vertical-offset="1088">
           <caret line="37" column="16" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1511,14 +1640,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="263" max-vertical-offset="935">
           <caret line="37" column="51" selection-start-line="37" selection-start-column="41" selection-end-line="37" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/ninjamind/confman/repository/CommonOperations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="1598">
-          <caret line="83" column="31" selection-start-line="83" selection-start-column="31" selection-end-line="83" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -1533,9 +1654,8 @@
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/ninja-squad/DbSetup/1.3.0/DbSetup-1.3.0.jar!/com/ninja_squad/dbsetup/destination/DataSourceDestination.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.12" vertical-offset="0" max-vertical-offset="442">
+        <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="405">
           <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1571,18 +1691,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/api/ParameterValueApiController.java">
+    <entry file="file://$PROJECT_DIR$/../build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="833">
-          <caret line="39" column="58" selection-start-line="39" selection-start-column="58" selection-end-line="39" selection-end-column="58" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="750">
+          <caret line="44" column="1" selection-start-line="44" selection-start-column="1" selection-end-line="44" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../build.gradle">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/ninja-squad/DbSetup/1.3.0/DbSetup-1.3.0-sources.jar!/com/ninja_squad/dbsetup/destination/DataSourceDestination.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7265416" vertical-offset="477" max-vertical-offset="850">
-          <caret line="44" column="44" selection-start-line="44" selection-start-column="1" selection-end-line="44" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="1185">
+          <caret line="46" column="11" selection-start-line="46" selection-start-column="11" selection-end-line="46" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="300">
+          <caret line="11" column="15" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gradle.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../settings.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="865">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="180">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/ninjamind/confman/repository/CommonOperations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="177" max-vertical-offset="1410">
+          <caret line="52" column="35" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/api/ParameterValueApiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22692889" vertical-offset="0" max-vertical-offset="735">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1639,7 +1807,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>confman-app</last-edited>
+          <last-edited>confman</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1651,7 +1819,7 @@
       </state>
       <state key="ProjectJDKs.UI">
         <settings>
-          <last-edited>1.7</last-edited>
+          <last-edited>1.6</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1663,7 +1831,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Gradle: angular-ui-bootstrap-0.11.0-2</last-edited>
+          <last-edited>Gradle: jcl-over-slf4j-1.7.7</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

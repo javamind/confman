@@ -40,4 +40,11 @@ public class ParameterValueApiController {
         return Lists.transform(parameterValueFacade.findParamatersByCodeVersionAndEnv(codeApp, version, env), p -> new ParameterValueDto(p));
     }
 
+    /**
+     * Visible for testing
+     * @param parameterValueFacade
+     */
+    public void setParameterValueFacade(ParameterValueFacade parameterValueFacade) {
+        this.parameterValueFacade = parameterValueFacade;
+    }
 }

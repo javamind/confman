@@ -3,8 +3,13 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../confman.iml" filepath="$PROJECT_DIR$/../confman.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../confman-addons/confman-addons.iml" filepath="$PROJECT_DIR$/../../confman-addons/confman-addons.iml" />
       <module fileurl="file://$PROJECT_DIR$/confman-app.iml" filepath="$PROJECT_DIR$/confman-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/../confman-console/confman-console.iml" filepath="$PROJECT_DIR$/../confman-console/confman-console.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../confman-addons/confman-java/confman-java.iml" filepath="$PROJECT_DIR$/../../confman-addons/confman-java/confman-java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../confman-addons/confman-maven/confman-maven.iml" filepath="$PROJECT_DIR$/../../confman-addons/confman-maven/confman-maven.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../confman-addons/confman-maven/plugin/confman-maven-plugin.iml" filepath="$PROJECT_DIR$/../../confman-addons/confman-maven/plugin/confman-maven-plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../confman-addons/confman-maven/test/confman-maven-test.iml" filepath="$PROJECT_DIR$/../../confman-addons/confman-maven/test/confman-maven-test.iml" />
     </modules>
   </component>
 </project>

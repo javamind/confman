@@ -2,18 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2737792f-0b4d-402e-b95e-0dbc9d03af00" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="D:\diboiron\projet\Technique\confmanager\confman-app\gradle\wrapper\gradle-wrapper.jar" />
-      <change type="NEW" beforePath="" afterPath="D:\diboiron\projet\Technique\confmanager\confman-app\gradle\wrapper\gradle-wrapper.properties" />
-      <change type="NEW" beforePath="" afterPath="D:\diboiron\projet\Technique\confmanager\confman-app\gradlew.bat" />
-      <change type="NEW" beforePath="" afterPath="D:\diboiron\projet\Technique\confmanager\confman-app\gradlew" />
-      <change type="DELETED" beforePath="D:\diboiron\projet\Technique\confmanager\confman-app\.idea\libraries\Gradle__angularjs_1_3_0_rc_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\diboiron\projet\Technique\confmanager\confman-app\app\styles\grid.css" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../confman-addons/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java-test/src/test/java/com/ninjamind/confman/utils/RestCallServiceTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java-test/src/test/java/com/ninjamind/confman/utils/RestCallTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java-test/pom.xml" />
+      <change type="DELETED" beforePath="D:\diboiron\projet\Technique\confman-addons\confman-java\src\main\java\com\ninjamind\confman\Operation.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\diboiron\projet\Technique\confman-addons\confman-java\src\main\java\com\ninjamind\confman\conf\ApplicationConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\diboiron\projet\Technique\confman-addons\confman-java\src\main\java\com\ninjamind\confman\conf\ConfChecker.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\diboiron\projet\Technique\confman-addons\confman-java\src\main\java\com\ninjamind\confman\conf\ServerConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\diboiron\projet\Technique\confman-addons\confman-java\src\main\test\java\com\ninjamind\confman\service\RestCallTest.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/AbstractConfmanOperation.java" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/AbstractConfmanOperation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/confman-maven/plugin/src/main/java/com/ninjamind/maven/plugin/AbstractReaderConfmanMojo.java" afterPath="$PROJECT_DIR$/../../confman-addons/confman-maven/plugin/src/main/java/com/ninjamind/maven/plugin/AbstractReaderConfmanMojo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/ConfmanAddApplicationParameter.java" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/ConfmanAddApplicationParameter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/ConfmanReadParameters.java" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/ConfmanReadParameters.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/ParameterFacadeImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/ParameterFacadeImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/api/ParameterValueApiController.java" afterPath="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/api/ParameterValueApiController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../build.gradle" afterPath="$PROJECT_DIR$/../build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/environment.html" afterPath="$PROJECT_DIR$/app/view/environment.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controller/environment.js" afterPath="$PROJECT_DIR$/app/js/controller/environment.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/styles/style.less" afterPath="$PROJECT_DIR$/app/styles/style.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/.idea/compiler.xml" afterPath="$PROJECT_DIR$/../../confman-addons/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/confman-addons.iml" afterPath="$PROJECT_DIR$/../../confman-addons/confman-addons.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/confman-java/confman-java.iml" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/confman-java.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/confman-maven/plugin/confman-maven-plugin.iml" afterPath="$PROJECT_DIR$/../../confman-addons/confman-maven/plugin/confman-maven-plugin.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/confman-maven/test/confman-maven-test.iml" afterPath="$PROJECT_DIR$/../../confman-addons/confman-maven/test/confman-maven-test.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/confman-maven/confman-maven.iml" afterPath="$PROJECT_DIR$/../../confman-addons/confman-maven/confman-maven.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/.idea/encodings.xml" afterPath="$PROJECT_DIR$/../../confman-addons/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/.idea/misc.xml" afterPath="$PROJECT_DIR$/../../confman-addons/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/.idea/modules.xml" afterPath="$PROJECT_DIR$/../../confman-addons/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/pom.xml" afterPath="$PROJECT_DIR$/../../confman-addons/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/confman-java/pom.xml" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/.idea/vcs.xml" afterPath="$PROJECT_DIR$/../../confman-addons/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../confman-addons/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../confman-addons/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="D:\diboiron\projet\Technique\confman-addons\confman-java\src\main\java\com\ninjamind\confman\service\Preconditions.java" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/utils/Preconditions.java" />
+      <change type="MOVED" beforePath="D:\diboiron\projet\Technique\confman-addons\confman-java\src\main\java\com\ninjamind\confman\service\RestCall.java" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/utils/RestCallService.java" />
+      <change type="MOVED" beforePath="D:\diboiron\projet\Technique\confman-addons\confman-java\src\main\java\com\ninjamind\confman\service\RestCallException.java" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/src/main/java/com/ninjamind/confman/utils/RestCallException.java" />
+      <change type="MOVED" beforePath="D:\diboiron\projet\Technique\confman-addons\confman-java\src\main\test\java\com\ninjamind\confman\service\ConfmanReadParametersTest.java" afterPath="$PROJECT_DIR$/../../confman-addons/confman-java/src/test/java/com/ninjamind/confman/utils/ConfmanReadParametersTest.java" />
     </list>
     <ignored path="confman.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,6 +52,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="Commander">
+    <leftPanel />
+    <rightPanel />
+    <splitter proportion="0.5" />
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -76,103 +109,91 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.3076923" vertical-offset="1683" max-vertical-offset="2329">
-              <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.gradle" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../settings.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="187">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="build.gradle" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.04" vertical-offset="0" max-vertical-offset="833">
-              <caret line="28" column="48" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.7265416" vertical-offset="477" max-vertical-offset="850">
+              <caret line="44" column="44" selection-start-line="44" selection-start-column="1" selection-end-line="44" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.gradle" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
+      <file leaf-file-name="ApplicationRepositoryTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/ninjamind/confman/repository/ApplicationRepositoryTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41632652" vertical-offset="0" max-vertical-offset="2380">
-              <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="208" max-vertical-offset="1122">
+              <caret line="47" column="47" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="63" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="environment.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/view/environment.html">
+      <file leaf-file-name="DataSourceDestination.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/com/ninja-squad/DbSetup/1.3.0/DbSetup-1.3.0.jar!/com/ninja_squad/dbsetup/destination/DataSourceDestination.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.423077" vertical-offset="306" max-vertical-offset="1156">
-              <caret line="37" column="120" selection-start-line="37" selection-start-column="120" selection-end-line="37" selection-end-column="120" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#div#0;n#material-content#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.less" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/styles/style.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.307693" vertical-offset="1116" max-vertical-offset="3043">
-              <caret line="86" column="1" selection-start-line="86" selection-start-column="1" selection-end-line="86" selection-end-column="1" />
+            <state vertical-scroll-proportion="-6.12" vertical-offset="0" max-vertical-offset="442">
+              <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="configsearch.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/controller/configsearch.js">
+      <file leaf-file-name="ConfmanApplication.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/ConfmanApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="1751">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="646">
+              <caret line="31" column="68" selection-start-line="31" selection-start-column="68" selection-end-line="31" selection-end-column="68" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="environment.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/controller/environment.js">
+      <file leaf-file-name="EnvironmentWebController.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/web/EnvironmentWebController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="66" max-vertical-offset="1802">
-              <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="334" max-vertical-offset="867">
+              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/controller/main.js">
+      <file leaf-file-name="ApplicationVersionRepositoryTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/ninjamind/confman/repository/ApplicationVersionRepositoryTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-              <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="263" max-vertical-offset="935">
+              <caret line="37" column="51" selection-start-line="37" selection-start-column="41" selection-end-line="37" selection-end-column="51" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="material-design.min.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/styles/material-design.min.css">
+      <file leaf-file-name="CommonOperations.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/ninjamind/confman/repository/CommonOperations.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.16" vertical-offset="46996" max-vertical-offset="68238">
-              <caret line="2775" column="46" selection-start-line="2775" selection-start-column="43" selection-end-line="2775" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="1598">
+              <caret line="83" column="31" selection-start-line="83" selection-start-column="31" selection-end-line="83" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParameterApiController.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/api/ParameterApiController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="1241">
+              <caret line="66" column="16" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParameterValueApiController.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/api/ParameterValueApiController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="833">
+              <caret line="39" column="58" selection-start-line="39" selection-start-column="58" selection-end-line="39" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -567,6 +588,9 @@
                             <option value="$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar" />
                             <option value="$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" />
                             <option value="$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.postgresql/postgresql/9.3-1102-jdbc41/3c0023d857e0d156088df3d57619e064dc5a8f6b/postgresql-9.3-1102-jdbc41-sources.jar" />
+                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.postgresql/postgresql/9.3-1102-jdbc41/e01373bd6ed64d1b3bf1476e5ed6a7652a5fbfcb/postgresql-9.3-1102-jdbc41.jar" />
+                            <option value="$MAVEN_REPOSITORY$/com/oracle/ojdbc6/11.2.0.4/ojdbc6-11.2.0.4.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.code-story/http/1.50/e16295b89bb1c2dc45dc0823d0ce656914159310/http-1.50-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.code-story/http/1.50/f09413e531125ba94c97e9b91ea389d8a98e55f9/http-1.50.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.webjars/angularjs/1.3.0-rc.1/cb6beeb38250b7e2df2a3fd480190914a78a8a16/angularjs-1.3.0-rc.1-sources.jar" />
@@ -575,8 +599,6 @@
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.webjars/angular-ui-bootstrap/0.11.0-2/bbff0d696f072c0e0393147490f2b1ba48863cfd/angular-ui-bootstrap-0.11.0-2.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.webjars/jquery/2.1.1/cdc90d9e03982a07dcf608e61bf04cb48bcb7e4/jquery-2.1.1-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.webjars/jquery/2.1.1/dd89e356066869550b5509c4370f995ad6698d9a/jquery-2.1.1.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.postgresql/postgresql/9.3-1102-jdbc41/3c0023d857e0d156088df3d57619e064dc5a8f6b/postgresql-9.3-1102-jdbc41-sources.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.postgresql/postgresql/9.3-1102-jdbc41/e01373bd6ed64d1b3bf1476e5ed6a7652a5fbfcb/postgresql-9.3-1102-jdbc41.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.zafarkhaja/java-semver/0.7.2/2508a981533dfc37d791cd6ab78be377c4833329/java-semver-0.7.2-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.zafarkhaja/java-semver/0.7.2/cb0715ed6d52319416b273998f1c2e764a7ea819/java-semver-0.7.2.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/4.0.5.RELEASE/74b483ae51c2645ef78c15103aaf5bf655c02c5a/spring-jdbc-4.0.5.RELEASE-sources.jar" />
@@ -737,12 +759,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/web/ParameterWebController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/web/SoftwareSuiteWebController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/web/TrackingVersionWebController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/api/ParameterValueApiController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/api/ApplicationVersionApiController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/api/InstanceApiController.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/ninjamind/confman/service/ApplicationVersionFacadeImplTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/ninjamind/confman/service/TrackingVersionFacadeImplTest.java" />
-        <option value="$PROJECT_DIR$/../build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/ParameterValueFacadeImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/exception/FoundException.java" />
         <option value="$PROJECT_DIR$/app/view/application.html" />
@@ -750,7 +770,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/ApplicationVersionFacadeImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/ApplicationFacadeImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/InstanceFacadeImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/ParameterFacadeImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/ParameterGroupmentFacadeImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/TrackingVersionFacadeImpl.java" />
         <option value="$PROJECT_DIR$/app/js/controller/application.js" />
@@ -774,7 +793,10 @@
         <option value="$PROJECT_DIR$/app/js/controller/environment.js" />
         <option value="$PROJECT_DIR$/app/view/environment.html" />
         <option value="$PROJECT_DIR$/app/index.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/ParameterFacadeImpl.java" />
+        <option value="$PROJECT_DIR$/../build.gradle" />
         <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/api/ParameterValueApiController.java" />
       </list>
     </option>
   </component>
@@ -814,6 +836,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -877,7 +900,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -890,10 +912,15 @@
     <property name="recentsLimit" value="5" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dynamic.classpath" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../confman-addons" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.ninjamind.confman.service" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\diboiron\projet\Technique\confmanager" />
     </key>
   </component>
   <component name="RunManager" selected="Application.ConfmanApplication">
@@ -960,6 +987,21 @@
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="externalProjectPath" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -1087,12 +1129,14 @@
       <updated>1410706731339</updated>
       <workItem from="1410706737175" duration="89000" />
       <workItem from="1410706839873" duration="12757000" />
-      <workItem from="1410853303433" duration="5744000" />
+      <workItem from="1410853303433" duration="8095000" />
+      <workItem from="1410871272138" duration="1307000" />
+      <workItem from="1410876861710" duration="4223000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18590000" />
+    <option name="totallyTimeSpent" value="26471000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1288" height="774" extended-state="6" />
@@ -1101,10 +1145,9 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905295" sideWeight="0.4997242" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.47030497" sideWeight="0.4997242" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25541794" sideWeight="0.4997242" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.399361" sideWeight="0.5002758" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1115,8 +1158,8 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24959612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905295" sideWeight="0.4997242" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30613893" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2520064" sideWeight="0.4997242" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.64205456" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Sonar" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1133,6 +1176,7 @@
       <window_info id="SVN Properties" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901135" sideWeight="0.6264274" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905295" sideWeight="0.4997242" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1163,55 +1207,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/js/service/tables.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/EnvironmentFacade.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/TrackingVersionFacade.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
-          <caret line="12" column="109" selection-start-line="12" selection-start-column="84" selection-end-line="12" selection-end-column="109" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/ParameterValueFacadeImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1385" max-vertical-offset="5970">
-          <caret line="119" column="0" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/ApplicationVersionFacade.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="615">
-          <caret line="12" column="118" selection-start-line="12" selection-start-column="90" selection-end-line="12" selection-end-column="118" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/exception/NotFoundException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/exception/FoundException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
-          <caret line="20" column="48" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/domain/AbstractConfManEntity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="504" max-vertical-offset="1635">
@@ -1233,20 +1228,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="452" max-vertical-offset="2490">
           <caret line="57" column="56" selection-start-line="57" selection-start-column="56" selection-end-line="57" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/InstanceFacadeImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="379" max-vertical-offset="960">
-          <caret line="65" column="61" selection-start-line="65" selection-start-column="61" selection-end-line="65" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/ParameterFacadeImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="469" max-vertical-offset="1050">
-          <caret line="73" column="58" selection-start-line="73" selection-start-column="58" selection-end-line="73" selection-end-column="58" />
         </state>
       </provider>
     </entry>
@@ -1317,7 +1298,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4260">
           <caret line="5" column="28" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1339,7 +1319,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1005">
           <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1350,27 +1329,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/ConfmanApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/ninjamind/confman/repository/CommonOperations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="520" max-vertical-offset="1410">
-          <caret line="77" column="33" selection-start-line="77" selection-start-column="33" selection-end-line="77" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/ninjamind/confman/repository/TrackingVersionRepositoryTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="349" max-vertical-offset="930">
           <caret line="53" column="5" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1378,7 +1340,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="825">
           <caret line="35" column="55" selection-start-line="35" selection-start-column="55" selection-end-line="35" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1386,7 +1347,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="2040">
           <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1394,7 +1354,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1904" max-vertical-offset="2482">
           <caret line="112" column="50" selection-start-line="112" selection-start-column="50" selection-end-line="112" selection-end-column="50" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1402,7 +1361,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="748" max-vertical-offset="6171">
           <caret line="44" column="60" selection-start-line="44" selection-start-column="60" selection-end-line="44" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1410,7 +1368,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="503" max-vertical-offset="1139">
           <caret line="59" column="46" selection-start-line="59" selection-start-column="46" selection-end-line="59" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1418,7 +1375,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.2307692" vertical-offset="925" max-vertical-offset="1462">
           <caret line="51" column="48" selection-start-line="51" selection-start-column="48" selection-end-line="51" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1426,7 +1382,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.998185" vertical-offset="7127" max-vertical-offset="11356">
           <caret line="160" column="91" selection-start-line="160" selection-start-column="88" selection-end-line="160" selection-end-column="91" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1434,7 +1389,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="412556">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1442,7 +1396,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="2448">
           <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1450,7 +1403,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.4" vertical-offset="0" max-vertical-offset="238">
           <caret line="5" column="75" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1458,7 +1410,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
           <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1466,7 +1417,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
           <caret line="6" column="17" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1474,7 +1424,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.16" vertical-offset="46996" max-vertical-offset="68238">
           <caret line="2775" column="46" selection-start-line="2775" selection-start-column="43" selection-end-line="2775" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1496,7 +1445,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/styles/style.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.307693" vertical-offset="1116" max-vertical-offset="3043">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1116" max-vertical-offset="3043">
           <caret line="86" column="1" selection-start-line="86" selection-start-column="1" selection-end-line="86" selection-end-column="1" />
           <folding />
         </state>
@@ -1512,17 +1461,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/view/environment.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.423077" vertical-offset="306" max-vertical-offset="1156">
+        <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1156">
           <caret line="37" column="120" selection-start-line="37" selection-start-column="120" selection-end-line="37" selection-end-column="120" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#div#0;n#material-content#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3076923" vertical-offset="1683" max-vertical-offset="2329">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1683" max-vertical-offset="2329">
           <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
           <folding />
         </state>
@@ -1536,18 +1483,106 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../build.gradle">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/ParameterFacadeImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.04" vertical-offset="0" max-vertical-offset="833">
-          <caret line="28" column="48" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1207">
+          <caret line="55" column="25" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/api/InstanceApiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="474" max-vertical-offset="1292">
+          <caret line="44" column="44" selection-start-line="44" selection-start-column="44" selection-end-line="44" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/service/InstanceFacadeImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="682" max-vertical-offset="1088">
+          <caret line="37" column="16" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/ninjamind/confman/repository/ApplicationVersionRepositoryTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="263" max-vertical-offset="935">
+          <caret line="37" column="51" selection-start-line="37" selection-start-column="41" selection-end-line="37" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/ninjamind/confman/repository/CommonOperations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="1598">
+          <caret line="83" column="31" selection-start-line="83" selection-start-column="31" selection-end-line="83" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/ninjamind/confman/repository/ApplicationRepositoryTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="208" max-vertical-offset="1122">
+          <caret line="47" column="47" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/ninja-squad/DbSetup/1.3.0/DbSetup-1.3.0.jar!/com/ninja_squad/dbsetup/destination/DataSourceDestination.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.12" vertical-offset="0" max-vertical-offset="442">
+          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/web/EnvironmentWebController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="334" max-vertical-offset="867">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/api/ParameterApiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="1241">
+          <caret line="66" column="16" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41632652" vertical-offset="0" max-vertical-offset="2380">
-          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.109144546" vertical-offset="201" max-vertical-offset="2397">
+          <caret line="14" column="76" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/ConfmanApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="646">
+          <caret line="31" column="68" selection-start-line="31" selection-start-column="68" selection-end-line="31" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ninjamind/confman/controller/api/ParameterValueApiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="833">
+          <caret line="39" column="58" selection-start-line="39" selection-start-column="58" selection-end-line="39" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7265416" vertical-offset="477" max-vertical-offset="850">
+          <caret line="44" column="44" selection-start-line="44" selection-start-column="1" selection-end-line="44" selection-end-column="1" />
           <folding />
         </state>
       </provider>

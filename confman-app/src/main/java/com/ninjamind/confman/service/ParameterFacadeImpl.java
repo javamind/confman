@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ParameterFacadeImpl implements ParameterFacade {
     @Autowired
     private ParameterRepository parameterRepository;
+
     @Autowired
     private ApplicationtRepository applicationtRepository;
 

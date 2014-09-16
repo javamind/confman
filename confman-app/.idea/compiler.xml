@@ -17,7 +17,23 @@
       <profile default="true" name="Default" enabled="false">
         <processorPath useClasspath="true" />
       </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="confman-java" />
+        <module name="confman-maven-plugin" />
+        <module name="confman-maven-test" />
+      </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="confman-addons" target="1.6" />
+      <module name="confman-java" target="1.6" />
+      <module name="confman-maven" target="1.6" />
+      <module name="confman-maven-plugin" target="1.6" />
+      <module name="confman-maven-test" target="1.6" />
+    </bytecodeTargetLevel>
   </component>
 </project>
 

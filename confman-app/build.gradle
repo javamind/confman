@@ -9,6 +9,7 @@ buildscript {
 }
 
 apply plugin: 'flyway'
+apply plugin: 'maven'
 
 dependencies {
     compile group: 'net.code-story', name: 'http', version: '1.50'
@@ -61,7 +62,7 @@ project.ext['flyway.locations'] = "db.migration." + myDataBase
 //Artifact and release build.
 //We have to define classpath
 jar {
-    baseName = 'conf-manager'
+    baseName = 'confman'
     manifest {
         attributes(
                 "Manifest-Version" : "1.0",

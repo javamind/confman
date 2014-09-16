@@ -9,8 +9,9 @@ allprojects {
     apply plugin: 'java'
     apply plugin: 'idea'
 
-
+    group = 'com.ninjamind'
     version = '1.0.0-SNAPSHOT'
+
     compileJava {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8

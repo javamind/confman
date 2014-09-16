@@ -60,12 +60,12 @@ public class SoftwareSuiteFacadeImpl implements SoftwareSuiteFacade{
         if(suiteEnvironmentSet!=null && !suiteEnvironmentSet.isEmpty()) {
             //Attach the objects to the session
             for(SoftwareSuiteEnvironment softwareSuiteEnvironment : suiteEnvironmentSet){
-                softwareSuiteEnvironment.setId(null);
                 softwareSuiteEnvironmentRepository.save(
                         new SoftwareSuiteEnvironment(
                                 suiteSaved,
                                 environmentRepository.findOne(softwareSuiteEnvironment.getId().getEnvironment().getId())
                 ));
+                softwareSuiteEnvironment.setId(null);
             }
         }
         return suiteSaved;

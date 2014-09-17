@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Gradle: handlebars-1.2.1">
-    <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/com/github/jknack/handlebars/1.2.1/handlebars-1.2.1.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

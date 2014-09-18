@@ -37,15 +37,15 @@ public class ParameterValueDto extends AbstractConfManDto {
         );
         this.oldValue = object.getOldvalue();
         this.idApplication = object.getApplication().getId();
-        this.codeApplication = object.getApplication().getCode();
+        this.codeApplication = object.getCodeApplication();
         this.idParameter = object.getParameter().getId();
         this.idTrackingVersion = object.getTrackingVersion().getId();
-        this.codeTrackingVersion = object.getTrackingVersion().getCode();
+        this.codeTrackingVersion = object.getCodeTrackingVersion();
         this.idEnvironment = object.getEnvironment().getId();
-        this.codeEnvironment = object.getEnvironment().getCode();
+        this.codeEnvironment = object.getCodeEnvironment();
         if(object.getInstance()!=null){
             this.idInstance = object.getInstance().getId();
-            this.codeInstance = object.getInstance().getCode();
+            this.codeInstance = object.getCodeInstance();
         }
     }
 

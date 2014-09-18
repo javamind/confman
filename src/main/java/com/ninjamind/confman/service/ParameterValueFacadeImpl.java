@@ -63,7 +63,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
 
     @Override
     public ParameterValue create(ParameterValue entity) {
-        //We hav'nt a functional unicity constraint
+        //We have'nt a functional unicity constraint
         return getRepository().save(entity.setActive(true));
     }
 

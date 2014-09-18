@@ -21,22 +21,41 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
     @ManyToOne
     @JoinColumn(name = "trackingVersion_id")
     private TrackingVersion trackingVersion;
+    @Column(name = "trackingVersion_code")
+    private String codeTrackingVersion;
+    @Column(name = "trackingVersion_label")
+    private String labelTrackingVersion;
 
     @ManyToOne
     @JoinColumn(name = "parameter_id")
     private Parameter parameter;
+    @Column(name = "parameter_label")
+    private String labelParameter;
+
 
     @ManyToOne
     @JoinColumn(name = "instance_id")
     private Instance instance;
+    @Column(name = "instance_code")
+    private String codeInstance;
+    @Column(name = "instance_label")
+    private String labelInstance;
 
     @ManyToOne
     @JoinColumn(name = "application_id")
     private Application application;
+    @Column(name = "application_code")
+    private String codeApplication;
+    @Column(name = "application_label")
+    private String labelApplication;
 
     @ManyToOne
     @JoinColumn(name = "environment_id")
     private Environment environment;
+    @Column(name = "environment_code")
+    private String codeEnvironment;
+    @Column(name = "environment_label")
+    private String labelEnvironment;
 
     /**
      * the old value
@@ -61,6 +80,8 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
 
     public ParameterValue setTrackingVersion(TrackingVersion trackingVersion) {
         this.trackingVersion = trackingVersion;
+        this.codeTrackingVersion = trackingVersion.getCode();
+        this.labelTrackingVersion = trackingVersion.getLabel();
         return this;
     }
 
@@ -70,6 +91,7 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
 
     public ParameterValue setParameter(Parameter parameter) {
         this.parameter = parameter;
+        this.labelParameter = parameter.getLabel();
         return this;
     }
 
@@ -79,6 +101,8 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
 
     public ParameterValue setEnvironment(Environment environment) {
         this.environment = environment;
+        this.codeEnvironment = environment.getCode();
+        this.labelEnvironment = environment.getLabel();
         return this;
     }
 
@@ -88,6 +112,8 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
 
     public ParameterValue setInstance(Instance instance) {
         this.instance = instance;
+        this.codeInstance = instance.getCode();
+        this.labelInstance = instance.getLabel();
         return this;
     }
 
@@ -97,6 +123,8 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
 
     public ParameterValue setApplication(Application application) {
         this.application = application;
+        this.codeApplication = application.getCode();
+        this.labelApplication = application.getLabel();
         return this;
     }
 
@@ -106,6 +134,87 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
 
     public ParameterValue setOldvalue(String oldvalue) {
         this.oldvalue = oldvalue;
+        return this;
+    }
+
+    public String getCodeTrackingVersion() {
+        return codeTrackingVersion;
+    }
+
+    public String getLabelTrackingVersion() {
+        return labelTrackingVersion;
+    }
+
+    public ParameterValue setLabelTrackingVersion(String labelTrackingVersion) {
+        this.labelTrackingVersion = labelTrackingVersion;
+        return this;
+    }
+
+    public ParameterValue setCodeTrackingVersion(String codeTrackingVersion) {
+        this.codeTrackingVersion = codeTrackingVersion;
+        return this;
+    }
+
+    public String getLabelParameter() {
+        return labelParameter;
+    }
+
+    public ParameterValue setLabelParameter(String labelParameter) {
+        this.labelParameter = labelParameter;
+        return this;
+    }
+
+    public String getCodeInstance() {
+        return codeInstance;
+    }
+
+    public ParameterValue setCodeInstance(String codeInstance) {
+        this.codeInstance = codeInstance;
+        return this;
+    }
+
+    public String getLabelInstance() {
+        return labelInstance;
+    }
+
+    public ParameterValue setLabelInstance(String labelInstance) {
+        this.labelInstance = labelInstance;
+        return this;
+    }
+
+    public String getCodeApplication() {
+        return codeApplication;
+    }
+
+    public ParameterValue setCodeApplication(String codeApplication) {
+        this.codeApplication = codeApplication;
+        return this;
+    }
+
+    public String getLabelApplication() {
+        return labelApplication;
+    }
+
+    public ParameterValue setLabelApplication(String labelApplication) {
+        this.labelApplication = labelApplication;
+        return this;
+    }
+
+    public String getCodeEnvironment() {
+        return codeEnvironment;
+    }
+
+    public ParameterValue setCodeEnvironment(String codeEnvironment) {
+        this.codeEnvironment = codeEnvironment;
+        return this;
+    }
+
+    public String getLabelEnvironment() {
+        return labelEnvironment;
+    }
+
+    public ParameterValue setLabelEnvironment(String labelEnvironment) {
+        this.labelEnvironment = labelEnvironment;
         return this;
     }
 

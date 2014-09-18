@@ -130,7 +130,6 @@ CREATE TABLE parametervalue
   trackingVersion_code VARCHAR2(40),
   trackingVersion_label VARCHAR2(2500),
   parameter_id NUMBER NOT NULL REFERENCES parameter (id),
-  parameter_code VARCHAR2(40),
   parameter_label VARCHAR2(2500),
   instance_id NUMBER REFERENCES instance (id),
   instance_code VARCHAR2(40),

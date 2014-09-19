@@ -1,4 +1,4 @@
-<material-content>
+<material-content ng-controller="MainCtrl">
     <div class="container-fluid">
         <h1>Centralized your app's parameters with Confman</h1>
 
@@ -21,6 +21,11 @@
                     environnements, sur chacune des instances des applications tout en répondant aux exigences de développement
                     et de la production. Confman est une application à la croisée du développement et de l'opérationel.
                 </p>
+            </div>
+            <div class="col-md-12">
+                <div class="alert alert-danger" ng-show="errorUrl">
+                    {{errorUrl}}
+                </div>
             </div>
         </div>
     </div>

@@ -12,3 +12,4 @@ confman-console/gradlew
 confman-console/gradlew.bat
 manager/build
 gradle.properties
+out

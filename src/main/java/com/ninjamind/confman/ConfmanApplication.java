@@ -2,13 +2,12 @@ package com.ninjamind.confman;
 
 import com.ninjamind.confman.config.PersistenceConfig;
 import com.ninjamind.confman.config.WebConfig;
-import com.ninjamind.confman.controller.api.ApplicationVersionApiController;
+import com.ninjamind.confman.controller.api.VersionApiController;
 import com.ninjamind.confman.controller.api.InstanceApiController;
 import com.ninjamind.confman.controller.api.ParameterApiController;
 import com.ninjamind.confman.controller.api.ParameterValueApiController;
 import com.ninjamind.confman.controller.web.*;
 import com.ninjamind.confman.controller.web.ParameterWebController;
-import com.ninjamind.confman.domain.Instance;
 import net.codestory.http.WebServer;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -36,7 +35,7 @@ public class ConfmanApplication {
                 .add(rootContext.getBean(ParameterValueApiController.class))
                 .add(rootContext.getBean(ParameterApiController.class))
                 .add(rootContext.getBean(InstanceApiController.class))
-                .add(rootContext.getBean(ApplicationVersionApiController.class))
+                .add(rootContext.getBean(VersionApiController.class))
         ).start((Integer) rootContext.getBean("serverPort"));
     }
 }

@@ -21,6 +21,6 @@ public interface EnvironmentRepository extends ConfmanRepository<Environment, Lo
     @Query(value = "SELECT e FROM Environment e  left join fetch e.softwareSuiteEnvironments se left join fetch se.id.softwareSuite s left join fetch s.applications a WHERE a.id = :id")
     List<Environment> findByIdApp(@Param("id") Long id);
 
-    @Query(value = "SELECT e FROM Environment e WHERE lower(e.code) = :code or upper(e.code) = :code")
+    @Query(value = "SELECT e FROM Environment e WHERE upper(e.code) = :code or lower(e.code) = :code")
     Environment findByCode(@Param("code") String code);
 }

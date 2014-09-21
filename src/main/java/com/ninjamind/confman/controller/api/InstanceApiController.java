@@ -66,8 +66,8 @@ public class InstanceApiController {
      * @param codeEnv
      * @return
      */
-    @Get("/confman/instance/:codeInstance/app/:codeApp/env:codeEnv")
-    public ConfmanDto getParam(String codeInstance, String codeApp, String codeEnv) {
+    @Get("/confman/instance/:codeInstance/app/:codeApp/env/:codeEnv")
+    public ConfmanDto getInstance(String codeInstance, String codeApp, String codeEnv) {
         Preconditions.checkNotNull(codeApp, "application code is required");
         Preconditions.checkNotNull(codeInstance, "instance code is required");
         Preconditions.checkNotNull(codeInstance, "instance code is required");
@@ -76,7 +76,11 @@ public class InstanceApiController {
         if(instance==null){
             return null;
         }
-        return new ConfmanDto().setCodeInstance(instance.getCode()).setLabel(instance.getLabel()).setCodeApplication(instance.getApplication().getCode())
+        return new ConfmanDto()
+                .setCode(instance.getCode())
+                .setLabel(instance.getLabel())
+                .setCodeApplication(codeApp)
+                .setCodeEnvironment(codeApp)
                 .setId(instance.getId());
     }
 }

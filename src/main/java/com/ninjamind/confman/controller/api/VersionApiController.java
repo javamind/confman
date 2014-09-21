@@ -1,7 +1,9 @@
 package com.ninjamind.confman.controller.api;
 
+import com.github.zafarkhaja.semver.Version;
 import com.google.common.base.Preconditions;
 import com.ninjamind.confman.domain.ApplicationVersion;
+import com.ninjamind.confman.domain.TrackingVersion;
 import com.ninjamind.confman.dto.ConfmanDto;
 import com.ninjamind.confman.repository.ApplicationVersionRepository;
 import com.ninjamind.confman.service.ApplicationVersionFacade;
@@ -10,13 +12,15 @@ import net.codestory.http.annotations.Post;
 import net.codestory.http.annotations.Put;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Optional;
+
 /**
  * This controller is the public API which can be use by script to read or add datas from confman. The
  * param are less restrictive than the controller GUI.
  *
  * @author Guillaume EHRET
  */
-public class ApplicationVersionApiController {
+public class VersionApiController {
 
     @Autowired
     private ApplicationVersionFacade applicationversionFacade;
@@ -72,7 +76,14 @@ public class ApplicationVersionApiController {
         if(applicationversion==null){
             return null;
         }
-        return new ConfmanDto().setVersion(applicationversion.getCode()).setLabel(applicationversion.getLabel()).setCodeApplication(applicationversion.getApplication().getCode())
+        //we search the last version tracking
+        Optional<TrackingVersion> maxTracking = applicationversion
+                .getTrackingVersions().stream().max((a, b) -> Version.valueOf(a.getCode()).compareTo(Version.valueOf(b.getCode())));
+        return new ConfmanDto()
+                .setCode(applicationversion.getCode())
+                .setLabel(applicationversion.getLabel())
+                .setVersion(maxTracking.orElse(new TrackingVersion()).getCode())
+                .setCodeApplication(applicationversion.getApplication().getCode())
                 .setId(applicationversion.getId());
     }
 }

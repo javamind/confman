@@ -1,6 +1,6 @@
 package com.ninjamind.confman.config;
 
-import com.ninjamind.confman.controller.api.ApplicationVersionApiController;
+import com.ninjamind.confman.controller.api.VersionApiController;
 import com.ninjamind.confman.controller.api.InstanceApiController;
 import com.ninjamind.confman.controller.api.ParameterApiController;
 import com.ninjamind.confman.controller.api.ParameterValueApiController;
@@ -63,17 +63,17 @@ public class WebConfig {
     }
 
     @Bean
-    public ApplicationVersionApiController applicationVersionApiController() {
-        return new ApplicationVersionApiController();
+    public VersionApiController applicationVersionApiController() {
+        return new VersionApiController();
     }
 
     @Bean
-    InstanceApiController instanceApiController(){
+    public InstanceApiController instanceApiController(){
         return new InstanceApiController();
     }
 
     @Bean
-    ParameterApiController parameterApiController(){
+    public ParameterApiController parameterApiController(){
         return new ParameterApiController();
     }
 }

@@ -27,6 +27,6 @@ public interface InstanceRepository extends ConfmanRepository<Instance, Long> {
     @Query(value = "SELECT s FROM Instance s WHERE s.application.id = :idApp and s.environment.id = :idEnv order by s.code")
     List<Instance> findByIdappAndEnv(@Param("idApp") Long idApp, @Param("idEnv") Long idEnv);
 
-    @Query(value = "SELECT s FROM Instance s inner join s.application a inner join s.environment e WHERE s.code = :codeInstance and a.code = :codeApp and e.code = :codeEnv" )
+    @Query(value = "SELECT s FROM Instance s inner join s.application a inner join s.environment e WHERE upper(s.code) = upper(:codeInstance) and upper(a.code) = upper(:codeApp) and upper(e.code) = upper(:codeEnv)" )
     Instance findByCode(@Param("codeInstance") String codeInstance, @Param("codeApp") String codeApp,  @Param("codeEnv") String codeEnv);
 }

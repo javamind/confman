@@ -15,9 +15,6 @@ import java.util.List;
  */
 public interface InstanceRepository extends ConfmanRepository<Instance, Long> {
 
-    @Query(value = "SELECT a FROM Instance a WHERE a.active = true")
-    List<Instance> findAllActive();
-
     @Query(value = "SELECT s FROM Instance s WHERE s.application.id = :id order by s.code")
     List<Instance> findByIdApp(@Param("id") Long id);
 

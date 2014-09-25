@@ -65,6 +65,6 @@ public class EnvironmentRepositoryTest {
 
     @Test
     public void shouldFindEnvironmentByCode() {
-        assertThat(environmentRepository.findByCode("DEV").getCode()).isEqualTo("dev");
+        assertThat(environmentRepository.findByCode("dev").getCode()).isEqualTo("dev");
     }
 }

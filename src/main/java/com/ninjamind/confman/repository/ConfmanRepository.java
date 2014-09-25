@@ -17,9 +17,8 @@ import java.util.List;
 @NoRepositoryBean
 public interface ConfmanRepository<T, ID extends Serializable> extends JpaRepository<T, ID> {
     /**
-     * All the repositories have to implement to return only enregistrements
-     * @return
+     * @return the actives
      */
-    List<T> findAllActive();
+    List<T> findByActiveTrue();
 
 }

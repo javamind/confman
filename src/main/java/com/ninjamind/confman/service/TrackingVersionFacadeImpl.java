@@ -49,7 +49,7 @@ public class TrackingVersionFacadeImpl implements TrackingVersionFacade {
     @Override
     public TrackingVersion create(TrackingVersion entity) {
         //We see if an entity exist
-        TrackingVersion version = trackingVersionRepository.findByCode(entity.getCode());
+        TrackingVersion version = trackingVersionRepository.findByCode(entity.getCode(), entity.getApplicationVersion().getApplication().getCode());
         if (version != null) {
             //All the proprieties are copied except the version number
             BeanUtils.copyProperties(entity, version, "id", "version");

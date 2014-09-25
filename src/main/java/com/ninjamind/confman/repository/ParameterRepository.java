@@ -14,8 +14,6 @@ import java.util.List;
  * @author Guillaume EHRET
  */
 public interface ParameterRepository extends ConfmanRepository<Parameter, Long> {
-    @Query(value = "SELECT a FROM Parameter a WHERE a.active = true")
-    List<Parameter> findAllActive();
 
     @Query(value = "SELECT s FROM Parameter s WHERE s.application.id = :id order by s.code" )
     List<Parameter> findByIdApp(@Param("id") Long id);

@@ -13,8 +13,6 @@ import java.util.List;
  * @author Guillaume EHRET
  */
 public interface ApplicationVersionRepository extends ConfmanRepository<ApplicationVersion, Long> {
-    @Query(value = "SELECT a FROM ApplicationVersion a WHERE a.active = true")
-    List<ApplicationVersion> findAllActive();
 
     @Query(value = "SELECT s FROM ApplicationVersion s WHERE s.application.id = :id order by s.code")
     List<ApplicationVersion> findByIdApp(@Param("id") Long id);

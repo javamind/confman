@@ -74,4 +74,9 @@ public class ApplicationRepositoryTest {
     public void shouldFindApplicationByIdEnv() {
         assertThat(applicationRepository.findByIdEnv(1L)).hasSize(1).extracting("code").containsExactly("CFM");
     }
+
+    @Test
+    public void shouldFindApplicationByCode() {
+        assertThat(applicationRepository.findByCode("CFM")).isNotNull();
+    }
 }

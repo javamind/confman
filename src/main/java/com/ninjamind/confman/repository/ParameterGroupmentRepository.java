@@ -15,8 +15,7 @@ import java.util.List;
  * @author Guillaume EHRET
  */
 public interface ParameterGroupmentRepository extends ConfmanRepository<ParameterGroupment, Long> {
-    @Query(value = "SELECT a FROM ParameterGroupment a WHERE a.active = true")
-    List<ParameterGroupment> findAllActive();
+
 
     @Query(value = "SELECT a FROM ParameterGroupment a WHERE a.code = :code")
     ParameterGroupment findByCode(@Param("code") String code);

@@ -13,6 +13,5 @@ import java.util.List;
  * @author Guillaume EHRET
  */
 public interface ParameterValueGenericRepository extends ConfmanRepository<ParameterValue, Long> {
-    @Query(value = "SELECT a FROM ParameterValue a WHERE a.active = true")
-    List<ParameterValue> findAllActive();
+
 }

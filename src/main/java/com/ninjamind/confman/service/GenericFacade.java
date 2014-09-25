@@ -34,7 +34,7 @@ public interface GenericFacade<T extends AbstractConfManEntity, ID extends Seria
      * @return
      */
     default List<T> findAll(){
-        return getRepository().findAllActive();
+        return getRepository().findByActiveTrue();
     }
 
     /**

@@ -14,11 +14,7 @@ import java.util.List;
  */
 public interface ApplicationtRepository extends ConfmanRepository<Application, Long> {
 
-    @Query(value = "SELECT a FROM Application a WHERE a.active = true")
-    List<Application> findAllActive();
-
-    @Query(value = "SELECT a FROM Application a WHERE upper(a.code) = :code or lower(a.code) = :code")
-    Application findByCode(@Param("code") String code);
+    Application findByCode(String code);
 
     @Query(value = "SELECT a FROM Application a left join fetch a.instances left join fetch a.parameters left join fetch a.applicationVersions WHERE a.id = :id")
     Application findOneWithDependencies(@Param("id") Long id);

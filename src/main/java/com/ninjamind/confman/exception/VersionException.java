@@ -1,7 +1,5 @@
 package com.ninjamind.confman.exception;
 
-import com.github.rjeschke.txtmark.Run;
-
 /**
  * {@link }
  *

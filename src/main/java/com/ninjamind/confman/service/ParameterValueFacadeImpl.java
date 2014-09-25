@@ -5,11 +5,11 @@ import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import com.ninjamind.confman.domain.*;
+import com.ninjamind.confman.exception.NotFoundException;
 import com.ninjamind.confman.exception.VersionException;
 import com.ninjamind.confman.exception.VersionTrackingException;
 import com.ninjamind.confman.repository.*;
 import com.ninjamind.confman.utils.LoggerFactory;
-import net.codestory.http.errors.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -76,7 +76,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
         Application application = version.getApplication();
 
         //Snapshot ?
-        if(version.getCode().toUpperCase().endsWith("SNAPSHOT")){
+        if (version.getCode().toUpperCase().endsWith("SNAPSHOT")) {
             return createParametersForSnapshot(version, application);
         }
         //or release ?
@@ -142,11 +142,12 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
         if (trackingVersions == null || trackingVersions.isEmpty()) {
             trackingVersion = new TrackingVersion()
                     .setApplicationVersion(version)
-                    //For a snapshot the tracking version is the same than the app version
+                            //For a snapshot the tracking version is the same than the app version
                     .setCode(version.getCode())
                     .setActive(true)
                     .setLabel("Linked to version " + version.getCode());
-        } else {
+        }
+        else {
             //We keep the last
             trackingVersion = trackingVersions
                     .stream()
@@ -184,7 +185,8 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
 
             List<ApplicationVersion> versions = applicationVersionRepository.findByIdApp(application.getId());
             referenceTrackingVersion = Optional.of(findLastTrackingVersionUsed(version, versions));
-        } else {
+        }
+        else {
             //The old version is keep to calculate the new parameters values
             referenceTrackingVersion = findLastTrackingVersion(trackingVersions);
 
@@ -241,7 +243,8 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
                                                     .setActive(true)
                                     )
                             );
-                } else {
+                }
+                else {
                     //or be defined for each instance
                     application
                             .getInstances()
@@ -267,6 +270,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
 
         return parameterValuesNew;
     }
+
     /**
      * Create a new parameter value
      *
@@ -376,23 +380,24 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
         return findParameters(codeApp, codeVersion, env);
     }
 
-    /***
+    /**
      * Load the parameters value
+     *
      * @param codeVersion
      * @param env
      * @return
      */
     @VisibleForTesting
-    protected List<ParameterValue> findParameters(String codeApp, String codeVersion, String env){
+    protected List<ParameterValue> findParameters(String codeApp, String codeVersion, String env) {
         Preconditions.checkNotNull(codeApp, "application is required");
         Preconditions.checkNotNull(codeVersion, "version is required");
 
         ApplicationVersion version = applicationVersionRepository.findByCode(codeApp, codeVersion);
-        if(version==null){
+        if (version == null) {
             throw new VersionException(String.format("the version %s don't exist", codeVersion));
         }
 
-        if(version.getTrackingVersions()==null || version.getTrackingVersions().isEmpty()){
+        if (version.getTrackingVersions() == null || version.getTrackingVersions().isEmpty()) {
             throw new VersionTrackingException(String.format("You have to create a tracking version in Confman for the app version %s", codeVersion));
         }
 
@@ -401,9 +406,9 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
                 version.getTrackingVersions().stream().max((v1, v2) -> Long.compare(v1.getId(), v2.getId())).get().getId()
         );
 
-        if(env!=null){
+        if (env != null) {
             Environment environment = environmentRepository.findByCode(env);
-            if(environment==null){
+            if (environment == null) {
                 throw new VersionException(String.format("the environment %s don't exist", env));
             }
             criteria.setIdEnvironment(environment.getId());

@@ -1,11 +1,12 @@
 package com.ninjamind.confman.controller.web;
 
 import com.google.common.collect.Lists;
-import com.ninjamind.confman.domain.Application;
 import com.ninjamind.confman.dto.TrackingVersionDto;
 import com.ninjamind.confman.service.ApplicationFacade;
-import net.codestory.http.annotations.Get;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -14,13 +15,15 @@ import java.util.List;
  *
  * @author Guillaume EHRET
  */
+@RestController
+@RequestMapping(value = "/trackingversion")
 public class TrackingVersionWebController {
 
     @Autowired
     private ApplicationFacade applicationFacade;
 
-    @Get("/trackingversion/application/:id")
-    public List<TrackingVersionDto> listTracking(Long id) {
+    @RequestMapping("/application/{id}")
+    public List<TrackingVersionDto> listTracking(@PathVariable Long id) {
         return Lists.transform(applicationFacade.findTrackingVersionByIdApp(id), instance -> new TrackingVersionDto(instance));
     }
 

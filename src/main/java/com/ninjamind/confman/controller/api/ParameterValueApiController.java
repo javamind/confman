@@ -1,11 +1,12 @@
 package com.ninjamind.confman.controller.api;
 
 import com.google.common.collect.Lists;
-import com.ninjamind.confman.domain.ParameterValue;
 import com.ninjamind.confman.dto.ParameterValueDto;
 import com.ninjamind.confman.service.ParameterValueFacade;
-import net.codestory.http.annotations.Get;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -15,6 +16,8 @@ import java.util.List;
  *
  * @author Guillaume EHRET
  */
+@RestController
+@RequestMapping(value = "/confman/paramvalue")
 public class ParameterValueApiController {
 
     @Autowired
@@ -25,7 +28,7 @@ public class ParameterValueApiController {
      * @param version
      * @return all the params for an appication and a version
      */
-    @Get("/confman/paramvalue/:codeApp/version/:version")
+    @RequestMapping(value = "/{codeApp}/version/{version}")
     public List<ParameterValueDto> getByVersion(String codeApp, String version) {
         return Lists.transform(parameterValueFacade.findParamatersByCodeVersion(codeApp, version), p -> new ParameterValueDto(p));
     }
@@ -35,8 +38,8 @@ public class ParameterValueApiController {
      * @param version
      * @return all the params for an appication, a version and an anvironment
      */
-    @Get("/confman/paramvalue/:codeApp/version/:version/env/:env")
-    public List<ParameterValueDto> getByVersionAndEnv(String codeApp, String version, String env) {
+    @RequestMapping(value = "/{codeApp}/version/{version}/env/{env}")
+    public List<ParameterValueDto> getByVersionAndEnv(@PathVariable String codeApp, @PathVariable String version, @PathVariable String env) {
         return Lists.transform(parameterValueFacade.findParamatersByCodeVersionAndEnv(codeApp, version, env), p -> new ParameterValueDto(p));
     }
 

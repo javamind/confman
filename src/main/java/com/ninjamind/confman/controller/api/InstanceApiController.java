@@ -3,12 +3,12 @@ package com.ninjamind.confman.controller.api;
 import com.google.common.base.Preconditions;
 import com.ninjamind.confman.domain.Instance;
 import com.ninjamind.confman.dto.ConfmanDto;
-import com.ninjamind.confman.repository.InstanceRepository;
 import com.ninjamind.confman.service.InstanceFacade;
-import net.codestory.http.annotations.Get;
-import net.codestory.http.annotations.Post;
-import net.codestory.http.annotations.Put;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * This controller is the public API which can be use by script to read or add datas from confman. The
@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author Guillaume EHRET
  */
+@RestController
+@RequestMapping(value = "/confman/instance")
 public class InstanceApiController {
 
     @Autowired
@@ -25,7 +27,7 @@ public class InstanceApiController {
      * Create a instance in Confman for an application
      * @param confmanDto dto which have to contain application code and param code and label
      */
-    @Post("/confman/instance")
+    @RequestMapping(method = RequestMethod.POST)
     public void addParam(ConfmanDto confmanDto) {
         saveparam(confmanDto, true);
     }
@@ -54,7 +56,7 @@ public class InstanceApiController {
      * Update a instance in Confman for an application
      * @param confmanDto dto which have to contain application code and param code and label
      */
-    @Put("/confman/instance")
+    @RequestMapping(method = RequestMethod.PUT)
     public void updateParam(ConfmanDto confmanDto) {
         saveparam(confmanDto, false);
     }
@@ -66,8 +68,8 @@ public class InstanceApiController {
      * @param codeEnv
      * @return
      */
-    @Get("/confman/instance/:codeInstance/app/:codeApp/env/:codeEnv")
-    public ConfmanDto getInstance(String codeInstance, String codeApp, String codeEnv) {
+    @RequestMapping(value = "/{codeInstance}/app/{codeApp}/env/{codeEnv}")
+    public ConfmanDto getInstance(@PathVariable String codeInstance, @PathVariable String codeApp, @PathVariable String codeEnv) {
         Preconditions.checkNotNull(codeApp, "application code is required");
         Preconditions.checkNotNull(codeInstance, "instance code is required");
         Preconditions.checkNotNull(codeInstance, "instance code is required");

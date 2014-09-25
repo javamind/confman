@@ -3,7 +3,6 @@ package com.ninjamind.confman.service;
 import com.ninjamind.confman.domain.AbstractConfManEntity;
 import com.ninjamind.confman.repository.ConfmanRepository;
 import com.ninjamind.confman.repository.HibernateUtil;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;

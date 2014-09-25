@@ -3,12 +3,12 @@ package com.ninjamind.confman.controller.api;
 import com.google.common.base.Preconditions;
 import com.ninjamind.confman.domain.Parameter;
 import com.ninjamind.confman.dto.ConfmanDto;
-import com.ninjamind.confman.repository.ParameterRepository;
 import com.ninjamind.confman.service.ParameterFacade;
-import net.codestory.http.annotations.Get;
-import net.codestory.http.annotations.Post;
-import net.codestory.http.annotations.Put;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * This controller is the public API which can be use by script to read or add datas from confman. The
@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author Guillaume EHRET
  */
+@RestController
+@RequestMapping("/confman/param")
 public class ParameterApiController {
 
     @Autowired
@@ -25,7 +27,7 @@ public class ParameterApiController {
      * Create a parameter in Confman for an application
      * @param confmanDto dto which have to contain application code and param code and label
      */
-    @Post("/confman/param")
+    @RequestMapping(method = RequestMethod.POST)
     public void addParam(ConfmanDto confmanDto) {
         saveparam(confmanDto, true);
     }
@@ -53,7 +55,7 @@ public class ParameterApiController {
      * Update a parameter in Confman for an application
      * @param confmanDto dto which have to contain application code and param code and label
      */
-    @Put("/confman/param")
+    @RequestMapping(method = RequestMethod.PUT)
     public void updateParam(ConfmanDto confmanDto) {
         saveparam(confmanDto, false);
     }
@@ -64,8 +66,8 @@ public class ParameterApiController {
      * @param codeParam
      * @return
      */
-    @Get("/confman/param/:codeParam/app/:codeApp")
-    public ConfmanDto getParam(String codeParam, String codeApp) {
+    @RequestMapping(value = "/{codeParam}/app/{codeApp}")
+    public ConfmanDto getParam(@PathVariable String codeParam, @PathVariable String codeApp) {
         Preconditions.checkNotNull(codeApp, "application code is required");
         Preconditions.checkNotNull(codeParam, "parameter code is required");
         Parameter parameter = parameterFacade.getRepository().findByCode(codeApp, codeParam);

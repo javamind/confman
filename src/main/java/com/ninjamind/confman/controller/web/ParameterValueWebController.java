@@ -4,15 +4,16 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.PaginatedList;
 import com.ninjamind.confman.domain.ParameterValue;
-import com.ninjamind.confman.dto.*;
+import com.ninjamind.confman.dto.PaginatedListDto;
+import com.ninjamind.confman.dto.ParameterValueDto;
+import com.ninjamind.confman.dto.ParameterValueFilterDto;
 import com.ninjamind.confman.service.ParameterValueFacade;
-import net.codestory.http.annotations.Delete;
-import net.codestory.http.annotations.Get;
-import net.codestory.http.annotations.Post;
-import net.codestory.http.annotations.Put;
-import net.codestory.http.payload.Payload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -23,13 +24,15 @@ import java.util.stream.Collectors;
  *
  * @author Guillaume EHRET
  */
+@RestController
+@RequestMapping(value = "/parametervalue")
 public class ParameterValueWebController {
 
     @Autowired
     @Qualifier("parameterValueFacade")
     private ParameterValueFacade parameterValueFacade;
 
-    @Post("/parametervalue/search")
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
     public PaginatedListDto<ParameterValueDto> search(ParameterValueFilterDto criteria) {
         Preconditions.checkNotNull(criteria);
 
@@ -48,13 +51,13 @@ public class ParameterValueWebController {
                         Lists.transform(parameterValues, parameter -> new ParameterValueDto(parameter)));
     }
 
-    @Get("/parametervalue/:id")
-    public ParameterValueDto get(Long id) {
+    @RequestMapping("/{id}")
+    public ParameterValueDto get(@PathVariable Long id) {
         return new ParameterValueDto(parameterValueFacade.findOne(id));
     }
 
-    @Put("/parametervalue")
-    public Payload update(List<LinkedHashMap> parameters) {
+    @RequestMapping(method = RequestMethod.PUT)
+    public void update(List<LinkedHashMap> parameters) {
         Preconditions.checkNotNull(parameters, "List is required to update it");
         parameterValueFacade.update(
                 parameters
@@ -63,18 +66,17 @@ public class ParameterValueWebController {
                         .map(p -> ParameterValueDto.toParameterValue(p))
                         .collect(Collectors.toList())
         );
-        return Payload.created();
     }
 
-    @Post("/parametervalue")
+    @RequestMapping(method = RequestMethod.POST)
     public List<ParameterValueDto> save(Long idTrackingVersionDto) {
         Preconditions.checkNotNull(idTrackingVersionDto, "The id version is required to create the value parameters");
 
         return  Lists.transform(parameterValueFacade.create(idTrackingVersionDto), parameterValue -> new ParameterValueDto(parameterValue));
     }
 
-    @Delete("/parametervalue/:id")
-    public void delete(Long id) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable Long id) {
         parameterValueFacade.delete(id);
     }
 }

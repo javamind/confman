@@ -5,12 +5,12 @@ import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.Application;
 import com.ninjamind.confman.dto.ApplicationDto;
 import com.ninjamind.confman.service.ApplicationFacade;
-import net.codestory.http.annotations.Delete;
-import net.codestory.http.annotations.Get;
-import net.codestory.http.annotations.Post;
-import net.codestory.http.annotations.Put;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,41 +20,43 @@ import java.util.stream.Collectors;
  *
  * @author Guillaume EHRET
  */
+@RestController
+@RequestMapping(value = "/application")
 public class ApplicationWebController {
     @Autowired
     @Qualifier("applicationFacade")
     private ApplicationFacade genericFacade;
 
-    @Get("/application")
+    @RequestMapping
     public List<ApplicationDto> list() {
         return Lists.transform(genericFacade.findAll(), env -> new ApplicationDto(env));
     }
 
-    @Get("/application/environment/:id")
-    public List<ApplicationDto> listByEnv(Long id) {
+    @RequestMapping("/environment/{id}")
+    public List<ApplicationDto> listByEnv(@PathVariable Long id) {
         return Lists.transform(genericFacade.findApplicationByIdEnv(id), env -> new ApplicationDto(env));
     }
 
-    @Get("/application/:id")
-    public ApplicationDto get(Long id) {
+    @RequestMapping("/{id}")
+    public ApplicationDto get(@PathVariable Long id) {
         Application app = genericFacade.findOneWthDependencies(id);
         return app!=null ? getApplicationDto(app) : new ApplicationDto();
     }
 
-    @Put("/application")
+    @RequestMapping(method = RequestMethod.PUT)
     public ApplicationDto update(ApplicationDto app) {
         Preconditions.checkNotNull(app, "Object is required to update it");
         return getApplicationDto(genericFacade.save(app.toApplication(), app.toInstances(), app.toParameters(), app.toApplicationVersions()));
     }
 
-    @Post("/application")
+    @RequestMapping(method = RequestMethod.POST)
     public ApplicationDto save(ApplicationDto app) {
         Preconditions.checkNotNull(app, "Object is required to save it");
         return getApplicationDto(genericFacade.save(app.toApplication(), app.toInstances(), app.toParameters(), app.toApplicationVersions()));
     }
 
-    @Delete("/application/:id")
-    public void delete(Long id) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable Long id) {
         genericFacade.delete(id);
     }
 

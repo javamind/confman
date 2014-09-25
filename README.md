@@ -24,8 +24,8 @@ The project lifecycle is managed with Gradle. To configure gradle you can add a 
     db.postgresql.hibernate.show_sql=true
 
     #DB properties Postgre SQL (default)
-    db.oracle.driver=org.postgresql.Driver
-    db.oracle.url=jdbc:postgresql://localhost:5432/confman
+    db.oracle.driver=oracle.jdbc.driver.OracleDriver
+    db.oracle.url=jdbc:oracle:thin:@localhost:1521:ORA
     db.oracle.username=confman
     db.oracle.password=confman
     db.oracle.supressclose=true

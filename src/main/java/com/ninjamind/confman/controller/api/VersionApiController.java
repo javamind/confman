@@ -5,12 +5,12 @@ import com.google.common.base.Preconditions;
 import com.ninjamind.confman.domain.ApplicationVersion;
 import com.ninjamind.confman.domain.TrackingVersion;
 import com.ninjamind.confman.dto.ConfmanDto;
-import com.ninjamind.confman.repository.ApplicationVersionRepository;
 import com.ninjamind.confman.service.ApplicationVersionFacade;
-import net.codestory.http.annotations.Get;
-import net.codestory.http.annotations.Post;
-import net.codestory.http.annotations.Put;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
@@ -20,6 +20,8 @@ import java.util.Optional;
  *
  * @author Guillaume EHRET
  */
+@RestController
+@RequestMapping(value = "/confman/version")
 public class VersionApiController {
 
     @Autowired
@@ -29,7 +31,7 @@ public class VersionApiController {
      * Create a applicationversion in Confman for an application
      * @param confmanDto dto which have to contain application code and param code and label
      */
-    @Post("/confman/version")
+    @RequestMapping(method = RequestMethod.POST)
     public void addParam(ConfmanDto confmanDto) {
         saveparam(confmanDto, true);
     }
@@ -56,7 +58,7 @@ public class VersionApiController {
      * Update a applicationversion in Confman for an application
      * @param confmanDto dto which have to contain application code and param code and label
      */
-    @Put("/confman/version")
+    @RequestMapping(method = RequestMethod.PUT)
     public void updateParam(ConfmanDto confmanDto) {
         saveparam(confmanDto, false);
     }
@@ -67,8 +69,8 @@ public class VersionApiController {
      * @param version
      * @return
      */
-    @Get("/confman/version/:version/app/:codeApp")
-    public ConfmanDto getParam(String version, String codeApp) {
+    @RequestMapping(value = "/{version}/app/{codeApp}")
+    public ConfmanDto getParam(@PathVariable String version, @PathVariable String codeApp) {
         Preconditions.checkNotNull(codeApp, "application code is required");
         Preconditions.checkNotNull(version, "applicationversion code is required");
         ApplicationVersion applicationversion = applicationversionFacade.getRepository().findByCode(codeApp, version);

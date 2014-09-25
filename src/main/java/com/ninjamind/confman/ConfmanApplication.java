@@ -2,6 +2,7 @@ package com.ninjamind.confman;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * Lanceur de l'application web
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
  * @author Guillaume EHRET
  */
 
+@ComponentScan
 @EnableAutoConfiguration
 public class ConfmanApplication {
 

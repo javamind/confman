@@ -3,6 +3,7 @@ package com.ninjamind.confman.repository;
 import com.ninja_squad.dbsetup.DbSetup;
 import com.ninja_squad.dbsetup.destination.DataSourceDestination;
 import com.ninja_squad.dbsetup.operation.Operation;
+import com.ninjamind.confman.ConfmanApplication;
 import com.ninjamind.confman.config.PersistenceConfig;
 import com.ninjamind.confman.domain.PaginatedList;
 import com.ninjamind.confman.domain.ParameterValue;
@@ -10,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -23,8 +25,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Guillaume EHRET
  */
-@ContextConfiguration(classes = {PersistenceConfig.class})
 @RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = {ConfmanApplication.class})
 public class ParameterValueRepositoryTest {
 
     @Autowired

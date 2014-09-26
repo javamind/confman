@@ -20,7 +20,7 @@ public class Parameter extends AbstractConfManEntity<Parameter>{
     @SequenceGenerator(name = Parameter.SEQ_NAME, sequenceName = Parameter.SEQ_NAME, allocationSize = 1)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "parameterGroupment_id")
+    @JoinColumn(name = "parametergroupment_id")
     private ParameterGroupment parameterGroupment;
     @ManyToOne
     @JoinColumn(name = "application_id")

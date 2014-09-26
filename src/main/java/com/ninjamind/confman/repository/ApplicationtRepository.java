@@ -1,11 +1,16 @@
 package com.ninjamind.confman.repository;
 
-import com.ninjamind.confman.domain.Application;
+import com.ninjamind.confman.domain.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Repository associé au {@link com.ninjamind.confman.domain.Application}
@@ -22,3 +27,4 @@ public interface ApplicationtRepository extends ConfmanRepository<Application, L
     @Query(value = "SELECT a FROM Application a left join fetch a.softwareSuite s left join fetch s.softwareSuiteEnvironments se WHERE se.id.environment.id = :id")
     List<Application> findByIdEnv(@Param("id") Long id);
 }
+

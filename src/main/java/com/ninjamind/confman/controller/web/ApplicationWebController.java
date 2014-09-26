@@ -8,10 +8,7 @@ import com.ninjamind.confman.service.ApplicationFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,7 +44,7 @@ public class ApplicationWebController extends AbstractConfmanWebController<Appli
 
     @RequestMapping(method = RequestMethod.PUT)
     @Override
-    public ResponseEntity<ApplicationDto> update(ApplicationDto app) {
+    public ResponseEntity<ApplicationDto> update(@RequestBody ApplicationDto app) {
         Preconditions.checkNotNull(app, "Object is required to update it");
         return new ResponseEntity(
                 getApplicationDto(applicationFacade.save(app.toDo(), app.toInstances(), app.toParameters(), app.toApplicationVersions())),
@@ -56,7 +53,7 @@ public class ApplicationWebController extends AbstractConfmanWebController<Appli
 
     @RequestMapping(method = RequestMethod.POST)
     @Override
-    public ResponseEntity<ApplicationDto> save(ApplicationDto app) {
+    public ResponseEntity<ApplicationDto> save(@RequestBody ApplicationDto app) {
         Preconditions.checkNotNull(app, "Object is required to save it");
         return new ResponseEntity(
                 getApplicationDto(applicationFacade.save(app.toDo(), app.toInstances(), app.toParameters(), app.toApplicationVersions())),

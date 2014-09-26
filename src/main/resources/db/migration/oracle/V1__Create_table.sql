@@ -106,7 +106,7 @@ CREATE TABLE parameter
   id NUMBER NOT NULL,
   code VARCHAR2(40),
   label VARCHAR2(250),
-  parameterGroupment_id NUMBER,
+  parametergroupment_id NUMBER,
   application_id NUMBER NOT NULL,
   version NUMBER,
   active NUMBER(1),

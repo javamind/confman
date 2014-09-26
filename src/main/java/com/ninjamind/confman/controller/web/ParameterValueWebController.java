@@ -10,10 +10,7 @@ import com.ninjamind.confman.dto.ParameterValueFilterDto;
 import com.ninjamind.confman.service.ParameterValueFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -57,7 +54,7 @@ public class ParameterValueWebController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public void update(List<LinkedHashMap> parameters) {
+    public void update(@RequestBody List<LinkedHashMap> parameters) {
         Preconditions.checkNotNull(parameters, "List is required to update it");
         parameterValueFacade.update(
                 parameters
@@ -69,7 +66,7 @@ public class ParameterValueWebController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public List<ParameterValueDto> save(Long idTrackingVersionDto) {
+    public List<ParameterValueDto> save(@RequestBody Long idTrackingVersionDto) {
         Preconditions.checkNotNull(idTrackingVersionDto, "The id version is required to create the value parameters");
 
         return  Lists.transform(parameterValueFacade.create(idTrackingVersionDto), parameterValue -> new ParameterValueDto(parameterValue));

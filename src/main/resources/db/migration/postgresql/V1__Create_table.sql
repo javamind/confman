@@ -115,7 +115,7 @@ CREATE TABLE parameter
   id integer NOT NULL PRIMARY KEY,
   code character varying(40),
   label character varying(250),
-  parameterGroupment_id integer REFERENCES parametergrpt (id),
+  parametergroupment_id integer REFERENCES parametergrpt (id),
   application_id integer NOT NULL REFERENCES application (id),
   version integer,
   active boolean,

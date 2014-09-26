@@ -5,10 +5,7 @@ import com.ninjamind.confman.domain.Parameter;
 import com.ninjamind.confman.dto.ConfmanDto;
 import com.ninjamind.confman.service.ParameterFacade;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * This controller is the public API which can be use by script to read or add datas from confman. The
@@ -28,7 +25,7 @@ public class ParameterApiController {
      * @param confmanDto dto which have to contain application code and param code and label
      */
     @RequestMapping(method = RequestMethod.POST)
-    public void addParam(ConfmanDto confmanDto) {
+    public void addParam(@RequestBody ConfmanDto confmanDto) {
         saveparam(confmanDto, true);
     }
 
@@ -56,7 +53,7 @@ public class ParameterApiController {
      * @param confmanDto dto which have to contain application code and param code and label
      */
     @RequestMapping(method = RequestMethod.PUT)
-    public void updateParam(ConfmanDto confmanDto) {
+    public void updateParam(@RequestBody ConfmanDto confmanDto) {
         saveparam(confmanDto, false);
     }
 

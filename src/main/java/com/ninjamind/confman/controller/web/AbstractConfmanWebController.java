@@ -72,7 +72,7 @@ public abstract class AbstractConfmanWebController<
      * @return
      */
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<D> update(D object) {
+    public ResponseEntity<D> update(@RequestBody D object) {
         Preconditions.checkNotNull(object, "Object is required to update it");
         return new ResponseEntity(convertToDto(genericFacade.update((E)object.toDo())) ,HttpStatus.CREATED);
     }
@@ -82,7 +82,7 @@ public abstract class AbstractConfmanWebController<
      * @return
      */
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<D> save(D object) {
+    public ResponseEntity<D> save(@RequestBody D object) {
         Preconditions.checkNotNull(object, "Object is required to save it");
         return new ResponseEntity(convertToDto(genericFacade.create((E)object.toDo())) ,HttpStatus.CREATED);
     }

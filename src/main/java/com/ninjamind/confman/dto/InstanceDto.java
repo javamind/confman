@@ -9,7 +9,7 @@ import com.ninjamind.confman.domain.Instance;
  *
  * @author Guillaume EHRET
  */
-public class InstanceDto extends AbstractConfManDto {
+public class InstanceDto extends AbstractConfManDto<InstanceDto, Instance> {
     private Long idApplication;
     private Long idEnvironment;
     public InstanceDto() {
@@ -28,7 +28,7 @@ public class InstanceDto extends AbstractConfManDto {
         this.idEnvironment = object.getEnvironment().getId();
     }
 
-    public Instance toInstance() {
+    public Instance toDo() {
         return new Instance()
                 .setId(getId())
                 .setCode(getCode())

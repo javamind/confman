@@ -10,7 +10,7 @@ import java.util.LinkedHashMap;
  *
  * @author Guillaume EHRET
  */
-public class ParameterValueDto extends AbstractConfManDto {
+public class ParameterValueDto extends AbstractConfManDto<ParameterValueDto, ParameterValue> {
     protected String oldValue;
     protected Long idTrackingVersion;
     protected String codeTrackingVersion;
@@ -49,7 +49,7 @@ public class ParameterValueDto extends AbstractConfManDto {
         }
     }
 
-    public ParameterValue toParameterValue() {
+    public ParameterValue toDo() {
         return new ParameterValue()
                 .setId(getId())
                 .setCode(getCode())

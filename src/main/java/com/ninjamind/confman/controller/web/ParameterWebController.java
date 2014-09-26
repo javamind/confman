@@ -2,7 +2,11 @@ package com.ninjamind.confman.controller.web;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
+import com.ninjamind.confman.domain.Environment;
+import com.ninjamind.confman.domain.Parameter;
+import com.ninjamind.confman.dto.EnvironmentDto;
 import com.ninjamind.confman.dto.ParameterDto;
+import com.ninjamind.confman.service.GenericFacade;
 import com.ninjamind.confman.service.ParameterFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,41 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * {@link }
+ * Rest API for {@link com.ninjamind.confman.domain.Parameter}
  *
  * @author Guillaume EHRET
  */
 @RestController
 @RequestMapping(value = "/parameter")
-public class ParameterWebController {
+public class ParameterWebController extends AbstractConfmanWebController<Parameter, ParameterDto, Long>{
+
     @Autowired
-    @Qualifier("parameterFacade")
-    private ParameterFacade genericFacade;
-
-    @RequestMapping
-    public List<ParameterDto> list() {
-        return Lists.transform(genericFacade.findAll(), parameter -> new ParameterDto(parameter));
+    public ParameterWebController(ParameterFacade genericFacade) {
+        super(genericFacade, ParameterDto.class, Parameter.class);
     }
 
-    @RequestMapping("/{id}")
-    public ParameterDto get(@PathVariable Long id) {
-        return new ParameterDto(genericFacade.findOne(id));
-    }
-
-    @RequestMapping(method = RequestMethod.PUT)
-    public ParameterDto update(ParameterDto parameter) {
-        Preconditions.checkNotNull(parameter, "Object is required to update it");
-        return new ParameterDto(genericFacade.update(parameter.toParameter()));
-    }
-
-    @RequestMapping(method = RequestMethod.POST)
-    public ParameterDto save(ParameterDto parameter) {
-        Preconditions.checkNotNull(parameter, "Object is required to save it");
-        return new ParameterDto(genericFacade.create(parameter.toParameter()));
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable Long id) {
-        genericFacade.delete(id);
-    }
 }

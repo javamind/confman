@@ -7,7 +7,7 @@ import com.ninjamind.confman.domain.ApplicationVersion;
  *
  * @author Guillaume EHRET
  */
-public class ApplicationVersionDto extends AbstractConfManDto {
+public class ApplicationVersionDto extends AbstractConfManDto<ApplicationVersionDto, ApplicationVersion> {
 
     public ApplicationVersionDto() {
         super();
@@ -23,7 +23,7 @@ public class ApplicationVersionDto extends AbstractConfManDto {
         );
     }
 
-    public ApplicationVersion toApplicationVersion() {
+    public ApplicationVersion toDo() {
         return new ApplicationVersion()
                 .setId(getId())
                 .setCode(getCode())

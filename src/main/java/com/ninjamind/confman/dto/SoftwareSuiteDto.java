@@ -12,7 +12,7 @@ import java.util.Set;
  *
  * @author Guillaume EHRET
  */
-public class SoftwareSuiteDto extends AbstractConfManDto {
+public class SoftwareSuiteDto extends AbstractConfManDto<SoftwareSuiteDto, SoftwareSuite> {
 
     private List<SoftwareSuiteEnvironmentDto> environments;
 
@@ -30,7 +30,7 @@ public class SoftwareSuiteDto extends AbstractConfManDto {
         );
     }
 
-    public SoftwareSuite toSoftwareSuite() {
+    public SoftwareSuite toDo() {
         return new SoftwareSuite()
                 .setId(getId())
                 .setCode(getCode())

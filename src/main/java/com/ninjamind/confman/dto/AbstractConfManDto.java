@@ -1,6 +1,7 @@
 package com.ninjamind.confman.dto;
 
 import com.google.common.base.Objects;
+import com.ninjamind.confman.domain.AbstractConfManEntity;
 
 import java.io.Serializable;
 
@@ -9,7 +10,10 @@ import java.io.Serializable;
  *
  * @author Guillaume EHRET
  */
-public abstract class AbstractConfManDto<T extends AbstractConfManDto> implements Serializable {
+public abstract class AbstractConfManDto<T extends AbstractConfManDto, E extends AbstractConfManEntity> implements Serializable {
+    /**
+     * Id
+     */
     private Long id;
     /**
      * Code
@@ -57,6 +61,8 @@ public abstract class AbstractConfManDto<T extends AbstractConfManDto> implement
         this.version = version;
         this.active = active;
     }
+
+    public abstract E toDo();
 
     public String getCode() {
         return code;

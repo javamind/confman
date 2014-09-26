@@ -7,7 +7,7 @@ import com.ninjamind.confman.domain.ParameterGroupment;
  *
  * @author Guillaume EHRET
  */
-public class ParameterGroupmentDto extends AbstractConfManDto {
+public class ParameterGroupmentDto extends AbstractConfManDto<ParameterGroupmentDto, ParameterGroupment> {
 
     public ParameterGroupmentDto() {
         super();
@@ -23,7 +23,7 @@ public class ParameterGroupmentDto extends AbstractConfManDto {
         );
     }
 
-    public ParameterGroupment toParameterGroupment() {
+    public ParameterGroupment toDo() {
         return new ParameterGroupment()
                 .setId(getId())
                 .setCode(getCode())

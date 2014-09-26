@@ -10,7 +10,7 @@ import com.ninjamind.confman.domain.ParameterType;
  *
  * @author Guillaume EHRET
  */
-public class ParameterDto extends AbstractConfManDto {
+public class ParameterDto extends AbstractConfManDto<ParameterDto, Parameter> {
     private Long idApplication;
     private Long idParameterGroupment;
     private String type;
@@ -31,7 +31,7 @@ public class ParameterDto extends AbstractConfManDto {
         this.type = object.getType().name();
     }
 
-    public Parameter toParameter() {
+    public Parameter toDo() {
         return new Parameter()
                 .setId(getId())
                 .setCode(getCode())

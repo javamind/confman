@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * {@link }
+ * Rest API for {@link com.ninjamind.confman.domain.TrackingVersion}
  *
  * @author Guillaume EHRET
  */

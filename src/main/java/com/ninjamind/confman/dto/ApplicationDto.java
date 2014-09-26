@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author Guillaume EHRET
  */
-public class ApplicationDto extends AbstractConfManDto {
+public class ApplicationDto extends AbstractConfManDto<ApplicationDto, Application> {
     private Long idSoftwareSuite;
     private List<ApplicationVersionDto> versions;
     private List<InstanceDto> instances;
@@ -45,7 +45,7 @@ public class ApplicationDto extends AbstractConfManDto {
     }
 
 
-    public Application toApplication() {
+    public Application toDo() {
         return new Application()
                 .setId(getId())
                 .setCode(getCode())
@@ -56,15 +56,15 @@ public class ApplicationDto extends AbstractConfManDto {
     }
 
     public List<Instance> toInstances() {
-        return Lists.transform(this.instances, instance -> instance.toInstance());
+        return Lists.transform(this.instances, instance -> instance.toDo());
     }
 
     public List<Parameter> toParameters() {
-        return Lists.transform(this.parameters, parameter -> parameter.toParameter());
+        return Lists.transform(this.parameters, parameter -> parameter.toDo());
     }
 
     public List<ApplicationVersion> toApplicationVersions() {
-        return Lists.transform(this.versions, version -> version.toApplicationVersion());
+        return Lists.transform(this.versions, version -> version.toDo());
     }
 
 

@@ -15,12 +15,14 @@
  */
 package com.ninjamind.confman.dto;
 
+import java.io.Serializable;
+
 /**
  * This DTO is used to dialog with the API Java
  *
  * @author Guillaume EHRET
  */
-public class ConfmanDto {
+public class ConfmanDto implements Serializable {
     protected Long id;
     protected String code;
     protected String label;

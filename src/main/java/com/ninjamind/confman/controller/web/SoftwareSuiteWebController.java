@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * {@link }
+ * Rest API for {@link com.ninjamind.confman.domain.SoftwareSuite}
  *
  * @author Guillaume EHRET
  */
@@ -46,13 +46,13 @@ public class SoftwareSuiteWebController {
     @RequestMapping(method = RequestMethod.PUT)
     public SoftwareSuiteDto update(SoftwareSuiteDto env) {
         Preconditions.checkNotNull(env, "Object is required to update it");
-        return new SoftwareSuiteDto(genericFacade.update(env.toSoftwareSuite(), env.toSoftwareSuiteEnvironment()));
+        return new SoftwareSuiteDto(genericFacade.update(env.toDo(), env.toSoftwareSuiteEnvironment()));
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public SoftwareSuiteDto save(SoftwareSuiteDto env) {
         Preconditions.checkNotNull(env, "Object is required to save it");
-        return new SoftwareSuiteDto(genericFacade.create(env.toSoftwareSuite()));
+        return new SoftwareSuiteDto(genericFacade.create(env.toDo()));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

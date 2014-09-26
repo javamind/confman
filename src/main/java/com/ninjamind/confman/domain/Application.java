@@ -35,7 +35,7 @@ public class Application extends AbstractConfManEntity<Application>{
     private Set<Parameter> parameters= new HashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "softwareSuite_id")
+    @JoinColumn(name = "softwaresuite_id")
     private SoftwareSuite softwareSuite;
 
     public Application() {

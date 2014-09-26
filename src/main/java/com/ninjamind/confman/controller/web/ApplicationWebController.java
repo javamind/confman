@@ -6,7 +6,8 @@ import com.ninjamind.confman.domain.Application;
 import com.ninjamind.confman.dto.ApplicationDto;
 import com.ninjamind.confman.service.ApplicationFacade;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,48 +17,50 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * {@link }
+ * Rest API for {@link com.ninjamind.confman.domain.Application}
  *
  * @author Guillaume EHRET
  */
 @RestController
 @RequestMapping(value = "/application")
-public class ApplicationWebController {
+public class ApplicationWebController extends AbstractConfmanWebController<Application, ApplicationDto, Long>{
     @Autowired
-    @Qualifier("applicationFacade")
-    private ApplicationFacade genericFacade;
+    private ApplicationFacade applicationFacade;
 
-    @RequestMapping
-    public List<ApplicationDto> list() {
-        return Lists.transform(genericFacade.findAll(), env -> new ApplicationDto(env));
+    @Autowired
+    public ApplicationWebController(ApplicationFacade genericFacade) {
+        super(genericFacade, ApplicationDto.class, Application.class);
+        this.applicationFacade=genericFacade;
     }
 
     @RequestMapping("/environment/{id}")
     public List<ApplicationDto> listByEnv(@PathVariable Long id) {
-        return Lists.transform(genericFacade.findApplicationByIdEnv(id), env -> new ApplicationDto(env));
+        return Lists.transform(applicationFacade.findApplicationByIdEnv(id), env -> new ApplicationDto(env));
     }
 
     @RequestMapping("/{id}")
+    @Override
     public ApplicationDto get(@PathVariable Long id) {
-        Application app = genericFacade.findOneWthDependencies(id);
+        Application app = applicationFacade.findOneWthDependencies(id);
         return app!=null ? getApplicationDto(app) : new ApplicationDto();
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public ApplicationDto update(ApplicationDto app) {
+    @Override
+    public ResponseEntity<ApplicationDto> update(ApplicationDto app) {
         Preconditions.checkNotNull(app, "Object is required to update it");
-        return getApplicationDto(genericFacade.save(app.toApplication(), app.toInstances(), app.toParameters(), app.toApplicationVersions()));
+        return new ResponseEntity(
+                getApplicationDto(applicationFacade.save(app.toDo(), app.toInstances(), app.toParameters(), app.toApplicationVersions())),
+                HttpStatus.CREATED);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ApplicationDto save(ApplicationDto app) {
+    @Override
+    public ResponseEntity<ApplicationDto> save(ApplicationDto app) {
         Preconditions.checkNotNull(app, "Object is required to save it");
-        return getApplicationDto(genericFacade.save(app.toApplication(), app.toInstances(), app.toParameters(), app.toApplicationVersions()));
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable Long id) {
-        genericFacade.delete(id);
+        return new ResponseEntity(
+                getApplicationDto(applicationFacade.save(app.toDo(), app.toInstances(), app.toParameters(), app.toApplicationVersions())),
+                HttpStatus.CREATED);
     }
 
     private ApplicationDto getApplicationDto(Application app) {

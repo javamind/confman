@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * {@link }
+ * Rest API for {@link com.ninjamind.confman.domain.ParameterValue}
  *
  * @author Guillaume EHRET
  */

@@ -7,7 +7,7 @@ import com.ninjamind.confman.domain.Environment;
  *
  * @author Guillaume EHRET
  */
-public class EnvironmentDto extends AbstractConfManDto {
+public class EnvironmentDto extends AbstractConfManDto<EnvironmentDto, Environment> {
 
     public EnvironmentDto() {
         super();
@@ -23,7 +23,7 @@ public class EnvironmentDto extends AbstractConfManDto {
         );
     }
 
-    public Environment toEnvironment() {
+    public Environment toDo() {
         return new Environment()
                 .setId(getId())
                 .setCode(getCode())

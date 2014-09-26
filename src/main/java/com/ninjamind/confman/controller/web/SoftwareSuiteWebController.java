@@ -7,10 +7,7 @@ import com.ninjamind.confman.dto.SoftwareSuiteEnvironmentDto;
 import com.ninjamind.confman.service.SoftwareSuiteFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -44,13 +41,13 @@ public class SoftwareSuiteWebController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public SoftwareSuiteDto update(SoftwareSuiteDto env) {
+    public SoftwareSuiteDto update(@RequestBody SoftwareSuiteDto env) {
         Preconditions.checkNotNull(env, "Object is required to update it");
         return new SoftwareSuiteDto(genericFacade.update(env.toDo(), env.toSoftwareSuiteEnvironment()));
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public SoftwareSuiteDto save(SoftwareSuiteDto env) {
+    public SoftwareSuiteDto save(@RequestBody SoftwareSuiteDto env) {
         Preconditions.checkNotNull(env, "Object is required to save it");
         return new SoftwareSuiteDto(genericFacade.create(env.toDo()));
     }

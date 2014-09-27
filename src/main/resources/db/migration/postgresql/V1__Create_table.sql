@@ -71,7 +71,7 @@ CREATE TABLE trackingversion
   id integer NOT NULL PRIMARY KEY,
   code character varying(40),
   label character varying(250),
-  applicationVersion_id integer NOT NULL REFERENCES applicationversion (id),
+  applicationversion_id integer NOT NULL REFERENCES applicationversion (id),
   version integer,
   active boolean,
   blocked boolean,

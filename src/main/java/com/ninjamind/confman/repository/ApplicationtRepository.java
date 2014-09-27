@@ -21,7 +21,7 @@ public interface ApplicationtRepository extends ConfmanRepository<Application, L
 
     Application findByCode(String code);
 
-    @Query(value = "SELECT a FROM Application a left join fetch a.instances left join fetch a.parameters left join fetch a.applicationVersions WHERE a.id = :id")
+    @Query(value = "SELECT a FROM Application as a left join a.instances as i left join a.parameters as p left join a.applicationVersions as v WHERE a.id = :id")
     Application findOneWithDependencies(@Param("id") Long id);
 
     @Query(value = "SELECT a FROM Application a left join fetch a.softwareSuite s left join fetch s.softwareSuiteEnvironments se WHERE se.id.environment.id = :id")

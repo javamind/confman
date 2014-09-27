@@ -38,4 +38,22 @@ public class InstanceDto extends AbstractConfManDto<InstanceDto, Instance> {
                 .setApplication(new Application().setId(idApplication))
                 .setEnvironment(new Environment().setId(idEnvironment));
     }
+
+    public InstanceDto setIdApplication(Long idApplication) {
+        this.idApplication = idApplication;
+        return this;
+    }
+
+    public InstanceDto setIdEnvironment(Long idEnvironment) {
+        this.idEnvironment = idEnvironment;
+        return this;
+    }
+
+    public Long getIdApplication() {
+        return idApplication;
+    }
+
+    public Long getIdEnvironment() {
+        return idEnvironment;
+    }
 }

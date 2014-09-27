@@ -1,5 +1,6 @@
 package com.ninjamind.confman.dto;
 
+import com.ninjamind.confman.domain.Application;
 import com.ninjamind.confman.domain.ApplicationVersion;
 
 /**
@@ -8,6 +9,7 @@ import com.ninjamind.confman.domain.ApplicationVersion;
  * @author Guillaume EHRET
  */
 public class ApplicationVersionDto extends AbstractConfManDto<ApplicationVersionDto, ApplicationVersion> {
+    private Long idApplication;
 
     public ApplicationVersionDto() {
         super();
@@ -21,6 +23,7 @@ public class ApplicationVersionDto extends AbstractConfManDto<ApplicationVersion
                 object.getVersion(),
                 object.isActive()
         );
+        this.idApplication = object.getApplication().getId();
     }
 
     public ApplicationVersion toDo() {
@@ -29,6 +32,16 @@ public class ApplicationVersionDto extends AbstractConfManDto<ApplicationVersion
                 .setCode(getCode())
                 .setLabel(getLabel())
                 .setVersion(getVersion())
+                .setApplication(new Application().setId(idApplication))
                 .setActive(isActive());
+    }
+
+    public Long getIdApplication() {
+        return idApplication;
+    }
+
+    public ApplicationVersionDto setIdApplication(Long idApplication) {
+        this.idApplication = idApplication;
+        return this;
     }
 }

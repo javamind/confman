@@ -42,4 +42,31 @@ public class ParameterDto extends AbstractConfManDto<ParameterDto, Parameter> {
                 .setParameterGroupment(new ParameterGroupment().setId(idParameterGroupment))
                 .setType(Enum.valueOf(ParameterType.class, type));
     }
+
+    public Long getIdApplication() {
+        return idApplication;
+    }
+
+    public ParameterDto setIdApplication(Long idApplication) {
+        this.idApplication = idApplication;
+        return this;
+    }
+
+    public Long getIdParameterGroupment() {
+        return idParameterGroupment;
+    }
+
+    public ParameterDto setIdParameterGroupment(Long idParameterGroupment) {
+        this.idParameterGroupment = idParameterGroupment;
+        return this;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public ParameterDto setType(String type) {
+        this.type = type;
+        return this;
+    }
 }

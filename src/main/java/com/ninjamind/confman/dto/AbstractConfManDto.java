@@ -1,5 +1,6 @@
 package com.ninjamind.confman.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.base.Objects;
 import com.ninjamind.confman.domain.AbstractConfManEntity;
 
@@ -10,6 +11,7 @@ import java.io.Serializable;
  *
  * @author Guillaume EHRET
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public abstract class AbstractConfManDto<T extends AbstractConfManDto, E extends AbstractConfManEntity> implements Serializable {
     /**
      * Id

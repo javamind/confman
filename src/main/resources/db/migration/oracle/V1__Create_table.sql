@@ -66,7 +66,7 @@ CREATE TABLE trackingversion
   id NUMBER NOT NULL,
   code VARCHAR2(40),
   label VARCHAR2(250),
-  applicationVersion_id NUMBER NOT NULL,
+  applicationversion_id NUMBER NOT NULL,
   version NUMBER,
   active NUMBER(1),
   blocked NUMBER(1),

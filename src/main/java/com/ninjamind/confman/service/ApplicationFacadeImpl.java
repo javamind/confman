@@ -3,6 +3,7 @@ package com.ninjamind.confman.service;
 import com.google.common.base.Preconditions;
 import com.ninjamind.confman.domain.*;
 import com.ninjamind.confman.repository.ApplicationtRepository;
+import com.ninjamind.confman.repository.SofwareSuiteRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -22,6 +23,9 @@ import java.util.stream.Collectors;
 public class ApplicationFacadeImpl implements ApplicationFacade {
     @Autowired
     private ApplicationtRepository applicationRepository;
+
+    @Autowired
+    private SofwareSuiteRepository sofwareSuiteRepository;
 
     @Autowired
     private InstanceFacade instanceFacade;
@@ -109,47 +113,62 @@ public class ApplicationFacadeImpl implements ApplicationFacade {
     public Application save(Application app, List<Instance> instances, List<Parameter> parameters, List<ApplicationVersion> versions) {
         Preconditions.checkNotNull(app);
 
-        if(app.getId()!=null && app.getId()>=0) {
+        //We see if an entity exist
+        Application application = applicationRepository.findByCode(app.getCode());
+
+        if(application!=null){
             deleteDependenciesIfNecessary(findParameterByIdApp(app.getId()), parameters, parameterFacade.getRepository());
             deleteDependenciesIfNecessary(findInstanceByIdAppOrEnv(app.getId(), null), instances, instanceFacade.getRepository());
             deleteDependenciesIfNecessary(findApplicationVersionByIdApp(app.getId()), versions, applicationVersionFacade.getRepository());
+            //All the proprieties are copied except the version number
+            BeanUtils.copyProperties(app, application, "id", "version");
         }
+        else{
+            //If not we create one application
+            application = create(app);
+        }
+        final Application newapp = application;
 
         //We clear the dependencies
-        app.clearInstances();
-        app.clearApplicationVersion();
-        app.clearParameters();
-        final Application newapp = app.getId() != null ? update(app) : create(app);
+        application.clearInstances();
+        application.clearApplicationVersion();
+        application.clearParameters();
+        application.setSoftwareSuite(app.getSoftwareSuite().getId()==null ? null : sofwareSuiteRepository.getOne(app.getSoftwareSuite().getId()));
 
         //Depenencies are saved
-        parameters.stream().forEach(p -> {
-            p.setApplication(newapp);
-            p.setParameterGroupment(null);
-            if (p.getId() != null) {
-                parameterFacade.update(p);
-            } else {
-                parameterFacade.create(p);
-            }
-        });
-        instances.stream().forEach(i -> {
-            i.setApplication(newapp);
-            i.setEnvironment(environmentFacade.getRepository().getOne(i.getEnvironment().getId()));
-            if (i.getId() != null) {
-                instanceFacade.update(i);
-            } else {
-                instanceFacade.create(i);
-            }
-        });
-        versions.stream().forEach(v -> {
-            v.setApplication(newapp);
-            if (v.getId() != null) {
-                applicationVersionFacade.update(v);
-            } else {
-                applicationVersionFacade.create(v);
-            }
-        });
-
-        return findOneWthDependencies(newapp.getId());
+        if(parameters!=null){
+            parameters.stream().forEach(p -> {
+                p.setApplication(newapp);
+                p.setParameterGroupment(null);
+                if (p.getId() != null) {
+                    parameterFacade.update(p);
+                } else {
+                    parameterFacade.create(p);
+                }
+            });
+        }
+        if(instances!=null){
+            instances.stream().forEach(i -> {
+                i.setApplication(newapp);
+                i.setEnvironment(environmentFacade.getRepository().getOne(i.getEnvironment().getId()));
+                if (i.getId() != null) {
+                    instanceFacade.update(i);
+                } else {
+                    instanceFacade.create(i);
+                }
+            });
+        }
+        if(versions!=null) {
+            versions.stream().forEach(v -> {
+                v.setApplication(newapp);
+                if (v.getId() != null) {
+                    applicationVersionFacade.update(v);
+                } else {
+                    applicationVersionFacade.create(v);
+                }
+            });
+        }
+        return findOneWthDependencies(application.getId());
     }
 
     /**
@@ -174,7 +193,7 @@ public class ApplicationFacadeImpl implements ApplicationFacade {
 
         //if elt is no use we delete it
         eltToDelete.stream().forEach(elt -> {
-            repository.delete(elt);
+            elt.setActive(false);
         });
     }
 }

@@ -80,4 +80,99 @@ public class ParameterValueDto extends AbstractConfManDto<ParameterValueDto, Par
     public boolean isToDelete() {
         return toDelete;
     }
+
+    public String getOldValue() {
+        return oldValue;
+    }
+
+    public ParameterValueDto setOldValue(String oldValue) {
+        this.oldValue = oldValue;
+        return this;
+    }
+
+    public Long getIdTrackingVersion() {
+        return idTrackingVersion;
+    }
+
+    public ParameterValueDto setIdTrackingVersion(Long idTrackingVersion) {
+        this.idTrackingVersion = idTrackingVersion;
+        return this;
+    }
+
+    public String getCodeTrackingVersion() {
+        return codeTrackingVersion;
+    }
+
+    public ParameterValueDto setCodeTrackingVersion(String codeTrackingVersion) {
+        this.codeTrackingVersion = codeTrackingVersion;
+        return this;
+    }
+
+    public Long getIdApplication() {
+        return idApplication;
+    }
+
+    public ParameterValueDto setIdApplication(Long idApplication) {
+        this.idApplication = idApplication;
+        return this;
+    }
+
+    public String getCodeApplication() {
+        return codeApplication;
+    }
+
+    public ParameterValueDto setCodeApplication(String codeApplication) {
+        this.codeApplication = codeApplication;
+        return this;
+    }
+
+    public Long getIdParameter() {
+        return idParameter;
+    }
+
+    public ParameterValueDto setIdParameter(Long idParameter) {
+        this.idParameter = idParameter;
+        return this;
+    }
+
+    public Long getIdInstance() {
+        return idInstance;
+    }
+
+    public ParameterValueDto setIdInstance(Long idInstance) {
+        this.idInstance = idInstance;
+        return this;
+    }
+
+    public String getCodeInstance() {
+        return codeInstance;
+    }
+
+    public ParameterValueDto setCodeInstance(String codeInstance) {
+        this.codeInstance = codeInstance;
+        return this;
+    }
+
+    public Long getIdEnvironment() {
+        return idEnvironment;
+    }
+
+    public ParameterValueDto setIdEnvironment(Long idEnvironment) {
+        this.idEnvironment = idEnvironment;
+        return this;
+    }
+
+    public String getCodeEnvironment() {
+        return codeEnvironment;
+    }
+
+    public ParameterValueDto setCodeEnvironment(String codeEnvironment) {
+        this.codeEnvironment = codeEnvironment;
+        return this;
+    }
+
+    public ParameterValueDto setToDelete(boolean toDelete) {
+        this.toDelete = toDelete;
+        return this;
+    }
 }

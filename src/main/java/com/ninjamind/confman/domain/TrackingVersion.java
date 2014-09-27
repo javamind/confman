@@ -24,7 +24,7 @@ public class TrackingVersion extends AbstractConfManEntity<TrackingVersion>{
     @SequenceGenerator(name = TrackingVersion.SEQ_NAME, sequenceName = TrackingVersion.SEQ_NAME, allocationSize = 1)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "applicationVersion_id")
+    @JoinColumn(name = "applicationversion_id")
     private ApplicationVersion applicationVersion;
 
     private boolean blocked;

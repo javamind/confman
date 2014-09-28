@@ -1,7 +1,6 @@
 package com.ninjamind.confman.controller.web;
 
 import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.Application;
 import com.ninjamind.confman.dto.ApplicationDto;
 import com.ninjamind.confman.service.ApplicationFacade;
@@ -32,7 +31,7 @@ public class ApplicationWebController extends AbstractConfmanWebController<Appli
 
     @RequestMapping("/environment/{id}")
     public List<ApplicationDto> listByEnv(@PathVariable Long id) {
-        return Lists.transform(applicationFacade.findApplicationByIdEnv(id), env -> new ApplicationDto(env));
+        return applicationFacade.findApplicationByIdEnv(id).stream().map(env -> new ApplicationDto(env)).collect(Collectors.toList());
     }
 
     @RequestMapping("/{id}")

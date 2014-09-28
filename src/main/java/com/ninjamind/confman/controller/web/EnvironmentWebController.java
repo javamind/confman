@@ -1,6 +1,5 @@
 package com.ninjamind.confman.controller.web;
 
-import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.Environment;
 import com.ninjamind.confman.dto.EnvironmentDto;
 import com.ninjamind.confman.service.ApplicationFacade;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Rest API for {@link com.ninjamind.confman.domain.Environment}
@@ -31,6 +31,6 @@ public class EnvironmentWebController extends AbstractConfmanWebController<Envir
 
     @RequestMapping("/application/{id}")
     public List<EnvironmentDto> listByApp(@PathVariable Long id) {
-        return Lists.transform(applicationFacade.findEnvironmentByIdApp(id), env -> new EnvironmentDto(env));
+        return applicationFacade.findEnvironmentByIdApp(id).stream().map(env -> new EnvironmentDto(env)).collect(Collectors.toList());
     }
 }

@@ -1,9 +1,9 @@
 package com.ninjamind.confman.dto;
 
-import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * {@link com.ninjamind.confman.domain.Application}
@@ -39,9 +39,9 @@ public class ApplicationDto extends AbstractConfManDto<ApplicationDto, Applicati
                 object.isActive()
         );
         this.idSoftwareSuite = object.getSoftwareSuite()==null ? null : object.getSoftwareSuite().getId();
-        this.instances = Lists.transform(instances, instance -> new InstanceDto(instance));
-        this.versions = Lists.transform(versions, version -> new ApplicationVersionDto(version));
-        this.parameters = Lists.transform(parameters, parameter -> new ParameterDto(parameter));
+        this.instances = instances.stream().map(instance -> new InstanceDto(instance)).collect(Collectors.toList());
+        this.versions = versions.stream().map(version -> new ApplicationVersionDto(version)).collect(Collectors.toList());
+        this.parameters = parameters.stream().map(parameter -> new ParameterDto(parameter)).collect(Collectors.toList());
     }
 
 
@@ -56,15 +56,15 @@ public class ApplicationDto extends AbstractConfManDto<ApplicationDto, Applicati
     }
 
     public List<Instance> toInstances() {
-        return this.instances==null ? null : Lists.transform(this.instances, instance -> instance.toDo());
+        return this.instances==null ? null : this.instances.stream().map(instance -> instance.toDo()).collect(Collectors.toList());
     }
 
     public List<Parameter> toParameters() {
-        return this.parameters==null ? null : Lists.transform(this.parameters, parameter -> parameter.toDo());
+        return this.parameters==null ? null : this.parameters.stream().map(parameter -> parameter.toDo()).collect(Collectors.toList());
     }
 
     public List<ApplicationVersion> toApplicationVersions() {
-        return this.versions==null ? null : Lists.transform(this.versions, version -> version.toDo());
+        return this.versions==null ? null : this.versions.stream().map(version -> version.toDo()).collect(Collectors.toList());
     }
 
     public Long getIdSoftwareSuite() {

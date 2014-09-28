@@ -1,7 +1,6 @@
 package com.ninjamind.confman.controller.web;
 
 import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.AbstractConfManEntity;
 import com.ninjamind.confman.dto.AbstractConfManDto;
 import com.ninjamind.confman.exception.ConverterException;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Abstract Rest contoller to manage entity
@@ -55,7 +55,7 @@ public abstract class AbstractConfmanWebController<
     @RequestMapping
     @ResponseStatus(HttpStatus.OK)
     public List<D> list() {
-        return Lists.transform(genericFacade.findAll(), elt -> convertToDto(elt));
+        return genericFacade.findAll().stream().map(elt -> convertToDto(elt)).collect(Collectors.toList());
     }
 
     /**

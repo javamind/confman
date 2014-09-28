@@ -1,7 +1,6 @@
 package com.ninjamind.confman.controller.web;
 
 import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.PaginatedList;
 import com.ninjamind.confman.domain.ParameterValue;
 import com.ninjamind.confman.dto.PaginatedListDto;
@@ -45,7 +44,8 @@ public class ParameterValueWebController {
                         parameterValues.getCompleteSize(),
                         parameterValues.getCurrentPage(),
                         parameterValues.getNbElementByPage(),
-                        Lists.transform(parameterValues, parameter -> new ParameterValueDto(parameter)));
+                        parameterValues.stream().map(parameter -> new ParameterValueDto(parameter)).collect(Collectors.toList())
+                );
     }
 
     @RequestMapping("/{id}")
@@ -69,7 +69,7 @@ public class ParameterValueWebController {
     public List<ParameterValueDto> save(@RequestBody Long idTrackingVersionDto) {
         Preconditions.checkNotNull(idTrackingVersionDto, "The id version is required to create the value parameters");
 
-        return  Lists.transform(parameterValueFacade.create(idTrackingVersionDto), parameterValue -> new ParameterValueDto(parameterValue));
+        return  parameterValueFacade.create(idTrackingVersionDto).stream().map(parameterValue -> new ParameterValueDto(parameterValue)).collect(Collectors.toList());
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

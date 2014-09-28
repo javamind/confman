@@ -1,7 +1,6 @@
 package com.ninjamind.confman.controller.web;
 
 import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
 import com.ninjamind.confman.dto.SoftwareSuiteDto;
 import com.ninjamind.confman.dto.SoftwareSuiteEnvironmentDto;
 import com.ninjamind.confman.service.SoftwareSuiteFacade;
@@ -10,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Rest API for {@link com.ninjamind.confman.domain.SoftwareSuite}
@@ -26,7 +26,7 @@ public class SoftwareSuiteWebController {
 
     @RequestMapping
     public List<SoftwareSuiteDto> list() {
-        return Lists.transform(genericFacade.findAll(), env -> new SoftwareSuiteDto(env));
+        return genericFacade.findAll().stream().map(env -> new SoftwareSuiteDto(env)).collect(Collectors.toList());
     }
 
     @RequestMapping("/{id}")
@@ -37,7 +37,7 @@ public class SoftwareSuiteWebController {
     @RequestMapping("/{id}/environment")
     public List<SoftwareSuiteEnvironmentDto> getEnvironment(@PathVariable Long id) {
         Preconditions.checkNotNull(id, "Sowftware suite id is required to update it");
-        return Lists.transform(genericFacade.findSoftwareSuiteEnvironmentByIdSoft(id), env -> new SoftwareSuiteEnvironmentDto(env));
+        return genericFacade.findSoftwareSuiteEnvironmentByIdSoft(id).stream().map(env -> new SoftwareSuiteEnvironmentDto(env)).collect(Collectors.toList());
     }
 
     @RequestMapping(method = RequestMethod.PUT)

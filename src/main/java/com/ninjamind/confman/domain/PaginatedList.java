@@ -78,4 +78,6 @@ public class PaginatedList<T> extends ArrayList<T> {
         this.nbElementByPage = nbElementByPage;
         return this;
     }
+
+
 }

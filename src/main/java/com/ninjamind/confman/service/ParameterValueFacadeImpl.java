@@ -118,7 +118,9 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
             //Now we have to modify all the paramaters values
             parameterValues
                     .stream()
-                    .forEach(p -> parameterValueRepositoryGeneric.save(parameterValueRepositoryGeneric.getOne(p.getId()).setLabel(p.getLabel())));
+                    .forEach(p -> parameterValueRepositoryGeneric.save(
+                            parameterValueRepositoryGeneric.getOne(p.getId()).setLabel(p.getLabel()))
+                    );
         }
     }
 

@@ -19,11 +19,11 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "trackingVersion_id")
+    @JoinColumn(name = "trackingversion_id")
     private TrackingVersion trackingVersion;
-    @Column(name = "trackingVersion_code")
+    @Column(name = "trackingversion_code")
     private String codeTrackingVersion;
-    @Column(name = "trackingVersion_label")
+    @Column(name = "trackingversion_label")
     private String labelTrackingVersion;
 
     @ManyToOne

@@ -31,4 +31,14 @@ public class ParameterValueFilterDto extends ParameterValueDto {
     public Integer getNbEltPerPage() {
         return nbEltPerPage;
     }
+
+    public ParameterValueFilterDto setPage(Integer page) {
+        this.page = page;
+        return this;
+    }
+
+    public ParameterValueFilterDto setNbEltPerPage(Integer nbEltPerPage) {
+        this.nbEltPerPage = nbEltPerPage;
+        return this;
+    }
 }

@@ -41,4 +41,40 @@ public class PaginatedListDto<T> implements Serializable {
         this.nbElementByPage = nbElementByPage;
         this.list = list;
     }
+
+    public int getCompleteSize() {
+        return completeSize;
+    }
+
+    public PaginatedListDto<T> setCompleteSize(int completeSize) {
+        this.completeSize = completeSize;
+        return this;
+    }
+
+    public int getCurrentPage() {
+        return currentPage;
+    }
+
+    public PaginatedListDto<T> setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
+        return this;
+    }
+
+    public int getNbElementByPage() {
+        return nbElementByPage;
+    }
+
+    public PaginatedListDto<T> setNbElementByPage(int nbElementByPage) {
+        this.nbElementByPage = nbElementByPage;
+        return this;
+    }
+
+    public List<T> getList() {
+        return list;
+    }
+
+    public PaginatedListDto<T> setList(List<T> list) {
+        this.list = list;
+        return this;
+    }
 }

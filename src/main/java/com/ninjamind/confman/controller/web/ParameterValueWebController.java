@@ -29,7 +29,7 @@ public class ParameterValueWebController {
     private ParameterValueFacade parameterValueFacade;
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public PaginatedListDto<ParameterValueDto> search(ParameterValueFilterDto criteria) {
+    public PaginatedListDto<ParameterValueDto> search(@RequestBody ParameterValueFilterDto criteria) {
         Preconditions.checkNotNull(criteria);
 
         PaginatedList<ParameterValue> parameterValues =
@@ -46,6 +46,7 @@ public class ParameterValueWebController {
                         parameterValues.getNbElementByPage(),
                         parameterValues.stream().map(parameter -> new ParameterValueDto(parameter)).collect(Collectors.toList())
                 );
+
     }
 
     @RequestMapping("/{id}")

@@ -9,7 +9,8 @@ import com.ninjamind.confman.exception.NotFoundException;
 import com.ninjamind.confman.exception.VersionException;
 import com.ninjamind.confman.exception.VersionTrackingException;
 import com.ninjamind.confman.repository.*;
-import com.ninjamind.confman.utils.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Logger;
 
 /**
  * {@link ParameterValueFacade}
@@ -27,7 +27,7 @@ import java.util.logging.Logger;
 @Service("parameterValueFacade")
 @Transactional
 public class ParameterValueFacadeImpl implements ParameterValueFacade {
-    private static Logger LOG = LoggerFactory.make();
+    private static Logger LOG = LoggerFactory.getLogger(ParameterValueFacadeImpl.class);
     @Autowired
     TrackingVersionFacade trackingVersionFacade;
     @Autowired

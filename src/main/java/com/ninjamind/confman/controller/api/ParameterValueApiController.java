@@ -1,12 +1,17 @@
 package com.ninjamind.confman.controller.api;
 
 import com.ninjamind.confman.dto.ParameterValueDto;
+import com.ninjamind.confman.exception.VersionException;
+import com.ninjamind.confman.exception.VersionTrackingException;
 import com.ninjamind.confman.service.ParameterValueFacade;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +24,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping(value = "/confman/paramvalue")
 public class ParameterValueApiController {
+    private static Logger LOG = LoggerFactory.getLogger(ParameterValueApiController.class);
 
     @Autowired
     private ParameterValueFacade parameterValueFacade;
@@ -40,7 +46,13 @@ public class ParameterValueApiController {
      */
     @RequestMapping(value = "/{codeApp}/version/{version}/env/{env}")
     public List<ParameterValueDto> getByVersionAndEnv(@PathVariable String codeApp, @PathVariable String version, @PathVariable String env) {
-        return parameterValueFacade.findParamatersByCodeVersionAndEnv(codeApp, version, env).stream().map(p -> new ParameterValueDto(p)).collect(Collectors.toList());
+        try {
+            return parameterValueFacade.findParamatersByCodeVersionAndEnv(codeApp, version, env).stream().map(p -> new ParameterValueDto(p)).collect(Collectors.toList());
+        }
+        catch (VersionTrackingException | VersionException e){
+            LOG.error("Error when readParameters", e);
+            return new ArrayList<>();
+        }
     }
 
     /**

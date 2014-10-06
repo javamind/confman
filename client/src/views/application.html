@@ -1,0 +1,20 @@
+<material-content style="top:128px" ng-controller="applicationCtrl">
+    <div class="container-fluid">
+        <h4>
+        nb applications : {{applications.length}}
+        <div class="confman-btn" style="width: 50%">
+            <button class="btn btn-primary" ng-click="create()">
+                <img src="../img/icon/ic_insert_drive_file_24px.svg" title="New"/>
+            </button>
+        </div>
+    </h4>
+    <material-list>
+        <material-item ng-repeat="env in applications | orderBy:'code'" ng-dblClick="update(env)">
+            <div class="material-tile-content">
+                <h2>{{env.code}}</h2>
+                <p>{{env.label}}</p>
+            </div>
+        </material-item>
+    </material-list>
+    </div>
+</material-content>

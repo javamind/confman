@@ -1,0 +1,119 @@
+<material-content style="top:128px " ng-controller="configCompareCtrl">
+    <div class="container-fluid">
+        <br>
+        <div class="alert alert-danger confman-alert-error container-fluid" role="alert" ng-show="error">
+            Error cc: {{error.message}}
+        </div>
+        <form class="form confman-form" name="form" novalidate>
+            <div class="container-fluid thumbnail" ng-hide="lockVersion">
+                <div class="row">
+                    <div class="col-md-1">
+                        <label for="data-application">&nbsp;Application</label>
+                    </div>
+                    <div class="col-md-3">
+                        <select id="data-application" ng-model="criteria.idApplication" class="form-control input-sm input-sm input-sm" required
+                                ng-change="changeApplication()" name="application"
+                                ng-options="application.id as application.code for application in applications">
+                            <option value="">Application</option>
+                        </select>
+                        <span ng-show="form.application.$error.required" class="confman-label-error"><small>Application is required</small></span>
+                    </div>
+                    <div class="col-md-1">
+                        <label>&nbsp;Versions</label>
+                    </div>
+                    <div class="col-md-3">
+                        <select ng-model="criteria.idApplicationVersion1" class="form-control input-sm"
+                                required name="idApplicationVersion1"
+                                ng-options="applicationVersion.id as applicationVersion.code for applicationVersion in applicationVersions">
+                            <option value="">Versions</option>
+                        </select>
+                        <span ng-show="form.idApplicationVersion1.$error.required" class="confman-label-error"><small>application version 1 is required</small></span>
+                    </div>
+                    <div class="col-md-3">
+                        <select ng-model="criteria.idApplicationVersion2" class="form-control input-sm"
+                                required name="idApplicationVersion2"
+                                ng-options="applicationVersion.id as applicationVersion.code for applicationVersion in applicationVersions">
+                            <option value="">Versions</option>
+                        </select>
+                        <span ng-show="form.idApplicationVersion2.$error.required" class="confman-label-error"><small>application version 2 is required</small></span>
+                    </div>
+                    <div class="col-md-1">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">&nbsp;</div>
+                    <div class="col-md-1">
+                        <label>&nbsp;Env.</label>
+                    </div>
+                    <div class="col-md-3">
+                        <select ng-model="criteria.idEnvironment1" class="form-control input-sm"
+                                required  name="idEnvironment1"
+                                ng-options="env.id as env.code for env in environments">
+                            <option value="">Environment</option>
+                        </select>
+                        <span ng-show="form.idEnvironment1.$error.required" class="confman-label-error"><small>application env 1 is required</small></span>
+                    </div>
+                    <div class="col-md-3">
+                        <select ng-model="criteria.idEnvironment2" class="form-control input-sm"
+                                required  name="idEnvironment2"
+                                ng-options="env.id as env.code for env in environments">
+                            <option value="">Environment</option>
+                        </select>
+                        <span ng-show="form.idEnvironment2.$error.required" class="confman-label-error"><small>application env 2 is required</small></span>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="confman-btn">
+                            <button class="btn btn-primary" ng-click="compareVersion()"
+                                    ng-disabled="form.$invalid">
+                                <img src="../img/icon/ic_developer_mode_tv_24px.svg" title="Create"/>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <material-list>
+            <material-item ng-repeat="param in listecomp | orderBy:['codeInstance', 'code']" ng-class="setClassError(param.difference)">
+                <div class="material-tile-left">
+                    <div class="confman-list-param-env" ng-show="param.elt1.code">{{param.elt1.codeEnvironment | uppercase | limitTo : 3}}</div>
+                    <div class="confman-list-param-empty" ng-hide="param.elt1.code">&nbsp;</div>
+                </div>
+                <div class="material-tile-content">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h2 ng-hide="param.elt1.code">&nbsp;</h2>
+                            <h2 ng-show="param.elt1.code">{{param.elt1.code}} : <b>{{param.elt1.label}}</b></h2>
+
+                            <h3 ng-show="param.elt1.code">Application : {{param.elt1.codeApplication}} - tracking version : <div class="badge badge-version">{{param.elt1.codeTrackingVersion}}</div>
+                                <span ng-show="param.elt1.codeInstance">- instance : <div class="badge badge-instance">{{param.elt1.codeInstance}}</div></span>
+                            </h3>
+                        </div>
+                        <div class="col-xs-1">
+                            <div ng-show="param.elt1.code">
+                                <div class="confman-list-param-app" ng-hide="param.elt1.codeInstance">APP</div>
+                                <div class="confman-list-param-instance" ng-show="param.elt1.codeInstance">INS</div>
+                            </div>
+                            <div ng-hide="param.elt1.code">
+                                <div class="confman-list-param-app" ng-hide="param.elt2.codeInstance">APP</div>
+                                <div class="confman-list-param-instance" ng-show="param.elt2.codeInstance">INS</div>
+                            </div>
+                        </div>
+                        <div class="col-xs-5">
+                            <h2 ng-hide="param.elt2.code">&nbsp;</h2>
+                            <h2 ng-show="param.elt2.code">{{param.elt2.code}} : <b>{{param.elt2.label}}</b></h2>
+                            <h3 ng-show="param.elt2.code">Application : {{param.elt2.codeApplication}} - tracking version : <div class="badge badge-version">{{param.elt2.codeTrackingVersion}}</div>
+                                <span ng-show="param.elt2.codeInstance">- instance : <div class="badge badge-instance">{{param.elt2.codeInstance}}</div></span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="material-tile-right">
+                    <div class="confman-list-param-env" ng-show="param.elt2.code">{{param.elt2.codeEnvironment | uppercase | limitTo : 3}}</div>
+                    <div class="confman-list-param-empty" ng-hide="param.elt2.code">&nbsp;</div>
+
+                </div>
+            </material-item>
+        </material-list>
+    </div>
+</material-content>

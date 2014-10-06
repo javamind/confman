@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html ng-app="confman" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confman</title>
+    <meta name="author" content="@agnes_crepet"/>
+    <meta name="author" content="@guillaumeehret"/>
+    <link rel="shortcut icon" href="img/favicon.ico"/>
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/material-design.min.css"/>
+    <link rel="stylesheet" href="styles/style.css"/>
+    <!-- endbuild -->
+</head>
+<body ng-controller="AppCtrl" layout="horizontal">
+
+
+<material-sidenav class="material-sidenav-left material-whiteframe-z3 " component-id="left">
+
+    <material-toolbar class="material-theme-light">
+        <div class="confman-menu-title material-theme-light">
+            <img src="img/icone64.png"/>
+
+            <h2>&nbsp;Confman</h2>
+        </div>
+    </material-toolbar>
+
+    <material-content  flex>
+        <p>&nbsp;</p>
+        <a class="menu-item menu-title" href="/" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['home'])}">Home</a>
+
+        <button class="menu-item menu-title" ng-class="{active : isConfmanPageSelected(['env','soft','app'])}">Settings</button>
+        <a class="menu-item menu-sub-item" href="#/environment" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['env'])}">
+            <span>Environment</span>
+
+        </a>
+        <a class="menu-item menu-sub-item" href="#/softwaresuite" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['soft'])}">Software suite</a>
+        <a class="menu-item menu-sub-item" href="#/application" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['app'])}">Application</a>
+
+        <button class="menu-item menu-title" ng-class="{active : isConfmanPageSelected(['confcreate','confcomp','confsearch'])}">Configuration</button>
+           <a class="menu-item menu-sub-item" href="#/config/search" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['confsearch'])}">Find</a>
+            <a class="menu-item menu-sub-item" href="#/config/create" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['confcreate'])}">Create</a>
+            <a class="menu-item menu-sub-item" href="#/config/compare" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['confcomp'])}">Compare</a>
+
+    </material-content>
+</material-sidenav>
+
+<div layout="vertical" layout-fill>
+    <material-toolbar class="material-theme-light">
+        <div class="material-toolbar-tools">
+            <div class="menu-icon" ng-click="toggleLeft()" hide-md>
+                <material-icon icon="img/icon/ic_menu_24px.svg"></material-icon>
+            </div>
+
+            <span ng-bind="currentPage.name || 'Confman'" style="margin-left: 9px"></span>
+
+            <div class="material-display-flex material-flex menu_toolbox">
+                <!-- use up the third space so the button is on the right -->
+            </div>
+            <material-button class="material-button" style="position: static; display: block;"
+                             ng-show="currentPage.actionbar"
+                             ng-repeat="act in currentPage.actionbar" ng-click="act.action()">
+                <img ng-src="/img/icon/{{act.icon}}.svg" style="width: 24px; height: 24px;" />
+            </material-button>
+        </div>
+    </material-toolbar>
+    <material-toolbar class="material-theme-grey" scroll-header condensed-height="60"
+                      ng-show="currentPage.description">
+
+        <div class="material-toolbar-tools material-toolbar-tools-bottom">
+            <span class="material-flex material-indent"><small>{{currentPage.description}}</small></span>
+        </div>
+        <material-button class="material-button-fab material-button-fab-bottom-right material-theme-yellow" style="top: 20px">
+            <img ng-src="img/icon/{{currentPage.icon}}.svg" style="width: 24px;height: 24px"/>
+        </material-button>
+    </material-toolbar>
+    <div class="col-md-12">
+        <br>
+        <div class="alert alert-danger" ng-show="errorUrl">
+            {{errorUrl}}
+        </div>
+    </div>
+    <ng-view class="sliding-view">
+
+    </ng-view>
+</div>
+
+<script type="text/ng-template" id="modalConfirmDelete.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Delete confirmation</h3>
+    </div>
+    <div class="modal-body">
+        Are you sure you want to delete the {{entity_todelete}} ?
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger" ng-click="ok()">
+            <img src="img/icon/ic_delete_24px.svg" title="Delete"/>
+        </button>
+        <button class="btn btn-default" ng-click="cancel()">
+            <img src="img/icon/ic_clear_24px.svg" title="Cancel"/>
+        </button>
+    </div>
+</script>
+
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="lib/jquery/dist/jquery.js"></script>
+<script src="lib/angular/angular.js"></script>
+<script src="lib/json3/lib/json3.min.js"></script>
+<script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="lib/angular-resource/angular-resource.js"></script>
+<script src="lib/angular-route/angular-route.js"></script>
+<script src="lib/angular-animate/angular-animate.js"></script>
+<script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/material.js -->
+<script src="js/angular-animate-sequence/angular-animate-sequence.js"></script>
+<script src="js/angular-animate-sequence/angular-animate-stylers.js"></script>
+<script src="js/angular-materials/material-design-min.js"></script>
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/app.js"></script>
+<script src="js/controller/main.js"></script>
+<script src="js/controller/environment.js"></script>
+<script src="js/controller/softwaresuite.js"></script>
+<script src="js/controller/application.js"></script>
+<script src="js/controller/applicationdetail.js"></script>
+<script src="js/controller/configcompare.js"></script>
+<script src="js/controller/configcreate.js"></script>
+<script src="js/controller/configsearch.js"></script>
+<script src="js/service/entities.js"></script>
+<script src="js/service/tables.js"></script>
+<script src="js/service/param.js"></script>
+<script src="js/directive/semver.js"></script>
+<!-- endbuild -->
+
+</body>
+</html>
+
+

@@ -1,0 +1,140 @@
+<material-content style="top:128px " ng-controller="configCreateCtrl">
+    <div class="container-fluid">
+        <br>
+
+        <div class="confman-accroche">
+            A new configuration is created from an application version number. <b>Confman</b> display
+            a form with the last known values (last version tracking for the actual application
+            version number). You can change every parameters values but you won't be able to change
+            them after the saving (expect for SNAPSHOT version). We choose this policy because all the changes have to
+            be followed.
+        </div>
+
+            <div class="alert alert-danger confman-alert-error container-fluid" role="alert" ng-show="error">
+                Error cc: {{error.message}}
+            </div>
+
+        <form class="form confman-form" name="form" novalidate>
+            <div class="container-fluid thumbnail" ng-hide="lockVersion">
+                <div class="row">
+                    <div class="col-md-1">
+                        <label for="data-application">&nbsp;Application</label>
+                    </div>
+                    <div class="col-md-3">
+                        <select id="data-application" ng-model="criteria.idApplication" class="form-control input-sm"
+                                required
+                                ng-change="changeApplication()" name="application"
+                                ng-options="application.id as application.code for application in applications">
+                            <option value="">Application</option>
+                        </select>
+                    <span ng-show="form.application.$error.required"
+                          class="confman-label-error">Application is required</span>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="data-tracking">&nbsp;Version</label>
+                    </div>
+                    <div class="col-md-3">
+                        <select id="data-tracking" ng-model="criteria.idApplicationVersion"
+                                class="form-control input-sm" required
+                                name="applicationVersion"
+                                ng-options="applicationVersion.id as applicationVersion.code for applicationVersion in applicationVersions">
+                            <option value="">Versions</option>
+                        </select>
+                        <span ng-show="form.applicationVersion.$error.required" class="confman-label-error">application version is required</span>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="confman-btn">
+                            <button class="btn btn-primary" ng-click="createParametersValues()"
+                                    ng-disabled="form.$invalid">
+                                <img src="../img/icon/ic_add_24px.svg" title="Create"/>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-show="versionTrackiCode">
+                <div class="col-md-12">
+                    <h3>Version tracking <b>{{versionTrackiCode}}</b></h3>
+                    Change the values or delete lines if necessary and click on the save button. After, this version
+                    tracking will be locked and no
+                    parameter value won't be able to change
+                </div>
+            </div>
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist" id="myTab" ng-show="versionTrackiCode">
+                <li ng-repeat="env in environments" id="#tab{{env.code}}" ng-class="classTabSelected(env)">
+                    <a role="tab" data-toggle="tab" ng-click="onTabSelected(env)">{{env.code}} - {{env.label}}</a>
+                </li>
+            </ul>
+            <material-list>
+                <material-item ng-repeat="param in envparameters | orderBy:['codeInstance', 'code']"
+                               ng-class="setClassError(param.toDelete)">
+                    <div class="material-tile-left">
+                        <div class="confman-list-param-app" ng-hide="param.codeInstance">APP</div>
+                        <div class="confman-list-param-instance" ng-show="param.codeInstance">INS</div>
+                    </div>
+                    <div class="material-tile-content">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h2>{{param.code}} :</h2>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" id="data-param{{param.id}}" ng-model="param.label"
+                                       ng-readonly="lockVersion"
+                                       class="form-control input-sm confman-input-param-env">
+                            </div>
+                            <div class="col-md-3">
+                                <small>old value: {{param.oldValue}}</small>
+                            </div>
+                            <div class="col-md-3">
+                                <small ng-show="param.toDelete"><b>will be deleted on saving</b></small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>Application : {{param.codeApplication}} - tracking version :
+                                    <div class="badge badge-version">{{param.codeTrackingVersion}}</div>
+                                    <span ng-show="param.codeInstance">- instance : <div class="badge badge-instance">
+                                        {{param.codeInstance}}
+                                    </div></span>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="material-tile-right">
+                        <material-checkbox ng-hide="lockVersion" ng-model="param.toDelete">
+                        </material-checkbox>
+                    </div>
+                </material-item>
+            </material-list>
+
+
+            <div class="modal-footer confman-btn" ng-show="versionTrackiCode">
+                <button class="btn btn-primary" ng-click="saveParametersValues()" ng-hide="lockVersion">
+                    <img ng-src="img/icon/ic_save_24px.svg" title="Save"/>
+                </button>
+                <button class="btn btn-disabled" ng-show="lockVersion">
+                    <img ng-src="img/icon/ic_https_24px.svg" title="The version is locked"/>
+                </button>
+            </div>
+        </form>
+    </div>
+</material-content>
+
+<script type="text/ng-template" id="modalConfirmCreation.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Create new tracking version</h3>
+    </div>
+    <div class="modal-body">
+        Are you sure you want to create a new version tracking for the app version {{appVersion}} ?
+    </div>
+    <div class="modal-footer confman-btn">
+        <button class="btn btn-primary" ng-click="ok()">
+            <img ng-src="img/icon/{{icon}}" title="Create"/>
+        </button>
+        <button class="btn btn-default" ng-click="cancel()">
+            <img src="img/icon/ic_clear_24px.svg" title="Cancel"/>
+        </button>
+    </div>
+</script>

@@ -1,0 +1,107 @@
+<material-content style="top:128px" ng-controller="configSearchCtrl">
+    <div class="container-fluid">
+    <h4>Criteria</h4>
+        <div class="alert alert-danger confman-alert-error container-fluid" role="alert" ng-show="error">
+            Error cc: {{error.message}}
+        </div>
+    <form class="form confman-form" name="form" novalidate>
+
+        <div class="container-fluid thumbnail">
+            <div class="row">
+                <div class="col-md-1">
+                    <label for="data-environment">&nbsp;Environment</label>
+                </div>
+                <div class="col-md-3">
+                    <select id="data-environment" ng-model="criteria.idEnvironment" class="form-control input-sm"
+                            ng-change="changeEnvironment()"
+                            ng-options="environment.id as environment.code for environment in environments">
+                        <option value="">Environment</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <label for="data-application">&nbsp;Application</label>
+                </div>
+                <div class="col-md-3">
+                    <select id="data-application" ng-model="criteria.idApplication" class="form-control input-sm"
+                            ng-change="changeApplication()"
+                            ng-show="applications"
+                            ng-options="application.id as application.code for application in applications">
+                        <option value="">Application</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <label for="data-code">&nbsp;Code</label>
+                </div>
+                <div class="col-md-3">
+                    <div class="col-xs-10"><input type="text" id="data-code" ng-model="criteria.code"
+                                                  class="form-control input-sm"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    <label for="data-instance">&nbsp;Instance</label>
+                </div>
+                <div class="col-md-3">
+                    <select id="data-instance" ng-model="criteria.idInstance" class="form-control input-sm"
+                            ng-show="instances"
+                            ng-options="instance.id as instance.code for instance in instances">
+                        <option value="">Instance</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <label for="data-tracking">&nbsp;Tracking</label>
+                </div>
+                <div class="col-md-3">
+                    <select id="data-tracking" ng-model="criteria.idTrackingVersion" class="form-control input-sm"
+                            ng-show="trackingVersions"
+                            ng-options="trackingVersion.id as trackingVersion.code for trackingVersion in trackingVersions">
+                        <option value="">Version tracking</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <div class="confman-btn">
+                        <button class="btn btn-primary" ng-click="filter(1)">
+                            <img src="../img/icon/ic_filter_24px.svg" title="Filter"/>
+                        </button>
+                        <button class="btn btn-default" ng-click="reset()">
+                            <img src="img/icon/ic_clear_24px.svg" title="Reset"/>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <h4>
+        nb parameters : {{parametervalues.completeSize}}
+        <small ng-show="parametervalues.completeSize"> page <b>{{parametervalues.currentPage}}</b> / {{nbPageTotal}}
+        </small>
+    </h4>
+
+    <material-list>
+        <material-item ng-repeat="param in parametervalues.list | orderBy:['codeInstance', 'code']">
+            <div class="material-tile-left">
+                <div class="confman-list-param-env">{{param.codeEnvironment | uppercase | limitTo : 3}}</div>
+            </div>
+            <div class="material-tile-content">
+                <h2>{{param.code}} : <b>{{param.label}}</b></h2>
+
+                <h3>Application : {{param.codeApplication}} - tracking version : <div class="badge badge-version">{{param.codeTrackingVersion}}</div>
+                    <span ng-show="param.codeInstance">- instance : <div class="badge badge-instance">{{param.codeInstance}}</div></span>
+                </h3>
+            </div>
+            <div class="material-tile-right">
+                <div class="confman-list-param-app" ng-hide="param.codeInstance">APP</div>
+                <div class="confman-list-param-instance" ng-show="param.codeInstance">INS</div>
+            </div>
+        </material-item>
+    </material-list>
+    <div align="center">
+        <ul class="pagination" ng-show="pageSelector">
+            <li ng-hide="page===1"><a ng-click="filter(page-1)"><span class="glyphicon glyphicon-backward"></span></a></li>
+            <li ng-class="pageActive(pageElt)" ng-repeat="pageElt in pageSelector"><a ng-click="filter(pageElt)">{{pageElt}}</a></li>
+            <li ng-hide="pageSelectorNext===page"><a ng-click="filter(page+1)"><span class="glyphicon glyphicon-forward"></span></a></li>
+        </ul>
+    </div>
+    </div>
+</material-content>

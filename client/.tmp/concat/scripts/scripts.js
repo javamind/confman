@@ -1,3 +1,4 @@
+var config = { urlserver: 'http://localhost:8082/' };
 'use strict';
 function verify_code_unicity(myListe, myObject) {
   return myListe.filter(function verify(element) {

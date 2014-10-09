@@ -5,9 +5,10 @@
 target
 build
 client/wrapper
-client/bower_components
+client/src/lib
 client/node_modules
 client/dist
+client/.tmp
 server/wrapper
 **/gradlew
 **/gradlew.bat

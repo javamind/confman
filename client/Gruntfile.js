@@ -34,7 +34,7 @@ module.exports = function (grunt) {
                 tasks: ['wiredep']
             },
             js: {
-                files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+                files: ['<%= yeoman.app %>/js/{,*/}*.js'],
                 options: {
                     livereload: '<%= connect.options.livereload %>'
                 }
@@ -61,6 +61,27 @@ module.exports = function (grunt) {
                 ]
             }
         },
+
+//        concat: {
+//            options: {
+//                // define a string to put between each file in the concatenated output
+//                separator: ';'
+//            },
+//            files: [
+//                {
+//                    // the files to concatenate
+//                    src: ['<%= yeoman.app %>/lib/**/*.js'],
+//                    // the location of the resulting JS file
+//                    dest: '.tmp/concat/scripts/vendor.js'
+//                },
+//                {
+//                    // the files to concatenate
+//                    src: ['<%= yeoman.app %>/js/**/*.js'],
+//                    // the location of the resulting JS file
+//                    dest: '.tmp/concat/scripts/script.js'
+//                }
+//            ]
+//        },
 
         // The actual grunt server settings
         connect: {
@@ -274,12 +295,6 @@ module.exports = function (grunt) {
                 cwd: '<%= yeoman.app %>/styles',
                 dest: '.tmp/styles/',
                 src: '{,*/}*.css'
-            },
-            js: {
-                expand: true,
-                cwd: '<%= yeoman.app %>/js',
-                dest: '.tmp/js/',
-                src: '{,*/}*.js'
             }
         },
 
@@ -357,7 +372,6 @@ module.exports = function (grunt) {
         'less',
         'concurrent:dist',
         'autoprefixer',
-        'copy:js',
         'concat',
         'ngmin',
         'copy:dist',

@@ -62,27 +62,6 @@ module.exports = function (grunt) {
             }
         },
 
-//        concat: {
-//            options: {
-//                // define a string to put between each file in the concatenated output
-//                separator: ';'
-//            },
-//            files: [
-//                {
-//                    // the files to concatenate
-//                    src: ['<%= yeoman.app %>/lib/**/*.js'],
-//                    // the location of the resulting JS file
-//                    dest: '.tmp/concat/scripts/vendor.js'
-//                },
-//                {
-//                    // the files to concatenate
-//                    src: ['<%= yeoman.app %>/js/**/*.js'],
-//                    // the location of the resulting JS file
-//                    dest: '.tmp/concat/scripts/script.js'
-//                }
-//            ]
-//        },
-
         // The actual grunt server settings
         connect: {
             options: {
@@ -179,7 +158,7 @@ module.exports = function (grunt) {
                 src: [
                     '<%= yeoman.dist %>/scripts/{,*/}*.js',
                     '<%= yeoman.dist %>/styles/{,*/}*.css',
-                    '<%= yeoman.dist %>/img/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+                    //'<%= yeoman.dist %>/img/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
                     '<%= yeoman.dist %>/styles/fonts/*'
                 ]
             }

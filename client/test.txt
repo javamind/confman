@@ -1,0 +1,397 @@
+[4mRunning "clean:dist" (clean) task[24m
+Cleaning .tmp...[32mOK[39m
+Cleaning dist/500.html...[32mOK[39m
+Cleaning dist/config.js...[32mOK[39m
+Cleaning dist/img...[32mOK[39m
+Cleaning dist/index.html...[32mOK[39m
+Cleaning dist/scripts...[32mOK[39m
+Cleaning dist/styles...[32mOK[39m
+Cleaning dist/views...[32mOK[39m
+
+[4mRunning "wiredep:app" (wiredep) task[24m
+
+[4mRunning "useminPrepare:html" (useminPrepare) task[24m
+Going through [36msrc/index.html[39m to update the config
+Looking for build script HTML comment blocks
+
+[1mConfiguration is now:[22m
+
+[1m  concat:[22m
+  { generated: 
+   { files: 
+      [ { dest: [32m'.tmp\\concat\\scripts\\vendor.js'[39m,
+          src: 
+           [ [32m'src\\lib\\jquery\\dist\\jquery.js'[39m,
+             [32m'src\\lib\\angular\\angular.js'[39m,
+             [32m'src\\lib\\json3\\lib\\json3.min.js'[39m,
+             [32m'src\\lib\\bootstrap\\dist\\js\\bootstrap.js'[39m,
+             [32m'src\\lib\\angular-resource\\angular-resource.js'[39m,
+             [32m'src\\lib\\angular-route\\angular-route.js'[39m,
+             [32m'src\\lib\\angular-animate\\angular-animate.js'[39m,
+             [32m'src\\lib\\angular-bootstrap\\ui-bootstrap-tpls.js'[39m ] },
+        { dest: [32m'.tmp\\concat\\scripts\\material.js'[39m,
+          src: 
+           [ [32m'{.tmp,src}\\js\\angular-animate-sequence\\angular-animate-sequence.js'[39m,
+             [32m'{.tmp,src}\\js\\angular-animate-sequence\\angular-animate-stylers.js'[39m,
+             [32m'{.tmp,src}\\js\\angular-materials\\material-design-min.js'[39m ] },
+        { dest: [32m'.tmp\\concat\\scripts\\scripts.js'[39m,
+          src: 
+           [ [32m'{.tmp,src}\\config.js'[39m,
+             [32m'{.tmp,src}\\js\\utils.js'[39m,
+             [32m'{.tmp,src}\\js\\app.js'[39m,
+             [32m'{.tmp,src}\\js\\controller\\main.js'[39m,
+             [32m'{.tmp,src}\\js\\controller\\environment.js'[39m,
+             [32m'{.tmp,src}\\js\\controller\\softwaresuite.js'[39m,
+             [32m'{.tmp,src}\\js\\controller\\application.js'[39m,
+             [32m'{.tmp,src}\\js\\controller\\applicationdetail.js'[39m,
+             [32m'{.tmp,src}\\js\\controller\\configcompare.js'[39m,
+             [32m'{.tmp,src}\\js\\controller\\configcreate.js'[39m,
+             [32m'{.tmp,src}\\js\\controller\\configsearch.js'[39m,
+             [32m'{.tmp,src}\\js\\service\\entities.js'[39m,
+             [32m'{.tmp,src}\\js\\service\\tables.js'[39m,
+             [32m'{.tmp,src}\\js\\service\\param.js'[39m,
+             [32m'{.tmp,src}\\js\\directive\\semver.js'[39m ] } ] } }
+
+[1m  uglify:[22m
+  { generated: 
+   { files: 
+      [ { dest: [32m'dist\\scripts\\vendor.js'[39m,
+          src: [ [32m'.tmp\\concat\\scripts\\vendor.js'[39m ] },
+        { dest: [32m'dist\\scripts\\material.js'[39m,
+          src: [ [32m'.tmp\\concat\\scripts\\material.js'[39m ] },
+        { dest: [32m'dist\\scripts\\scripts.js'[39m,
+          src: [ [32m'.tmp\\concat\\scripts\\scripts.js'[39m ] } ] } }
+
+[1m  cssmin:[22m
+  { generated: 
+   { files: 
+      [ { dest: [32m'dist\\styles\\vendor.css'[39m,
+          src: [ [32m'lib\\bootstrap\\dist\\css\\bootstrap.css'[39m ] },
+        { dest: [32m'dist\\styles\\main.css'[39m,
+          src: 
+           [ [32m'.tmp\\styles\\material-design.min.css'[39m,
+             [32m'.tmp\\styles\\style.css'[39m ] } ] } }
+
+[4mRunning "less:src" (less) task[24m
+File src/styles/style.css created: 0 B → 3.19 kB
+
+[4mRunning "concurrent:dist" (concurrent) task[24m
+    
+[4mRunning "copy:styles" (copy) task[24m
+Copied [36m2[39m files
+
+[32mDone, without errors.[39m
+
+[4mRunning "autoprefixer:dist" (autoprefixer) task[24m
+File .tmp/styles/material-design.min.css created.
+File .tmp/styles/style.css created.
+
+[4mRunning "concat:generated" (concat) task[24m
+File .tmp\concat\scripts\vendor.js created.
+File .tmp\concat\scripts\material.js created.
+File .tmp\concat\scripts\scripts.js created.
+
+[4mRunning "ngmin:dist" (ngmin) task[24m
+ngminifying [36m.tmp/concat/scripts/material.js[39m, [36m.tmp/concat/scripts/scripts.js[39m, [36m.tmp/concat/scripts/vendor.js[39m
+
+[4mRunning "copy:dist" (copy) task[24m
+Copied [36m69[39m files
+
+[4mRunning "cdnify:dist" (cdnify) task[24m
+Going through [36mdist/500.html[39m, [36mdist/index.html[39m to update script refs
+✔ bower_components/jquery/dist/jquery.js changed to //ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js
+✔ bower_components/angular/angular.js changed to //ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.3/angular.min.js
+✔ bower_components/angular-animate/angular-animate.js changed to //ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.3/angular-animate.min.js
+✔ bower_components/angular-resource/angular-resource.js changed to //ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.3/angular-resource.min.js
+✔ bower_components/angular-route/angular-route.js changed to //ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.3/angular-route.min.js
+✔ bower_components/jquery/dist/jquery.js changed to //ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js
+✔ bower_components/angular/angular.js changed to //ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.3/angular.min.js
+✔ bower_components/angular-animate/angular-animate.js changed to //ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.3/angular-animate.min.js
+✔ bower_components/angular-resource/angular-resource.js changed to //ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.3/angular-resource.min.js
+✔ bower_components/angular-route/angular-route.js changed to //ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.3/angular-route.min.js
+
+[4mRunning "cssmin:generated" (cssmin) task[24m
+[31m>> [39mDestination not written because minified CSS was empty.
+File dist\styles\main.css created: 80.1 kB → 59.28 kB
+
+[4mRunning "uglify:generated" (uglify) task[24m
+File dist\scripts\vendor.js created: 1.45 MB → 334.11 kB
+File dist\scripts\material.js created: 172.64 kB → 45.81 kB
+File dist\scripts\scripts.js created: 39.94 kB → 19.35 kB
+
+[4mRunning "filerev:dist" (filerev) task[24m
+✔ dist/scripts/material.js changed to material.8a1d2e12.js
+✔ dist/scripts/scripts.js changed to scripts.6a8ec3e8.js
+✔ dist/scripts/vendor.js changed to vendor.c0812869.js
+✔ dist/styles/main.css changed to main.dbec6de3.css
+✔ dist/img/confman100.png changed to confman100.29f2f234.png
+✔ dist/img/confman500.png changed to confman500.2ec87932.png
+✔ dist/img/icon/ic_account_box_24px.svg changed to ic_account_box_24px.3edc2f64.svg
+✔ dist/img/icon/ic_account_box_48px.svg changed to ic_account_box_48px.36faedc3.svg
+✔ dist/img/icon/ic_add_24px.svg changed to ic_add_24px.823e5cd4.svg
+✔ dist/img/icon/ic_add_48px.svg changed to ic_add_48px.18b6cbe7.svg
+✔ dist/img/icon/ic_arrow_back_24px.svg changed to ic_arrow_back_24px.5a18bed8.svg
+✔ dist/img/icon/ic_arrow_back_48px.svg changed to ic_arrow_back_48px.eecb5d45.svg
+✔ dist/img/icon/ic_arrow_drop_down_circle_48px.svg changed to ic_arrow_drop_down_circle_48px.9b0c6bd6.svg
+✔ dist/img/icon/ic_arrow_forward_24px.svg changed to ic_arrow_forward_24px.efe7d439.svg
+✔ dist/img/icon/ic_arrow_forward_48px.svg changed to ic_arrow_forward_48px.3c03c250.svg
+✔ dist/img/icon/ic_clear_24px.svg changed to ic_clear_24px.594425e6.svg
+✔ dist/img/icon/ic_create_48px.svg changed to ic_create_48px.494b30ca.svg
+✔ dist/img/icon/ic_delete_24px.svg changed to ic_delete_24px.6e74774a.svg
+✔ dist/img/icon/ic_delete_48px.svg changed to ic_delete_48px.da2dfcd4.svg
+✔ dist/img/icon/ic_developer_mode_tv_24px.svg changed to ic_developer_mode_tv_24px.ca7f3e67.svg
+✔ dist/img/icon/ic_developer_mode_tv_48px.svg changed to ic_developer_mode_tv_48px.18f99396.svg
+✔ dist/img/icon/ic_done_48px.svg changed to ic_done_48px.e0867d93.svg
+✔ dist/img/icon/ic_done_all_48px.svg changed to ic_done_all_48px.f7c944a1.svg
+✔ dist/img/icon/ic_exit_to_app_24px.svg changed to ic_exit_to_app_24px.ed2da6e1.svg
+✔ dist/img/icon/ic_exit_to_app_48px.svg changed to ic_exit_to_app_48px.e0f1bb47.svg
+✔ dist/img/icon/ic_extension_24px.svg changed to ic_extension_24px.306ea4d1.svg
+✔ dist/img/icon/ic_extension_48px.svg changed to ic_extension_48px.f6bcd73d.svg
+✔ dist/img/icon/ic_filter_24px.svg changed to ic_filter_24px.c75f23c2.svg
+✔ dist/img/icon/ic_filter_48px.svg changed to ic_filter_48px.8c2f931a.svg
+✔ dist/img/icon/ic_format_list_bulleted_24px.svg changed to ic_format_list_bulleted_24px.8b0d8d42.svg
+✔ dist/img/icon/ic_format_list_bulleted_48px.svg changed to ic_format_list_bulleted_48px.8a3906bc.svg
+✔ dist/img/icon/ic_help_24px.svg changed to ic_help_24px.a1e3e7d7.svg
+✔ dist/img/icon/ic_help_48px.svg changed to ic_help_48px.c4945009.svg
+✔ dist/img/icon/ic_history_48px.svg changed to ic_history_48px.9ea3437b.svg
+✔ dist/img/icon/ic_home_24px.svg changed to ic_home_24px.e798ebad.svg
+✔ dist/img/icon/ic_home_48px.svg changed to ic_home_48px.28ddbd08.svg
+✔ dist/img/icon/ic_https_24px.svg changed to ic_https_24px.dd34fb3e.svg
+✔ dist/img/icon/ic_https_48px.svg changed to ic_https_48px.4212e03f.svg
+✔ dist/img/icon/ic_input_24px.svg changed to ic_input_24px.da40f8b0.svg
+✔ dist/img/icon/ic_input_48px.svg changed to ic_input_48px.7fafad6c.svg
+✔ dist/img/icon/ic_insert_drive_file_24px.svg changed to ic_insert_drive_file_24px.ff5561fd.svg
+✔ dist/img/icon/ic_menu_24px.svg changed to ic_menu_24px.4f731576.svg
+✔ dist/img/icon/ic_menu_48px.svg changed to ic_menu_48px.7cb76fd2.svg
+✔ dist/img/icon/ic_mode_edit_24px.svg changed to ic_mode_edit_24px.e2b14e51.svg
+✔ dist/img/icon/ic_mode_edit_48px.svg changed to ic_mode_edit_48px.1924dde0.svg
+✔ dist/img/icon/ic_picture_in_picture_24px.svg changed to ic_picture_in_picture_24px.9a787812.svg
+✔ dist/img/icon/ic_picture_in_picture_48px.svg changed to ic_picture_in_picture_48px.7935fe90.svg
+✔ dist/img/icon/ic_print_24px.svg changed to ic_print_24px.2ee2a26f.svg
+✔ dist/img/icon/ic_print_48px.svg changed to ic_print_48px.ff5b2977.svg
+✔ dist/img/icon/ic_receipt_24px.svg changed to ic_receipt_24px.245d041f.svg
+✔ dist/img/icon/ic_receipt_48px.svg changed to ic_receipt_48px.e871dba9.svg
+✔ dist/img/icon/ic_reply_all_24px.svg changed to ic_reply_all_24px.91626ed9.svg
+✔ dist/img/icon/ic_satellite_24px.svg changed to ic_satellite_24px.7aa4e861.svg
+✔ dist/img/icon/ic_satellite_48px.svg changed to ic_satellite_48px.21964143.svg
+✔ dist/img/icon/ic_save_24px.svg changed to ic_save_24px.fe13ca5f.svg
+✔ dist/img/icon/ic_schedule_24px.svg changed to ic_schedule_24px.1d11563e.svg
+✔ dist/img/icon/ic_schedule_48px.svg changed to ic_schedule_48px.ca91d3db.svg
+✔ dist/img/icon/ic_search_24px.svg changed to ic_search_24px.3c199da7.svg
+✔ dist/img/icon/ic_search_48px.svg changed to ic_search_48px.ce03d71d.svg
+✔ dist/img/icon/ic_settings_24px.svg changed to ic_settings_24px.7dd966a3.svg
+✔ dist/img/icon/ic_settings_48px.svg changed to ic_settings_48px.8f24ccac.svg
+✔ dist/img/icone64.png changed to icone64.6f0961dc.png
+
+[4mRunning "usemin:html" (usemin) task[24m
+
+[1mProcessing as HTML - dist/500.html[22m
+Update the HTML to reference our concat/min/revved script files
+Update the HTML with the new css filenames
+Update the HTML with the new img filenames
+Update the HTML with the new video filenames
+Update the HTML with the new poster filenames
+Update the HTML with the new source filenames
+Update the HTML with data-main tags
+Update the HTML with data-* tags
+Update the HTML with background imgs, case there is some inline style
+Update the HTML with anchors images
+Update the HTML with reference in input
+Update the HTML with the new img filenames in meta tags
+Update the HTML with the new object filenames
+Update the HTML with the new image filenames for svg xlink:href links
+Update the HTML with the new image filenames for src links
+
+[1mProcessing as HTML - dist/index.html[22m
+Update the HTML to reference our concat/min/revved script files
+<script src="scripts/vendor.js" changed to <script src="scripts/vendor.c0812869.js"
+<script src="scripts/material.js" changed to <script src="scripts/material.8a1d2e12.js"
+<script src="scripts/scripts.js" changed to <script src="scripts/scripts.6a8ec3e8.js"
+Update the HTML with the new css filenames
+<link rel="stylesheet" href="styles/main.css" changed to <link rel="stylesheet" href="styles/main.dbec6de3.css"
+Update the HTML with the new img filenames
+<img src="img/icone64.png" changed to <img src="img/icone64.6f0961dc.png"
+<img src="img/icon/ic_delete_24px.svg" changed to <img src="img/icon/ic_delete_24px.6e74774a.svg"
+<img src="img/icon/ic_clear_24px.svg" changed to <img src="img/icon/ic_clear_24px.594425e6.svg"
+Update the HTML with the new video filenames
+Update the HTML with the new poster filenames
+Update the HTML with the new source filenames
+Update the HTML with data-main tags
+Update the HTML with data-* tags
+Update the HTML with background imgs, case there is some inline style
+Update the HTML with anchors images
+Update the HTML with reference in input
+Update the HTML with the new img filenames in meta tags
+Update the HTML with the new object filenames
+Update the HTML with the new image filenames for svg xlink:href links
+Update the HTML with the new image filenames for src links
+
+[1mProcessing as HTML - dist/views/application.html[22m
+Update the HTML to reference our concat/min/revved script files
+Update the HTML with the new css filenames
+Update the HTML with the new img filenames
+Update the HTML with the new video filenames
+Update the HTML with the new poster filenames
+Update the HTML with the new source filenames
+Update the HTML with data-main tags
+Update the HTML with data-* tags
+Update the HTML with background imgs, case there is some inline style
+Update the HTML with anchors images
+Update the HTML with reference in input
+Update the HTML with the new img filenames in meta tags
+Update the HTML with the new object filenames
+Update the HTML with the new image filenames for svg xlink:href links
+Update the HTML with the new image filenames for src links
+
+[1mProcessing as HTML - dist/views/applicationdetail.html[22m
+Update the HTML to reference our concat/min/revved script files
+Update the HTML with the new css filenames
+Update the HTML with the new img filenames
+<img src="img/icon/ic_clear_24px.svg" changed to <img src="img/icon/ic_clear_24px.594425e6.svg"
+<img src="img/icon/ic_clear_24px.svg" changed to <img src="img/icon/ic_clear_24px.594425e6.svg"
+<img src="img/icon/ic_clear_24px.svg" changed to <img src="img/icon/ic_clear_24px.594425e6.svg"
+<img src="img/icon/ic_clear_24px.svg" changed to <img src="img/icon/ic_clear_24px.594425e6.svg"
+Update the HTML with the new video filenames
+Update the HTML with the new poster filenames
+Update the HTML with the new source filenames
+Update the HTML with data-main tags
+Update the HTML with data-* tags
+Update the HTML with background imgs, case there is some inline style
+Update the HTML with anchors images
+Update the HTML with reference in input
+Update the HTML with the new img filenames in meta tags
+Update the HTML with the new object filenames
+Update the HTML with the new image filenames for svg xlink:href links
+Update the HTML with the new image filenames for src links
+
+[1mProcessing as HTML - dist/views/configcompare.html[22m
+Update the HTML to reference our concat/min/revved script files
+Update the HTML with the new css filenames
+Update the HTML with the new img filenames
+Update the HTML with the new video filenames
+Update the HTML with the new poster filenames
+Update the HTML with the new source filenames
+Update the HTML with data-main tags
+Update the HTML with data-* tags
+Update the HTML with background imgs, case there is some inline style
+Update the HTML with anchors images
+Update the HTML with reference in input
+Update the HTML with the new img filenames in meta tags
+Update the HTML with the new object filenames
+Update the HTML with the new image filenames for svg xlink:href links
+Update the HTML with the new image filenames for src links
+
+[1mProcessing as HTML - dist/views/configcreate.html[22m
+Update the HTML to reference our concat/min/revved script files
+Update the HTML with the new css filenames
+Update the HTML with the new img filenames
+<img src="img/icon/ic_clear_24px.svg" changed to <img src="img/icon/ic_clear_24px.594425e6.svg"
+Update the HTML with the new video filenames
+Update the HTML with the new poster filenames
+Update the HTML with the new source filenames
+Update the HTML with data-main tags
+Update the HTML with data-* tags
+Update the HTML with background imgs, case there is some inline style
+Update the HTML with anchors images
+Update the HTML with reference in input
+Update the HTML with the new img filenames in meta tags
+Update the HTML with the new object filenames
+Update the HTML with the new image filenames for svg xlink:href links
+Update the HTML with the new image filenames for src links
+
+[1mProcessing as HTML - dist/views/configsearch.html[22m
+Update the HTML to reference our concat/min/revved script files
+Update the HTML with the new css filenames
+Update the HTML with the new img filenames
+<img src="img/icon/ic_clear_24px.svg" changed to <img src="img/icon/ic_clear_24px.594425e6.svg"
+Update the HTML with the new video filenames
+Update the HTML with the new poster filenames
+Update the HTML with the new source filenames
+Update the HTML with data-main tags
+Update the HTML with data-* tags
+Update the HTML with background imgs, case there is some inline style
+Update the HTML with anchors images
+Update the HTML with reference in input
+Update the HTML with the new img filenames in meta tags
+Update the HTML with the new object filenames
+Update the HTML with the new image filenames for svg xlink:href links
+Update the HTML with the new image filenames for src links
+
+[1mProcessing as HTML - dist/views/environment.html[22m
+Update the HTML to reference our concat/min/revved script files
+Update the HTML with the new css filenames
+Update the HTML with the new img filenames
+Update the HTML with the new video filenames
+Update the HTML with the new poster filenames
+Update the HTML with the new source filenames
+Update the HTML with data-main tags
+Update the HTML with data-* tags
+Update the HTML with background imgs, case there is some inline style
+Update the HTML with anchors images
+Update the HTML with reference in input
+Update the HTML with the new img filenames in meta tags
+Update the HTML with the new object filenames
+Update the HTML with the new image filenames for svg xlink:href links
+Update the HTML with the new image filenames for src links
+
+[1mProcessing as HTML - dist/views/main.html[22m
+Update the HTML to reference our concat/min/revved script files
+Update the HTML with the new css filenames
+Update the HTML with the new img filenames
+Update the HTML with the new video filenames
+Update the HTML with the new poster filenames
+Update the HTML with the new source filenames
+Update the HTML with data-main tags
+Update the HTML with data-* tags
+Update the HTML with background imgs, case there is some inline style
+Update the HTML with anchors images
+Update the HTML with reference in input
+Update the HTML with the new img filenames in meta tags
+Update the HTML with the new object filenames
+Update the HTML with the new image filenames for svg xlink:href links
+Update the HTML with the new image filenames for src links
+
+[1mProcessing as HTML - dist/views/softwaresuite.html[22m
+Update the HTML to reference our concat/min/revved script files
+Update the HTML with the new css filenames
+Update the HTML with the new img filenames
+Update the HTML with the new video filenames
+Update the HTML with the new poster filenames
+Update the HTML with the new source filenames
+Update the HTML with data-main tags
+Update the HTML with data-* tags
+Update the HTML with background imgs, case there is some inline style
+Update the HTML with anchors images
+Update the HTML with reference in input
+Update the HTML with the new img filenames in meta tags
+Update the HTML with the new object filenames
+Update the HTML with the new image filenames for svg xlink:href links
+Update the HTML with the new image filenames for src links
+
+[4mRunning "usemin:css" (usemin) task[24m
+
+[1mProcessing as CSS - dist/styles/main.dbec6de3.css[22m
+Update the CSS to reference our revved images
+
+[4mRunning "htmlmin:dist" (htmlmin) task[24m
+Minified dist/500.html 64 B → 61 B
+Minified dist/index.html 5.02 kB → 4.31 kB
+Minified dist/views/application.html 772 B → 586 B
+Minified dist/views/applicationdetail.html 20.41 kB → 16.26 kB
+Minified dist/views/configcompare.html 7.84 kB → 5.08 kB
+Minified dist/views/configcreate.html 7.67 kB → 5.02 kB
+Minified dist/views/configsearch.html 5.64 kB → 3.85 kB
+Minified dist/views/environment.html 4.51 kB → 2.52 kB
+Minified dist/views/main.html 1.32 kB → 974 B
+Minified dist/views/softwaresuite.html 5.36 kB → 2.88 kB
+
+[32mDone, without errors.[39m
+
+
+Execution Time (2014-10-10 16:38:43 UTC)
+concurrent:dist       4.5s  ■■ 3%
+ngmin:dist           20.4s  ■■■■■■■ 16%
+cdnify:dist       1m 36.2s  ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 73%
+uglify:generated      7.7s  ■■■ 6%
+Total 2m 11.3s
+

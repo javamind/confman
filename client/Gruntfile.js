@@ -18,7 +18,7 @@ module.exports = function (grunt) {
     // Configurable paths for the application
     var appConfig = {
         app: require('./bower.json').appPath || 'src',
-        dist: 'dist'
+        dist: 'dist/confman'
     };
 
     // Define the configuration for all the tasks
@@ -185,6 +185,7 @@ module.exports = function (grunt) {
 
         // Performs rewrites based on filerev and the useminPrepare configuration
         usemin: {
+            //html: ['<%= yeoman.dist %>/{,*/}*.html'],
             html: ['<%= yeoman.dist %>/{,*/}*.html'],
             css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
             options: {

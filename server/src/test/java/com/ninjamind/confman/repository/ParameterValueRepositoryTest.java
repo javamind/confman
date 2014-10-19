@@ -4,6 +4,7 @@ import com.ninja_squad.dbsetup.DbSetup;
 import com.ninja_squad.dbsetup.destination.DataSourceDestination;
 import com.ninja_squad.dbsetup.operation.Operation;
 import com.ninjamind.confman.ConfmanApplication;
+import com.ninjamind.confman.config.PersistenceConfig;
 import com.ninjamind.confman.domain.PaginatedList;
 import com.ninjamind.confman.domain.ParameterValue;
 import org.junit.Before;
@@ -25,8 +26,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Guillaume EHRET
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = {ConfmanApplication.class})
-@WebAppConfiguration
+@SpringApplicationConfiguration(classes = {PersistenceConfig.class})
 public class ParameterValueRepositoryTest {
 
     @Autowired

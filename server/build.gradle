@@ -5,16 +5,21 @@ buildscript {
         flywayVersion = '3.0'
         oracleDriverVersion = '11.2.0.4'
         postgresqlDriverVersion = '9.3-1102-jdbc41'
+        springBootVersion = '1.2.0.M1'
     }
 
     repositories {
         mavenLocal()
         mavenCentral()
+        maven{
+            url 'http://repo.spring.io/libs-snapshot'
+        }
     }
     dependencies {
         classpath "org.postgresql:postgresql:${postgresqlDriverVersion}"
         classpath "org.flywaydb:flyway-gradle-plugin:${flywayVersion}"
         //classpath 'com.oracle:ojdbc6:${oracleDriverVersion}'
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
     }
 }
 
@@ -22,12 +27,14 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'flyway'
 apply plugin: 'maven'
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+
 
 group = 'com.ninjamind'
 version = '1.0.0-SNAPSHOT'
 
 ext {
-    springBootVersion = '1.2.0.M1'
     flywayVersion = '3.0'
     oracleDriverVersion = '11.2.0.4'
     postgresqlDriverVersion = '9.3-1102-jdbc41'
@@ -61,6 +68,7 @@ dependencies {
     compile("com.github.zafarkhaja:java-semver:0.7.2")
     compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
     compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
 
     testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
     testCompile("com.ninja-squad:DbSetup:1.3.0")
@@ -98,19 +106,19 @@ project.ext['flyway.locations'] = "db.migration." + myDataBase
 
 //Artifact and release build.
 //We have to define classpath
-jar {
+war {
     baseName = 'confman'
-    manifest {
-        attributes(
-                "Manifest-Version": "1.0",
-                "Confman-version": version,
-                "Main-Class": "com.ninjamind.confman.ConfmanApplication",
-                "Class-Path": configurations.runtime.files.collect { 'dependencies/' + it.name }.join(' ') + ' . '
-        )
-    }
+//    manifest {
+//        attributes(
+//                "Manifest-Version": "1.0",
+//                "Confman-version": version,
+//                "Main-Class": "com.ninjamind.confman.ConfmanApplication",
+//                "Class-Path": configurations.runtime.files.collect { 'dependencies/' + it.name }.join(' ') + ' . '
+//        )
+//    }
     //We want a jar without any version in the name
     version = ''
-    exclude '**/*.properties'
+//    exclude '**/*.properties'
 }
 
 //Several files and directories have to be present in the delivery directory

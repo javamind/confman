@@ -1,4 +1,4 @@
-package com.ninjamind.confman.controller.api;
+package com.ninjamind.confman.web.api;
 
 import com.google.common.base.Preconditions;
 import com.ninjamind.confman.domain.Parameter;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  * @author Guillaume EHRET
  */
 @RestController
-@RequestMapping("/confman/param")
+@RequestMapping("/api/param")
 public class ParameterApiController {
 
     @Autowired
@@ -26,7 +26,7 @@ public class ParameterApiController {
      */
     @RequestMapping(method = RequestMethod.POST)
     public void addParam(@RequestBody ConfmanDto confmanDto) {
-        saveparam(confmanDto, true);
+        saveParam(confmanDto, true);
     }
 
     /**
@@ -34,7 +34,7 @@ public class ParameterApiController {
      * @param confmanDto
      * @param creation
      */
-    private void saveparam(ConfmanDto confmanDto, boolean creation) {
+    private void saveParam(ConfmanDto confmanDto, boolean creation) {
         Preconditions.checkNotNull(confmanDto, "DTO ConfmanDto is required");
         Preconditions.checkNotNull(confmanDto.getCodeApplication(), "application code is required");
         Preconditions.checkNotNull(confmanDto.getCodeParameter(), "parameter code is required");
@@ -54,7 +54,7 @@ public class ParameterApiController {
      */
     @RequestMapping(method = RequestMethod.PUT)
     public void updateParam(@RequestBody ConfmanDto confmanDto) {
-        saveparam(confmanDto, false);
+        saveParam(confmanDto, false);
     }
 
     /**

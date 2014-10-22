@@ -9,20 +9,55 @@
             </div>
             <div class="col-md-9">
                 <p>&nbsp;</p>
+
                 <p>
-                    Le principe de Confman est simple, offrir un dépôt centralisé pour tous les paramètres de vos applications
+                    Le principe de Confman est simple, offrir un dépôt centralisé pour tous les paramètres de vos
+                    applications
                     pour chacun des environnements.
                     Vous pouvez ensuite vous interfacer à Confman via les plugins offerts. Pour le moment nous avons
-                    un plugin maven et une API Java (bientôt suivront une intéraction via Gradle, ligne de commande, Grunt JS)
+                    un plugin maven et une API Java (bientôt suivront une intéraction via Gradle, ligne de commande,
+                    Grunt JS)
                 </p>
 
                 <p>
-                    Le but de Confman est de vous aider dans la gestion des modifications des paramètres sur chacun de vos
-                    environnements, sur chacune des instances des applications tout en répondant aux exigences de développement
+                    Le but de Confman est de vous aider dans la gestion des modifications des paramètres sur chacun de
+                    vos
+                    environnements, sur chacune des instances des applications tout en répondant aux exigences de
+                    développement
                     et de la production. Confman est une application à la croisée du développement et de l'opérationel.
                 </p>
+
+                <p>&nbsp;</p>
+
+                <form class="form confman-form" name="form" novalidate>
+                    <div class="row">
+                        <div class="col-md-2">&nbsp;</div>
+                        <div class="col-md-8 thumbnail">
+                            <h2>Authentification</h2>
+                            <div style="height: 100%">
+                                <div class="row">
+                                    <div class="col-xs-4"><label for="username">&nbsp;Username</label></div>
+                                    <div class="col-xs-8"><input type="text" id="username" ng-model="user.name" class="form-control input-sm input-sm"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4"><label for="password">&nbsp;Password</label></div>
+                                    <div class="col-xs-8"><input type="password" id="password" ng-model="user.password" class="form-control input-sm input-sm"></div>
+                                </div>
+                                <br>
+                                <div class="confman-btn">
+                                    <button class="btn btn-primary" ng-click="login()">
+                                        <img src="img/icon/ic_https_24px.svg" title="Login"/>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
 
         </div>
+
     </div>
+
 </material-content>

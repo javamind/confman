@@ -1,4 +1,4 @@
-package com.ninjamind.confman.controller.web;
+package com.ninjamind.confman.web.app;
 
 import com.google.common.base.Preconditions;
 import com.ninjamind.confman.domain.Application;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  * @author Guillaume EHRET
  */
 @RestController
-@RequestMapping(value = "/application")
+@RequestMapping(value = "/app/application")
 public class ApplicationWebController extends AbstractConfmanWebController<Application, ApplicationDto, Long>{
     @Autowired
     private ApplicationFacade applicationFacade;

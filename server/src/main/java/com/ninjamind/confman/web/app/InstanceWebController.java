@@ -1,4 +1,4 @@
-package com.ninjamind.confman.controller.web;
+package com.ninjamind.confman.web.app;
 
 import com.ninjamind.confman.domain.Instance;
 import com.ninjamind.confman.dto.InstanceDto;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  * @author Guillaume EHRET
  */
 @RestController
-@RequestMapping(value = "/instance")
+@RequestMapping(value = "/app/instance")
 public class InstanceWebController extends AbstractConfmanWebController<Instance, InstanceDto, Long>{
 
     @Autowired

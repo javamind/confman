@@ -1,4 +1,4 @@
-package com.ninjamind.confman.controller.web;
+package com.ninjamind.confman.web.app;
 
 import com.google.common.base.Preconditions;
 import com.ninjamind.confman.domain.PaginatedList;
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
  * @author Guillaume EHRET
  */
 @RestController
-@RequestMapping(value = "/parametervalue")
+@RequestMapping(value = "/app/parametervalue")
 public class ParameterValueWebController {
 
     @Autowired

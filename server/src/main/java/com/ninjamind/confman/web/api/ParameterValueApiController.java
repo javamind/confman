@@ -1,4 +1,4 @@
-package com.ninjamind.confman.controller.api;
+package com.ninjamind.confman.web.api;
 
 import com.ninjamind.confman.dto.ParameterValueDto;
 import com.ninjamind.confman.exception.VersionException;
@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  * @author Guillaume EHRET
  */
 @RestController
-@RequestMapping(value = "/confman/paramvalue")
+@RequestMapping(value = "/api/paramvalue")
 public class ParameterValueApiController {
     private static Logger LOG = LoggerFactory.getLogger(ParameterValueApiController.class);
 

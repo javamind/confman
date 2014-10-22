@@ -1,4 +1,4 @@
-package com.ninjamind.confman;
+package com.ninjamind.confman.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -27,7 +27,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
         boolean devMode = this.env.acceptsProfiles("development");
         if (!registry.hasMappingForPattern("/**")) {
-            registry.addResourceHandler("/**").addResourceLocations(devMode ? "file:///" + "/client/src/" : "classpath:static/confman/");
+            registry.addResourceHandler("/**").addResourceLocations(devMode ? "file:///" + "/client/src/" : "classpath:static");
         }
     }
 

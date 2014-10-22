@@ -1,4 +1,4 @@
-package com.ninjamind.confman;
+package com.ninjamind.confman.config;
 
 import org.springframework.stereotype.Component;
 

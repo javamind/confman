@@ -1,4 +1,4 @@
-package com.ninjamind.confman.controller;
+package com.ninjamind.confman.web;
 
 import com.ninjamind.confman.exception.ConverterException;
 import org.springframework.http.HttpStatus;

@@ -3,8 +3,6 @@ package com.ninjamind.confman.repository;
 import com.ninja_squad.dbsetup.DbSetup;
 import com.ninja_squad.dbsetup.destination.DataSourceDestination;
 import com.ninja_squad.dbsetup.operation.Operation;
-import com.ninjamind.confman.ConfmanApplication;
-import com.ninjamind.confman.WebConfig;
 import com.ninjamind.confman.config.PersistenceConfig;
 import com.ninjamind.confman.domain.Application;
 import org.junit.Before;
@@ -13,7 +11,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 
 import javax.sql.DataSource;
 

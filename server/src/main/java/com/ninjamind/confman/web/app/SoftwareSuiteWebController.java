@@ -1,4 +1,4 @@
-package com.ninjamind.confman.controller.web;
+package com.ninjamind.confman.web.app;
 
 import com.google.common.base.Preconditions;
 import com.ninjamind.confman.dto.SoftwareSuiteDto;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  * @author Guillaume EHRET
  */
 @RestController
-@RequestMapping(value = "/softwaresuite")
+@RequestMapping(value = "/app/softwaresuite")
 public class SoftwareSuiteWebController {
     @Autowired
     @Qualifier("softwareSuiteFacade")

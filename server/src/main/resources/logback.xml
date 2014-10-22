@@ -12,5 +12,7 @@
     </root>
 
     <logger name="com.ninjamind.confman" level="TRACE"/>
+    <logger name="com.mangofactory.swagger" level="warn"/>
+    <logger name="com.wordnik.swagger" level="warn"/>
 
 </configuration>

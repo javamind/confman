@@ -1,4 +1,4 @@
-package com.ninjamind.confman.controller.api;
+package com.ninjamind.confman.web.api;
 
 import com.google.common.base.Preconditions;
 import com.ninjamind.confman.domain.Instance;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  * @author Guillaume EHRET
  */
 @RestController
-@RequestMapping(value = "/confman/instance")
+@RequestMapping(value = "/api/instance")
 public class InstanceApiController {
 
     @Autowired
@@ -26,7 +26,7 @@ public class InstanceApiController {
      */
     @RequestMapping(method = RequestMethod.POST)
     public void addParam(@RequestBody ConfmanDto confmanDto) {
-        saveparam(confmanDto, true);
+        saveInstance(confmanDto, true);
     }
 
     /**
@@ -34,7 +34,7 @@ public class InstanceApiController {
      * @param confmanDto
      * @param creation
      */
-    private void saveparam(ConfmanDto confmanDto, boolean creation) {
+    private void saveInstance(ConfmanDto confmanDto, boolean creation) {
         Preconditions.checkNotNull(confmanDto, "DTO ConfmanDto is required");
         Preconditions.checkNotNull(confmanDto.getCodeApplication(), "application code is required");
         Preconditions.checkNotNull(confmanDto.getCodeInstance(), "instance code is required");
@@ -54,8 +54,8 @@ public class InstanceApiController {
      * @param confmanDto dto which have to contain application code and param code and label
      */
     @RequestMapping(method = RequestMethod.PUT)
-    public void updateParam(@RequestBody ConfmanDto confmanDto) {
-        saveparam(confmanDto, false);
+    public void updateInstance(@RequestBody ConfmanDto confmanDto) {
+        saveInstance(confmanDto, false);
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.ninjamind.confman.controller.api;
+package com.ninjamind.confman.web.api;
 
 import com.github.zafarkhaja.semver.Version;
 import com.google.common.base.Preconditions;
@@ -18,7 +18,7 @@ import java.util.Optional;
  * @author Guillaume EHRET
  */
 @RestController
-@RequestMapping(value = "/confman/version")
+@RequestMapping(value = "/api/version")
 public class VersionApiController {
 
     @Autowired
@@ -29,8 +29,8 @@ public class VersionApiController {
      * @param confmanDto dto which have to contain application code and param code and label
      */
     @RequestMapping(method = RequestMethod.POST)
-    public void addParam(@RequestBody ConfmanDto confmanDto) {
-        saveparam(confmanDto, true);
+    public void addVersion(@RequestBody ConfmanDto confmanDto) {
+        saveVersion(confmanDto, true);
     }
 
     /**
@@ -38,7 +38,7 @@ public class VersionApiController {
      * @param confmanDto
      * @param creation
      */
-    private void saveparam(ConfmanDto confmanDto, boolean creation) {
+    private void saveVersion(ConfmanDto confmanDto, boolean creation) {
         Preconditions.checkNotNull(confmanDto, "DTO ConfmanDto is required");
         Preconditions.checkNotNull(confmanDto.getCodeApplication(), "application code is required");
         Preconditions.checkNotNull(confmanDto.getVersion(), "version code is required");
@@ -56,8 +56,8 @@ public class VersionApiController {
      * @param confmanDto dto which have to contain application code and param code and label
      */
     @RequestMapping(method = RequestMethod.PUT)
-    public void updateParam(@RequestBody ConfmanDto confmanDto) {
-        saveparam(confmanDto, false);
+    public void updateVersion(@RequestBody ConfmanDto confmanDto) {
+        saveVersion(confmanDto, false);
     }
 
     /**
@@ -67,7 +67,7 @@ public class VersionApiController {
      * @return
      */
     @RequestMapping(value = "/{version}/app/{codeApp}")
-    public ConfmanDto getParam(@PathVariable String version, @PathVariable String codeApp) {
+    public ConfmanDto getVersion(@PathVariable String version, @PathVariable String codeApp) {
         Preconditions.checkNotNull(codeApp, "application code is required");
         Preconditions.checkNotNull(version, "applicationversion code is required");
         ApplicationVersion applicationversion = applicationversionFacade.getRepository().findByCode(codeApp, version);

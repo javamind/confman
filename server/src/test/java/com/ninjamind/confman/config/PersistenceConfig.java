@@ -30,6 +30,7 @@ public class PersistenceConfig {
     public static final String PROPERTY_NAME_DATABASE_SUPRESSCLOSE = "db.supressclose";
     public static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
     public static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
+    public static final String PROPERTY_NAME_HIBERNATE_CACHE_2ND = "hibernate.cache.use_second_level_cache";
 
     @Resource
     private Environment env;
@@ -56,6 +57,7 @@ public class PersistenceConfig {
         Properties properties = new Properties();
         properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
         properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
+        properties.put(PROPERTY_NAME_HIBERNATE_CACHE_2ND, "false");
         entityManagerFactoryBean.setJpaProperties(properties);
 
         return entityManagerFactoryBean;

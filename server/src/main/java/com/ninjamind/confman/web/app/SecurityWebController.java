@@ -30,8 +30,8 @@ import java.util.Locale;
 /**
  * REST controller for managing the current user's account.
  */
-@RestController
-@RequestMapping("/app")
+//@RestController
+//@RequestMapping("/app")
 public class SecurityWebController {
 
     private final Logger log = LoggerFactory.getLogger(SecurityWebController.class);

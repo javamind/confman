@@ -20,8 +20,8 @@ import java.util.Set;
 /**
  * Service class for managing users.
  */
-@Service
-@Transactional
+//@Service
+//@Transactional
 public class UserServiceImpl {
     private static final int DEF_COUNT = 20;
     private final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);

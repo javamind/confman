@@ -22,6 +22,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Autowired
     private Environment env;
 
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
@@ -31,5 +32,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         }
     }
 
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/home").setViewName("home");
+        registry.addViewController("/").setViewName("home");
+        registry.addViewController("/hello").setViewName("hello");
+        registry.addViewController("/login").setViewName("login");
+    }
 
 }

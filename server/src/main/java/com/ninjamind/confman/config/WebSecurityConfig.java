@@ -22,37 +22,38 @@ import org.springframework.security.web.authentication.RememberMeServices;
  *
  * @author Guillaume EHRET
  */
-@EnableWebSecurity
+//@EnableWebSecurity
 @Configuration
+@EnableWebMvcSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private Environment env;
+//    @Autowired
+//    private Environment env;
+//
+//    @Autowired
+//    private AjaxAuthenticationSuccessHandler ajaxAuthenticationSuccessHandler;
+//
+//    @Autowired
+//    private AjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler;
+//
+//    @Autowired
+//    private AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler;
+//
+//    @Autowired
+//    private Http401UnauthorizedEntryPoint authenticationEntryPoint;
+//
+//    @Autowired
+//    private UserDetailsService userDetailsService;
+//
+//    @Autowired
+//    private RememberMeServices rememberMeServices;
 
-    @Autowired
-    private AjaxAuthenticationSuccessHandler ajaxAuthenticationSuccessHandler;
-
-    @Autowired
-    private AjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler;
-
-    @Autowired
-    private AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler;
-
-    @Autowired
-    private Http401UnauthorizedEntryPoint authenticationEntryPoint;
-
-    @Autowired
-    private UserDetailsService userDetailsService;
-
-    @Autowired
-    private RememberMeServices rememberMeServices;
-
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
-    }
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth
+//                .userDetailsService(userDetailsService)
+//                .passwordEncoder(passwordEncoder());
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -61,53 +62,65 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring()
-                .antMatchers("/index.html")
-                .antMatchers("/img/**")
-                .antMatchers("/less/**")
-                .antMatchers("/i18n/**")
-                .antMatchers("/js/**")
-                .antMatchers("/lib/**")
-                .antMatchers("/styles/**")
-                .antMatchers("/views/**");
+        web.ignoring().antMatchers("/**");
+//        web.ignoring()
+//                .antMatchers("/confman/*")
+//                .antMatchers("/confman/img/**")
+//                .antMatchers("/confman/less/**")
+//                .antMatchers("/confman/i18n/**")
+//                .antMatchers("/confman/js/**")
+//                .antMatchers("/confman/lib/**")
+//                .antMatchers("/confman/styles/**")
+//                .antMatchers("/confman/views/**");
 
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http
-                .exceptionHandling()
-                    .authenticationEntryPoint(authenticationEntryPoint)
-                    .and()
-                .rememberMe()
-                    .rememberMeServices(rememberMeServices)
-                    .key(env.getProperty("confman.security.rememberme.key"))
-                    .and()
                 .formLogin()
-                    .loginProcessingUrl("/app/authentication")
-                    .successHandler(ajaxAuthenticationSuccessHandler)
-                    .failureHandler(ajaxAuthenticationFailureHandler)
-                    .usernameParameter("username")
-                    .passwordParameter("password")
+                    .loginPage("/login")
                     .permitAll()
                     .and()
                 .logout()
-                    .logoutUrl("/app/logout")
-                    .logoutSuccessHandler(ajaxLogoutSuccessHandler)
-                    .deleteCookies("JSESSIONID")
                     .permitAll()
                     .and()
-                .headers()
-                    .frameOptions().disable()
-                    .authorizeRequests()
-
-                .antMatchers("/confman/*").permitAll()
-                .antMatchers("/app/rest/register").permitAll()
-                .antMatchers("/app/rest/activate").permitAll()
-                .antMatchers("/app/rest/authenticate").permitAll()
-                .antMatchers("/app/rest/logs/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                .antMatchers("/app/**").authenticated()
-                .antMatchers("/api/**").authenticated();
+                .authorizeRequests()
+                    .antMatchers("/", "/home").permitAll()
+                    .anyRequest().authenticated();
+//        http
+//                .exceptionHandling()
+//                    .authenticationEntryPoint(authenticationEntryPoint)
+//                    .and()
+//                .rememberMe()
+//                    .rememberMeServices(rememberMeServices)
+//                    .key(env.getProperty("confman.security.rememberme.key"))
+//                    .and()
+//                .formLogin()
+//                    .loginProcessingUrl("/app/authentication")
+//                    .successHandler(ajaxAuthenticationSuccessHandler)
+//                    .failureHandler(ajaxAuthenticationFailureHandler)
+//                    .usernameParameter("username")
+//                    .passwordParameter("password")
+//                    .permitAll()
+//                    .and()
+//                .logout()
+//                    .logoutUrl("/app/logout")
+//                    .logoutSuccessHandler(ajaxLogoutSuccessHandler)
+//                    .deleteCookies("JSESSIONID")
+//                    .permitAll()
+//                    .and()
+//                .headers()
+//                    .frameOptions().disable()
+//                    .authorizeRequests()
+//                .antMatchers("/confman/*").permitAll()
+//                .antMatchers("/app/rest/register").permitAll()
+//                .antMatchers("/app/rest/activate").permitAll()
+//                .antMatchers("/app/rest/authenticate").permitAll()
+//                .antMatchers("/app/rest/logs/**").hasAuthority(AuthoritiesConstants.ADMIN)
+//                .antMatchers("/app/**").authenticated()
+//                .antMatchers("/api/**").authenticated();
 
 
     }

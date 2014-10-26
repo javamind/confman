@@ -46,6 +46,12 @@ confman.config(function ($routeProvider, USER_ROLES) {
                 authorizedRoles: [USER_ROLES.all]
             }
         })
+        .when('/error', {
+            templateUrl: 'views/error.html',
+            access: {
+                authorizedRoles: [USER_ROLES.all]
+            }
+        })
         .otherwise({redirectTo: '/'});
 
     //Dynamic construction of the URI

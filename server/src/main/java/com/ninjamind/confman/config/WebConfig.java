@@ -27,7 +27,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
         boolean devMode = this.env.acceptsProfiles("development");
         if (!registry.hasMappingForPattern("/**")) {
-            registry.addResourceHandler("/**").addResourceLocations(devMode ? "file:///" + "/client/src/" : "classpath:static");
+            registry.addResourceHandler("/**").addResourceLocations(devMode ? "file:///" + "/client/src/" : "classpath:static/confman/");
         }
     }
 

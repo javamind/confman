@@ -101,20 +101,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .frameOptions().disable()
                     .authorizeRequests()
 
+                .antMatchers("/confman/*").permitAll()
                 .antMatchers("/app/rest/register").permitAll()
                 .antMatchers("/app/rest/activate").permitAll()
                 .antMatchers("/app/rest/authenticate").permitAll()
                 .antMatchers("/app/rest/logs/**").hasAuthority(AuthoritiesConstants.ADMIN)
                 .antMatchers("/app/**").authenticated()
-                .antMatchers("/api/**").authenticated()
-                .antMatchers("/metrics/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                .antMatchers("/health/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                .antMatchers("/trace/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                .antMatchers("/dump/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                .antMatchers("/shutdown/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                .antMatchers("/beans/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                .antMatchers("/info/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                .antMatchers("/autoconfig/**").hasAuthority(AuthoritiesConstants.ADMIN);
+                .antMatchers("/api/**").authenticated();
+
 
     }
 

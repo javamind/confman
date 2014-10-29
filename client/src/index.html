@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="styles/style.css"/>
     <!-- endbuild -->
 </head>
-<body ng-controller="AppCtrl" layout="horizontal">
+<body ng-controller="appCtrl" layout="horizontal">
 
 
 <material-sidenav class="material-sidenav-left material-whiteframe-z3 " component-id="left">
@@ -31,7 +31,7 @@
 
     <material-content  flex>
         <p>&nbsp;</p>
-        <a class="menu-item menu-title" href="/" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['home'])}">Home</a>
+        <a class="menu-item menu-title" href="index.html" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['home'])}">Home</a>
 
         <button class="menu-item menu-title" ng-class="{active : isConfmanPageSelected(['env','soft','app'])}">Settings</button>
         <a class="menu-item menu-sub-item" href="#/environment" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['env'])}">
@@ -106,6 +106,8 @@
     </div>
 </script>
 
+<script src="config.js"></script>
+
 <!-- build:js(src) scripts/vendor.js -->
 <!-- bower:js -->
 <script src="lib/jquery/dist/jquery.js"></script>
@@ -126,7 +128,6 @@
 <!-- endbuild -->
 
 <!-- build:js({.tmp,src}) scripts/scripts.js -->
-<script src="config.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/app.js"></script>
 <script src="js/controller/main.js"></script>

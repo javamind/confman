@@ -61,7 +61,7 @@ angular.module('confman')
                                         elt2 :  find ? eltBinded[0] : {},
                                         codeInstance : find ? eltBinded[0].codeInstance : elt1.codeInstance,
                                         code : find ? eltBinded[0].code : elt1.code,
-                                        difference : !find
+                                        difference : !find || eltBinded[0].label!== elt1.label
                                     });
 
                                 });

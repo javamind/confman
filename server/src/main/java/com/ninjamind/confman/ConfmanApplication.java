@@ -18,7 +18,7 @@ public class ConfmanApplication extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(SpringApplicationBuilder.class);
+        return application.sources(ConfmanApplication.class);
     }
 
     public static void main(String[] args) throws Exception {

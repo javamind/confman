@@ -1,4 +1,4 @@
-<material-content style="top:128px">
+<md-content>
     <div class="container-fluid">
         <div class="col-md-5">
             <h4>
@@ -9,23 +9,24 @@
                     </button>
                 </div>
             </h4>
-            <material-list>
-                <material-item ng-repeat="obj in softwaresuites | orderBy:'code'" ng-click="update(obj)"
-                               ng-class="isSelected(obj.id, entity.selected)" class="confman-material-item">
-                    <div class="material-tile-content">
-                        <h2>{{obj.code}}</h2>
-
+            <md-list>
+                <md-item ng-repeat="obj in softwaresuites | orderBy:'code'" ng-click="update(obj)"
+                               ng-class="isSelected(obj.id, entity.selected)" class="confman-md-item">
+                    <md-item-content>
+                        <div class="md-tile-content">
+                        <h3>{{obj.code}}</h3>
                         <p>{{obj.label}}</p>
-                    </div>
-                </material-item>
-            </material-list>
+                        </div>
+                    </md-item-content>
+                </md-item>
+            </md-list>
         </div>
         <div class="col-md-6 col-md-offset-1">
             <form class="form confman-form" name="form" novalidate ng-show="entity.content">
                 <div class="" style="height: 100%">
                     <div class="row">
                         <div class="col-xs-7">
-                            <br><h4>{{entity.verb}}</h4>
+                            <br><h3>{{entity.verb}}</h3>
                         </div>
                         <div class="col-xs-5">
                             <div class="confman-btn">
@@ -72,19 +73,20 @@
                         <div ng-show="entity.content.id" ng-hide="hideEnv">
                             <br>
                             <h4>Environments</h4>
-                            <material-list>
-                                <material-item ng-repeat="obj in environments">
-                                    <div class="material-tile-content">
-                                        <h2>{{obj.code}}</h2>
-
-                                        <p>{{obj.label}} {{obj.selected}}</p>
-                                    </div>
-                                    <div class="material-tile-right">
-                                        <material-checkbox ng-model="obj.selected">
-                                        </material-checkbox>
-                                    </div>
-                                </material-item>
-                            </material-list>
+                            <md-list>
+                                <md-item ng-repeat="obj in environments">
+                                    <md-item-content>
+                                        <div class="md-tile-content">
+                                            <h3>{{obj.code}}</h3>
+                                            <p>{{obj.label}}</p>
+                                        </div>
+                                        <div class="md-tile-right">
+                                            <md-checkbox ng-model="obj.selected">
+                                            </md-checkbox>
+                                        </div>
+                                    </md-item-content>
+                                </md-item>
+                            </md-list>
                         </div>
 
 
@@ -94,4 +96,4 @@
 
         </div>
     </div>
-</material-content>
+</md-content>

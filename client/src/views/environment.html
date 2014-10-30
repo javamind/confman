@@ -1,4 +1,4 @@
-<material-content style="top:128px" ng-controller="environmentCtrl">
+<md-content ng-controller="environmentCtrl">
     <div class="container-fluid">
         <div class="col-md-5">
             <h4>
@@ -9,23 +9,24 @@
                     </button>
                 </div>
             </h4>
-            <material-list>
-                <material-item ng-repeat="env in environments | orderBy:'code'" ng-click="update(env)"
-                               ng-class="isSelected(env.id, entity.selected)" class="confman-material-item">
-                    <div class="material-tile-content">
-                        <h2>{{env.code}}</h2>
-
-                        <p>{{env.label}}</p>
-                    </div>
-                </material-item>
-            </material-list>
+            <md-list>
+                <md-item ng-repeat="env in environments | orderBy:'code'" ng-click="update(env)"
+                               ng-class="isSelected(env.id, entity.selected)" class="confman-md-item">
+                    <md-item-content>
+                        <div class="md-tile-content">
+                            <h3>{{env.code}}</h3>
+                            <p>{{env.label}}</p>
+                        </div>
+                    </md-item-content>
+                </md-item>
+            </md-list>
         </div>
         <div class="col-md-6 col-md-offset-1">
             <form class="form confman-form" name="form" novalidate ng-show="entity.verb">
                 <div style="height: 100%">
                     <div class="row">
                         <div class="col-xs-7">
-                            <br><h4>{{entity.verb}}</h4>
+                            <br><h3>{{entity.verb}}</h3>
                         </div>
                         <div class="col-xs-5">
                             <div class="confman-btn">
@@ -77,4 +78,4 @@
 
         </div>
     </div>
-</material-content>
+</md-content>

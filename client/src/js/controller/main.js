@@ -3,11 +3,11 @@
 /**
  * Menu controller
  */
-angular.module('confman').controller('appCtrl', ['$scope', '$timeout', '$materialSidenav', '$http', 'constants',
-    function($scope, $timeout, $materialSidenav, $http, constants) {
+angular.module('confman').controller('appCtrl', ['$scope', '$timeout', '$mdSidenav', '$http', 'constants',
+    function($scope, $timeout, $mdSidenav, $http, constants) {
         var leftNav;
         $timeout(function() {
-            leftNav = $materialSidenav('left');
+            leftNav = $mdSidenav('left');
         });
         $scope.toggleLeft = function() {
             leftNav.toggle();
@@ -26,6 +26,7 @@ angular.module('confman').controller('appCtrl', ['$scope', '$timeout', '$materia
             }
             return false;
         };
+
         $http.get(constants.urlserver + 'environment')
             .success(function (data) {
                 $scope.errorUrl = "";

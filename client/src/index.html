@@ -9,77 +9,89 @@
     <!-- build:css(src) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="lib/angular-material/angular-material.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/material-design.min.css"/>
     <link rel="stylesheet" href="styles/style.css"/>
     <!-- endbuild -->
 </head>
 <body ng-controller="appCtrl" layout="horizontal">
 
 
-<material-sidenav class="material-sidenav-left material-whiteframe-z3 " component-id="left">
+<md-sidenav class="md-sidenav-left md-whiteframe-z3 " component-id="left">
 
-    <material-toolbar class="material-theme-light">
-        <div class="confman-menu-title material-theme-light">
+    <md-toolbar class="md-theme-light">
+        <div class="confman-menu-title md-theme-light">
             <img src="img/icone64.png"/>
 
             <h2>&nbsp;Confman</h2>
         </div>
-    </material-toolbar>
+    </md-toolbar>
 
-    <material-content  flex>
+    <md-content flex>
         <p>&nbsp;</p>
-        <a class="menu-item menu-title" href="index.html" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['home'])}">Home</a>
+        <a class="menu-item menu-title" href="index.html" ng-click="toggleLeft()"
+           ng-class="{active : isConfmanPageSelected(['home'])}">Home</a>
 
-        <button class="menu-item menu-title" ng-class="{active : isConfmanPageSelected(['env','soft','app'])}">Settings</button>
-        <a class="menu-item menu-sub-item" href="#/environment" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['env'])}">
+        <button class="menu-item menu-title" ng-class="{active : isConfmanPageSelected(['env','soft','app'])}">
+            Settings
+        </button>
+        <a class="menu-item menu-sub-item" href="#/environment" ng-click="toggleLeft()"
+           ng-class="{active : isConfmanPageSelected(['env'])}">
             <span>Environment</span>
 
         </a>
-        <a class="menu-item menu-sub-item" href="#/softwaresuite" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['soft'])}">Software suite</a>
-        <a class="menu-item menu-sub-item" href="#/application" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['app'])}">Application</a>
+        <a class="menu-item menu-sub-item" href="#/softwaresuite" ng-click="toggleLeft()"
+           ng-class="{active : isConfmanPageSelected(['soft'])}">Software suite</a>
+        <a class="menu-item menu-sub-item" href="#/application" ng-click="toggleLeft()"
+           ng-class="{active : isConfmanPageSelected(['app'])}">Application</a>
 
-        <button class="menu-item menu-title" ng-class="{active : isConfmanPageSelected(['confcreate','confcomp','confsearch'])}">Configuration</button>
-           <a class="menu-item menu-sub-item" href="#/config/search" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['confsearch'])}">Find</a>
-            <a class="menu-item menu-sub-item" href="#/config/create" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['confcreate'])}">Create</a>
-            <a class="menu-item menu-sub-item" href="#/config/compare" ng-click="toggleLeft()" ng-class="{active : isConfmanPageSelected(['confcomp'])}">Compare</a>
+        <button class="menu-item menu-title"
+                ng-class="{active : isConfmanPageSelected(['confcreate','confcomp','confsearch'])}">Configuration
+        </button>
+        <a class="menu-item menu-sub-item" href="#/config/search" ng-click="toggleLeft()"
+           ng-class="{active : isConfmanPageSelected(['confsearch'])}">Find</a>
+        <a class="menu-item menu-sub-item" href="#/config/create" ng-click="toggleLeft()"
+           ng-class="{active : isConfmanPageSelected(['confcreate'])}">Create</a>
+        <a class="menu-item menu-sub-item" href="#/config/compare" ng-click="toggleLeft()"
+           ng-class="{active : isConfmanPageSelected(['confcomp'])}">Compare</a>
 
-    </material-content>
-</material-sidenav>
+    </md-content>
+</md-sidenav>
 
 <div layout="vertical" layout-fill>
-    <material-toolbar class="material-theme-light">
-        <div class="material-toolbar-tools">
+    <md-toolbar class="md-theme-light">
+        <div class="md-toolbar-tools">
             <div class="menu-icon" ng-click="toggleLeft()" hide-md>
-                <material-icon icon="img/icon/ic_menu_24px.svg"></material-icon>
+                <md-icon icon="img/icon/ic_menu_24px.svg"></md-icon>
             </div>
 
             <span ng-bind="currentPage.name || 'Confman'" style="margin-left: 9px"></span>
 
-            <div class="material-display-flex material-flex menu_toolbox">
+            <div class="md-display-flex md-flex menu_toolbox">
                 <!-- use up the third space so the button is on the right -->
             </div>
-            <material-button class="material-button" style="position: static; display: block;"
-                             ng-show="currentPage.actionbar"
-                             ng-repeat="act in currentPage.actionbar" ng-click="act.action()">
-                <img ng-src="/img/icon/{{act.icon}}.svg" style="width: 24px; height: 24px;" />
-            </material-button>
+            <md-button class="md-button" style="position: static; display: block;"
+                       ng-show="currentPage.actionbar"
+                       ng-repeat="act in currentPage.actionbar" ng-click="act.action()">
+                <img ng-src="/img/icon/{{act.icon}}.svg" style="width: 24px; height: 24px;"/>
+            </md-button>
         </div>
-    </material-toolbar>
-    <material-toolbar class="material-theme-grey" scroll-header condensed-height="60"
-                      ng-show="currentPage.description">
+    </md-toolbar>
+    <md-toolbar class="md-theme-grey" scroll-header condensed-height="60"
+                ng-show="currentPage.description">
 
-        <div class="material-toolbar-tools material-toolbar-tools-bottom">
-            <span class="material-flex material-indent"><small>{{currentPage.description}}</small></span>
+        <div class="md-toolbar-tools md-toolbar-tools-bottom">
+            <span class="md-flex md-indent"><small>{{currentPage.description}}</small></span>
         </div>
-        <material-button class="material-button-fab material-button-fab-bottom-right material-theme-yellow" style="top: 20px">
+        <md-button class="md-button-fab md-button-fab-bottom-right md-theme-yellow" style="top: 20px">
             <img ng-src="img/icon/{{currentPage.icon}}.svg" style="width: 24px;height: 24px"/>
-        </material-button>
-    </material-toolbar>
+        </md-button>
+    </md-toolbar>
     <div class="col-md-12">
         <br>
+
         <div class="alert alert-danger" ng-show="errorUrl">
             {{errorUrl}}
         </div>
@@ -111,20 +123,20 @@
 <!-- build:js(src) scripts/vendor.js -->
 <!-- bower:js -->
 <script src="lib/jquery/dist/jquery.js"></script>
-<script src="lib/angular/angular.js"></script>
 <script src="lib/json3/lib/json3.min.js"></script>
 <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
-<script src="lib/angular-resource/angular-resource.js"></script>
-<script src="lib/angular-route/angular-route.js"></script>
-<script src="lib/angular-animate/angular-animate.js"></script>
-<script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="lib/hammerjs/hammer.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
-<!-- build:js({.tmp,src}) scripts/material.js -->
-<script src="js/angular-animate-sequence/angular-animate-sequence.js"></script>
-<script src="js/angular-animate-sequence/angular-animate-stylers.js"></script>
-<script src="js/angular-materials/material-design-min.js"></script>
+<!-- build:js({.tmp,src}) scripts/angular.js -->
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular-resource/angular-resource.js"></script>
+<script src="lib/angular-route/angular-route.js"></script>
+<script src="lib/angular-animate/angular-animate.js"></script>
+<script src="lib/angular-aria/angular-aria.js"></script>
+<script src="lib/angular-material/angular-material.js"></script>
+<script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <!-- endbuild -->
 
 <!-- build:js({.tmp,src}) scripts/scripts.js -->

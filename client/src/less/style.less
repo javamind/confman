@@ -173,10 +173,78 @@ body{
   border: 1px solid #ddd;
 }
 
+.md-theme-grey{
+  background-color: #ddd;
+}
+
 .badge-instance{
   background-color: @action_flash_color;
   color: black;
 }
 .badge-version{
   background-color: @action_simple_color;
+}
+
+.menu-item {
+  background: none;
+  border-width: 0;
+  cursor: pointer;
+  display: block;
+  color: #333;
+  font-size: inherit;
+  line-height: 40px;
+  max-height: 40px;
+  opacity: 1;
+  margin: 0;
+  outline: none;
+  padding: 0px 28px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  width: 100%;
+  z-index: 1;
+  -webkit-transition: 0.2s ease-in-out;
+  -webkit-transition-property: max-height, background-color, opacity;
+  -moz-transition: 0.2s ease-in-out;
+  -moz-transition-property: max-height, background-color, opacity;
+  transition: 0.2s ease-in-out;
+  transition-property: max-height, background-color, opacity;
+
+  &:hover &:focus {
+    color: #999;
+  }
+
+  &.ng-hide {
+    max-height: 0;
+    opacity: 0;
+  }
+
+  &.menu-title{
+    color: #888;
+    font-size: 16px;
+    padding-left: 16px;
+    text-align: left;
+    text-transform: uppercase;
+
+    &.active{
+      font-weight: bold;
+    }
+
+    &:hover &:focus {
+      color: #AAA;
+    }
+  }
+
+  &.menu-sub-item{
+    &.active {
+      background-color: #eeeeee;
+      font-weight: bold;
+      color: #4285f4;
+    }
+  }
+}
+
+.menu-icon {
+  background: none;
+  border: none;
 }

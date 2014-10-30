@@ -1,4 +1,4 @@
-<material-content style="top:128px " ng-controller="configCreateCtrl">
+<md-content ng-controller="configCreateCtrl">
     <div class="container-fluid">
         <br>
 
@@ -67,47 +67,49 @@
                     <a role="tab" data-toggle="tab" ng-click="onTabSelected(env)">{{env.code}} - {{env.label}}</a>
                 </li>
             </ul>
-            <material-list>
-                <material-item ng-repeat="param in envparameters | orderBy:['codeInstance', 'code']"
-                               ng-class="setClassError(param.toDelete)">
-                    <div class="material-tile-left">
-                        <div class="confman-list-param-app" ng-hide="param.codeInstance">APP</div>
-                        <div class="confman-list-param-instance" ng-show="param.codeInstance">INS</div>
-                    </div>
-                    <div class="material-tile-content">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <h2>{{param.code}} :</h2>
+            <md-list>
+                <md-item ng-repeat="param in envparameters | orderBy:['codeInstance', 'code']"
+                               ng-class="setClassError(param.toDelete)" >
+                    <md-item-content ng-class="setClassError(param.toDelete)">
+                        <div class="md-tile-left">
+                            <div class="confman-list-param-app" ng-hide="param.codeInstance">APP</div>
+                            <div class="confman-list-param-instance" ng-show="param.codeInstance">INS</div>
+                        </div>
+                        <div class="md-tile-content">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <h3>{{param.code}} :</h3>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" id="data-param{{param.id}}" ng-model="param.label"
+                                           ng-readonly="lockVersion"
+                                           class="form-control input-sm confman-input-param-env">
+                                </div>
+                                <div class="col-md-3">
+                                    <small>old value: {{param.oldValue}}</small>
+                                </div>
+                                <div class="col-md-2">
+                                    <small ng-show="param.toDelete"><b>will be deleted on saving</b></small>
+                                </div>
                             </div>
-                            <div class="col-md-3">
-                                <input type="text" id="data-param{{param.id}}" ng-model="param.label"
-                                       ng-readonly="lockVersion"
-                                       class="form-control input-sm confman-input-param-env">
-                            </div>
-                            <div class="col-md-3">
-                                <small>old value: {{param.oldValue}}</small>
-                            </div>
-                            <div class="col-md-3">
-                                <small ng-show="param.toDelete"><b>will be deleted on saving</b></small>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>Application : {{param.codeApplication}} - tracking version :
+                                        <div class="badge badge-version">{{param.codeTrackingVersion}}</div>
+                                        <span ng-show="param.codeInstance">- instance : <div class="badge badge-instance">
+                                            {{param.codeInstance}}
+                                        </div></span>
+                                    </h4>
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h3>Application : {{param.codeApplication}} - tracking version :
-                                    <div class="badge badge-version">{{param.codeTrackingVersion}}</div>
-                                    <span ng-show="param.codeInstance">- instance : <div class="badge badge-instance">
-                                        {{param.codeInstance}}
-                                    </div></span>
-                                </h3>
-                            </div>
+                        <div class="md-tile-right">
+                            <md-checkbox ng-hide="lockVersion" ng-model="param.toDelete">
+                            </md-checkbox>
                         </div>
-                    </div>
-                    <div class="material-tile-right">
-                        <material-checkbox ng-hide="lockVersion" ng-model="param.toDelete">
-                        </material-checkbox>
-                    </div>
-                </material-item>
-            </material-list>
+                    </md-item-content>
+                </md-item>
+            </md-list>
 
 
             <div class="modal-footer confman-btn" ng-show="versionTrackiCode">
@@ -120,7 +122,7 @@
             </div>
         </form>
     </div>
-</material-content>
+</md-content>
 
 <script type="text/ng-template" id="modalConfirmCreation.html">
     <div class="modal-header">

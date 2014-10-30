@@ -28,6 +28,7 @@ public class ApplicationDto extends AbstractConfManDto<ApplicationDto, Applicati
                 object.getVersion(),
                 object.isActive()
         );
+        this.idSoftwareSuite = object.getSoftwareSuite() !=null ? object.getSoftwareSuite().getId() : null;
     }
 
     public ApplicationDto(Application object, List<ApplicationVersion> versions, List<Instance> instances, List<Parameter> parameters) {

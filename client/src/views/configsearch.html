@@ -1,4 +1,4 @@
-<material-content style="top:128px" ng-controller="configSearchCtrl">
+<md-content ng-controller="configSearchCtrl">
     <div class="container-fluid">
     <h4>Criteria</h4>
         <div class="alert alert-danger confman-alert-error container-fluid" role="alert" ng-show="error">
@@ -78,24 +78,26 @@
         </small>
     </h4>
 
-    <material-list>
-        <material-item ng-repeat="param in parametervalues.list | orderBy:['codeInstance', 'code']">
-            <div class="material-tile-left">
-                <div class="confman-list-param-env">{{param.codeEnvironment | uppercase | limitTo : 3}}</div>
-            </div>
-            <div class="material-tile-content">
-                <h2>{{param.code}} : <b>{{param.label}}</b></h2>
+    <md-list>
+        <md-item ng-repeat="param in parametervalues.list | orderBy:['codeInstance', 'code']">
+            <md-item-content>
+                <div class="md-tile-left">
+                    <div class="confman-list-param-env">{{param.codeEnvironment | uppercase | limitTo : 3}}</div>
+                </div>
+                <div class="md-tile-content">
+                    <h3>{{param.code}} : <b>{{param.label}}</b></h3>
 
-                <h3>Application : {{param.codeApplication}} - tracking version : <div class="badge badge-version">{{param.codeTrackingVersion}}</div>
-                    <span ng-show="param.codeInstance">- instance : <div class="badge badge-instance">{{param.codeInstance}}</div></span>
-                </h3>
-            </div>
-            <div class="material-tile-right">
-                <div class="confman-list-param-app" ng-hide="param.codeInstance">APP</div>
-                <div class="confman-list-param-instance" ng-show="param.codeInstance">INS</div>
-            </div>
-        </material-item>
-    </material-list>
+                    <h4>Application : {{param.codeApplication}} - tracking version : <div class="badge badge-version">{{param.codeTrackingVersion}}</div>
+                        <span ng-show="param.codeInstance">- instance : <div class="badge badge-instance">{{param.codeInstance}}</div></span>
+                    </h4>
+                </div>
+                <div class="md-tile-right">
+                    <div class="confman-list-param-app" ng-hide="param.codeInstance">APP</div>
+                    <div class="confman-list-param-instance" ng-show="param.codeInstance">INS</div>
+                </div>
+            </md-item-content>
+        </md-item>
+    </md-list>
     <div align="center">
         <ul class="pagination" ng-show="pageSelector">
             <li ng-hide="page===1"><a ng-click="filter(page-1)"><span class="glyphicon glyphicon-backward"></span></a></li>
@@ -104,4 +106,4 @@
         </ul>
     </div>
     </div>
-</material-content>
+</md-content>

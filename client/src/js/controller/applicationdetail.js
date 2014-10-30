@@ -25,9 +25,12 @@ angular.module('confman').controller('applicationDetailCtrl',[
         $scope.parametertypes = ['APPLICATION', 'INSTANCE'];
 
         var refreshActiveDependencies = function () {
-            $scope.instancesize = $filter('filter')($scope.application.instances, {active: true}).length;
-            $scope.versionsize = $filter('filter')($scope.application.versions, {active: true}).length;
-            $scope.paramsize = $filter('filter')($scope.application.parameters, {active: true}).length;
+            var tab = $filter('filter')($scope.application.instances, {active: true});
+            $scope.instancesize = tab ? tab.length : 0;
+            var tab = $filter('filter')($scope.application.versions, {active: true});
+            $scope.versionsize = tab ? tab.length : 0;
+            var tab = $filter('filter')($scope.application.parameters, {active: true});
+            $scope.paramsize = tab ? tab.length : 0;
         }
 
         //Load environments

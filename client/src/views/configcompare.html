@@ -1,4 +1,4 @@
-<material-content style="top:128px " ng-controller="configCompareCtrl">
+<md-content  ng-controller="configCompareCtrl">
     <div class="container-fluid">
         <br>
         <div class="alert alert-danger confman-alert-error container-fluid" role="alert" ng-show="error">
@@ -73,47 +73,49 @@
                 </div>
             </div>
         </form>
-        <material-list>
-            <material-item ng-repeat="param in listecomp | orderBy:['codeInstance', 'code']" ng-class="setClassError(param.difference)">
-                <div class="material-tile-left">
-                    <div class="confman-list-param-env" ng-show="param.elt1.code">{{param.elt1.codeEnvironment | uppercase | limitTo : 3}}</div>
-                    <div class="confman-list-param-empty" ng-hide="param.elt1.code">&nbsp;</div>
-                </div>
-                <div class="material-tile-content">
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <h2 ng-hide="param.elt1.code">&nbsp;</h2>
-                            <h2 ng-show="param.elt1.code">{{param.elt1.code}} : <b>{{param.elt1.label}}</b></h2>
+        <md-list>
+            <md-item ng-repeat="param in listecomp | orderBy:['codeInstance', 'code']" ng-class="setClassError(param.difference)">
+                <md-item-content>
+                    <div class="md-tile-left">
+                        <div class="confman-list-param-env" ng-show="param.elt1.code">{{param.elt1.codeEnvironment | uppercase | limitTo : 3}}</div>
+                        <div class="confman-list-param-empty" ng-hide="param.elt1.code">&nbsp;</div>
+                    </div>
+                    <div class="md-tile-content">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <h3 ng-hide="param.elt1.code">&nbsp;</h3>
+                                <h3 ng-show="param.elt1.code">{{param.elt1.code}} : <b>{{param.elt1.label}}</b></h3>
 
-                            <h3 ng-show="param.elt1.code">Application : {{param.elt1.codeApplication}} - tracking version : <div class="badge badge-version">{{param.elt1.codeTrackingVersion}}</div>
-                                <span ng-show="param.elt1.codeInstance">- instance : <div class="badge badge-instance">{{param.elt1.codeInstance}}</div></span>
-                            </h3>
-                        </div>
-                        <div class="col-xs-1">
-                            <div ng-show="param.elt1.code">
-                                <div class="confman-list-param-app" ng-hide="param.elt1.codeInstance">APP</div>
-                                <div class="confman-list-param-instance" ng-show="param.elt1.codeInstance">INS</div>
+                                <h4 ng-show="param.elt1.code">Application : {{param.elt1.codeApplication}} - tracking version : <div class="badge badge-version">{{param.elt1.codeTrackingVersion}}</div>
+                                    <span ng-show="param.elt1.codeInstance">- instance : <div class="badge badge-instance">{{param.elt1.codeInstance}}</div></span>
+                                </h4>
                             </div>
-                            <div ng-hide="param.elt1.code">
-                                <div class="confman-list-param-app" ng-hide="param.elt2.codeInstance">APP</div>
-                                <div class="confman-list-param-instance" ng-show="param.elt2.codeInstance">INS</div>
+                            <div class="col-xs-1">
+                                <div ng-show="param.elt1.code">
+                                    <div class="confman-list-param-app" ng-hide="param.elt1.codeInstance">APP</div>
+                                    <div class="confman-list-param-instance" ng-show="param.elt1.codeInstance">INS</div>
+                                </div>
+                                <div ng-hide="param.elt1.code">
+                                    <div class="confman-list-param-app" ng-hide="param.elt2.codeInstance">APP</div>
+                                    <div class="confman-list-param-instance" ng-show="param.elt2.codeInstance">INS</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xs-5">
-                            <h2 ng-hide="param.elt2.code">&nbsp;</h2>
-                            <h2 ng-show="param.elt2.code">{{param.elt2.code}} : <b>{{param.elt2.label}}</b></h2>
-                            <h3 ng-show="param.elt2.code">Application : {{param.elt2.codeApplication}} - tracking version : <div class="badge badge-version">{{param.elt2.codeTrackingVersion}}</div>
-                                <span ng-show="param.elt2.codeInstance">- instance : <div class="badge badge-instance">{{param.elt2.codeInstance}}</div></span>
-                            </h3>
+                            <div class="col-xs-5">
+                                <h3 ng-hide="param.elt2.code">&nbsp;</h3>
+                                <h3 ng-show="param.elt2.code">{{param.elt2.code}} : <b>{{param.elt2.label}}</b></h3>
+                                <h4 ng-show="param.elt2.code">Application : {{param.elt2.codeApplication}} - tracking version : <div class="badge badge-version">{{param.elt2.codeTrackingVersion}}</div>
+                                    <span ng-show="param.elt2.codeInstance">- instance : <div class="badge badge-instance">{{param.elt2.codeInstance}}</div></span>
+                                </h4>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="material-tile-right">
-                    <div class="confman-list-param-env" ng-show="param.elt2.code">{{param.elt2.codeEnvironment | uppercase | limitTo : 3}}</div>
-                    <div class="confman-list-param-empty" ng-hide="param.elt2.code">&nbsp;</div>
+                    <div class="md-tile-right">
+                        <div class="confman-list-param-env" ng-show="param.elt2.code">{{param.elt2.codeEnvironment | uppercase | limitTo : 3}}</div>
+                        <div class="confman-list-param-empty" ng-hide="param.elt2.code">&nbsp;</div>
 
-                </div>
-            </material-item>
-        </material-list>
+                    </div>
+                </md-item-content>
+            </md-item>
+        </md-list>
     </div>
-</material-content>
+</md-content>

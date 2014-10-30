@@ -37,7 +37,7 @@ public class ApplicationVersionWebController extends AbstractConfmanWebControlle
         return applicationFacade.findApplicationVersionByIdApp(id).stream().map(instance -> new ApplicationVersionDto(instance)).collect(Collectors.toList());
     }
 
-    @RequestMapping("/check/{version}")
+    @RequestMapping("/check/{version:.+}")
     public boolean check(@PathVariable String version) {
         return applicationVersionFacade.checkVersionNumber(version);
     }

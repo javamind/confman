@@ -139,9 +139,14 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
         //Load the last version tracking linked to this snapshot
         List<TrackingVersion> trackingVersions = trackingVersionRepository.findByIdAppVersion(version.getId());
         TrackingVersion trackingVersion = null;
+        TrackingVersion referenceTrackingVersion = null;
 
         //A new tracking version is only create if no one is present for the app version
         if (trackingVersions == null || trackingVersions.isEmpty()) {
+            //we search the last version
+            List<ApplicationVersion> versions = applicationVersionRepository.findByIdApp(application.getId());
+            referenceTrackingVersion = findLastTrackingVersionUsed(version, versions);
+
             trackingVersion = new TrackingVersion()
                     .setApplicationVersion(version)
                             //For a snapshot the tracking version is the same than the app version
@@ -160,7 +165,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
         trackingVersionRepository.save(trackingVersion);
 
         //For a snapshot the reference version is itself
-        return createParametersValues(version, application, trackingVersion, Optional.of(trackingVersion));
+        return createParametersValues(version, application, trackingVersion, Optional.of(referenceTrackingVersion!=null ? referenceTrackingVersion : trackingVersion));
     }
 
     /**

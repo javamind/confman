@@ -1,4 +1,4 @@
-package com.ninjamind.confman.controller.api;
+package com.ninjamind.confman.web.api;
 
 import com.github.zafarkhaja.semver.Version;
 import com.google.common.base.Preconditions;
@@ -18,7 +18,7 @@ import java.util.Optional;
  * @author Guillaume EHRET
  */
 @RestController
-@RequestMapping(value = "/confman/version")
+@RequestMapping(value = "/api/version")
 public class VersionApiController {
 
     @Autowired

@@ -1,4 +1,4 @@
-package com.ninjamind.confman.controller.web;
+package com.ninjamind.confman.web.app;
 
 import com.ninjamind.confman.domain.Environment;
 import com.ninjamind.confman.dto.EnvironmentDto;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  * @author Guillaume EHRET
  */
 @RestController
-@RequestMapping(value = "/environment")
+@RequestMapping(value = "/app/environment")
 public class EnvironmentWebController extends AbstractConfmanWebController<Environment, EnvironmentDto, Long>{
 
     @Autowired

@@ -12,7 +12,7 @@ angular.module('confman').directive('semverChecker', ['$http','constants',
                 that other validators were run*/
                 ctrl.$parsers.push(function(viewValue) {
 
-                    $http.get(constants.urlserver + '/applicationversion/check/' + viewValue).success(function(data) {
+                    $http.get(constants.urlserver + 'app/applicationversion/check/' + viewValue).success(function(data) {
                         ctrl.$setValidity('semver', data === true);
                     });
                     return viewValue;

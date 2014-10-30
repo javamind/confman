@@ -168,6 +168,9 @@ body {
   background-color: #4285f4;
   border: 1px solid #ddd;
 }
+.md-theme-grey {
+  background-color: #ddd;
+}
 .badge-instance {
   background-color: #ffeb3b;
   color: black;
@@ -202,9 +205,6 @@ body {
 }
 .menu-item:hover .menu-item:focus {
   color: #999;
-}
-.md-theme-grey{
-    background-color: #eeeeee;
 }
 .menu-item.ng-hide {
   max-height: 0;

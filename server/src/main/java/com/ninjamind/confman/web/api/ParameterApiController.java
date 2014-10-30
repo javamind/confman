@@ -1,4 +1,4 @@
-package com.ninjamind.confman.controller.api;
+package com.ninjamind.confman.web.api;
 
 import com.google.common.base.Preconditions;
 import com.ninjamind.confman.domain.Parameter;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  * @author Guillaume EHRET
  */
 @RestController
-@RequestMapping("/confman/param")
+@RequestMapping("/api/param")
 public class ParameterApiController {
 
     @Autowired

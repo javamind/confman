@@ -1,4 +1,4 @@
-package com.ninjamind.confman.controller.web;
+package com.ninjamind.confman.web.app;
 
 import com.ninjamind.confman.domain.Parameter;
 import com.ninjamind.confman.dto.ParameterDto;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Guillaume EHRET
  */
 @RestController
-@RequestMapping(value = "/parameter")
+@RequestMapping(value = "/app/parameter")
 public class ParameterWebController extends AbstractConfmanWebController<Parameter, ParameterDto, Long>{
 
     @Autowired

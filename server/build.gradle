@@ -28,7 +28,7 @@ apply plugin: 'idea'
 apply plugin: 'flyway'
 apply plugin: 'maven'
 apply plugin: 'spring-boot'
-apply plugin: 'war'
+//apply plugin: 'war'
 
 
 group = 'com.ninjamind'
@@ -105,11 +105,26 @@ project.ext['flyway.url'] = project.property("db." + myDataBase + ".url")
 project.ext['flyway.locations'] = "db.migration." + myDataBase
 
 //Artifact and release build.
-war {
+//war {
+//    baseName = 'confman'
+//    version = ''
+//    exclude('**/db/**')
+//    exclude('*.properties')
+//}
+jar {
     baseName = 'confman'
+    manifest {
+        attributes(
+                "Manifest-Version": "1.0",
+                "Confman-version": version,
+                "Main-Class": "com.ninjamind.confman.ConfmanApplication",
+                "Class-Path": configurations.runtime.files.collect { 'dependencies/' + it.name }.join(' ') + ' . '
+        )
+    }
+    //We want a jar without any version in the name
     version = ''
+    exclude '**/*.properties'
     exclude('**/db/**')
-    exclude('*.properties')
 }
 
 //Create file conf for flyway
@@ -131,8 +146,13 @@ task createConfFliwayForDelivery << {
 task copyForDelivery(dependsOn: createConfFliwayForDelivery) << {
     //the war
     copy {
-        from "$buildDir/libs/confman.war"
+        from "$buildDir/libs/confman.jar"
         into { "$buildDir/delivery" }
+    }
+    //The dependencies must be present
+    copy {
+        into "$buildDir/delivery/dependencies"
+        from configurations.runtime
     }
     //Flyway copmmand line
     copy {

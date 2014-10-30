@@ -1,4 +1,4 @@
-package com.ninjamind.confman.controller.web;
+package com.ninjamind.confman.web.app;
 
 import com.ninjamind.confman.domain.ApplicationVersion;
 import com.ninjamind.confman.dto.ApplicationVersionDto;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  * @author Guillaume EHRET
  */
 @RestController
-@RequestMapping(value = "/applicationversion")
+@RequestMapping(value = "/app/applicationversion")
 public class ApplicationVersionWebController extends AbstractConfmanWebController<ApplicationVersion, ApplicationVersionDto, Long>{
 
     private ApplicationVersionFacade applicationVersionFacade;

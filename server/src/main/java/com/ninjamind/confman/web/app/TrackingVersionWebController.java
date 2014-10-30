@@ -1,4 +1,4 @@
-package com.ninjamind.confman.controller.web;
+package com.ninjamind.confman.web.app;
 
 import com.ninjamind.confman.dto.TrackingVersionDto;
 import com.ninjamind.confman.service.ApplicationFacade;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * @author Guillaume EHRET
  */
 @RestController
-@RequestMapping(value = "/trackingversion")
+@RequestMapping(value = "/app/trackingversion")
 public class TrackingVersionWebController {
 
     @Autowired

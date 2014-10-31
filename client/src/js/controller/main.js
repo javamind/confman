@@ -27,7 +27,7 @@ angular.module('confman').controller('appCtrl', ['$scope', '$timeout', '$mdSiden
             return false;
         };
 
-        $http.get(constants.urlserver + 'environment')
+        $http.get(constants.urlserver + 'app/environment')
             .success(function (data) {
                 $scope.errorUrl = "";
             })

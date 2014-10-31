@@ -23,10 +23,19 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     private Environment env;
 
     @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("index");
+    }
+
+    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         if (!registry.hasMappingForPattern("/confman/**")) {
             registry.addResourceHandler("/confman/**").addResourceLocations("classpath:/static/confman/");
         }
+
+//        if (!registry.hasMappingForPattern("/**")) {
+//            registry.addResourceHandler("/**").addResourceLocations(RESOURCE_LOCATIONS);
+//        }
     }
 
 

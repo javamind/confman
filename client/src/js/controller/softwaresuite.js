@@ -29,7 +29,7 @@ angular.module('confman').controller('softwaresuiteCtrl', ['$rootScope', '$scope
             $scope.hideEnv=true;
             //Load environments
             $scope.environments = Environment.query(function(){
-                $http.get(constants.urlserver + '/softwaresuite/' + elt.id +'/environment')
+                $http.get(constants.urlserver + 'app/softwaresuite/' + elt.id +'/environment')
                     .success(function (data) {
                         data.forEach(function(element){
                             //on parcours la liste des env

@@ -2,8 +2,8 @@
 /**
  * Controller linked to the env list
  */
-angular.module('confman').controller('configCreateCtrl', ['$rootScope', '$scope', '$http', '$modal', 'constants', 'Application', 'Params',
-    function ($rootScope, $scope, $http, $modal, constants, Application, Params) {
+angular.module('confman').controller('configCreateCtrl', ['$rootScope', '$scope', '$http', '$modal', '$filter', 'constants', 'Application', 'Params',
+    function ($rootScope, $scope, $http, $modal, $filter, constants, Application, Params) {
         $rootScope.callbackOK();
 
         //Page definition
@@ -23,10 +23,10 @@ angular.module('confman').controller('configCreateCtrl', ['$rootScope', '$scope'
 
             if ($scope.criteria.idApplication > 0) {
                 Params.getAppVersionByIdApp($scope.criteria.idApplication, function (datas) {
-                    $scope.applicationVersions = datas;
+                    $scope.applicationVersions = $filter('filter')(datas, {active: true});
                 });
                 Params.getEnvByIdApp($scope.criteria.idApplication, function (datas) {
-                    $scope.environments = datas;
+                    $scope.environments = $filter('filter')(datas, {active: true});
                     $scope.selectedIndex = 0;
                 });
             }
@@ -50,7 +50,7 @@ angular.module('confman').controller('configCreateCtrl', ['$rootScope', '$scope'
             var callBackCreation = function () {
                 if ($scope.criteria.idApplicationVersion > 0) {
                     $http
-                        .post(constants.urlserver + '/parametervalue', $scope.criteria.idApplicationVersion)
+                        .post(constants.urlserver + 'app/parametervalue', $scope.criteria.idApplicationVersion)
                         .success(function (datas) {
                             $scope.parameters = datas;
                             if ($scope.parameters.length > 0) {
@@ -94,13 +94,13 @@ angular.module('confman').controller('configCreateCtrl', ['$rootScope', '$scope'
 
             var callBackUpdate = function () {
                 $http
-                    .put(constants.urlserver + '/parametervalue', $scope.parameters)
+                    .put(constants.urlserver + 'app/parametervalue', $scope.parameters)
                     .success(function (datas) {
                         $rootScope.callbackOK();
                         $scope.lockVersion = true;
                         //Refresh of paramaters
                         $http
-                            .post(constants.urlserver + '/parametervalue/search', {nbEltPerPage: 99999, idTrackingVersion: $scope.versionTrackiId})
+                            .post(constants.urlserver + 'app/parametervalue/search', {nbEltPerPage: 99999, idTrackingVersion: $scope.versionTrackiId})
                             .success(function (datas) {
                                 $scope.parameters = datas.list;
                                 $scope.onTabSelected($scope.environments[0], 0);

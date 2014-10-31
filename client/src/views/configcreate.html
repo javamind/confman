@@ -63,7 +63,7 @@
 
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist" id="myTab" ng-show="versionTrackiCode">
-                <li ng-repeat="env in environments" id="#tab{{env.code}}" ng-class="classTabSelected(env)">
+                <li ng-repeat="env in environments | orderBy:['code']" id="#tab{{env.code}}" ng-class="classTabSelected(env)">
                     <a role="tab" data-toggle="tab" ng-click="onTabSelected(env)">{{env.code}} - {{env.label}}</a>
                 </li>
             </ul>

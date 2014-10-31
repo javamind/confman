@@ -42,7 +42,9 @@ confman.config(function ($routeProvider) {
 /**
  * Commons callback
  */
-confman.run(function ($rootScope) {
+confman.run(function ($rootScope, constants) {
+    $rootScope.urlserver = constants.urlserver;
+
     $rootScope.callbackOK = function(){
         $rootScope.error=null;
     };

@@ -9,12 +9,12 @@ angular.module('confman').controller('applicationDetailCtrl',[
             code: 'app',
             name: 'Application',
             description: $routeParams.id > 0 ? 'Update Application' : 'Create new application',
-            icon: 'ic_settings_24px'
-//            actionbar: [
-//                {icon: 'ic_arrow_back_24px', action: function () {
-//                    $location.path('/application');
-//                }}
-//            ]
+            icon: 'ic_settings_24px',
+            actionbar: [
+                {icon: 'ic_arrow_back_24px', action: function () {
+                    $location.path('/application');
+                }}
+            ]
         };
 
         //Load software suites
@@ -111,6 +111,10 @@ angular.module('confman').controller('applicationDetailCtrl',[
                 if (!find) {
                     $scope.application.instances.push(data);
                 }
+                if ($scope.application.id) {
+                    //In update the change is persisted directly
+                    saveApplication();
+                }
                 refreshActiveDependencies();
             }
         };
@@ -166,6 +170,10 @@ angular.module('confman').controller('applicationDetailCtrl',[
                 if (!find) {
                     $scope.application.parameters.push(data);
                 }
+                if ($scope.application.id) {
+                    //In update the change is persisted directly
+                    saveApplication();
+                }
                 refreshActiveDependencies();
             }
         };
@@ -219,29 +227,35 @@ angular.module('confman').controller('applicationDetailCtrl',[
                 if (!find) {
                     $scope.application.versions.push(data);
                 }
+                if ($scope.application.id) {
+                    //In update the change is persisted directly
+                    saveApplication();
+                }
                 refreshActiveDependencies();
             }
         };
 
         //Save application
         //----------------------------
-        $scope.save = function () {
-
-            if (!$scope.application.id) {
-                Application.save($scope.application, function (data) {
-                    $scope.application = data;
-                    $rootScope.error = null;
-                }, $scope.callbackKO);
-            }
-            else {
-                $scope.application.$update(function (data) {
+        var saveApplication = function () {
+            if ($scope.application) {
+                if (!$scope.application.id) {
+                    Application.save($scope.application, function (data) {
                         $scope.application = data;
                         $rootScope.error = null;
-                    }
-                    , $scope.callbackKO
-                );
+                    }, $scope.callbackKO);
+                }
+                else {
+                    $scope.application.$update(function (data) {
+                            $scope.application = data;
+                            $rootScope.error = null;
+                        }
+                        , $scope.callbackKO
+                    );
+                }
             }
         };
+        $scope.save = saveApplication();
 
         //Delete application
         //----------------------------

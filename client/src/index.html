@@ -24,7 +24,6 @@
     <md-toolbar class="md-theme-light">
         <div class="confman-menu-title md-theme-light">
             <img src="img/icone64.png"/>
-
             <h2 style="top:20px">&nbsp;Confman</h2>
         </div>
     </md-toolbar>
@@ -75,7 +74,7 @@
             <md-button class="md-button" style="position: static; display: block;"
                        ng-show="currentPage.actionbar"
                        ng-repeat="act in currentPage.actionbar" ng-click="act.action()">
-                <img ng-src="/img/icon/{{act.icon}}.svg" style="width: 24px; height: 24px;"/>
+                <img ng-src="img/icon/{{act.icon}}.svg" style="width: 24px; height: 24px;"/>
             </md-button>
         </div>
     </md-toolbar>

@@ -253,6 +253,8 @@ module.exports = function (grunt) {
                             '**/*.js',
                             'views/{,*/}*.html',
                             'img/{,*/}*.{png,svg,jpg}',
+                            'i18n/{,*/}*.*',
+                            'protected/{,*/}*.*',
                             'fonts/*'
                         ]
                     },

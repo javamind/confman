@@ -1,5 +1,8 @@
 package com.ninjamind.confman.config;
 
+import com.ninjamind.confman.domain.ParameterValue;
+import com.ninjamind.confman.repository.PaginatedEntityRepository;
+import com.ninjamind.confman.repository.ParameterValueRepository;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,7 +21,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("com.ninjamind.conference.repository")
+@ComponentScan("com.ninjamind.confman.repository")
 @PropertySource("classpath:application.properties")
 @EnableJpaRepositories("com.ninjamind.confman.repository")
 public class PersistenceConfig {
@@ -71,5 +74,11 @@ public class PersistenceConfig {
     @Bean
     public Integer serverPort(){
         return Integer.valueOf(env.getProperty("server.port", "8082"));
+    }
+
+
+    @Bean
+    public PaginatedEntityRepository<ParameterValue, Long> parameterValueRepository(){
+        return new ParameterValueRepository();
     }
 }

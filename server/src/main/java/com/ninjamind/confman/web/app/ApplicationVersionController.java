@@ -19,21 +19,21 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping(value = "/app/applicationversion")
-public class ApplicationVersionWebController extends AbstractConfmanWebController<ApplicationVersion, ApplicationVersionDto, Long>{
-
+public class ApplicationVersionController extends AbstractConfmanController<ApplicationVersion, ApplicationVersionDto, Long>{
+    @Autowired
     private ApplicationVersionFacade applicationVersionFacade;
 
     @Autowired
     private ApplicationFacade applicationFacade;
 
     @Autowired
-    public ApplicationVersionWebController(ApplicationVersionFacade genericFacade) {
+    public ApplicationVersionController(ApplicationVersionFacade genericFacade) {
         super(genericFacade, ApplicationVersionDto.class, ApplicationVersion.class);
         this.applicationVersionFacade = genericFacade;
     }
 
-    @RequestMapping("application/{id}")
-    public List<ApplicationVersionDto> getByApp(@PathVariable Long id) {
+    @RequestMapping("/application/{id}")
+    public List<ApplicationVersionDto> getByIdApp(@PathVariable Long id) {
         return applicationFacade.findApplicationVersionByIdApp(id).stream().map(instance -> new ApplicationVersionDto(instance)).collect(Collectors.toList());
     }
 

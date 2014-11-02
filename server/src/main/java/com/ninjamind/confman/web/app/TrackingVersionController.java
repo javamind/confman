@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping(value = "/app/trackingversion")
-public class TrackingVersionWebController {
+public class TrackingVersionController {
 
     @Autowired
     private ApplicationFacade applicationFacade;

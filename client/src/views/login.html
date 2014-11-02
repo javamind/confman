@@ -1,0 +1,34 @@
+<md-content ng-controller="loginCtrl">
+    <div class="container-fluid">
+        <h1>Centralize your app's parameters with Confman</h1>
+
+
+        <div class="row">
+            <div class="col-md-3 confman-image">
+                <img src="img/confman500.png">
+            </div>
+            <div class="col-md-9">
+                <p>&nbsp;</p>
+                <b>This feature is secured. You need to sign in to continue</b>
+
+                <div class="alert alert-danger" ng-show="authenticationError" translate="login.messages.error.authentication">
+                    <strong>Authentication failed!</strong> Please check your credentials and try again.
+                </div>
+                <form class="form" role="form">
+                    <div class="form-group">
+                        <label for="username" translate="global.form.username">Login</label>
+                        <input type="text" class="form-control" id="username" placeholder="{{'global.form.username.placeholder' | translate}}" ng-model="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" translate="login.form.password">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="{{'login.form.password.placeholder' | translate}}"
+                               ng-model="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary" ng-click="login()" translate="login.form.button">Authenticate</button>
+                </form>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</md-content>

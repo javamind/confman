@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping(value = "/app/parametervalue")
-public class ParameterValueWebController {
+public class ParameterValueController {
 
     @Autowired
     @Qualifier("parameterValueFacade")

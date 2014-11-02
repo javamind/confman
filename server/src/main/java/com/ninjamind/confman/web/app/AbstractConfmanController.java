@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * @author Guillaume EHRET
  */
 @RestController
-public abstract class AbstractConfmanWebController<
+public abstract class AbstractConfmanController<
         E extends AbstractConfManEntity,
         D extends AbstractConfManDto,
         ID extends Serializable> {
@@ -29,7 +29,7 @@ public abstract class AbstractConfmanWebController<
     private Class<D> dtoClass;
     private Class<E> doClass;
 
-    public AbstractConfmanWebController(GenericFacade<E, ID, ?> genericFacade, Class<D> dtoClass, Class<E> doClass) {
+    public AbstractConfmanController(GenericFacade<E, ID, ?> genericFacade, Class<D> dtoClass, Class<E> doClass) {
         this.genericFacade = genericFacade;
         this.dtoClass = dtoClass;
         this.doClass = doClass;

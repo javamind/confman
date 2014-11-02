@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping(value = "/app/softwaresuite")
-public class SoftwareSuiteWebController {
+public class SoftwareSuiteController {
     @Autowired
     @Qualifier("softwareSuiteFacade")
     private SoftwareSuiteFacade genericFacade;

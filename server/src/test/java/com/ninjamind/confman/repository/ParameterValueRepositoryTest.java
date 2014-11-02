@@ -3,7 +3,6 @@ package com.ninjamind.confman.repository;
 import com.ninja_squad.dbsetup.DbSetup;
 import com.ninja_squad.dbsetup.destination.DataSourceDestination;
 import com.ninja_squad.dbsetup.operation.Operation;
-import com.ninjamind.confman.ConfmanApplication;
 import com.ninjamind.confman.config.PersistenceConfig;
 import com.ninjamind.confman.domain.PaginatedList;
 import com.ninjamind.confman.domain.ParameterValue;
@@ -11,17 +10,18 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import static com.ninja_squad.dbsetup.Operations.sequenceOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Test of {@link ParameterValueRepositoryImpl}
+ * Test of {@link ParameterValueRepository}
  *
  * @author Guillaume EHRET
  */
@@ -33,7 +33,8 @@ public class ParameterValueRepositoryTest {
     private DataSource dataSource;
 
     @Autowired
-    private ParameterValueRepositoryImpl parameterValueRepository;
+    @Qualifier("parameterValueRepository")
+    private PaginatedEntityRepository<ParameterValue, Long> parameterValueRepository;
 
     @Before
     public void setUp() {
@@ -56,17 +57,17 @@ public class ParameterValueRepositoryTest {
 
     @Test(expected = NullPointerException.class)
     public void shouldThrowNullPointerExceptionWhenFindParameterValueByIdAppWithNoPaginatedList() {
-        parameterValueRepository.findByCriteria(null, new ParameterValueSearchBuilder());
+        parameterValueRepository.findParamsByCriteria(null, new ParameterValueSearchBuilder());
     }
 
     @Test(expected = NullPointerException.class)
     public void shouldThrowNullPointerExceptionWhenFindParameterValueByIdAppWithNoCriteria() {
-        parameterValueRepository.findByCriteria(new PaginatedList(), null);
+        parameterValueRepository.findParamsByCriteria(new PaginatedList(), null);
     }
 
     @Test
     public void shouldFindParameterValueWhenCriteriaIsValid() {
-        assertThat(parameterValueRepository.findByCriteria(
+        assertThat(parameterValueRepository.findParamsByCriteria(
                 new PaginatedList(),
                 new ParameterValueSearchBuilder()
                         .setCode(".nam")
@@ -82,7 +83,7 @@ public class ParameterValueRepositoryTest {
 
     @Test
     public void shouldFindAllParameterValueWhenNoCriteriaIsDefined() {
-        assertThat(parameterValueRepository.findByCriteria(
+        assertThat(parameterValueRepository.findParamsByCriteria(
                 new PaginatedList(),
                 new ParameterValueSearchBuilder()))
                 .hasSize(9);
@@ -90,7 +91,7 @@ public class ParameterValueRepositoryTest {
 
     @Test
     public void shouldFindParameterValuePaginated() {
-        PaginatedList<ParameterValue> list = parameterValueRepository.findByCriteria(
+        PaginatedList<ParameterValue> list = parameterValueRepository.findParamsByCriteria(
                 new PaginatedList().setCurrentPage(2).setNbElementByPage(3),
                 new ParameterValueSearchBuilder().setCode("pagin"));
 
@@ -100,7 +101,7 @@ public class ParameterValueRepositoryTest {
 
     @Test
     public void shouldFindNoParameterValueIfPageIsTooHigh() {
-        PaginatedList<ParameterValue> list = parameterValueRepository.findByCriteria(
+        PaginatedList<ParameterValue> list = parameterValueRepository.findParamsByCriteria(
                 new PaginatedList().setCurrentPage(8).setNbElementByPage(3),
                 new ParameterValueSearchBuilder().setCode("pagin"));
 

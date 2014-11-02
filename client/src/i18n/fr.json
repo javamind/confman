@@ -1,0 +1,53 @@
+{
+    "global": {
+        "menu": {
+            "home": "Accueil",
+            "account": {
+                "password": "Mot de passe",
+                "login": "Authentifier",
+                "logout": "Se déconnecter",
+                "apidocs": "API"
+            },
+            "language": "Langage"
+        },
+        "form": {
+            "username": "Login",
+            "username.placeholder": "Votre login",
+            "newpassword": "Nouveau mot de passe",
+            "newpassword.placeholder": "Nouveau mot de passe",
+            "confirmpassword": "Confirmation mot de passe",
+            "confirmpassword.placeholder": "Confirmation du nouveau mot de passe"
+        },
+        "messages": {
+            "error": {
+                "dontmatch" : "The password and its confirmation do not match!"
+            },
+            "validate": {
+                "newpassword": {
+                    "required": "Your password is required.",
+                    "minlength": "Your password is required to be at least 5 characters",
+                    "maxlength": "Your password cannot be longer than 50 characters",
+                    "strength": "Password strength:"
+                },
+                "confirmpassword": {
+                    "required": "Your confirmation password is required.",
+                    "minlength": "Your confirmation password is required to be at least 5 characters",
+                    "maxlength": "Your confirmation password cannot be longer than 50 characters"
+                }
+            }
+        }
+    },
+    "login": {
+        "title": "Authentification",
+        "form": {
+            "password": "Mot de passe",
+            "password.placeholder": "Votre mot de passe",
+            "button": "Authentifier"
+        },
+        "messages": {
+            "error": {
+                "authentication": "<strong>Authentication failed!</strong> Please check your credentials and try again."
+            }
+        }
+    }
+}

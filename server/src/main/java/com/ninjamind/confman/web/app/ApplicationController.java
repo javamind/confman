@@ -19,12 +19,12 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping(value = "/app/application")
-public class ApplicationWebController extends AbstractConfmanWebController<Application, ApplicationDto, Long>{
+public class ApplicationController extends AbstractConfmanController<Application, ApplicationDto, Long>{
     @Autowired
     private ApplicationFacade applicationFacade;
 
     @Autowired
-    public ApplicationWebController(ApplicationFacade genericFacade) {
+    public ApplicationController(ApplicationFacade genericFacade) {
         super(genericFacade, ApplicationDto.class, Application.class);
         this.applicationFacade=genericFacade;
     }

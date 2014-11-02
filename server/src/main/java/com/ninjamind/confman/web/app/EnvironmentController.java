@@ -19,13 +19,13 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequestMapping(value = "/app/environment")
-public class EnvironmentWebController extends AbstractConfmanWebController<Environment, EnvironmentDto, Long>{
+public class EnvironmentController extends AbstractConfmanController<Environment, EnvironmentDto, Long>{
 
     @Autowired
     private ApplicationFacade applicationFacade;
 
     @Autowired
-    public EnvironmentWebController(EnvironmentFacade genericFacade) {
+    public EnvironmentController(EnvironmentFacade genericFacade) {
         super(genericFacade, EnvironmentDto.class, Environment.class);
     }
 

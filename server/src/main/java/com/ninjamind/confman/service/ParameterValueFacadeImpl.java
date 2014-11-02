@@ -12,6 +12,7 @@ import com.ninjamind.confman.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +32,8 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
     @Autowired
     TrackingVersionFacade trackingVersionFacade;
     @Autowired
-    private ParameterValueRepository parameterValueRepository;
+    @Qualifier("parameterValueRepository")
+    private PaginatedEntityRepository<ParameterValue, Long> parameterValueRepository;
     @Autowired
     private TrackingVersionRepository trackingVersionRepository;
     @Autowired
@@ -58,7 +60,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
                 new PaginatedList<>()
                         .setCurrentPage(Objects.firstNonNull(page, 1))
                         .setNbElementByPage(Objects.firstNonNull(nbEltPerPage, PaginatedList.NB_DEFAULT));
-        return parameterValueRepository.findByCriteria(list, criteria);
+        return parameterValueRepository.findParamsByCriteria(list, criteria);
     }
 
     @Override
@@ -105,7 +107,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
             //If not it's now blocked
             version.setBlocked(true);
 
-            List<ParameterValue> parameterValuesInDb = parameterValueRepository.findByCriteria(
+            List<ParameterValue> parameterValuesInDb = parameterValueRepository.findParamsByCriteria(
                     new PaginatedList<>().setNbElementByPage(PaginatedList.NB_MAX),
                     new ParameterValueSearchBuilder().setIdTrackingVersion(version.getId()));
 
@@ -118,9 +120,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
             //Now we have to modify all the paramaters values
             parameterValues
                     .stream()
-                    .forEach(p -> parameterValueRepositoryGeneric.save(
-                            parameterValueRepositoryGeneric.getOne(p.getId()).setLabel(p.getLabel()))
-                    );
+                    .forEach(p -> parameterValueRepositoryGeneric.save(parameterValueRepositoryGeneric.getOne(p.getId()).setLabel(p.getLabel())));
         }
     }
 
@@ -220,7 +220,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
         //If a reference tracking is find we search the param linked
         LOG.info("If a reference tracking is find we search the param linked for id tracking " + referenceTrackingVersion.orElse(null));
         Optional<List<ParameterValue>> parameterValuesRef =
-                referenceTrackingVersion.map(ref -> parameterValueRepository.findByCriteria(
+                referenceTrackingVersion.map(ref -> parameterValueRepository.findParamsByCriteria(
                         new PaginatedList<>().setNbElementByPage(PaginatedList.NB_MAX),
                         new ParameterValueSearchBuilder().setIdTrackingVersion(ref.getId())));
 
@@ -421,6 +421,6 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
             criteria.setIdEnvironment(environment.getId());
         }
 
-        return parameterValueRepository.findByCriteria(new PaginatedList<>().setNbElementByPage(PaginatedList.NB_MAX), criteria);
+        return parameterValueRepository.findParamsByCriteria(new PaginatedList<>().setNbElementByPage(PaginatedList.NB_MAX), criteria);
     }
 }

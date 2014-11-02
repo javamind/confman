@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(value = "/app/parameter")
-public class ParameterWebController extends AbstractConfmanWebController<Parameter, ParameterDto, Long>{
+public class ParameterController extends AbstractConfmanController<Parameter, ParameterDto, Long>{
 
     @Autowired
-    public ParameterWebController(ParameterFacade genericFacade) {
+    public ParameterController(ParameterFacade genericFacade) {
         super(genericFacade, ParameterDto.class, Parameter.class);
     }
 

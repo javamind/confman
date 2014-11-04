@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
+import org.springframework.security.web.authentication.RememberMeServices;
 
 /**
  * @author Guillaume EHRET
@@ -39,6 +40,9 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService userDetailsService;
+
+    @Autowired
+    private RememberMeServices rememberMeServices;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -65,6 +69,10 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                     .authenticationEntryPoint(authenticationEntryPoint)
                     .and()
+                .rememberMe()
+                    .rememberMeServices(rememberMeServices)
+                    .key(env.getProperty("confman.security.rememberme.key"))
+                .and()
                 .formLogin()
                     .loginProcessingUrl("/app/authentication")
                     .successHandler(ajaxAuthenticationSuccessHandler)
@@ -85,6 +93,8 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
                     .frameOptions().disable()
                     .authorizeRequests()
                         .antMatchers("/app/authenticated").permitAll()
+                        //TODO
+                        .antMatchers("/app/account").permitAll()
                         .antMatchers("/app/**").authenticated()
                         .antMatchers("/metrics/**").hasAuthority(AuthoritiesConstants.ADMIN)
                         .antMatchers("/health/**").hasAuthority(AuthoritiesConstants.ADMIN)

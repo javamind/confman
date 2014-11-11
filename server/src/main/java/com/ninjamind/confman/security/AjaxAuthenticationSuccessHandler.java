@@ -1,6 +1,7 @@
 package com.ninjamind.confman.security;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,7 @@ public class AjaxAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
                                         Authentication authentication)
             throws IOException, ServletException {
 
+        //SecurityContextHolder.setContext(authentication.get);
         response.setStatus(HttpServletResponse.SC_OK);
     }
 }

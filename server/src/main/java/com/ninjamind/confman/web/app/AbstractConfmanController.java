@@ -25,7 +25,7 @@ public abstract class AbstractConfmanController<
         D extends AbstractConfManDto,
         ID extends Serializable> {
 
-    private GenericFacade<E, ID, ?> genericFacade;
+    protected GenericFacade<E, ID, ?> genericFacade;
     private Class<D> dtoClass;
     private Class<E> doClass;
 
@@ -40,7 +40,7 @@ public abstract class AbstractConfmanController<
      * @param entity
      * @return
      */
-    private D convertToDto(E entity){
+    protected D convertToDto(E entity){
         try {
             return dtoClass.getConstructor(doClass).newInstance(entity);
         }

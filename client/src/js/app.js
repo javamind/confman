@@ -13,7 +13,7 @@ confman.constant('constants',
     {
         //In dev we use grunt serve on port 9000 so we can't construct url easily
         urlserver: document.location.port==='9000' ? 'http://localhost:8082/' : document.location.origin + '/',
-        urlclient: document.location.port==='9000' ? 'http://localhost:9000/' : document.location.origin + '/confman'
+        urlclient: document.location.port==='9000' ? 'http://localhost:9000/' : document.location.origin + '/confman/'
     }
 );
 

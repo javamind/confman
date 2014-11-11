@@ -21,7 +21,8 @@ angular.module('confman').factory('Session', function () {
 angular.module('confman').factory('AuthenticationSharedService', function ($rootScope, $http, authService, Session, constants) {
     return {
         login: function (param) {
-            var data ="j_username=" + encodeURIComponent(param.username) +"&j_password=" + encodeURIComponent(param.password) +"&_spring_security_remember_me=" + param.rememberMe +"&submit=Login";
+            var data ="username=" + encodeURIComponent(param.username) +"&password=" + encodeURIComponent(param.password) +"&_spring_security_remember_me=" + param.rememberMe +"&submit=Login";
+            alert(constants.urlserver + 'app/authentication' + ' iii=' + document.location.origin);
             $http
                 .post(constants.urlserver + 'app/authentication', data, {
                     headers: {
@@ -29,10 +30,12 @@ angular.module('confman').factory('AuthenticationSharedService', function ($root
                     },
                     ignoreAuthModule: 'ignoreAuthModule'
                 })
-                .success(function () {
+                .success(function (datazz) {
+                    alert("auth ok precision" + datazz);
                     $http.get(constants.urlserver + 'app/account')
                         .success(
                             function(data) {
+                                alert("session");
                                 Session.create(data.login, data.firstName, data.lastName, data.email, data.roles);
                                 $rootScope.account = Session;
                                 authService.loginConfirmed(data);

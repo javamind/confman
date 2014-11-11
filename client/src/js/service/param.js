@@ -50,7 +50,7 @@ angular.module('confman')
                                 var finalList = [];
                                 $scope.liste2 = data2s.list;
                                 var cpt=1;
-                                //We need a new list where all the params are aligned
+                     1           //We need a new list where all the params are aligned
                                 $scope.liste1.forEach(function(elt1){
                                     var eltBinded = $scope.liste2.filter(function (elt2){
                                         return elt2.code === elt1.code;

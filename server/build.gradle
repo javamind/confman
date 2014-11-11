@@ -5,7 +5,7 @@ buildscript {
         flywayVersion = '3.0'
         oracleDriverVersion = '11.2.0.4'
         postgresqlDriverVersion = '9.3-1102-jdbc41'
-        springBootVersion = '1.2.0.M1'
+        springBootVersion = '1.2.0.M2'
     }
 
     repositories {
@@ -20,8 +20,10 @@ buildscript {
         classpath "org.flywaydb:flyway-gradle-plugin:${flywayVersion}"
         classpath "com.oracle:ojdbc6:${oracleDriverVersion}"
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath 'org.springframework:springloaded:1.2.0.RELEASE'
     }
 }
+
 
 apply plugin: 'java'
 apply plugin: 'idea'
@@ -56,9 +58,11 @@ repositories {
 
 idea {
     module {
-        inheritOutputDirs = true
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
     }
 }
+
 
 dependencies {
     compile project(':client')

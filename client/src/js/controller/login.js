@@ -16,7 +16,8 @@ angular.module('confman').controller('loginCtrl', ['$rootScope','$scope', '$loca
         $scope.login = function () {
             AuthenticationSharedService.login({
                 username: $scope.username,
-                password: $scope.password
+                password: $scope.password,
+                rememberMe: true
             });
         }
 

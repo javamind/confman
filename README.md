@@ -7,8 +7,37 @@ Our need is only to use a simple configuration manager. One repository where all
 
 So we decided to develop a very simple configuration manager and share it for every people who have the same needing.
 
-Build confman
+You want to particpate ?
 ==========
+The project is open source on the MIT License (MIT)
+
+    Copyright (c) <year> <copyright holders>
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+
+So let's go
+
+Build confman with Gradle
+==========
+
+Gradles's settings
+------------
 The project lifecycle is managed with Gradle. To configure gradle you can add a gradle.properties in the root of the project. For example
 
     org.gradle.daemon=true
@@ -44,10 +73,10 @@ You can easily add a new database. For this, you have to complete the file gradl
     db.[myOwnDatabase].hibernate.dialect=...
     db.[myOwnDatabase].hibernate.show_sql=...
 
-When you launch gradle you have to specify your database name. For example gradlew.bat -Pdatabase=oracle clean build
+When you launch gradle you have to specify your database name. For example gradlew.bat -Pdatabase=oracle clean build. The default database is PostgreSql, but you can easily use Oracle or add your own.
 
-The default database is PostgreSql, but you can easily use Oracle or add your own.
-
+Create the Confman's database
+------------
 To manage database scripts we use Flyway Db (http://flywaydb.org/). With gradle you can use
 
 To clean the database use
@@ -59,6 +88,9 @@ To migrate the database use
 To see all the revisions use
     gradlew flywayInfo -i
 
+Build confman
+------------
+The project have 2 parts : a client and a server
 
 Install confman
 ==========

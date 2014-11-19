@@ -30,7 +30,6 @@ apply plugin: 'idea'
 apply plugin: 'flyway'
 apply plugin: 'maven'
 apply plugin: 'spring-boot'
-//apply plugin: 'war'
 
 
 group = 'com.ninjamind'
@@ -72,7 +71,6 @@ dependencies {
     compile("com.github.zafarkhaja:java-semver:0.7.2")
     compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
     compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
-    compile("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
     compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
 
     testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
@@ -109,13 +107,6 @@ if (project.properties.containsKey("flyway.schemas") && !project.properties.cont
 project.ext['flyway.url'] = project.property("db." + myDataBase + ".url")
 project.ext['flyway.locations'] = "db.migration." + myDataBase
 
-//Artifact and release build.
-//war {
-//    baseName = 'confman'
-//    version = ''
-//    exclude('**/db/**')
-//    exclude('*.properties')
-//}
 jar {
     baseName = 'confman'
     manifest {
@@ -190,3 +181,9 @@ task copyForDelivery(dependsOn: createConfFliwayForDelivery) << {
 
 //We have to make the job before the jar completude
 assemble.dependsOn copyForDelivery
+
+bootRun {
+    if ( project.hasProperty('jvmArgs') ) {
+        jvmArgs project.jvmArgs.split('\\s+')
+    }
+}

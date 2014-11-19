@@ -3,8 +3,8 @@
 /**
  * Menu controller
  */
-angular.module('confman').controller('appCtrl', ['$scope', '$timeout', '$mdSidenav', '$http', 'constants',
-    function($scope, $timeout, $mdSidenav, $http, constants) {
+angular.module('confman').controller('appCtrl', ['$scope', '$timeout', '$mdSidenav', '$http', 'constants','AuthenticationSharedService',
+    function($scope, $timeout, $mdSidenav, $http, constants, AuthenticationSharedService) {
         var leftNav;
         $timeout(function() {
             leftNav = $mdSidenav('left');
@@ -14,6 +14,9 @@ angular.module('confman').controller('appCtrl', ['$scope', '$timeout', '$mdSiden
         };
         $scope.close = function() {
             leftNav.close();
+        };
+        $scope.logout = function() {
+            AuthenticationSharedService.logout();
         };
         $scope.isConfmanPageSelected = function(pages) {
             if($scope.currentPage) {

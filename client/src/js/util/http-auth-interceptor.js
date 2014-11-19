@@ -59,6 +59,7 @@
     });
     angular.module('http-auth-interceptor').config(['$httpProvider', function ($httpProvider) {
 
+
         // alternatively, register the interceptor via an anonymous factory
         $httpProvider.interceptors.push(['$q', '$rootScope', 'httpBuffer', function($q, $rootScope, httpBuffer) {
             return {

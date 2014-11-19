@@ -35,7 +35,10 @@ confman.constant('LANGUAGES', {
 /**
  * Routes definitions
  */
-confman.config(function ($routeProvider, $translateProvider, constants, USER_ROLES) {
+confman.config(function ($routeProvider, $translateProvider, $httpProvider, constants, USER_ROLES) {
+    //Application use creadentials
+    $httpProvider.defaults.withCredentials = true;
+
     $routeProvider
         .when('/', {
             templateUrl: 'views/main.html',
@@ -157,12 +160,13 @@ confman.run(function($rootScope, $location, $http, AuthenticationSharedService, 
     $rootScope.$on('$routeChangeStart', function (event, next) {
         $rootScope.isAuthorized = false;//AuthenticationSharedService.isAuthorized;
         $rootScope.userRoles = USER_ROLES;
-        AuthenticationSharedService.valid(next.access.authorizedRoles);
+        if (next.acces && next.access.authorizedRoles) {
+            AuthenticationSharedService.valid(next.access.authorizedRoles);
+        }
     });
 
     // Call when the the client is confirmed
     $rootScope.$on('event:auth-loginConfirmed', function(data) {
-        alert("conected")
         $rootScope.authenticated = true;
         if ($location.path() === "/login") {
             var search = $location.search();

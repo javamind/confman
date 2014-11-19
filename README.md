@@ -63,3 +63,17 @@ To see all the revisions use
 Install confman
 ==========
 To use Confman you have to create a new schema in your favorite DBMS. For the moment postgreSQL is the default database but you can use Oracle or configure your own.
+
+
+To launch the app in debug mode you have to use this command
+     ./gradlew bootRun -x client:npmInstall -x client:npmBuild -PjvmArgs="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 -Dspring.security.strategy=MODE_GLOBAL"
+
+
+-Dserver.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005"
+-Drun.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005"
+-Drun.jvmArguments="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
+run {
+    jvmArgs = ['-Xdebug', '-Xrunjdwp:server=y,transport=dt_socket,address=4000,suspend=y']
+}
+
+spring.security.strategy=MODE_GLOBAL

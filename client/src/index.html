@@ -8,8 +8,8 @@
     <link rel="shortcut icon" href="img/favicon.ico"/>
     <!-- build:css(src) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="lib/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="lib/angular-material/angular-material.css"/>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -24,6 +24,7 @@
     <md-toolbar class="md-theme-light">
         <div class="confman-menu-title md-theme-light">
             <img src="img/icone64.png"/>
+
             <h2 style="top:20px">&nbsp;Confman</h2>
         </div>
     </md-toolbar>
@@ -31,36 +32,60 @@
     <md-content flex>
         <p>&nbsp;</p>
         <a class="menu-item menu-title" href="index.html" ng-click="toggleLeft()"
-           ng-class="{active : isConfmanPageSelected(['home'])}">Home</a>
+           ng-class="{active : isConfmanPageSelected(['home'])}"><span translate="global.menu.home">Home</span></a>
 
-        <button class="menu-item menu-title" ng-class="{active : isConfmanPageSelected(['env','soft','app'])}">
-            Settings
+        <button class="menu-item menu-title" ng-class="{active : isConfmanPageSelected(['env','soft','app'])}"
+                translate="global.menu.settings">
+        Settings
         </button>
         <a class="menu-item menu-sub-item" href="#/environment" ng-click="toggleLeft()"
            ng-class="{active : isConfmanPageSelected(['env'])}">
-            <span>Environment</span>
-
+            <span translate="global.menu.environment">Environment</span>
         </a>
         <a class="menu-item menu-sub-item" href="#/softwaresuite" ng-click="toggleLeft()"
-           ng-class="{active : isConfmanPageSelected(['soft'])}">Software suite</a>
+           ng-class="{active : isConfmanPageSelected(['soft'])}">
+            <span translate="global.menu.softwaresuite">Software suite</span>
+        </a>
         <a class="menu-item menu-sub-item" href="#/application" ng-click="toggleLeft()"
-           ng-class="{active : isConfmanPageSelected(['app'])}">Application</a>
+           ng-class="{active : isConfmanPageSelected(['app'])}">
+            <span translate="global.menu.application">Application</span>
+        </a>
 
         <button class="menu-item menu-title"
-                ng-class="{active : isConfmanPageSelected(['confcreate','confcomp','confsearch'])}">Configuration
+                ng-class="{active : isConfmanPageSelected(['confcreate','confcomp','confsearch'])}"
+                translate="global.menu.config">
+            Configuration
         </button>
         <a class="menu-item menu-sub-item" href="#/config/search" ng-click="toggleLeft()"
-           ng-class="{active : isConfmanPageSelected(['confsearch'])}">Find</a>
+           ng-class="{active : isConfmanPageSelected(['confsearch'])}">
+            <span translate="global.menu.find">Find</span>
+        </a>
         <a class="menu-item menu-sub-item" href="#/config/create" ng-click="toggleLeft()"
-           ng-class="{active : isConfmanPageSelected(['confcreate'])}">Create</a>
+           ng-class="{active : isConfmanPageSelected(['confcreate'])}">
+            <span translate="global.menu.create">Create</span>
+        </a>
         <a class="menu-item menu-sub-item" href="#/config/compare" ng-click="toggleLeft()"
-           ng-class="{active : isConfmanPageSelected(['confcomp'])}">Compare</a>
+           ng-class="{active : isConfmanPageSelected(['confcomp'])}">
+            <span translate="global.menu.compare"> Compare</span>
+        </a>
 
 
-        <div class="menu-item menu-sub-item" ng-controller="langCtrl">
-            <a href="javascript:;" ng-click="changeLanguage('en')"><img src="img/flag/flag_en.svg" style="max-height: 18px"></a>
-            <a href="javascript:;" ng-click="changeLanguage('fr')"><img src="img/flag/flag_fr.svg" style="max-height: 18px"></a>
+        <button class="menu-item menu-title" translate="global.menu.admin">
+            Administration
+        </button>
+        <div class="menu-item menu-sub-item" >
+            <a href="javascript:;" ng-click="changeLanguage('fr')" ng-controller="langCtrl">
+                <img src="img/flag/flag_fr.svg" style="height: 16px; width: 18px">
+                <span translate="global.menu.language.french">Afficher en français</span>
+            </a>
         </div>
+        <div class="menu-item menu-sub-item" >
+            <a href="javascript:;" ng-click="changeLanguage('en')" ng-controller="langCtrl">
+                <img src="img/flag/flag_en.svg" style="height: 16px; width: 18px">
+                <span translate="global.menu.language.english">Display in english</span>
+            </a>
+        </div>
+
     </md-content>
 </md-sidenav>
 
@@ -73,13 +98,18 @@
 
             <span ng-bind="currentPage.name || 'Confman'" style="margin-left: 9px"></span>
 
-            <div class="md-display-flex md-flex menu_toolbox">
-                <!-- use up the third space so the button is on the right -->
-            </div>
+            <span flex></span>
+
             <md-button class="md-button" style="position: static; display: block;"
                        ng-show="currentPage.actionbar"
                        ng-repeat="act in currentPage.actionbar" ng-click="act.action()">
                 <img ng-src="img/icon/{{act.icon}}.svg" style="width: 24px; height: 24px;"/>
+            </md-button>
+            <md-button class="md-button md-button-fab-bottom-right" ng-click="logout()">
+                <md-tooltip>
+                    Logout
+                </md-tooltip>
+                <img ng-src="img/icon/ic_logout_24px.png"/>
             </md-button>
         </div>
     </md-toolbar>

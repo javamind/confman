@@ -2,13 +2,25 @@
     "global": {
         "menu": {
             "home": "Accueil",
+            "settings": "Paramètres",
+            "environment": "Environement",
+            "application": "Application",
+            "softwaresuite": "Ensemble application",
+            "config": "Configuration",
+            "find": "Rechercher",
+            "create": "Créer",
+            "compare": "Comparer",
+            "admin": "Administration",
+            "language": {
+                "french":"Afficher en français",
+                "english":"Display in english"
+            },
             "account": {
                 "password": "Mot de passe",
                 "login": "Authentifier",
                 "logout": "Se déconnecter",
                 "apidocs": "API"
-            },
-            "language": "Langage"
+            }
         },
         "form": {
             "username": "Login",

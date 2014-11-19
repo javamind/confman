@@ -72,12 +72,6 @@ public class PersistenceConfig {
     }
 
     @Bean
-    public Integer serverPort(){
-        return Integer.valueOf(env.getProperty("server.port", "8082"));
-    }
-
-
-    @Bean
     public PaginatedEntityRepository<ParameterValue, Long> parameterValueRepository(){
         return new ParameterValueRepository();
     }

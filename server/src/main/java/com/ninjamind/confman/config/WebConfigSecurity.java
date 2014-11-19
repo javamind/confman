@@ -107,6 +107,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
                     .and()
                 .logout()
                     .logoutUrl("/app/logout")
+                    .logoutSuccessUrl("/")
                     .logoutSuccessHandler(ajaxLogoutSuccessHandler)
                     .deleteCookies("JSESSIONID")
                     .permitAll()
@@ -138,6 +139,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 
     @EnableGlobalMethodSecurity(prePostEnabled = true, jsr250Enabled = true)
     private static class GlobalSecurityConfiguration extends GlobalMethodSecurityConfiguration {
+
     }
 
 

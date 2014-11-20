@@ -4,7 +4,8 @@
 angular.module('confman').factory('LanguageService', function ($http, $translate, LANGUAGES) {
     return {
         getBy: function(language) {
-            if (language == undefined) {
+
+            if (!language) {
                 language = 'en';
             }
 

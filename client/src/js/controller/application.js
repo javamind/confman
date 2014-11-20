@@ -2,15 +2,15 @@
 /**
  * Controller linked to the env list
  */
-angular.module('confman').controller('applicationCtrl', ['$rootScope', '$scope', '$modal', '$location', 'Application','SoftwareSuite',
-    function ($rootScope, $scope, $modal, $location, Application, SoftwareSuite) {
+angular.module('confman').controller('applicationCtrl', ['$rootScope', '$scope', '$modal', '$location','$filter', 'Application','SoftwareSuite',
+    function ($rootScope, $scope, $modal, $location, $filter, Application, SoftwareSuite) {
         $rootScope.callbackOK();
 
         //Page definition
         $rootScope.currentPage = {
             code: 'app',
-            name: 'Applications',
-            description: 'List of yours apps',
+            name: $filter('translate')('applications.title'),
+            description: $filter('translate')('applications.description'),
             icon: 'ic_settings_24px'
         };
 

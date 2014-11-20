@@ -30,9 +30,15 @@
             "confirmpassword": "New password confirmation",
             "confirmpassword.placeholder": "Confirm the new password"
         },
+        "verb":{
+            "create": "Create",
+            "update": "Update"
+        },
         "messages": {
             "error": {
-                "dontmatch" : "The password and its confirmation do not match!"
+                "dontmatch" : "The password and its confirmation do not match!",
+                "coderequired" : "Code is required",
+                "labelrequired" : "Label is required"
             },
             "validate": {
                 "newpassword": {
@@ -59,8 +65,33 @@
         },
         "messages": {
             "error": {
-                "authentication": "<strong>Authentication failed!</strong> Please check your credentials and try again."
+                "authentication": "<strong>Authentication failed!</strong> Please check your credentials and try again.",
+                "required" : "<strong>This feature is secured. You need to sign in to continue</strong>"
+            }
+        }
+    },
+    "home" : {
+        "title": "Confman",
+        "description": "",
+        "head": "Centralize your app&#39;s parameters with Confman",
+        "text1": "Le principe de Confman est simple, offrir un dépôt centralisé pour tous les paramètres de vos applications pour chacun des environnements. Vous pouvez ensuite vous interfacer à Confman via les plugins offerts. Pour le moment nous avons un plugin maven et une API Java (bientôt suivront une intéraction via Gradle, ligne de commande, Grunt JS)",
+        "text2": "Le but de Confman est de vous aider dans la gestion des modifications des paramètres sur chacun de vos environnements, sur chacune des instances des applications tout en répondant aux exigences de développement et de la production. Confman est une application à la croisée du développement et de l&#39;opérationel."
+    },
+    "applications" : {
+        "title": "Applications",
+        "description" : "List of yours apps"
+    },
+    "env" : {
+        "title": "Environment",
+        "description" : "You can use several environments to offer different context for developers, testers, the final users... For example you can have development, staging, production...",
+        "nb" : "nb environment",
+        "name" : "environment",
+        "messages": {
+            "error": {
+                "required" :"Your form is not submitted : code and label are required",
+                "used" :"The code  is already in use"
             }
         }
     }
+
 }

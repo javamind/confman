@@ -30,9 +30,15 @@
             "confirmpassword": "Confirmation mot de passe",
             "confirmpassword.placeholder": "Confirmation du nouveau mot de passe"
         },
+        "verb":{
+          "create": "Créer",
+            "update": "Modifier "
+        },
         "messages": {
             "error": {
-                "dontmatch" : "The password and its confirmation do not match!"
+                "dontmatch" : "The password and its confirmation do not match!",
+                "coderequired" : "Le code est obligatoire",
+                "labelrequired" : "Le libellé est obligatoire"
             },
             "validate": {
                 "newpassword": {
@@ -58,8 +64,33 @@
         },
         "messages": {
             "error": {
-                "authentication": "<strong>Authentication failed!</strong> Please check your credentials and try again."
+                "authentication": "<strong>Erreur lors de l&#39;authentification!</strong> Vérifiez vos identifiants et réessayez",
+                "required" : "<strong>Cette fonctionnalité est sécurisée. Vous devez vous identifier pour continuer</strong>"
+            }
+
+        }
+    },
+    "home" : {
+        "title": "Confman",
+        "head": "Centralize your app&#39;s parameters with Confman",
+        "text1": "Le principe de Confman est simple, offrir un dépôt centralisé pour tous les paramètres de vos applications pour chacun des environnements. Vous pouvez ensuite vous interfacer à Confman via les plugins offerts. Pour le moment nous avons un plugin maven et une API Java (bientôt suivront une intéraction via Gradle, ligne de commande, Grunt JS)",
+        "text2": "Le but de Confman est de vous aider dans la gestion des modifications des paramètres sur chacun de vos environnements, sur chacune des instances des applications tout en répondant aux exigences de développement et de la production. Confman est une application à la croisée du développement et de l&#39;opérationel."
+    },
+    "applications" : {
+        "title": "Applications",
+        "description" : "Liste des applications"
+    },
+    "env" : {
+        "title": "Environnement",
+        "description" : "Vous pouvez utiliser plusieurs environnements pour matérialiser vos différents contextes développement, test, production...",
+        "nb" : "nb environnement",
+        "name" : "environment",
+        "messages": {
+            "error": {
+                "required" :"Le formulaire n&#39;a pas été envoyé : le code et le libellé sont obligatoires",
+                "used" :"Le code est déjà utilisé"
             }
         }
     }
+
 }

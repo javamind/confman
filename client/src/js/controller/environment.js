@@ -3,16 +3,15 @@
 /**
  * Controller linked to the env list
  */
-angular.module('confman').controller('environmentCtrl', ['$rootScope', '$scope', '$modal', 'Environment',
-    function ($rootScope, $scope, $modal, Environment) {
+angular.module('confman').controller('environmentCtrl', ['$rootScope', '$scope', '$modal', '$filter', 'Environment',
+    function ($rootScope, $scope, $modal, $filter, Environment) {
         $rootScope.callbackOK();
 
         //Page definition
         $rootScope.currentPage = {
             code: 'env',
-            name : 'Environment',
-            description : 'You can use several environments to offer different context for developers, testers, the final users... ' +
-                'For example you can have development, staging, production...',
+            name : $filter('translate')('env.title'),
+            description : $filter('translate')('env.description'),
             icon : 'ic_settings_24px'
         };
 
@@ -23,14 +22,14 @@ angular.module('confman').controller('environmentCtrl', ['$rootScope', '$scope',
         //Actions
         $scope.update =  function (elt){
             $scope.entity = {
-                verb : 'Update environment',
+                verb : $filter('translate')('global.verb.update') + ' ' + $filter('translate')('env.name'),
                 content : elt,
                 selected : elt.id
             };
         };
         $scope.create =  function (){
             $scope.entity = {
-                verb : 'Create environment',
+                verb : $filter('translate')('global.verb.create') + ' ' + $filter('translate')('env.name'),
                 content : {},
                 selected : null
             };
@@ -64,12 +63,12 @@ angular.module('confman').controller('environmentCtrl', ['$rootScope', '$scope',
         };
         $scope.save =  function (form){
             if(form.$error.required){
-                $rootScope.setError('Your form is not submitted : code and label are required');
+                $rootScope.setError($filter('translate')('env.messages.error.required'));
                 return;
             }
             //We check code existence
             if(verify_code_unicity($scope.environments, $scope.entity.content)>0){
-                $rootScope.setError('The code [' + $scope.entity.content + '] is already in use');
+                $rootScope.setError($filter('translate')('env.messages.error.used'));
                 return;
             }
 

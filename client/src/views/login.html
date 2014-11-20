@@ -1,6 +1,6 @@
 <md-content ng-controller="loginCtrl">
     <div class="container-fluid">
-        <h1>Centralize your app's parameters with Confman</h1>
+        <h1 translate="home.head">Centralize your app's parameters with Confman</h1>
 
 
         <div class="row">
@@ -9,7 +9,7 @@
             </div>
             <div class="col-md-9">
                 <p>&nbsp;</p>
-                <b>This feature is secured. You need to sign in to continue</b>
+                <span translate="login.messages.error.required"><b>This feature is secured. You need to sign in to continue</b></span>
 
                 <div class="alert alert-danger" ng-show="authenticationError" translate="login.messages.error.authentication">
                     <strong>Authentication failed!</strong> Please check your credentials and try again.

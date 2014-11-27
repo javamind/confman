@@ -3,14 +3,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
 apply plugin: 'java'
 
 jar {
-    manifest {
-        attributes(
-                "Implementation-Title": project.name,
-                "Implementation-Version": project.version,
-                "Manifest-Version": "1.0",
-                "Confman-version": version
-        )
-    }
+
     from 'dist'
     eachFile { details ->
         details.path = details.path.startsWith('META-INF') ?: 'static/'+details.path

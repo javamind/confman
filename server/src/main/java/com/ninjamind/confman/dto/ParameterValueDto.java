@@ -17,6 +17,7 @@ public class ParameterValueDto extends AbstractConfManDto<ParameterValueDto, Par
     protected Long idApplication;
     protected String codeApplication;
     protected Long idParameter;
+    protected String labelParameter;
     protected Long idInstance;
     protected String codeInstance;
     protected Long idEnvironment;
@@ -43,6 +44,7 @@ public class ParameterValueDto extends AbstractConfManDto<ParameterValueDto, Par
         this.codeTrackingVersion = object.getCodeTrackingVersion();
         this.idEnvironment = object.getEnvironment().getId();
         this.codeEnvironment = object.getCodeEnvironment();
+        this.labelParameter = object.getLabelParameter();
         if(object.getInstance()!=null){
             this.idInstance = object.getInstance().getId();
             this.codeInstance = object.getCodeInstance();
@@ -105,6 +107,15 @@ public class ParameterValueDto extends AbstractConfManDto<ParameterValueDto, Par
 
     public ParameterValueDto setCodeTrackingVersion(String codeTrackingVersion) {
         this.codeTrackingVersion = codeTrackingVersion;
+        return this;
+    }
+
+    public String getLabelParameter() {
+        return labelParameter;
+    }
+
+    public ParameterValueDto setLabelParameter(String labelParameter) {
+        this.labelParameter = labelParameter;
         return this;
     }
 

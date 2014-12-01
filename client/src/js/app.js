@@ -38,6 +38,9 @@ confman.constant('LANGUAGES', {
 confman.config(function ($routeProvider, $translateProvider, $httpProvider, constants, USER_ROLES) {
     //Application use creadentials
     $httpProvider.defaults.withCredentials = true;
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    //delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
     $routeProvider
         .when('/', {

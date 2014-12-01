@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.RememberMeAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -117,6 +118,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
                 .headers()
                     .frameOptions().disable()
                 .authorizeRequests()
+                    .antMatchers(HttpMethod.OPTIONS, "/app/**").permitAll()//a  llow CORS option calls
                     .antMatchers("/app/authenticated").permitAll()
                     //TODO
                     .antMatchers("/app/account").permitAll()

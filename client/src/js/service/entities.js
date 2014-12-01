@@ -1,14 +1,16 @@
 'use strict';
 
 var restActions = {
-    'get':    {method:'GET'},
-    'save':   {method:'POST'},
-    'update': {method:'PUT'},
-    'query':  {method:'GET', isArray:true},
-    'delete': {method:'DELETE'}
+    'get':    {method:'GET', withCredentials: true},
+    'save':   {method:'POST', withCredentials: true},
+    'update': {method:'PUT', withCredentials: true},
+    'query':  {method:'GET', isArray:true, withCredentials: true},
+    'delete': {method:'DELETE', withCredentials: true},
+    'options': { method : 'OPTIONS', withCredentials: true }
 };
 
 angular.module('confman')
+
     .factory('Environment', function Environment($resource, constants) {
         return $resource(constants.urlserver + 'app/environment/:id', { id: '@_id' },restActions);
     })

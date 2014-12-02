@@ -28,9 +28,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'flyway'
-apply plugin: 'maven'
 apply plugin: 'spring-boot'
-
 
 group = 'com.ninjamind'
 version = '1.0.0-SNAPSHOT'
@@ -111,6 +109,8 @@ jar {
     baseName = 'confman'
     manifest {
         attributes(
+                "Implementation-Title": project.name,
+                "Implementation-Version": project.version,
                 "Manifest-Version": "1.0",
                 "Confman-version": version,
                 "Main-Class": "com.ninjamind.confman.ConfmanApplication",

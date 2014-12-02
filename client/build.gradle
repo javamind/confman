@@ -3,6 +3,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
 apply plugin: 'java'
 
 jar {
+
     from 'dist'
     eachFile { details ->
         details.path = details.path.startsWith('META-INF') ?: 'static/'+details.path
@@ -10,6 +11,7 @@ jar {
     // Jar has duplicate empty folders (see http://issues.gradle.org/browse/GRADLE-1830)
     // So we need to set includeEmptyDirs to false
     includeEmptyDirs = false
+
 }
 
 task npmInstall(type:Exec) {

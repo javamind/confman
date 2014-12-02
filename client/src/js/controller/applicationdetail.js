@@ -67,9 +67,7 @@ angular.module('confman').controller('applicationDetailCtrl',[
                         content: instance
                     }
                     $scope.ok = function (instance) {
-                        if (!instance.id) {
-                            callBackCreateInstance(instance)
-                        }
+                        callBackCreateInstance(instance)
                         $modalInstance.close(false);
                     }
                     $scope.cancel = function (instance) {
@@ -134,9 +132,7 @@ angular.module('confman').controller('applicationDetailCtrl',[
                         content: parameter
                     }
                     $scope.ok = function (parameter) {
-                        if (!parameter.id) {
-                            callBackCreateParameter(parameter)
-                        }
+                        callBackCreateParameter(parameter)
                         $modalInstance.close(false);
                     }
                     $scope.cancel = function () {
@@ -192,9 +188,7 @@ angular.module('confman').controller('applicationDetailCtrl',[
                         content: version
                     }
                     $scope.ok = function (version) {
-                        if (!version.id) {
-                            callBackCreateVersion(version)
-                        }
+                        callBackCreateVersion(version)
                         $modalInstance.close(false);
                     }
                     $scope.cancel = function () {
@@ -307,6 +301,7 @@ angular.module('confman').controller('applicationDetailCtrl',[
             });
             //callback dans lequel on fait la suppression
             modalInstance.result.then(function () {
+                alert("rr")
                 callback(entities.filter(function (elt) {
                     return !elt.deleted;
                 }));

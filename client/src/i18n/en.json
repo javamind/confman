@@ -28,7 +28,9 @@
             "newpassword": "New password",
             "newpassword.placeholder": "New password",
             "confirmpassword": "New password confirmation",
-            "confirmpassword.placeholder": "Confirm the new password"
+            "confirmpassword.placeholder": "Confirm the new password",
+            "confirmdelete": "Deletion confirmation",
+            "confirmdelete.placeholder":"Are you sure you want to delete "
         },
         "verb":{
             "create": "Create",
@@ -36,7 +38,6 @@
         },
         "messages": {
             "error": {
-                "dontmatch" : "The password and its confirmation do not match!",
                 "coderequired" : "Code is required",
                 "labelrequired" : "Label is required"
             },
@@ -86,6 +87,7 @@
         "description" : "You can use several environments to offer different context for developers, testers, the final users... For example you can have development, staging, production...",
         "nb" : "nb environment",
         "name" : "environment",
+        "name.the" : "the environment",
         "messages": {
             "error": {
                 "required" :"Your form is not submitted : code and label are required",

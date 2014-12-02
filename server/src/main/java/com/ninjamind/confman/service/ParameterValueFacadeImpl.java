@@ -310,7 +310,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
     @VisibleForTesting
     protected List<ParameterValue> updateParametersValues(ApplicationVersion version, Application application, TrackingVersion trackingVersion) {
         //If a reference tracking is find we search the param linked
-        PaginatedList<ParameterValue> parameterValuesRef = parameterValueRepository.findByCriteria(
+        PaginatedList<ParameterValue> parameterValuesRef = parameterValueRepository.findParamsByCriteria(
                 new PaginatedList<>().setNbElementByPage(PaginatedList.NB_MAX),
                 new ParameterValueSearchBuilder().setIdTrackingVersion(trackingVersion.getId()));
 
@@ -328,7 +328,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
                 //The parameter can be specific for an application
                 if (ParameterType.APPLICATION.equals(param.getType())) {
                     Optional<ParameterValue> existantParam = parameterValuesRef.stream()
-                            .filter(paramvalue -> paramvalue.getParameter().equals(param) && paramvalue.getEnvironment().equals(env))
+                            .filter(paramvalue -> paramvalue.getParameter().getId().equals(param.getId()) && paramvalue.getEnvironment().getId().equals(env.getId()))
                             .findFirst();
                     if(!existantParam.isPresent()){
                         parameterValues
@@ -346,7 +346,8 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
                                 );
                     }
                     else{
-                        parameterValues.add(existantParam.get());
+                        //update denormalize data
+                        parameterValues.add(existantParam.get().updateDependencies());
                     }
                 }
                 else {
@@ -380,7 +381,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
                                             );
                                 }
                                 else{
-                                    parameterValues.add(existantParam.get());
+                                    parameterValues.add(existantParam.get().updateDependencies());
                                 }
                             });
                 }

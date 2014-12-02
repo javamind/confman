@@ -112,8 +112,14 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
 
     public ParameterValue setInstance(Instance instance) {
         this.instance = instance;
-        this.codeInstance = instance.getCode();
-        this.labelInstance = instance.getLabel();
+        if(instance!=null) {
+            this.codeInstance = instance.getCode();
+            this.labelInstance = instance.getLabel();
+        }
+        else{
+            this.codeInstance = null;
+            this.labelInstance = null;
+        }
         return this;
     }
 
@@ -216,6 +222,14 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
     public ParameterValue setLabelEnvironment(String labelEnvironment) {
         this.labelEnvironment = labelEnvironment;
         return this;
+    }
+
+    /**
+     * Several fields are denormalized. We have to update them when changes occurs on the parameters
+     * @return
+     */
+    public ParameterValue updateDependencies(){
+        return setCode(parameter.getCode()).setParameter(parameter).setInstance(instance).setApplication(application).setEnvironment(environment);
     }
 
     @Override

@@ -137,10 +137,10 @@
 
 <script type="text/ng-template" id="modalConfirmDelete.html">
     <div class="modal-header">
-        <h3 class="modal-title">Delete confirmation</h3>
+        <h3 class="modal-title" translate="global.form.confirmdelete">Deletion confirmation</h3>
     </div>
     <div class="modal-body">
-        Are you sure you want to delete the {{entity_todelete}} ?
+        <span translate="global.form.confirmdelete.placeholder">Are you sure you want to delete the</span> <span ng-bind-html="entity_todelete"></span> ?
     </div>
     <div class="modal-footer">
         <button class="btn btn-danger" ng-click="ok()">
@@ -164,6 +164,7 @@
 <!-- build:js({.tmp,src}) scripts/angular.js -->
 <script src="lib/angular/angular.js"></script>
 <script src="lib/angular-resource/angular-resource.js"></script>
+<script src="lib/angular-sanitize/angular-sanitize.js"></script>
 <script src="lib/angular-route/angular-route.js"></script>
 <script src="lib/angular-animate/angular-animate.js"></script>
 <script src="lib/angular-aria/angular-aria.js"></script>

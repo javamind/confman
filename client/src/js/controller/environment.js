@@ -40,7 +40,7 @@ angular.module('confman').controller('environmentCtrl', ['$rootScope', '$scope',
                 controller: 'ConfirmDeleteCtrl',
                 resolve: {
                     entity_todelete : function () {
-                        return 'environment ' + elt.code;
+                        return $filter('translate')('env.name.the') + ' <b>' +  elt.code + '</b>';
                     }
                 }
             });

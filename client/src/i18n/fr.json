@@ -28,15 +28,16 @@
             "newpassword": "Nouveau mot de passe",
             "newpassword.placeholder": "Nouveau mot de passe",
             "confirmpassword": "Confirmation mot de passe",
-            "confirmpassword.placeholder": "Confirmation du nouveau mot de passe"
+            "confirmpassword.placeholder": "Confirmation du nouveau mot de passe",
+            "confirmdelete": "Confirmation de la suppression",
+            "confirmdelete.placeholder":"Voulez vous supprimer "
         },
         "verb":{
           "create": "Créer",
-            "update": "Modifier "
+          "update": "Modifier "
         },
         "messages": {
             "error": {
-                "dontmatch" : "The password and its confirmation do not match!",
                 "coderequired" : "Le code est obligatoire",
                 "labelrequired" : "Le libellé est obligatoire"
             },
@@ -84,7 +85,8 @@
         "title": "Environnement",
         "description" : "Vous pouvez utiliser plusieurs environnements pour matérialiser vos différents contextes développement, test, production...",
         "nb" : "nb environnement",
-        "name" : "environment",
+        "name" : "environnement",
+        "name.the" : "l&acute;environment",
         "messages": {
             "error": {
                 "required" :"Le formulaire n&#39;a pas été envoyé : le code et le libellé sont obligatoires",

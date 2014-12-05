@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
  *
  * @author Guillaume EHRET
  */
-public class ApplicationDto extends AbstractConfManDto<ApplicationDto, Application> {
+public class ApplicationDto extends AbstractConfmanAppDto<ApplicationDto, Application> {
     private Long idSoftwareSuite;
     private List<ApplicationVersionDto> versions;
     private List<InstanceDto> instances;

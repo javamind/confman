@@ -9,7 +9,7 @@ import com.ninjamind.confman.domain.Instance;
  *
  * @author Guillaume EHRET
  */
-public class InstanceDto extends AbstractConfManDto<InstanceDto, Instance> {
+public class InstanceDto extends AbstractConfmanAppDto<InstanceDto, Instance> {
     private Long idApplication;
     private Long idEnvironment;
     public InstanceDto() {

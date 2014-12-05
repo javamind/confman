@@ -12,7 +12,7 @@ import java.util.Set;
  *
  * @author Guillaume EHRET
  */
-public class SoftwareSuiteDto extends AbstractConfManDto<SoftwareSuiteDto, SoftwareSuite> {
+public class SoftwareSuiteDto extends AbstractConfmanAppDto<SoftwareSuiteDto, SoftwareSuite> {
 
     private List<SoftwareSuiteEnvironmentDto> environments;
 

@@ -7,7 +7,7 @@ import com.ninjamind.confman.domain.Environment;
  *
  * @author Guillaume EHRET
  */
-public class EnvironmentDto extends AbstractConfManDto<EnvironmentDto, Environment> {
+public class EnvironmentDto extends AbstractConfmanAppDto<EnvironmentDto, Environment> {
 
     public EnvironmentDto() {
         super();

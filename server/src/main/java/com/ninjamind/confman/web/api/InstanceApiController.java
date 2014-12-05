@@ -2,7 +2,7 @@ package com.ninjamind.confman.web.api;
 
 import com.google.common.base.Preconditions;
 import com.ninjamind.confman.domain.Instance;
-import com.ninjamind.confman.dto.ConfmanDto;
+import com.ninjamind.confman.dto.InstanceConfmanDto;
 import com.ninjamind.confman.service.InstanceFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +25,7 @@ public class InstanceApiController {
      * @param confmanDto dto which have to contain application code and param code and label
      */
     @RequestMapping(method = RequestMethod.POST)
-    public void addParam(@RequestBody ConfmanDto confmanDto) {
+    public void addParam(@RequestBody InstanceConfmanDto confmanDto) {
         saveparam(confmanDto, true);
     }
 
@@ -34,16 +34,16 @@ public class InstanceApiController {
      * @param confmanDto
      * @param creation
      */
-    private void saveparam(ConfmanDto confmanDto, boolean creation) {
+    private void saveparam(InstanceConfmanDto confmanDto, boolean creation) {
         Preconditions.checkNotNull(confmanDto, "DTO ConfmanDto is required");
         Preconditions.checkNotNull(confmanDto.getCodeApplication(), "application code is required");
-        Preconditions.checkNotNull(confmanDto.getCodeInstance(), "instance code is required");
+        Preconditions.checkNotNull(confmanDto.getCode(), "instance code is required");
         Preconditions.checkNotNull(confmanDto.getCodeEnvironment(), "environment code is required");
         Preconditions.checkNotNull(confmanDto.getLabel(), "instance label is required");
 
         instanceFacade.saveInstanceToApplication(
                 confmanDto.getCodeApplication(),
-                confmanDto.getCodeInstance(),
+                confmanDto.getCode(),
                 confmanDto.getCodeEnvironment(),
                 confmanDto.getLabel(),
                 creation);
@@ -54,7 +54,7 @@ public class InstanceApiController {
      * @param confmanDto dto which have to contain application code and param code and label
      */
     @RequestMapping(method = RequestMethod.PUT)
-    public void updateParam(@RequestBody ConfmanDto confmanDto) {
+    public void updateParam(@RequestBody InstanceConfmanDto confmanDto) {
         saveparam(confmanDto, false);
     }
 
@@ -66,7 +66,7 @@ public class InstanceApiController {
      * @return
      */
     @RequestMapping(value = "/{codeInstance}/app/{codeApp}/env/{codeEnv}")
-    public ConfmanDto getInstance(@PathVariable String codeInstance, @PathVariable String codeApp, @PathVariable String codeEnv) {
+    public InstanceConfmanDto getInstance(@PathVariable String codeInstance, @PathVariable String codeApp, @PathVariable String codeEnv) {
         Preconditions.checkNotNull(codeApp, "application code is required");
         Preconditions.checkNotNull(codeInstance, "instance code is required");
         Preconditions.checkNotNull(codeInstance, "instance code is required");
@@ -75,7 +75,7 @@ public class InstanceApiController {
         if(instance==null){
             return null;
         }
-        return new ConfmanDto()
+        return new InstanceConfmanDto()
                 .setCode(instance.getCode())
                 .setLabel(instance.getLabel())
                 .setCodeApplication(codeApp)

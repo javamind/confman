@@ -7,7 +7,7 @@ import com.ninjamind.confman.domain.TrackingVersion;
  *
  * @author Guillaume EHRET
  */
-public class TrackingVersionDto extends AbstractConfManDto<TrackingVersionDto, TrackingVersion> {
+public class TrackingVersionDto extends AbstractConfmanAppDto<TrackingVersionDto, TrackingVersion> {
 
     public TrackingVersionDto() {
         super();

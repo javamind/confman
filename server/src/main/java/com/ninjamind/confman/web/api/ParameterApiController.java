@@ -2,7 +2,7 @@ package com.ninjamind.confman.web.api;
 
 import com.google.common.base.Preconditions;
 import com.ninjamind.confman.domain.Parameter;
-import com.ninjamind.confman.dto.ConfmanDto;
+import com.ninjamind.confman.dto.ParameterConfmanDto;
 import com.ninjamind.confman.service.ParameterFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +25,7 @@ public class ParameterApiController {
      * @param confmanDto dto which have to contain application code and param code and label
      */
     @RequestMapping(method = RequestMethod.POST)
-    public void addParam(@RequestBody ConfmanDto confmanDto) {
+    public void addParam(@RequestBody ParameterConfmanDto confmanDto) {
         saveparam(confmanDto, true);
     }
 
@@ -34,17 +34,17 @@ public class ParameterApiController {
      * @param confmanDto
      * @param creation
      */
-    private void saveparam(ConfmanDto confmanDto, boolean creation) {
+    private void saveparam(ParameterConfmanDto confmanDto, boolean creation) {
         Preconditions.checkNotNull(confmanDto, "DTO ConfmanDto is required");
         Preconditions.checkNotNull(confmanDto.getCodeApplication(), "application code is required");
-        Preconditions.checkNotNull(confmanDto.getCodeParameter(), "parameter code is required");
+        Preconditions.checkNotNull(confmanDto.getCode(), "parameter code is required");
         Preconditions.checkNotNull(confmanDto.getLabel(), "parameter label is required");
 
         parameterFacade.saveParameterToApplication(
                 confmanDto.getCodeApplication(),
-                confmanDto.getCodeParameter(),
+                confmanDto.getCode(),
                 confmanDto.getLabel(),
-                confmanDto.getTypeParameter(),
+                confmanDto.getType(),
                 creation);
     }
 
@@ -53,7 +53,7 @@ public class ParameterApiController {
      * @param confmanDto dto which have to contain application code and param code and label
      */
     @RequestMapping(method = RequestMethod.PUT)
-    public void updateParam(@RequestBody ConfmanDto confmanDto) {
+    public void updateParam(@RequestBody ParameterConfmanDto confmanDto) {
         saveparam(confmanDto, false);
     }
 
@@ -64,7 +64,7 @@ public class ParameterApiController {
      * @return
      */
     @RequestMapping(value = "/{codeParam}/app/{codeApp}")
-    public ConfmanDto getParam(@PathVariable String codeParam, @PathVariable String codeApp) {
+    public ParameterConfmanDto getParam(@PathVariable String codeParam, @PathVariable String codeApp) {
         Preconditions.checkNotNull(codeApp, "application code is required");
         Preconditions.checkNotNull(codeParam, "parameter code is required");
         Parameter parameter = parameterFacade.getRepository().findByCode(codeApp, codeParam);
@@ -72,7 +72,11 @@ public class ParameterApiController {
         if(parameter==null){
             return null;
         }
-        return new ConfmanDto().setCodeParameter(parameter.getCode()).setLabel(parameter.getLabel()).setCodeApplication(parameter.getApplication().getCode())
+        return new ParameterConfmanDto()
+                .setCode(parameter.getCode())
+                .setLabel(parameter.getLabel())
+                .setCodeApplication(parameter.getApplication().getCode())
+                .setType(parameter.getType().toString())
                 .setId(parameter.getId());
     }
 }

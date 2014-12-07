@@ -5,6 +5,7 @@ import com.google.common.base.Preconditions;
 import com.ninjamind.confman.domain.ApplicationVersion;
 import com.ninjamind.confman.domain.TrackingVersion;
 import com.ninjamind.confman.dto.ConfmanDto;
+import com.ninjamind.confman.dto.VersionConfmanDto;
 import com.ninjamind.confman.service.ApplicationVersionFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +30,7 @@ public class VersionApiController {
      * @param confmanDto dto which have to contain application code and param code and label
      */
     @RequestMapping(method = RequestMethod.POST)
-    public void addParam(@RequestBody ConfmanDto confmanDto) {
+    public void addParam(@RequestBody VersionConfmanDto confmanDto) {
         saveparam(confmanDto, true);
     }
 
@@ -38,15 +39,15 @@ public class VersionApiController {
      * @param confmanDto
      * @param creation
      */
-    private void saveparam(ConfmanDto confmanDto, boolean creation) {
+    private void saveparam(VersionConfmanDto confmanDto, boolean creation) {
         Preconditions.checkNotNull(confmanDto, "DTO ConfmanDto is required");
         Preconditions.checkNotNull(confmanDto.getCodeApplication(), "application code is required");
-        Preconditions.checkNotNull(confmanDto.getVersion(), "version code is required");
+        Preconditions.checkNotNull(confmanDto.getCodeTrackingversion(), "version code is required");
         Preconditions.checkNotNull(confmanDto.getLabel(), "version label is required");
 
         applicationversionFacade.saveVersionToApplication(
                 confmanDto.getCodeApplication(),
-                confmanDto.getVersion(),
+                confmanDto.getCodeTrackingversion(),
                 confmanDto.getLabel(),
                 creation);
     }
@@ -56,7 +57,7 @@ public class VersionApiController {
      * @param confmanDto dto which have to contain application code and param code and label
      */
     @RequestMapping(method = RequestMethod.PUT)
-    public void updateParam(@RequestBody ConfmanDto confmanDto) {
+    public void updateParam(@RequestBody VersionConfmanDto confmanDto) {
         saveparam(confmanDto, false);
     }
 
@@ -67,7 +68,7 @@ public class VersionApiController {
      * @return
      */
     @RequestMapping(value = "/{version}/app/{codeApp}")
-    public ConfmanDto getParam(@PathVariable String version, @PathVariable String codeApp) {
+    public VersionConfmanDto getParam(@PathVariable String version, @PathVariable String codeApp) {
         Preconditions.checkNotNull(codeApp, "application code is required");
         Preconditions.checkNotNull(version, "applicationversion code is required");
         ApplicationVersion applicationversion = applicationversionFacade.getRepository().findByCode(codeApp, version);
@@ -78,10 +79,10 @@ public class VersionApiController {
         //we search the last version tracking
         Optional<TrackingVersion> maxTracking = applicationversion
                 .getTrackingVersions().stream().max((a, b) -> Version.valueOf(a.getCode()).compareTo(Version.valueOf(b.getCode())));
-        return new ConfmanDto()
+        return new VersionConfmanDto()
                 .setCode(applicationversion.getCode())
                 .setLabel(applicationversion.getLabel())
-                .setVersion(maxTracking.orElse(new TrackingVersion()).getCode())
+                .setCodeTrackingversion(maxTracking.orElse(new TrackingVersion()).getCode())
                 .setCodeApplication(applicationversion.getApplication().getCode())
                 .setId(applicationversion.getId());
     }

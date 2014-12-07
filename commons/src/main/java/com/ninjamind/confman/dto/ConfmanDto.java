@@ -15,17 +15,12 @@
  */
 package com.ninjamind.confman.dto;
 
-import java.io.Serializable;
-
 /**
  * This DTO is used to dialog with the API Java
  *
  * @author Guillaume EHRET
  */
-public class ConfmanDto implements Serializable {
-    protected Long id;
-    protected String code;
-    protected String label;
+public class ConfmanDto extends AbstractConfmanApiDto<ConfmanDto> {
     protected String codeInstance;
     protected String codeEnvironment;
     protected String codeApplication;
@@ -37,33 +32,6 @@ public class ConfmanDto implements Serializable {
 
     public ConfmanDto() {
         super();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public ConfmanDto setId(Long id) {
-        this.id = id;
-        return this;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public ConfmanDto setCode(String code) {
-        this.code = code;
-        return this;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public ConfmanDto setLabel(String label) {
-        this.label = label;
-        return this;
     }
 
     public String getCodeInstance() {

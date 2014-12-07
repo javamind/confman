@@ -1,8 +1,6 @@
 package com.ninjamind.confman.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.google.common.base.Objects;
-import com.ninjamind.confman.domain.AbstractConfManEntity;
+import com.ninjamind.confman.utils.Preconditions;
 
 import java.io.Serializable;
 
@@ -11,8 +9,7 @@ import java.io.Serializable;
  *
  * @author Guillaume EHRET
  */
-@JsonIgnoreProperties(ignoreUnknown=true)
-public abstract class AbstractConfManDto<T extends AbstractConfManDto, E extends AbstractConfManEntity> implements Serializable {
+public abstract class AbstractConfmanApiDto<T extends AbstractConfmanApiDto> implements Serializable {
     /**
      * Id
      */
@@ -25,20 +22,11 @@ public abstract class AbstractConfManDto<T extends AbstractConfManDto, E extends
      * A label
      */
     private String label;
-    /**
-     * Data version
-     */
-    private Long version = Long.valueOf(0);
-    /**
-     * Active
-     */
-    private boolean active;
-
 
     /**
      * Default constructor
      */
-    public AbstractConfManDto() {
+    public AbstractConfmanApiDto() {
     }
 
     /**
@@ -46,7 +34,7 @@ public abstract class AbstractConfManDto<T extends AbstractConfManDto, E extends
      * @param code
      * @param label
      */
-    public AbstractConfManDto(String code, String label) {
+    public AbstractConfmanApiDto(String code, String label) {
         this.code = code;
         this.label = label;
     }
@@ -56,15 +44,11 @@ public abstract class AbstractConfManDto<T extends AbstractConfManDto, E extends
      * @param code
      * @param label
      */
-    public AbstractConfManDto(Long id, String code, String label, Long version, boolean active) {
+    public AbstractConfmanApiDto(Long id, String code, String label) {
         this.id=id;
         this.code = code;
         this.label = label;
-        this.version = version;
-        this.active = active;
     }
-
-    public abstract E toDo();
 
     public String getCode() {
         return code;
@@ -84,15 +68,6 @@ public abstract class AbstractConfManDto<T extends AbstractConfManDto, E extends
         return (T) this;
     }
 
-    public Long getVersion() {
-        return version;
-    }
-
-    public AbstractConfManDto setVersion(Long version) {
-        this.version = version;
-        return this;
-    }
-
     public Long getId() {
         return id;
     }
@@ -102,21 +77,12 @@ public abstract class AbstractConfManDto<T extends AbstractConfManDto, E extends
         return (T) this;
     }
 
-    public boolean isActive() {
-        return active;
-    }
-
-    public T setActive(boolean active) {
-        this.active = active;
-        return (T) this;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        AbstractConfManDto that = (AbstractConfManDto) o;
+        AbstractConfmanApiDto that = (AbstractConfmanApiDto) o;
 
         if (!code.equals(that.code)) return false;
         if (!label.equals(that.label)) return false;
@@ -133,10 +99,42 @@ public abstract class AbstractConfManDto<T extends AbstractConfManDto, E extends
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return toStringHelper()
                 .add("code", code)
                 .add("label", label)
                 .toString();
     }
 
+    protected ToStringHelper toStringHelper() {
+        return new ToStringHelper(this.getClass().getName());
+    }
+
+    /**
+     * Helper to build toString method
+     */
+    public static final class ToStringHelper {
+        StringBuilder builder;
+
+        private ToStringHelper(String className) {
+            Preconditions.checkNotNull(className, "Classname is required");
+            builder = new StringBuilder(32).append(className).append('{');
+        }
+
+        /**
+         * Adds a name/value pair to the formatted output in {@code name=value}
+         * format.
+         */
+        public <T> ToStringHelper add(String name, T value) {
+            builder.append(", ").append(name).append("=").append(value==null ? "null" : value);
+            return this;
+        }
+
+        /**
+         * Returns a string
+         */
+        @Override
+        public String toString() {
+            return builder.append("}").toString();
+        }
+    }
 }

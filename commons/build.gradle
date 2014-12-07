@@ -1,0 +1,54 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven{
+            url 'http://repo.spring.io/libs-snapshot'
+        }
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+group = 'com.ninjamind'
+version = '1.0.0-SNAPSHOT'
+
+ext {
+    javaVersion = '1.6'
+}
+
+compileJava {
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url 'http://repo.spring.io/plugins-release'
+    }
+}
+
+idea {
+    module {
+        inheritOutputDirs = true
+    }
+}
+
+jar {
+    baseName = 'confman-commons'
+    manifest {
+        attributes(
+                "Implementation-Title": project.name,
+                "Implementation-Version": project.version,
+                "Manifest-Version": "1.0",
+                "Confman-version": version,
+        )
+    }
+}
+
+

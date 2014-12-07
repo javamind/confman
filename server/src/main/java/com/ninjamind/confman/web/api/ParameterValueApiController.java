@@ -1,5 +1,7 @@
 package com.ninjamind.confman.web.api;
 
+import com.ninjamind.confman.domain.ParameterValue;
+import com.ninjamind.confman.dto.ParameterValueConfmanDto;
 import com.ninjamind.confman.dto.ParameterValueDto;
 import com.ninjamind.confman.exception.VersionException;
 import com.ninjamind.confman.exception.VersionTrackingException;
@@ -35,19 +37,42 @@ public class ParameterValueApiController {
      * @return all the params for an appication and a version
      */
     @RequestMapping(value = "/{codeApp}/version/{version}")
-    public List<ParameterValueDto> getByVersion(String codeApp, String version) {
-        return parameterValueFacade.findParamatersByCodeVersion(codeApp, version).stream().map(p -> new ParameterValueDto(p)).collect(Collectors.toList());
+    public List<ParameterValueConfmanDto> getByVersion(String codeApp, String version) {
+        return parameterValueFacade.findParamatersByCodeVersion(codeApp, version)
+                .stream()
+                .map(p -> toDto(p))
+                .collect(Collectors.toList());
     }
 
+    private ParameterValueConfmanDto toDto(ParameterValue p){
+        return new ParameterValueConfmanDto()
+                .setLabel(p.getLabel())
+                .setCodeApplication(p.getApplication().getCode())
+                .setCode(p.getCode())
+                .setCodeEnvironment(p.getEnvironment().getCode())
+                .setCodeInstance(p.getInstance() != null ? p.getInstance().getCode() : null)
+                .setCodeTrackingVersion(p.getTrackingVersion().getCode())
+                .setIdApplication(p.getApplication().getId())
+                .setId(p.getId())
+                .setIdEnvironment(p.getEnvironment().getId())
+                .setIdParameter(p.getParameter().getId())
+                .setIdInstance(p.getInstance() != null ? p.getInstance().getId() : null)
+                .setIdTrackingVersion(p.getTrackingVersion().getId())
+                .setLabelParameter(p.getLabelParameter())
+                .setOldValue(p.getOldvalue());
+    }
     /**
      * @param codeApp
      * @param version
      * @return all the params for an appication, a version and an anvironment
      */
     @RequestMapping(value = "/{codeApp}/version/{version}/env/{env}")
-    public List<ParameterValueDto> getByVersionAndEnv(@PathVariable String codeApp, @PathVariable String version, @PathVariable String env) {
+    public List<ParameterValueConfmanDto> getByVersionAndEnv(@PathVariable String codeApp, @PathVariable String version, @PathVariable String env) {
         try {
-            return parameterValueFacade.findParamatersByCodeVersionAndEnv(codeApp, version, env).stream().map(p -> new ParameterValueDto(p)).collect(Collectors.toList());
+            return parameterValueFacade.findParamatersByCodeVersionAndEnv(codeApp, version, env)
+                    .stream()
+                    .map(p -> toDto(p))
+                    .collect(Collectors.toList());
         }
         catch (VersionTrackingException | VersionException e){
             LOG.error("Error when readParameters", e);

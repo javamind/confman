@@ -8,7 +8,7 @@ import com.ninjamind.confman.domain.ApplicationVersion;
  *
  * @author Guillaume EHRET
  */
-public class ApplicationVersionDto extends AbstractConfManDto<ApplicationVersionDto, ApplicationVersion> {
+public class ApplicationVersionDto extends AbstractConfmanAppDto<ApplicationVersionDto, ApplicationVersion> {
     private Long idApplication;
 
     public ApplicationVersionDto() {

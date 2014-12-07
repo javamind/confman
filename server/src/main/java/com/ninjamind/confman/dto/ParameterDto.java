@@ -10,7 +10,7 @@ import com.ninjamind.confman.domain.ParameterType;
  *
  * @author Guillaume EHRET
  */
-public class ParameterDto extends AbstractConfManDto<ParameterDto, Parameter> {
+public class ParameterDto extends AbstractConfmanAppDto<ParameterDto, Parameter> {
     private Long idApplication;
     private Long idParameterGroupment;
     private String type;

@@ -7,7 +7,7 @@ import com.ninjamind.confman.domain.ParameterGroupment;
  *
  * @author Guillaume EHRET
  */
-public class ParameterGroupmentDto extends AbstractConfManDto<ParameterGroupmentDto, ParameterGroupment> {
+public class ParameterGroupmentDto extends AbstractConfmanAppDto<ParameterGroupmentDto, ParameterGroupment> {
 
     public ParameterGroupmentDto() {
         super();

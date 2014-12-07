@@ -10,7 +10,7 @@ import java.util.LinkedHashMap;
  *
  * @author Guillaume EHRET
  */
-public class ParameterValueDto extends AbstractConfManDto<ParameterValueDto, ParameterValue> {
+public class ParameterValueDto extends AbstractConfmanAppDto<ParameterValueDto, ParameterValue> {
     protected String oldValue;
     protected Long idTrackingVersion;
     protected String codeTrackingVersion;

@@ -24,37 +24,37 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="row" ng-show="application.id">
-                        <div class="col-xs-2"><label for="data-id">&nbsp;Id</label></div>
+                        <div class="col-xs-2"><label for="data-id" translate="global.form.id">&nbsp;Id</label></div>
                         <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="application.id"
                                                       class="form-control input-sm input-sm"></div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-2"><label for="data-code">&nbsp;Code</label></div>
+                        <div class="col-xs-2"><label for="data-code" translate="global.form.code">&nbsp;Code</label></div>
                         <div class="col-xs-10"><input type="text" id="data-code" required ng-model="application.code"
                                                       name="code"
                                                       class="form-control input-sm input-sm">
                             <span ng-show="form.code.$error.required"
-                                  class="confman-label-error">Code is required</span>
+                                  class="confman-label-error" translate="global.messages.error.coderequired">Code is required</span>
                         </div>
 
                     </div>
                     <div class="row">
-                        <div class="col-xs-2"><label for="data-label">&nbsp;Label</label></div>
+                        <div class="col-xs-2"><label for="data-label" translate="global.form.label">&nbsp;Label</label></div>
                         <div class="col-xs-10"><input type="text" id="data-label" size="50" required
                                                       class="form-control input-sm input-sm"
                                                       ng-model="application.label" name="label">
                             <span ng-show="form.label.$error.required"
-                                  class="confman-label-error">Label is required</span>
+                                  class="confman-label-error" translate="global.messages.error.labelrequired">Label is required</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-2"><label for="data-softwaresuite">&nbsp;Software
+                        <div class="col-xs-2"><label for="data-softwaresuite" translate="soft.title">&nbsp;Software
                             suite</label></div>
                         <div class="col-xs-6">
                             <select id="data-softwaresuite" ng-model="application.idSoftwareSuite"
                                     class="form-control input-sm input-sm"
                                     ng-options="softwareSuite.id as softwareSuite.label for softwareSuite in softwaresuites">
-                                <option value="" ng-hide="application.idSoftwareSuite">S&eacute;lection agr&eacute;gat
+                                <option value="" ng-hide="application.idSoftwareSuite" translate="global.messages.info.select.elem">S&eacute;lection agr&eacute;gat
                                 </option>
                             </select>
                         </div>
@@ -62,7 +62,7 @@
                         <br>&nbsp;
                     </div>
                     <div class="col-md-4" style="min-height: 350px">
-                        <h4>Instances
+                        <h4><span translate="application.instances">Instances</span>
                             <small>{{instancesize}}</small>
                             <div class="confman-btn" style="width: 50%">
                                 <button class="btn btn-primary" ng-click="manageInstance({})">
@@ -95,12 +95,12 @@
                                 </md-item>
                             </md-list>
                             <div ng-hide="application.instances.length>0">
-                                No instance for the moment
+                                <span translate="application.messages.info.no.instance">No instance for the moment</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <h4>Versions
+                        <h4><span translate="application.versions">Versions</span>
                             <small>{{versionsize}}</small>
                             <div class="confman-btn" style="width: 50%">
                                 <button class="btn btn-primary" ng-click="manageVersion({})">
@@ -129,12 +129,12 @@
                                 </md-item>
                             </md-list>
                             <div ng-hide="application.versions.length>0">
-                                No version for the moment
+                                <span translate="application.messages.info.no.version">No version for the moment</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <h4>Parameters
+                        <h4><span translate="application.parameters">Parameters</span>
                             <small>{{paramsize}}</small>
                             <div class="confman-btn" style="width: 50%">
                                 <button class="btn btn-primary" ng-click="manageParameter({})">
@@ -167,7 +167,7 @@
 
                             </md-list>
                             <div ng-hide="application.parameters.length>0">
-                                No parameter for the moment
+                                <span translate="application.messages.info.no.parameter">No parameter for the moment</span>
                             </div>
                         </div>
                     </div>
@@ -192,48 +192,48 @@
         <form class="form confman-form" name="formInstance" novalidate>
             <div class="thumbnail">
                 <div class="row" ng-show="appelt.content.id">
-                    <div class="col-xs-2"><label for="data-id">&nbsp;Id</label></div>
+                    <div class="col-xs-2"><label for="data-id" translate="global.form.id">&nbsp;Id</label></div>
                     <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="appelt.content.id"
                                                   class="form-control input-sm input-sm"></div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-2"><label class="control-label" for="data-code">&nbsp;Code</label></div>
+                    <div class="col-xs-2"><label class="control-label" for="data-code" translate="global.form.code">&nbsp;Code</label></div>
                     <div class="col-xs-10"><input type="text" id="data-code" required ng-model="appelt.content.code"
                                                   name="code"
                                                   class="form-control input-sm input-sm">
                         <span ng-show="formInstance.code.$error.required"
-                              class="confman-label-error">Code is required</span>
+                              class="confman-label-error" translate="global.messages.error.coderequired">Code is required</span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-2"><label class="control-label" for="data-label">&nbsp;Label</label></div>
+                    <div class="col-xs-2"><label class="control-label" for="data-label" translate="global.form.label">&nbsp;Label</label></div>
                     <div class="col-xs-10"><input type="text" id="data-label" size="50" required
                                                   class="form-control input-sm input-sm"
                                                   name="label"
                                                   ng-model="appelt.content.label">
                         <span ng-show="formInstance.label.$error.required"
-                              class="confman-label-error">Label is required</span>
+                              class="confman-label-error" translate="global.messages.error.labelrequired">Label is required</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
                         <p><br>
-                            <small>If you use the same instance for different environment you have to duplicate it
+                            <small translate="application.messages.info.type.instance">If you use the same instance for different environment you have to duplicate it
                                 because the configuration could be different
                                 for each environment
                             </small>
                         </p>
                     </div>
-                    <div class="col-xs-2"><label class="control-label" for="data-instance-env">&nbsp;Environment</label>
+                    <div class="col-xs-2"><label class="control-label" for="data-instance-env" translate="global.form.environment">&nbsp;Environment</label>
                     </div>
                     <div class="col-xs-10">
                         <select id="data-instance-env" ng-model="appelt.content.idEnvironment" required name="env"
                                 class="form-control input-sm input-sm"
                                 ng-options="environment.id as environment.label for environment in environments">
-                            <option value="" ng-hide="appelt.content.idEnvironment">S&eacute;lection environment
+                            <option value="" ng-hide="appelt.content.idEnvironment" translate="global.messages.info.select.elem">S&eacute;lection environment
                             </option>
                         </select>
-                        <span ng-show="formInstance.env.$error.required" class="confman-label-error">Environment is required</span>
+                        <span ng-show="formInstance.env.$error.required" class="confman-label-error" translate="application.messages.error.envrequired">Environment is required</span>
                     </div>
                     <br>
 
@@ -265,29 +265,29 @@
             </div>
             <div class="thumbnail">
                 <div class="row" ng-show="appelt.content.id">
-                    <div class="col-xs-2"><label for="data-id">&nbsp;Id</label></div>
+                    <div class="col-xs-2"><label for="data-id" translate="global.form.id">&nbsp;Id</label></div>
                     <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="appelt.content.id"
                                                   class="form-control input-sm input-sm"></div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-2"><label class="control-label" for="data-code">&nbsp;Code</label></div>
+                    <div class="col-xs-2"><label class="control-label" for="data-code" translate="global.form.code">&nbsp;Code</label></div>
                     <div class="col-xs-10"><input type="text" id="data-code" semver-checker required ng-model="appelt.content.code"
                                                   name="code" ng-readonly="appelt.content.id"
                                                   class="form-control input-sm input-sm">
                         <span ng-show="formVersion.code.$error.required"
-                              class="confman-label-error">Code is required</span>
+                              class="confman-label-error" translate="global.messages.error.coderequired">Code is required</span>
                         <span ng-show="formVersion.code.$error.semver">The version number is invalid (see <a
                                 href="http://semver.org/" target="_blank">semver</a>)</span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-2"><label class="control-label" for="data-label">&nbsp;Label</label></div>
+                    <div class="col-xs-2"><label class="control-label" for="data-label" translate="global.form.label">&nbsp;Label</label></div>
                     <div class="col-xs-10"><input type="text" id="data-label" size="50" required
                                                   class="form-control input-sm input-sm"
                                                   name="label"
                                                   ng-model="appelt.content.label">
                         <span ng-show="formVersion.label.$error.required"
-                              class="confman-label-error">Label is required</span>
+                              class="confman-label-error" translate="global.messages.error.labelrequired">Label is required</span>
                     </div>
                 </div>
             </div>
@@ -317,36 +317,36 @@
         <form class="form confman-form" name="formParam" novalidate>
             <div class="thumbnail">
                 <div class="row" ng-show="appparam.content.id">
-                    <div class="col-xs-2"><label for="data-id">&nbsp;Id</label></div>
+                    <div class="col-xs-2"><label for="data-id" translate="global.form.id">&nbsp;Id</label></div>
                     <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="appparam.content.id"
                                                   name="id"
                                                   class="form-control input-sm input-sm">
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-2"><label class="control-label" for="data-codeparam">&nbsp;Code</label></div>
+                    <div class="col-xs-2"><label class="control-label" for="data-codeparam" translate="global.form.code">&nbsp;Code</label></div>
                     <div class="col-xs-10"><input type="text" id="data-codeparam" required
                                                   ng-model="appparam.content.code"
                                                   name="code"
                                                   class="form-control input-sm input-sm">
                         <span ng-show="formParam.code.$error.required"
-                              class="confman-label-error">Code is required</span>
+                              class="confman-label-error" translate="global.messages.error.coderequired">Code is required</span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-2"><label class="control-label" for="data-label">&nbsp;Label</label></div>
+                    <div class="col-xs-2"><label class="control-label" for="data-label" translate="global.form.label">&nbsp;Label</label></div>
                     <div class="col-xs-10"><input type="text" id="data-label" size="50" required
                                                   class="form-control input-sm input-sm"
                                                   name="label"
                                                   ng-model="appparam.content.label">
                         <span ng-show="formParam.label.$error.required"
-                              class="confman-label-error">Label is required</span>
+                              class="confman-label-error" translate="global.messages.error.labelrequired">Label is required</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
                         <p><br>
-                            <small>A paramater can be specific for an instance or an application
+                            <small translate="application.messages.info.type.instance">A paramater can be specific for an instance or an application
                             </small>
                         </p>
                     </div>
@@ -357,11 +357,11 @@
                                 class="form-control input-sm input-sm"
                                 name="type"
                                 ng-options="type for type in parametertypes">
-                            <option value="" ng-hide="appparam.content.type">S&eacute;lection type
+                            <option value="" ng-hide="appparam.content.type" translate="global.messages.info.select.elem">S&eacute;lection type
                             </option>
                         </select>
                         <span ng-show="formParam.type.$error.required"
-                              class="confman-label-error">Type is required</span>
+                              class="confman-label-error" translate="application.messages.error.typerequired">Type is required</span>
                     </div>
                     <br>
 

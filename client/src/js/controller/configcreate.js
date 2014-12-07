@@ -9,8 +9,8 @@ angular.module('confman').controller('configCreateCtrl', ['$rootScope', '$scope'
         //Page definition
         $rootScope.currentPage = {
             code: 'confcreate',
-            name: 'Configurations',
-            description: 'Create new configuration',
+            name: $filter('translate')('pcreate.title'),
+            description: $filter('translate')('pcreate.description'),
             icon: 'ic_satellite_24px'
         };
         $scope.criteria = {};

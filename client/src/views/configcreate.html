@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <br>
 
-        <div class="confman-accroche">
+        <div class="confman-accroche" translate="pcreate.info">
             A new configuration is created from an application version number. <b>Confman</b> display
             a form with the last known values (last version tracking for the actual application
             version number). You can change every parameters values but you won't be able to change
@@ -18,29 +18,29 @@
             <div class="container-fluid thumbnail" ng-hide="lockVersion">
                 <div class="row">
                     <div class="col-md-1">
-                        <label for="data-application">&nbsp;Application</label>
+                        <label for="data-application" translate="global.form.application">&nbsp;Application</label>
                     </div>
                     <div class="col-md-3">
                         <select id="data-application" ng-model="criteria.idApplication" class="form-control input-sm"
                                 required
                                 ng-change="changeApplication()" name="application"
                                 ng-options="application.id as application.code for application in applications">
-                            <option value="">Application</option>
+                            <option value="" translate="global.form.application">Application</option>
                         </select>
                     <span ng-show="form.application.$error.required"
-                          class="confman-label-error">Application is required</span>
+                          class="confman-label-error"><small translate="pcreate.messages.error.apprequired">Application is required</small></span>
                     </div>
                     <div class="col-md-1">
-                        <label for="data-tracking">&nbsp;Version</label>
+                        <label for="data-tracking" translate="global.form.version">&nbsp;Version</label>
                     </div>
                     <div class="col-md-3">
                         <select id="data-tracking" ng-model="criteria.idApplicationVersion"
                                 class="form-control input-sm" required
                                 name="applicationVersion"
                                 ng-options="applicationVersion.id as applicationVersion.code for applicationVersion in applicationVersions">
-                            <option value="">Versions</option>
+                            <option value="" translate="global.form.version">Versions</option>
                         </select>
-                        <span ng-show="form.applicationVersion.$error.required" class="confman-label-error">application version is required</span>
+                        <span ng-show="form.applicationVersion.$error.required" class="confman-label-error"><small translate="pcreate.messages.error.versionrequired">application version is required</small></span>
                     </div>
                     <div class="col-md-4">
                         <div class="confman-btn">
@@ -54,7 +54,7 @@
             </div>
             <div class="row" ng-show="versionTrackiCode">
                 <div class="col-md-12">
-                    <h3>Version tracking <b>{{versionTrackiCode}}</b></h3>
+                    <h3 translate="global.form.tracking">Version tracking <b>{{versionTrackiCode}}</b></h3>
                     Change the values or delete lines if necessary and click on the save button. After, this version
                     tracking will be locked and no
                     parameter value won't be able to change
@@ -86,17 +86,18 @@
                                            class="form-control input-sm confman-input-param-env">
                                 </div>
                                 <div class="col-md-3">
-                                    <small>old value: {{param.oldValue}}</small>
+                                    <small><span translate="pcreate.messages.info.oldvalue">old value</span>: {{param.oldValue}}</small>
                                 </div>
                                 <div class="col-md-2">
-                                    <small ng-show="param.toDelete"><b>will be deleted on saving</b></small>
+                                    <small ng-show="param.toDelete"><b translate="pcreate.messages.info.willdelete">will be deleted on saving</b></small>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h4>Application : {{param.codeApplication}} - tracking version :
+                                    <h4><span translate="global.form.application">Application</span> : {{param.codeApplication}} -
+                                        <span translate="global.form.tracking">tracking version</span> :
                                         <div class="badge badge-version">{{param.codeTrackingVersion}}</div>
-                                        <span ng-show="param.codeInstance">- instance : <div class="badge badge-instance">
+                                        <span ng-show="param.codeInstance">- <span translate="global.form.instance">instance</span> : <div class="badge badge-instance">
                                             {{param.codeInstance}}
                                         </div></span>
                                     </h4>

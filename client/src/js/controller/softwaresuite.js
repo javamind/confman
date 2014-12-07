@@ -2,15 +2,15 @@
 /**
  * Controller linked to the application's groupment list
  */
-angular.module('confman').controller('softwaresuiteCtrl', ['$rootScope', '$scope', '$http', '$modal', 'SoftwareSuite', 'Environment', 'constants',
-    function ($rootScope, $scope, $http, $modal, SoftwareSuite, Environment, constants) {
+angular.module('confman').controller('softwaresuiteCtrl', ['$rootScope', '$scope', '$http', '$modal', '$filter','SoftwareSuite', 'Environment', 'constants',
+    function ($rootScope, $scope, $http, $modal, $filter, SoftwareSuite, Environment, constants) {
         $rootScope.callbackOK();
 
         //Page definition
         $rootScope.currentPage = {
             code: 'soft',
-            name : 'Software Suite',
-            description : 'In a complex context you have often a set of of software',
+            name :  $filter('translate')('soft.title'),
+            description : $filter('translate')('soft.description'),
             icon : 'ic_settings_24px'
         };
 
@@ -18,11 +18,10 @@ angular.module('confman').controller('softwaresuiteCtrl', ['$rootScope', '$scope
         //Load applicationgroupments
         $scope.softwaresuites = SoftwareSuite.query();
 
-
         //Actions
         $scope.update =  function (elt){
             $scope.entity = {
-                verb : 'Update software suite',
+                verb : $filter('translate')('global.verb.update') + ' ' + $filter('translate')('soft.name'),
                 content : elt,
                 selected : elt.id
             };
@@ -44,16 +43,17 @@ angular.module('confman').controller('softwaresuiteCtrl', ['$rootScope', '$scope
                         $scope.hideEnv=false;
                     })
                     .error(function (data) {
-                        $rootScope.setError('Error on environments load ');
+                        $rootScope.setError($filter('translate')('soft.messages.error.loadenv'));
                     });
             });
 
         };
         $scope.create =  function (){
             $scope.entity = {
-                verb : 'Create software suite',
+                verb : $filter('translate')('global.verb.create') + ' ' + $filter('translate')('soft.name'),
                 content : {}
             };
+            $scope.hideEnv=true;
         };
         $scope.delete =  function (elt, $event){
             var modalInstance = $modal.open({
@@ -61,7 +61,7 @@ angular.module('confman').controller('softwaresuiteCtrl', ['$rootScope', '$scope
                 controller: 'ConfirmDeleteCtrl',
                 resolve: {
                     entity_todelete : function () {
-                        return 'software suite ' + elt.code;
+                        return $filter('translate')('soft.name.the') + ' <b>' +  elt.code + '</b>';;
                     }
                 }
             });
@@ -84,12 +84,12 @@ angular.module('confman').controller('softwaresuiteCtrl', ['$rootScope', '$scope
         };
         $scope.save =  function (form){
             if(form.$error.required){
-                $rootScope.setError('Your form is not submitted : code and label are required');
+                $rootScope.setError($filter('translate')('soft.messages.error.required'));
                 return;
             }
             //We check code existence
             if(verify_code_unicity($scope.softwaresuites, $scope.entity.content)>0){
-                $rootScope.setError('The code [' + $scope.entity.content + '] is already in use');
+                $rootScope.setError($filter('translate')('env.messages.error.used'));
                 return;
             }
 
@@ -103,7 +103,7 @@ angular.module('confman').controller('softwaresuiteCtrl', ['$rootScope', '$scope
                         }
                         $scope.softwaresuites.push(data);
                         $scope.entity.content = data;
-                        $scope.entity.verb = 'Update software suite';
+                        $scope.entity.verb = $filter('translate')('global.verb.update') + ' ' + $filter('translate')('soft.name');
                         $scope.entity.selected = data.id;
                     },
                     $scope.callbackKO);

@@ -7,8 +7,8 @@ angular.module('confman').controller('applicationDetailCtrl',[
         //Page definition
         $rootScope.currentPage = {
             code: 'app',
-            name: 'Application',
-            description: $routeParams.id > 0 ? 'Update Application' : 'Create new application',
+            name: $filter('translate')('application.title'),
+            description: ($routeParams.id > 0 ? $filter('translate')('global.verb.update')  :  $filter('translate')('global.verb.create')) + ' ' + $filter('translate')('application.name'),
             icon: 'ic_settings_24px',
             actionbar: [
                 {icon: 'ic_arrow_back_24px', action: function () {
@@ -61,8 +61,8 @@ angular.module('confman').controller('applicationDetailCtrl',[
                     $scope.error = null;
                     $scope.environments = environments;
                     $scope.appelt = {
-                        title: instance.id ? 'Update instance' : 'Add instance',
-                        verb: instance.id ? 'Update' : 'Add',
+                        title: instance.id ? $filter('translate')('global.verb.update') : $filter('translate')('global.verb.create') + ' ' + $filter('translate')('application.instance') ,
+                        verb: instance.id ? $filter('translate')('global.verb.update') : $filter('translate')('global.verb.create'),
                         icon: instance.id ? 'ic_reply_all_24px.svg' : 'ic_add_24px.svg',
                         content: instance
                     }
@@ -126,8 +126,8 @@ angular.module('confman').controller('applicationDetailCtrl',[
                     $scope.error = null;
                     $scope.parametertypes = ['APPLICATION', 'INSTANCE'];
                     $scope.appparam = {
-                        title: parameter.id ? 'Update parameter' : 'Add parameter',
-                        verb: parameter.id ? 'Update' : 'Add',
+                        title: parameter.id ? $filter('translate')('global.verb.update') : $filter('translate')('global.verb.create') + ' ' + $filter('translate')('application.parameter') ,
+                        verb: parameter.id ? $filter('translate')('global.verb.update') : $filter('translate')('global.verb.create'),
                         icon: parameter.id ? 'ic_reply_all_24px.svg' : 'ic_add_24px.svg',
                         content: parameter
                     }
@@ -182,8 +182,8 @@ angular.module('confman').controller('applicationDetailCtrl',[
                 controller: ['$scope', '$modalInstance', 'version', function ($scope, $modalInstance, version) {
                     $scope.error = null;
                     $scope.appelt = {
-                        title: version.id ? 'Update version' : 'Add version',
-                        verb: version.id ? 'Update' : 'Add',
+                        title: version.id ? $filter('translate')('global.verb.update') : $filter('translate')('global.verb.create') + ' ' + $filter('translate')('application.version') ,
+                        verb: version.id ? $filter('translate')('global.verb.update') : $filter('translate')('global.verb.create'),
                         icon: version.id ? 'ic_reply_all_24px.svg' : 'ic_add_24px.svg',
                         content: version
                     }
@@ -249,7 +249,9 @@ angular.module('confman').controller('applicationDetailCtrl',[
                 }
             }
         };
-        $scope.save = saveApplication();
+        $scope.save = function (){
+            saveApplication();
+        };
 
         //Delete application
         //----------------------------
@@ -258,8 +260,8 @@ angular.module('confman').controller('applicationDetailCtrl',[
                 templateUrl: 'modalConfirmDelete.html',
                 controller: 'ConfirmDeleteCtrl',
                 resolve: {
-                    entity_todelete: function () {
-                        return 'application ' + elt.code;
+                    entity_todelete : function () {
+                        return $filter('translate')('application.name.the') + ' <b>' +  elt.code + '</b>';
                     }
                 }
             });

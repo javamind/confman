@@ -30,7 +30,16 @@
             "confirmpassword": "New password confirmation",
             "confirmpassword.placeholder": "Confirm the new password",
             "confirmdelete": "Deletion confirmation",
-            "confirmdelete.placeholder":"Are you sure you want to delete "
+            "confirmdelete.placeholder":"Are you sure you want to delete ",
+            "id": "Id",
+            "code": "Code",
+            "label": "Label",
+            "environment" : "Environment",
+            "type" : "Type",
+            "instance" : "Instance",
+            "tracking" : "Tracking version",
+            "application" : "Application",
+            "version" : "Version"
         },
         "verb":{
             "create": "Create",
@@ -53,6 +62,9 @@
                     "minlength": "Your confirmation password is required to be at least 5 characters",
                     "maxlength": "Your confirmation password cannot be longer than 50 characters"
                 }
+            },
+            "info": {
+                "select.elem":"Select one element"
             }
         }
     },
@@ -94,6 +106,81 @@
                 "used" :"The code  is already in use"
             }
         }
+    },
+    "soft" : {
+        "title": "Software Suite",
+        "description" : "In a complex context you have often a set of of software",
+        "nb" : "nb software suite",
+        "name" : "software suite",
+        "name.the" : "the software suite",
+        "messages": {
+            "error": {
+                "required" :"Your form is not submitted : code and label are required",
+                "used" :"The code  is already in use",
+                "loadenv": "Error on environments load"
+            }
+        }
+    },
+    "application" : {
+        "title": "Application",
+        "name" : "application",
+        "name.the" : "the application",
+        "instances" : "Instances",
+        "instance" : "instance",
+        "parameters" : "Parameters",
+        "parameter" : "parameter",
+        "versions" : "Versions",
+        "version" : "version",
+        "messages" : {
+            "info" : {
+                "no.instance" : "No instance for the moment ",
+                "no.version" : "No version for the moment",
+                "no.parameter" : "No parameter for the moment",
+                "type.instance" :"If you use the same instance for different environment you have to duplicate it because the configuration could be different for each environment",
+                "type.parameter" :"A paramater can be specific for an instance or an application"
+            },
+            "error" : {
+                "envrequired" : "Environment is required",
+                "typerequired" : "Type is required"
+            }
+        }
+    },
+    "psearch" : {
+        "title": "Configurations",
+        "description" : "Search configuration and watch parameters values",
+        "nb" : "nb parameters",
+        "criteria" : "Critères de recherche"
+
+    },
+    "pcreate" : {
+        "title": "Configurations",
+        "description" : "Create new configuration",
+        "info" : "A new configuration is created from an application version number. <b>Confman</b> display a form with the last known values (last version tracking for the actual application version number). You can change every parameters values but you won't be able to change them after the saving (expect for SNAPSHOT version). We choose this policy because all the changes have to be followed.",
+        "messages" : {
+            "error": {
+                "apprequired": "Application is required",
+                "versionrequired" : "Application version is required"
+            },
+            "info":{
+                "oldvalue" :"old value",
+                "willdelete" : "will be deleted on saving"
+            }
+        }
+
+    },
+    "pcompare" : {
+        "title": "Configurations",
+        "description" : "Compare two configurations",
+        "messages" : {
+            "error" : {
+                "apprequired" : "Application is required",
+                "app1required" : "Application env 1 is required",
+                "app2required" : "Application env 2 is required",
+                "version1required" : "Application version 1 is required",
+                "version2required" : "Application version 2 is required"
+            }
+        }
+
     }
 
 }

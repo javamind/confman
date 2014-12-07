@@ -3,7 +3,7 @@
         "menu": {
             "home": "Accueil",
             "settings": "Paramètres",
-            "environment": "Environement",
+            "environment": "Environnement",
             "application": "Application",
             "softwaresuite": "Ensemble application",
             "config": "Configuration",
@@ -30,7 +30,16 @@
             "confirmpassword": "Confirmation mot de passe",
             "confirmpassword.placeholder": "Confirmation du nouveau mot de passe",
             "confirmdelete": "Confirmation de la suppression",
-            "confirmdelete.placeholder":"Voulez vous supprimer "
+            "confirmdelete.placeholder":"Voulez vous supprimer ",
+            "id": "Id",
+            "code": "Code",
+            "label": "Libellé",
+            "environment" : "Environnement",
+            "type" : "Type",
+            "instance" : "Instance",
+            "tracking" : "Version de tracking",
+            "application" : "Application",
+            "version" : "Version"
         },
         "verb":{
           "create": "Créer",
@@ -53,6 +62,9 @@
                     "minlength": "Your confirmation password is required to be at least 5 characters",
                     "maxlength": "Your confirmation password cannot be longer than 50 characters"
                 }
+            },
+            "info": {
+                "select.elem":"Selectionnez un élément"
             }
         }
     },
@@ -93,6 +105,81 @@
                 "used" :"Le code est déjà utilisé"
             }
         }
+    },
+    "soft" : {
+        "title": "Suite logicielle",
+        "description" : "Une suite logicielle est un regroupement d&#39;applications formant un tout cohérent",
+        "nb" : "nb suite logicielle",
+        "name" : "suite logicielle",
+        "name.the" : "la suite logicielle",
+        "messages": {
+            "error": {
+                "required" :"Le formulaire n&#39;a pas été envoyé : le code et le libellé sont obligatoires",
+                "used" :"Le code est déjà utilisé",
+                "loadenv": "Erreur au chargement des environnements"
+            }
+        }
+    },
+    "application" : {
+        "title": "Application",
+        "name" : "application",
+        "name.the" : "l&#39;application",
+        "instances" : "Instances",
+        "instance" : "instance",
+        "parameters" : "Paramètres",
+        "parameter" : "paramètre",
+        "versions" : "Versions",
+        "version" : "version",
+        "messages" : {
+            "info" : {
+                "no.instance" : "Pas d&#39;nstance pour le moment",
+                "no.version" : "Pas de version pour le moment",
+                "no.parameter" : "Pas de paramètre pour le moment",
+                "type.instance" :"Si vous utilisez une même instance sur plusieurs environnements vous devez dupliquer les entrées parce que la configuration est différentes d&#39;un environnement à l&#39;autre",
+                "type.parameter" :"Un paramètre peut être spécifique pour une instance ou vraie quelque soit cette instance"
+            },
+            "error" : {
+                "envrequired" : "Un environnement est obligatoire",
+                "typerequired" : "Le type est obligatoire"
+            }
+        }
+
+    },
+    "psearch" : {
+        "title": "Configurations",
+        "description" : "Rechercher les valeurs des paramètres d&#39;une versio d&#39;application",
+        "nb" : "nb de paramètres",
+        "criteria" : "Critères de recherche"
+
+    },
+    "pcreate" : {
+        "title": "Configurations",
+        "description" : "Créer une nouvelle configuration",
+        "info" : "Une nouvelle configuration est à partir d&#39;un numéro de version d&#39;une application. <b>Confman</b> afiche un formulaire avec les dernières valeurs connues (dernière version de tracking liée à la version spécifiée). Vous pouvez changer toutes les valeurs de paramètres mais vous ne pourrez plus les modifier après l&#39;enregistrement (sauf pour les versions  SNAPSHOT en développement). Nous avons choisi cette règle car en production tous les changements doivent être traçés.",
+        "messages" : {
+            "error": {
+                "apprequired": "Application est obligatoire",
+                "versionrequired" : "Version d&#39;application est obligatoire"
+            },
+            "info":{
+                "oldvalue" :"ancienne valeur",
+                "willdelete" : "sera supprimé à l&#39;enregistrement" 
+            }
+        }
+    },
+    "pcompare" : {
+        "title": "Configurations",
+        "description" : "Comparer deux configurations",
+        "messages" : {
+            "error" : {
+                "apprequired" : "Application est obligatoire",
+                "app1required" : "Env. application 1 obligatoire",
+                "app2required" : "Env. application 2 obligatoire",
+                "version1required" : "Version application 1 obligatoire",
+                "version2required" : "Version application 2 obligatoire"
+            }
+        }
+
     }
 
 }

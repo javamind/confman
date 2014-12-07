@@ -9,8 +9,8 @@ angular.module('confman').controller('configSearchCtrl', ['$rootScope', '$scope'
         //Page definition
         $rootScope.currentPage = {
             code: 'confsearch',
-            name: 'Configurations',
-            description: 'Search configuration and wath parameters values',
+            name: $filter('translate')('psearch.title'),
+            description: $filter('translate')('psearch.description'),
             icon: 'ic_satellite_24px'
         };
 

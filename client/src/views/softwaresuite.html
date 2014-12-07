@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="col-md-5">
             <h4>
-                nb software suite : {{softwaresuites.length}}
+                <span translate="soft.nb">nb environment</span> : {{softwaresuites.length}}
                 <div class="confman-btn" style="width: 50%">
                     <button class="btn btn-primary" ng-click="create()">
                         <img src="img/icon/ic_insert_drive_file_24px.svg" title="New"/>
@@ -48,31 +48,30 @@
                     </div>
                     <div class="thumbnail">
                         <div class="row" ng-show="entity.content.id">
-                            <div class="col-xs-2"><label for="data-id">&nbsp;Id</label></div>
+                            <div class="col-xs-2"><label for="data-id" translate="global.form.id">&nbsp;Id</label></div>
                             <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="entity.content.id"
                                                           class="form-control input-sm"></div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-2"><label class="control-label" for="data-code">&nbsp;Code</label></div>
+                            <div class="col-xs-2"><label class="control-label" for="data-code" translate="global.form.code">&nbsp;Code</label></div>
                             <div class="col-xs-10"><input type="text" id="data-code" required
                                                           ng-model="entity.content.code" class="form-control input-sm"
                                                           name="code">
                                 <span ng-show="form.code.$error.required"
-                                      class="confman-label-error">Code is required</span></div>
+                                      class="confman-label-error" translate="global.messages.error.coderequired">Code is required</span></div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-2"><label class="control-label" for="data-label">&nbsp;Label</label>
+                            <div class="col-xs-2"><label class="control-label" for="data-label" translate="global.form.label">&nbsp;Label</label>
                             </div>
                             <div class="col-xs-10"><input type="text" id="data-label" size="50" required
                                                           ng-model="entity.content.label" class="form-control input-sm"
                                                           name="label">
                                 <span ng-show="form.label.$error.required"
-                                      class="confman-label-error">Label is required</span></div>
+                                      class="confman-label-error" translate="global.messages.error.labelrequired">Label is required</span></div>
                         </div>
-
                         <div ng-show="entity.content.id" ng-hide="hideEnv">
                             <br>
-                            <h4>Environments</h4>
+                            <h4 translate="env.title">Environments</h4>
                             <md-list>
                                 <md-item ng-repeat="obj in environments">
                                     <md-item-content>

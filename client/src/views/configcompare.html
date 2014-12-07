@@ -8,7 +8,7 @@
             <div class="container-fluid thumbnail" ng-hide="lockVersion">
                 <div class="row">
                     <div class="col-md-1">
-                        <label for="data-application">&nbsp;Application</label>
+                        <label for="data-application" translate="global.form.application">&nbsp;Application</label>
                     </div>
                     <div class="col-md-3">
                         <select id="data-application" ng-model="criteria.idApplication" class="form-control input-sm input-sm input-sm" required
@@ -16,26 +16,26 @@
                                 ng-options="application.id as application.code for application in applications">
                             <option value="">Application</option>
                         </select>
-                        <span ng-show="form.application.$error.required" class="confman-label-error"><small>Application is required</small></span>
+                        <span ng-show="form.application.$error.required" class="confman-label-error"><small translate="pcompare.messages.error.apprequired">Application is required</small></span>
                     </div>
                     <div class="col-md-1">
-                        <label>&nbsp;Versions</label>
+                        <label translate="global.form.version">&nbsp;Versions</label>
                     </div>
                     <div class="col-md-3">
                         <select ng-model="criteria.idApplicationVersion1" class="form-control input-sm"
                                 required name="idApplicationVersion1"
                                 ng-options="applicationVersion.id as applicationVersion.code for applicationVersion in applicationVersions">
-                            <option value="">Versions</option>
+                            <option value="" translate="global.form.version">Versions</option>
                         </select>
-                        <span ng-show="form.idApplicationVersion1.$error.required" class="confman-label-error"><small>application version 1 is required</small></span>
+                        <span ng-show="form.idApplicationVersion1.$error.required" class="confman-label-error"><small translate="pcompare.messages.error.version1required">application version 1 is required</small></span>
                     </div>
                     <div class="col-md-3">
                         <select ng-model="criteria.idApplicationVersion2" class="form-control input-sm"
                                 required name="idApplicationVersion2"
                                 ng-options="applicationVersion.id as applicationVersion.code for applicationVersion in applicationVersions">
-                            <option value="">Versions</option>
+                            <option value="" translate="global.form.version">Versions</option>
                         </select>
-                        <span ng-show="form.idApplicationVersion2.$error.required" class="confman-label-error"><small>application version 2 is required</small></span>
+                        <span ng-show="form.idApplicationVersion2.$error.required" class="confman-label-error"><small translate="pcompare.messages.error.version2required">application version 2 is required</small></span>
                     </div>
                     <div class="col-md-1">
                         &nbsp;
@@ -44,23 +44,23 @@
                 <div class="row">
                     <div class="col-md-4">&nbsp;</div>
                     <div class="col-md-1">
-                        <label>&nbsp;Env.</label>
+                        <label translate="global.form.environment">&nbsp;Env.</label>
                     </div>
                     <div class="col-md-3">
                         <select ng-model="criteria.idEnvironment1" class="form-control input-sm"
                                 required  name="idEnvironment1"
                                 ng-options="env.id as env.code for env in environments">
-                            <option value="">Environment</option>
+                            <option value="" translate="global.form.environment">Environment</option>
                         </select>
-                        <span ng-show="form.idEnvironment1.$error.required" class="confman-label-error"><small>application env 1 is required</small></span>
+                        <span ng-show="form.idEnvironment1.$error.required" class="confman-label-error"><small translate="pcompare.messages.error.app1required">application env 1 is required</small></span>
                     </div>
                     <div class="col-md-3">
                         <select ng-model="criteria.idEnvironment2" class="form-control input-sm"
                                 required  name="idEnvironment2"
                                 ng-options="env.id as env.code for env in environments">
-                            <option value="">Environment</option>
+                            <option value="" translate="global.form.environment">Environment</option>
                         </select>
-                        <span ng-show="form.idEnvironment2.$error.required" class="confman-label-error"><small>application env 2 is required</small></span>
+                        <span ng-show="form.idEnvironment2.$error.required" class="confman-label-error"><small translate="pcompare.messages.error.app2required">application env 2 is required</small></span>
                     </div>
                     <div class="col-md-1">
                         <div class="confman-btn">
@@ -86,8 +86,9 @@
                                 <h3 ng-hide="param.elt1.code">&nbsp;</h3>
                                 <h3 ng-show="param.elt1.code">{{param.elt1.code}} : <b>{{param.elt1.label}}</b></h3>
 
-                                <h4 ng-show="param.elt1.code">Application : {{param.elt1.codeApplication}} - tracking version : <div class="badge badge-version">{{param.elt1.codeTrackingVersion}}</div>
-                                    <span ng-show="param.elt1.codeInstance">- instance : <div class="badge badge-instance">{{param.elt1.codeInstance}}</div></span>
+                                <h4 ng-show="param.elt1.code"><span translate="global.form.application">Application</span> : {{param.elt1.codeApplication}} -
+                                    <span translate="global.form.tracking">tracking version</span> : <div class="badge badge-version">{{param.elt1.codeTrackingVersion}}</div>
+                                    <span ng-show="param.elt1.codeInstance">- <span translate="global.form.instance">instance</span> : <div class="badge badge-instance">{{param.elt1.codeInstance}}</div></span>
                                 </h4>
                             </div>
                             <div class="col-xs-1">
@@ -103,8 +104,9 @@
                             <div class="col-xs-5">
                                 <h3 ng-hide="param.elt2.code">&nbsp;</h3>
                                 <h3 ng-show="param.elt2.code">{{param.elt2.code}} : <b>{{param.elt2.label}}</b></h3>
-                                <h4 ng-show="param.elt2.code">Application : {{param.elt2.codeApplication}} - tracking version : <div class="badge badge-version">{{param.elt2.codeTrackingVersion}}</div>
-                                    <span ng-show="param.elt2.codeInstance">- instance : <div class="badge badge-instance">{{param.elt2.codeInstance}}</div></span>
+                                <h4 ng-show="param.elt2.code"><span translate="global.form.application">Application</span> : {{param.elt2.codeApplication}} -
+                                    <span translate="global.form.tracking">tracking version</span> : <div class="badge badge-version">{{param.elt2.codeTrackingVersion}}</div>
+                                    <span ng-show="param.elt2.codeInstance">- <span translate="global.form.instance">instance</span> : <div class="badge badge-instance">{{param.elt2.codeInstance}}</div></span>
                                 </h4>
                             </div>
                         </div>

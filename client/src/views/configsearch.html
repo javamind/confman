@@ -9,28 +9,28 @@
         <div class="container-fluid thumbnail">
             <div class="row">
                 <div class="col-md-1">
-                    <label for="data-environment">&nbsp;Environment</label>
+                    <label for="data-environment" translate="global.form.environment">&nbsp;Environment</label>
                 </div>
                 <div class="col-md-3">
                     <select id="data-environment" ng-model="criteria.idEnvironment" class="form-control input-sm"
                             ng-change="changeEnvironment()"
                             ng-options="environment.id as environment.code for environment in environments">
-                        <option value="">Environment</option>
+                        <option value="" translate="global.form.environment">Environment</option>
                     </select>
                 </div>
                 <div class="col-md-1">
-                    <label for="data-application">&nbsp;Application</label>
+                    <label for="data-application" translate="global.form.application">&nbsp;Application</label>
                 </div>
                 <div class="col-md-3">
                     <select id="data-application" ng-model="criteria.idApplication" class="form-control input-sm"
                             ng-change="changeApplication()"
                             ng-show="applications"
                             ng-options="application.id as application.code for application in applications">
-                        <option value="">Application</option>
+                        <option value="" translate="global.form.application">Application</option>
                     </select>
                 </div>
                 <div class="col-md-1">
-                    <label for="data-code">&nbsp;Code</label>
+                    <label for="data-code" translate="global.form.code">&nbsp;Code</label>
                 </div>
                 <div class="col-md-3">
                     <div class="col-xs-10"><input type="text" id="data-code" ng-model="criteria.code"
@@ -39,23 +39,23 @@
             </div>
             <div class="row">
                 <div class="col-md-1">
-                    <label for="data-instance">&nbsp;Instance</label>
+                    <label for="data-instance" translate="global.form.instance">&nbsp;Instance</label>
                 </div>
                 <div class="col-md-3">
                     <select id="data-instance" ng-model="criteria.idInstance" class="form-control input-sm"
                             ng-show="instances"
                             ng-options="instance.id as instance.code for instance in instances">
-                        <option value="">Instance</option>
+                        <option value="" translate="global.form.instance">Instance</option>
                     </select>
                 </div>
                 <div class="col-md-1">
-                    <label for="data-tracking">&nbsp;Tracking</label>
+                    <label for="data-tracking" translate="global.form.tracking">&nbsp;Tracking</label>
                 </div>
                 <div class="col-md-3">
                     <select id="data-tracking" ng-model="criteria.idTrackingVersion" class="form-control input-sm"
                             ng-show="trackingVersions"
                             ng-options="trackingVersion.id as trackingVersion.code for trackingVersion in trackingVersions">
-                        <option value="">Version tracking</option>
+                        <option value="" translate="global.form.tracking">Version tracking</option>
                     </select>
                 </div>
                 <div class="col-md-4">
@@ -73,7 +73,7 @@
     </form>
 
     <h4>
-        nb parameters : {{parametervalues.completeSize}}
+        <span translate="psearch.nb">nb parameters</span> : {{parametervalues.completeSize}}
         <small ng-show="parametervalues.completeSize"> page <b>{{parametervalues.currentPage}}</b> / {{nbPageTotal}}
         </small>
     </h4>
@@ -87,8 +87,9 @@
                 <div class="md-tile-content">
                     <h3>{{param.code}} : <b>{{param.label}}</b></h3>
 
-                    <h4>Application : {{param.codeApplication}} - tracking version : <div class="badge badge-version">{{param.codeTrackingVersion}}</div>
-                        <span ng-show="param.codeInstance">- instance : <div class="badge badge-instance">{{param.codeInstance}}</div></span>
+                    <h4><span translate="global.form.application">Application</span> : {{param.codeApplication}} -
+                        <span translate="global.form.application">tracking version</span> : <div class="badge badge-version">{{param.codeTrackingVersion}}</div>
+                        <span ng-show="param.codeInstance">- <span translate="global.form.instance">instance</span> : <div class="badge badge-instance">{{param.codeInstance}}</div></span>
                     </h4>
                 </div>
                 <div class="md-tile-right">

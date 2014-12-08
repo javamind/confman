@@ -2,7 +2,6 @@ package com.ninjamind.confman.web.api;
 
 import com.ninjamind.confman.domain.ParameterValue;
 import com.ninjamind.confman.dto.ParameterValueConfmanDto;
-import com.ninjamind.confman.dto.ParameterValueDto;
 import com.ninjamind.confman.exception.VersionException;
 import com.ninjamind.confman.exception.VersionTrackingException;
 import com.ninjamind.confman.service.ParameterValueFacade;

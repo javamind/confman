@@ -14,9 +14,13 @@ angular.module('confman').controller('softwaresuiteCtrl', ['$rootScope', '$scope
             icon : 'ic_settings_24px'
         };
 
+        $scope.hideEnv=true;
 
         //Load applicationgroupments
         $scope.softwaresuites = SoftwareSuite.query();
+
+        //Load envs
+        $scope.environments = Environment.query();
 
         //Actions
         $scope.update =  function (elt){
@@ -26,26 +30,29 @@ angular.module('confman').controller('softwaresuiteCtrl', ['$rootScope', '$scope
                 selected : elt.id
             };
             $scope.hideEnv=true;
-            //Load environments
-            $scope.environments = Environment.query(function(){
-                $http.get(constants.urlserver + 'app/softwaresuite/' + elt.id +'/environment')
-                    .success(function (data) {
-                        data.forEach(function(element){
-                            //on parcours la liste des env
-                            for(var i = 0 ; i<$scope.environments.length ; i++){
-                                var o = $scope.environments[i];
-                                if(o.id===element.idEnvironmentDto){
-                                    o.selected = true;
-                                    break;
-                                }
-                            }
-                        });
-                        $scope.hideEnv=false;
-                    })
-                    .error(function (data) {
-                        $rootScope.setError($filter('translate')('soft.messages.error.loadenv'));
-                    });
+            $scope.environments.forEach(function (env){
+                env.selected = false;
             });
+
+            //Load environments
+            $http.get(constants.urlserver + 'app/softwaresuite/' + elt.id +'/environment')
+                .success(function (data) {
+                    data.forEach(function(element){
+                        //on parcours la liste des env
+                        for(var i = 0 ; i<$scope.environments.length ; i++){
+                            var o = $scope.environments[i];
+                            if(o.id===element.idEnvironmentDto){
+                                o.selected = true;
+                                break;
+                            }
+                        }
+                    });
+                    $scope.hideEnv=false;
+                })
+                .error(function (data) {
+                    $rootScope.setError($filter('translate')('soft.messages.error.loadenv'));
+                });
+
 
         };
         $scope.create =  function (){

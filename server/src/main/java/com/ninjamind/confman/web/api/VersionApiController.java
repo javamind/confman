@@ -4,7 +4,6 @@ import com.github.zafarkhaja.semver.Version;
 import com.google.common.base.Preconditions;
 import com.ninjamind.confman.domain.ApplicationVersion;
 import com.ninjamind.confman.domain.TrackingVersion;
-import com.ninjamind.confman.dto.ConfmanDto;
 import com.ninjamind.confman.dto.VersionConfmanDto;
 import com.ninjamind.confman.service.ApplicationVersionFacade;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -75,6 +75,13 @@ You can easily add a new database. For this, you have to complete the file gradl
 
 When you launch gradle you have to specify your database name. For example gradlew.bat -Pdatabase=oracle clean build. The default database is PostgreSql, but you can easily use Oracle or add your own.
 
+If you have to use a proxy you can configure it like that
+    systemProp.http.proxyHost=monproxy.com
+    systemProp.http.proxyPort=8080
+    systemProp.http.proxyUser=javamind
+    systemProp.http.proxyPassword=MonPassword
+    systemProp.http.nonProxyHosts=localhost
+
 Create the Confman's database
 ------------
 To manage database scripts we use Flyway Db (http://flywaydb.org/). With gradle you can use

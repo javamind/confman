@@ -2,9 +2,9 @@ package com.ninjamind.confman.domain;
 
 import com.google.common.base.Objects;
 
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Version;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * All our entities have common fields
@@ -27,8 +27,27 @@ public abstract class AbstractConfManEntity<T extends AbstractConfManEntity> imp
      */
     @Version
     private Long version = Long.valueOf(0);
-
+    /**
+     * Use for logical deletion
+     */
     private boolean active;
+    /**
+     * Change date of activation
+     */
+    @Temporal(TemporalType.DATE)
+    @Column(name="active_change_date")
+    private Date activeChangeDate;
+    /**
+     * Change date
+     */
+    @Temporal(TemporalType.DATE)
+    @Column(name="change_date")
+    private Date changeDate;
+    /**
+     * Change user
+     */
+    @Column(name="change_user")
+    private String changeUser;
 
     /**
      * Default constructor
@@ -81,6 +100,33 @@ public abstract class AbstractConfManEntity<T extends AbstractConfManEntity> imp
 
     public T setActive(boolean active) {
         this.active = active;
+        return (T) this;
+    }
+
+    public Date getActiveChangeDate() {
+        return activeChangeDate;
+    }
+
+    public T setActiveChangeDate(Date activeChangeDate) {
+        this.activeChangeDate = activeChangeDate;
+        return (T) this;
+    }
+
+    public Date getChangeDate() {
+        return changeDate;
+    }
+
+    public T setChangeDate(Date changeDate) {
+        this.changeDate = changeDate;
+        return (T) this;
+    }
+
+    public String getChangeUser() {
+        return changeUser;
+    }
+
+    public T setChangeUser(String changeUser) {
+        this.changeUser = changeUser;
         return (T) this;
     }
 

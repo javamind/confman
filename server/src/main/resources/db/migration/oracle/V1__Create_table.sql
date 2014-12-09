@@ -5,6 +5,9 @@ CREATE TABLE environment
   label VARCHAR2(250),
   version NUMBER,
   active NUMBER(1),
+  active_change_date DATE,
+  change_user VARCHAR2(40),
+  change_date DATE,
   CONSTRAINT environment_unique_key UNIQUE (code),
   CONSTRAINT environment_pk PRIMARY KEY (id)
 );
@@ -17,6 +20,9 @@ CREATE TABLE softwaresuite
   label VARCHAR2(250),
   version NUMBER,
   active NUMBER(1),
+  active_change_date DATE,
+  change_user VARCHAR2(40),
+  change_date DATE,
   CONSTRAINT softwaresuite_id_unique_key UNIQUE (code),
   CONSTRAINT softwaresuite_pk PRIMARY KEY (id)
 );
@@ -27,6 +33,9 @@ CREATE TABLE softwaresuite_environment
   softwaresuite_id NUMBER NOT NULL,
   version NUMBER,
   active NUMBER(1),
+  active_change_date DATE,
+  change_user VARCHAR2(40),
+  change_date DATE,
   CONSTRAINT softenv_pk PRIMARY KEY (environment_id, softwaresuite_id),
   CONSTRAINT softenv_fk1 FOREIGN KEY (environment_id) REFERENCES environment (id),
   CONSTRAINT softenv_fk2 FOREIGN KEY (softwaresuite_id) REFERENCES softwaresuite (id)
@@ -41,6 +50,9 @@ CREATE TABLE application
   softwaresuite_id NUMBER,
   version NUMBER,
   active NUMBER(1),
+  active_change_date DATE,
+  change_user VARCHAR2(40),
+  change_date DATE,
   CONSTRAINT application_unique_key UNIQUE (code),
   CONSTRAINT application_pk PRIMARY KEY (id),
   CONSTRAINT application_fk1 FOREIGN KEY (softwaresuite_id) REFERENCES softwaresuite (id)
@@ -56,6 +68,9 @@ CREATE TABLE applicationversion
   blocked NUMBER(1),
   version NUMBER,
   active NUMBER(1),
+  active_change_date DATE,
+  change_user VARCHAR2(40),
+  change_date DATE,
   CONSTRAINT applicationversion_unique_key UNIQUE (code, application_id),
   CONSTRAINT applicationversion_pk PRIMARY KEY (id),
   CONSTRAINT applicationversion_fk1 FOREIGN KEY (application_id) REFERENCES application (id)
@@ -70,6 +85,9 @@ CREATE TABLE trackingversion
   version NUMBER,
   active NUMBER(1),
   blocked NUMBER(1),
+  active_change_date DATE,
+  change_user VARCHAR2(40),
+  change_date DATE,
   CONSTRAINT trackingversion_unique_key UNIQUE (code, applicationVersion_id),
   CONSTRAINT trackingversion_pk PRIMARY KEY (id),
   CONSTRAINT trackingversion_fk1 FOREIGN KEY (applicationVersion_id) REFERENCES applicationversion (id)
@@ -84,6 +102,9 @@ CREATE TABLE instance
   environment_id NUMBER NOT NULL,
   version NUMBER,
   active NUMBER(1),
+  active_change_date DATE,
+  change_user VARCHAR2(40),
+  change_date DATE,
   CONSTRAINT instance_unique_key UNIQUE (code, application_id, environment_id),
   CONSTRAINT instance_pk PRIMARY KEY (id),
   CONSTRAINT instance_fk1 FOREIGN KEY (application_id) REFERENCES application (id),
@@ -97,6 +118,9 @@ CREATE TABLE parametergrpt
   label VARCHAR2(250),
   version NUMBER,
   active NUMBER(1),
+  active_change_date DATE,
+  change_user VARCHAR2(40),
+  change_date DATE,
   CONSTRAINT parametergrpt_unique_key UNIQUE (code),
   CONSTRAINT parametergrpt_pk PRIMARY KEY (id)
 );
@@ -111,6 +135,9 @@ CREATE TABLE parameter
   version NUMBER,
   active NUMBER(1),
   type VARCHAR2(40) NOT NULL,
+  active_change_date DATE,
+  change_user VARCHAR2(40),
+  change_date DATE,
   CONSTRAINT parameter_unique_key UNIQUE (code, application_id),
   CONSTRAINT parameter_pk PRIMARY KEY (id),
   CONSTRAINT parameter_fk1 FOREIGN KEY (parameterGroupment_id) REFERENCES parametergrpt (id),
@@ -139,6 +166,9 @@ CREATE TABLE parametervalue
   application_label VARCHAR2(2500),
   version NUMBER,
   active NUMBER(1),
+  active_change_date DATE,
+  change_user VARCHAR2(40),
+  change_date DATE,
   CONSTRAINT parametervalue_pk PRIMARY KEY (id),
   CONSTRAINT parametervalue_fk1 FOREIGN KEY (environment_id) REFERENCES environment (id),
   CONSTRAINT parametervalue_fk2 FOREIGN KEY (trackingVersion_id) REFERENCES trackingversion (id),

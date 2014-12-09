@@ -5,6 +5,9 @@ CREATE TABLE environment
   label character varying(250),
   version integer,
   active boolean,
+  active_change_date date,
+  change_user character varying(40),
+  change_date date,
   CONSTRAINT environment_unique_key UNIQUE (code)
 )
 WITH (
@@ -18,6 +21,9 @@ CREATE TABLE softwaresuite
   label character varying(250),
   version integer,
   active boolean,
+  active_change_date date,
+  change_user character varying(40),
+  change_date date,
   CONSTRAINT softwaresuite_id_unique_key UNIQUE (code)
 )
 WITH (
@@ -30,6 +36,9 @@ CREATE TABLE softwaresuite_environment
   softwaresuite_id integer NOT NULL REFERENCES softwaresuite (id),
   version integer,
   active boolean,
+  active_change_date date,
+  change_user character varying(40),
+  change_date date,
   CONSTRAINT softwaresuite_env_id_unique_key UNIQUE (environment_id, softwaresuite_id)
 )
 WITH (
@@ -45,6 +54,9 @@ CREATE TABLE application
   softwaresuite_id integer REFERENCES softwaresuite (id),
   version integer,
   active boolean,
+  active_change_date date,
+  change_user character varying(40),
+  change_date date,
   CONSTRAINT application_unique_key UNIQUE (code)
 )
 WITH (
@@ -60,6 +72,9 @@ CREATE TABLE applicationversion
   blocked boolean,
   version integer,
   active boolean,
+  active_change_date date,
+  change_user character varying(40),
+  change_date date,
   CONSTRAINT applicationversion_unique_key UNIQUE (code, application_id)
 )
 WITH (
@@ -75,6 +90,9 @@ CREATE TABLE trackingversion
   version integer,
   active boolean,
   blocked boolean,
+  active_change_date date,
+  change_user character varying(40),
+  change_date date,
   CONSTRAINT trackingversion_unique_key UNIQUE (code, applicationVersion_id)
 )
 WITH (
@@ -90,6 +108,9 @@ CREATE TABLE instance
   environment_id integer NOT NULL REFERENCES environment (id),
   version integer,
   active boolean,
+  active_change_date date,
+  change_user character varying(40),
+  change_date date,
   CONSTRAINT instance_unique_key UNIQUE (code, application_id, environment_id)
 )
 WITH (
@@ -103,6 +124,9 @@ CREATE TABLE parametergrpt
   label character varying(250),
   version integer,
   active boolean,
+  active_change_date date,
+  change_user character varying(40),
+  change_date date,
   CONSTRAINT parametergrpt_unique_key UNIQUE (code)
 )
 WITH (
@@ -120,6 +144,9 @@ CREATE TABLE parameter
   version integer,
   active boolean,
   type character varying(40) NOT NULL,
+  active_change_date date,
+  change_user character varying(40),
+  change_date date,
   CONSTRAINT parameter_unique_key UNIQUE (code, application_id)
 )
 WITH (
@@ -147,7 +174,10 @@ CREATE TABLE parametervalue
   application_code character varying(40),
   application_label character varying(2500),
   version integer,
-  active boolean
+  active boolean,
+  active_change_date date,
+  change_user character varying(40),
+  change_date date
 )
 WITH (
   OIDS=FALSE

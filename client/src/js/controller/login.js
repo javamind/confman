@@ -5,6 +5,8 @@
  */
 angular.module('confman').controller('loginCtrl', ['$rootScope','$scope', '$location', '$filter','AuthenticationSharedService',
     function($rootScope,$scope, $location, $filter, AuthenticationSharedService) {
+        $rootScope.callbackOK();
+
         //Page definition
         $rootScope.currentPage = {
             code: 'login',

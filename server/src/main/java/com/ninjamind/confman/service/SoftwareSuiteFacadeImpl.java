@@ -50,6 +50,7 @@ public class SoftwareSuiteFacadeImpl implements SoftwareSuiteFacade{
         //we delete all the linked
         softwareSuiteEnvironmentRepository.delete(findSoftwareSuiteEnvironmentByIdSoft(softwareSuite.getId()));
         softwareSuite.clearSoftwareSuiteEnvironments();
+        updateTracability(softwareSuite);
         SoftwareSuite suiteSaved = getRepository().save(softwareSuite);
 
         if(suiteEnvironmentSet!=null && !suiteEnvironmentSet.isEmpty()) {
@@ -70,6 +71,7 @@ public class SoftwareSuiteFacadeImpl implements SoftwareSuiteFacade{
     @Override
     public SoftwareSuite create(SoftwareSuite entity) {
         //We have no logical deletion
+        updateTracability(entity);
         return getRepository().save(entity.setActive(true));
     }
 }

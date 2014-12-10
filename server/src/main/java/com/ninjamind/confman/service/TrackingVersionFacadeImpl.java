@@ -55,6 +55,7 @@ public class TrackingVersionFacadeImpl implements TrackingVersionFacade {
             BeanUtils.copyProperties(entity, version, "id", "version");
             return version.setActive(true);
         }
+        updateTracability(entity);
         return getRepository().save(entity.setActive(true));
     }
 }

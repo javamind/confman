@@ -5,6 +5,8 @@
  */
 angular.module('confman').controller('appCtrl', ['$scope', '$timeout', '$mdSidenav', '$http', 'constants','AuthenticationSharedService',
     function($scope, $timeout, $mdSidenav, $http, constants, AuthenticationSharedService) {
+        $scope.callbackOK();
+
         var leftNav;
         $timeout(function() {
             leftNav = $mdSidenav('left');

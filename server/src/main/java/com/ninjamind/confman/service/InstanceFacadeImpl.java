@@ -66,6 +66,7 @@ public class InstanceFacadeImpl implements InstanceFacade {
             BeanUtils.copyProperties(entity, instance, "id", "version");
             return instance.setActive(true);
         }
+        updateTracability(instance);
         return getRepository().save(entity.setActive(true));
     }
 }

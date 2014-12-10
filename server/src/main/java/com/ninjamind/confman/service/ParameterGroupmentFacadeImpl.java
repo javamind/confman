@@ -38,6 +38,7 @@ public class ParameterGroupmentFacadeImpl implements GenericFacade<ParameterGrou
             BeanUtils.copyProperties(entity, parameterGroupment, "id", "version");
             return parameterGroupment.setActive(true);
         }
+        updateTracability(parameterGroupment);
         return getRepository().save(entity.setActive(true));
     }
 }

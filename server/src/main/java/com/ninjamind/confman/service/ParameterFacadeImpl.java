@@ -75,6 +75,7 @@ public class ParameterFacadeImpl implements ParameterFacade {
             BeanUtils.copyProperties(entity, param, "id", "version");
             return param.setActive(true);
         }
+        updateTracability(param);
         return getRepository().save(entity.setActive(true));
     }
 }

@@ -118,23 +118,14 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
                 .headers()
                     .frameOptions().disable()
                 .authorizeRequests()
-                    .antMatchers(HttpMethod.OPTIONS, "/app/**").permitAll()//a  llow CORS option calls
+                     //allow CORS option calls and request for authent
+                    .antMatchers(HttpMethod.OPTIONS, "/app/**").permitAll()
                     .antMatchers("/app/authenticated").permitAll()
-                    //TODO
                     .antMatchers("/app/account").permitAll()
+                    //everithing else is secured
                     .antMatchers("/app/**").authenticated()
-                    .antMatchers("/metrics/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                    .antMatchers("/health/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                    .antMatchers("/trace/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                    .antMatchers("/dump/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                    .antMatchers("/shutdown/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                    .antMatchers("/beans/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                    .antMatchers("/info/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                    .antMatchers("/autoconfig/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                    .antMatchers("/env/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                    .antMatchers("/trace/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                    .antMatchers("/api-docs/**").hasAuthority(AuthoritiesConstants.ADMIN)
-                    .antMatchers("/protected/**").authenticated();
+                    //.antMatchers("/api/**").authenticated()
+                    ;
 
     }
 

@@ -76,6 +76,7 @@ public class ApplicationVersionFacadeImpl implements ApplicationVersionFacade {
             BeanUtils.copyProperties(entity, version, "id", "version");
             return version.setActive(true);
         }
+        updateTracability(version);
         return getRepository().save(entity.setActive(true));
     }
 }

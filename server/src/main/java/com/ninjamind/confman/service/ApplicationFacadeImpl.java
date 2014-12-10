@@ -62,6 +62,7 @@ public class ApplicationFacadeImpl implements ApplicationFacade {
             BeanUtils.copyProperties(entity, app, "id", "version");
             return app.setActive(true);
         }
+        updateTracability(app);
         return getRepository().save(entity.setActive(true));
     }
 

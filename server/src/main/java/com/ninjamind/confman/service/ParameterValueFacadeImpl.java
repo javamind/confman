@@ -66,6 +66,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
     @Override
     public ParameterValue create(ParameterValue entity) {
         //We have'nt a functional unicity constraint
+        updateTracability(entity);
         return getRepository().save(entity.setActive(true));
     }
 
@@ -172,6 +173,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
                     .get();
         }
         trackingVersion.setBlocked(false);
+        updateTracability(trackingVersion);
         trackingVersionRepository.save(trackingVersion);
 
         //For a new version we create parameters values. For an existant version we modify the values
@@ -220,7 +222,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
                 .setActive(true)
                 .setBlocked(false)
                 .setLabel("Linked to version " + version.getCode());
-
+        updateTracability(trackingVersion);
         trackingVersionRepository.save(trackingVersion);
 
         return createParametersValues(version, application, trackingVersion, referenceTrackingVersion);
@@ -418,6 +420,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
                 .setOldvalue(paramValueRef != null ? paramValueRef.getLabel() : null)
                 .setTrackingVersion(trackingVersion);
 
+        updateTracability(parameterValueTarget);
         return parameterValueRepositoryGeneric.save(parameterValueTarget);
     }
 

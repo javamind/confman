@@ -36,6 +36,7 @@ angular.module('confman').factory('AuthenticationSharedService', function ($root
                                 Session.create(data.login, data.firstName, data.lastName, data.email, data.roles);
                                 $rootScope.account = Session;
                                 authService.loginConfirmed(data);
+                                $rootScope.callbackOK();
                             }
                         );
                 })

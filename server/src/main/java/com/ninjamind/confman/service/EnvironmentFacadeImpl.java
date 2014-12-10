@@ -38,6 +38,7 @@ public class EnvironmentFacadeImpl implements EnvironmentFacade{
             BeanUtils.copyProperties(entity, env, "id", "version");
             return env.setActive(true);
         }
+        updateTracability(env);
         return getRepository().save(entity.setActive(true));
     }
 }

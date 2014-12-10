@@ -1,11 +1,15 @@
 package com.ninjamind.confman.service;
 
+import com.google.common.base.Objects;
 import com.ninjamind.confman.domain.AbstractConfManEntity;
 import com.ninjamind.confman.repository.ConfmanRepository;
 import com.ninjamind.confman.repository.HibernateUtil;
+import com.ninjamind.confman.security.AuthoritiesConstants;
+import com.ninjamind.confman.security.SecurityUtils;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -50,6 +54,14 @@ public interface GenericFacade<T extends AbstractConfManEntity, ID extends Seria
 
 
     /**
+     * Set the user and the change date. if user is unknown we use {@link com.ninjamind.confman.security.AuthoritiesConstants#UNKNOWN}
+     * @param entity
+     */
+    default <S extends AbstractConfManEntity> void updateTracability(S entity){
+        entity.setChangeDate(new Date());
+        entity.setChangeUser(Objects.firstNonNull(SecurityUtils.getCurrentLogin(), AuthoritiesConstants.UNKNOWN));
+    }
+    /**
      * Update a given entity. Use the returned instance for further operations as the save operation might have changed the
      * entity instance completely.
      *
@@ -57,6 +69,7 @@ public interface GenericFacade<T extends AbstractConfManEntity, ID extends Seria
      * @return the saved entity
      */
     default <S extends T> S update(S entity){
+        updateTracability(entity);
         return getRepository().save(entity);
     }
 
@@ -80,6 +93,8 @@ public interface GenericFacade<T extends AbstractConfManEntity, ID extends Seria
         T myObject = getRepository().findOne(id);
         if(myObject!=null){
             myObject.setActive(false);
+            myObject.setActiveChangeDate(new Date());
+            updateTracability(myObject);
         }
     }
 

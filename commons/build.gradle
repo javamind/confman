@@ -12,6 +12,7 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin : 'maven'
 
 group = 'com.ninjamind'
 version = '1.0.0-SNAPSHOT'
@@ -50,5 +51,6 @@ jar {
         )
     }
 }
+
 
 

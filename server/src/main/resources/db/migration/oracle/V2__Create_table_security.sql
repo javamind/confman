@@ -23,7 +23,7 @@ CREATE TABLE T_USER_AUTHORITY
   name VARCHAR2(50) NOT NULL,
   CONSTRAINT user_authority_pk PRIMARY KEY (login, name),
   CONSTRAINT user_authority_fk1 FOREIGN KEY (name) REFERENCES T_AUTHORITY (name),
-  CONSTRAINT user_authority_fk2 FOREIGN KEY (user_login) REFERENCES T_USER (login)
+  CONSTRAINT user_authority_fk2 FOREIGN KEY (login) REFERENCES T_USER (login)
 );
 
 CREATE TABLE T_PERSISTENT_TOKEN
@@ -31,9 +31,9 @@ CREATE TABLE T_PERSISTENT_TOKEN
   series VARCHAR2(255) NOT NULL,
   user_login VARCHAR2(50),
   token_value VARCHAR2(255) NOT NULL,
-  token_date DATETIME,
+  token_date date,
   ip_address VARCHAR2(39),
   user_agent VARCHAR2(255),
   CONSTRAINT persistent_token_pk PRIMARY KEY (series),
-  CONSTRAINT persistent_token_fk1 FOREIGN KEY (login) REFERENCES T_USER (login)
+  CONSTRAINT persistent_token_fk1 FOREIGN KEY (user_login) REFERENCES T_USER (login)
 );

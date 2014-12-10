@@ -65,8 +65,8 @@ dependencies {
     compile project(':client')
     compile project(':commons')
     compile("com.google.guava:guava:16.0.1")
-    compile("com.oracle:ojdbc6:${oracleDriverVersion}")
     compile("org.postgresql:postgresql:${postgresqlDriverVersion}")
+    compile("com.oracle:ojdbc6:${oracleDriverVersion}")
     compile("com.github.zafarkhaja:java-semver:0.7.2")
     compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
     compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
@@ -143,8 +143,11 @@ task createConfFliwayForDelivery << {
 task copyForDelivery(dependsOn: createConfFliwayForDelivery) << {
     //the war
     copy {
-        from "$buildDir/libs/confman.jar"
+        from "$buildDir/libs/confman.jar.original"
         into { "$buildDir/delivery" }
+        rename { String fileName ->
+            fileName.replace('.original', '')
+        }
     }
     //The dependencies must be present
     copy {

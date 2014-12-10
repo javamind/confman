@@ -4,9 +4,6 @@ buildscript {
     repositories {
         mavenLocal()
         mavenCentral()
-        maven{
-            url 'http://repo.spring.io/libs-snapshot'
-        }
     }
 }
 
@@ -29,9 +26,6 @@ compileJava {
 repositories {
     mavenLocal()
     mavenCentral()
-    maven {
-        url 'http://repo.spring.io/plugins-release'
-    }
 }
 
 idea {

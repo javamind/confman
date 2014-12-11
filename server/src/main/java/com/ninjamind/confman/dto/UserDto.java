@@ -1,8 +1,10 @@
 package com.ninjamind.confman.dto;
 
+import com.ninjamind.confman.domain.User;
+
 import java.util.List;
 
-public class UserDTO {
+public class UserDto implements ConfmanAppDto<User>{
 
     private String login;
 
@@ -18,10 +20,18 @@ public class UserDTO {
 
     private List<String> roles;
 
-    public UserDTO() {
+    public UserDto() {
     }
 
-    public UserDTO(String login, String password, String firstName, String lastName, String email, String langKey,
+    public UserDto(User user) {
+        this.email = user.getEmail();
+        this.login =user.getLogin();
+        this.firstName = user.getFirstName();
+        this.langKey = user.getLangKey();
+        this.lastName = user.getLastName();
+    }
+
+    public UserDto(String login, String password, String firstName, String lastName, String email, String langKey,
                    List<String> roles) {
         this.login = login;
         this.password = password;
@@ -74,5 +84,16 @@ public class UserDTO {
         sb.append(", roles=").append(roles);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public User toDo() {
+        return new User()
+                .setEmail(getEmail())
+                .setLangKey(getLangKey())
+                .setFirstName(getFirstName())
+                .setLastName(getLastName())
+                .setLogin(getLogin())
+                .setPassword(getPassword());
     }
 }

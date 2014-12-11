@@ -86,4 +86,18 @@ public class UserServiceImpl implements UserService{
         return currentUser;
     }
 
+    @Override
+    public UserRepository getRepository() {
+        return userRepository;
+    }
+
+    @Override
+    public Class<User> getClassEntity() {
+        return User.class;
+    }
+
+    @Override
+    public <S extends User> S create(S entity) {
+        return null;
+    }
 }

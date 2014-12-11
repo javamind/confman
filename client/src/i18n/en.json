@@ -11,6 +11,7 @@
             "create": "Create",
             "compare": "Compare",
             "admin": "Administration",
+            "user": "User",
             "language": {
                 "french":"Afficher en français",
                 "english":"Display in english"
@@ -104,6 +105,19 @@
             "error": {
                 "required" :"Your form is not submitted : code and label are required",
                 "used" :"The code  is already in use"
+            }
+        }
+    },
+    "user" : {
+        "title": "User",
+        "description" : "You can add the users who are allowed to use Confman. The rights are different according to the profile",
+        "nb" : "nb users",
+        "name" : "user",
+        "name.the" : "the user",
+        "messages": {
+            "error": {
+                "required" :"Your form is not submitted : login are required",
+                "used" :"The login  is already in use"
             }
         }
     },

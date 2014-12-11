@@ -2,6 +2,7 @@ package com.ninjamind.confman.service;
 
 import com.google.common.base.Objects;
 import com.ninjamind.confman.domain.AbstractConfManEntity;
+import com.ninjamind.confman.domain.TracableEntity;
 import com.ninjamind.confman.repository.ConfmanRepository;
 import com.ninjamind.confman.repository.HibernateUtil;
 import com.ninjamind.confman.security.AuthoritiesConstants;
@@ -19,7 +20,7 @@ import java.util.List;
  * @author Guillaume EHRET
  */
 @Transactional
-public interface GenericFacade<T extends AbstractConfManEntity, ID extends Serializable, Repository extends ConfmanRepository<T, ID>> {
+public interface GenericFacade<T extends TracableEntity, ID extends Serializable, Repository extends ConfmanRepository<T, ID>> {
 
     /**
      *
@@ -57,7 +58,7 @@ public interface GenericFacade<T extends AbstractConfManEntity, ID extends Seria
      * Set the user and the change date. if user is unknown we use {@link com.ninjamind.confman.security.AuthoritiesConstants#UNKNOWN}
      * @param entity
      */
-    default <S extends AbstractConfManEntity> void updateTracability(S entity){
+    default <S extends TracableEntity> void updateTracability(S entity){
         entity.setChangeDate(new Date());
         entity.setChangeUser(Objects.firstNonNull(SecurityUtils.getCurrentLogin(), AuthoritiesConstants.UNKNOWN));
     }

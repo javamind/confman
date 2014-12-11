@@ -8,6 +8,10 @@ CREATE TABLE T_USER
   activated boolean default false,
   lang_key character varying(5),
   activation_key character varying(20),
+  active boolean,
+    active_change_date date,
+    change_user character varying(40),
+    change_date date,
   CONSTRAINT user_pk PRIMARY KEY (login)
 )
 WITH (

@@ -34,4 +34,7 @@ angular.module('confman')
     })
     .factory('ParamaterGroupment', function ParamaterGroupment($resource, constants) {
         return $resource(constants.urlserver + 'app/parametergroupment/:id', { id: '@_id' },restActions);
+    })
+    .factory('User', function ParamaterGroupment($resource, constants) {
+        return $resource(constants.urlserver + 'app/user/:id', { id: '@_id' },restActions);
     });

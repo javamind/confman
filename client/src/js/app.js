@@ -78,6 +78,13 @@ confman.config(function ($routeProvider, $translateProvider, $httpProvider, cons
                 authorizedRoles: [USER_ROLES.user]
             }
         })
+        .when('/user', {
+            templateUrl: 'views/user.html',
+            controller:'userCtrl',
+            access: {
+                authorizedRoles: [USER_ROLES.admin]
+            }
+        })
         .when('/login', {
             templateUrl: 'views/login.html',
             controller:'loginCtrl',

@@ -11,6 +11,7 @@
             "create": "Créer",
             "compare": "Comparer",
             "admin": "Administration",
+            "user": "Utilisateur",
             "language": {
                 "french":"Afficher en français",
                 "english":"Display in english"
@@ -103,6 +104,19 @@
             "error": {
                 "required" :"Le formulaire n&#39;a pas été envoyé : le code et le libellé sont obligatoires",
                 "used" :"Le code est déjà utilisé"
+            }
+        }
+    },
+    "user" : {
+        "title": "Utilisateur",
+        "description" : "Vous pouvez ajouter les utilisateurs qui auront le droit d'utiliser Confman. Le niveau des droits dépend du profil choisi",
+        "nb" : "nb utilisateurs",
+        "name" : "utilisateur",
+        "name.the" : "l&acute;utilisateur",
+        "messages": {
+            "error": {
+                "required" :"Le formulaire n&#39;a pas été envoyé : le logn est obligatoire",
+                "used" :"Le login est déjà utilisé"
             }
         }
     },

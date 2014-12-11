@@ -8,6 +8,10 @@ CREATE TABLE T_USER
   activated NUMBER(1) default 0,
   lang_key VARCHAR2(5),
   activation_key VARCHAR2(20),
+  active NUMBER(1),
+    active_change_date DATE,
+    change_user VARCHAR2(40),
+    change_date DATE,
   CONSTRAINT user_pk PRIMARY KEY (login)
 );
 

@@ -12,7 +12,7 @@ import java.util.Date;
  * @author Guillaume EHRET
  */
 @MappedSuperclass
-public abstract class AbstractConfManEntity<T extends AbstractConfManEntity> implements Serializable{
+public abstract class AbstractConfManEntity<T extends AbstractConfManEntity> implements TracableEntity<T>{
 
     /**
      * Code
@@ -30,7 +30,7 @@ public abstract class AbstractConfManEntity<T extends AbstractConfManEntity> imp
     /**
      * Use for logical deletion
      */
-    private boolean active;
+    private Boolean active;
     /**
      * Change date of activation
      */
@@ -94,11 +94,11 @@ public abstract class AbstractConfManEntity<T extends AbstractConfManEntity> imp
 
     public abstract Long getId();
 
-    public boolean isActive() {
+    public Boolean isActive() {
         return active;
     }
 
-    public T setActive(boolean active) {
+    public T setActive(Boolean active) {
         this.active = active;
         return (T) this;
     }
@@ -154,6 +154,10 @@ public abstract class AbstractConfManEntity<T extends AbstractConfManEntity> imp
         return Objects.toStringHelper(this)
                 .add("code", code)
                 .add("label", label)
+                .add("active", active)
+                .add("activeChangeDate", activeChangeDate)
+                .add("changeDate", changeDate)
+                .add("changeUser", changeUser)
                 .toString();
     }
 }

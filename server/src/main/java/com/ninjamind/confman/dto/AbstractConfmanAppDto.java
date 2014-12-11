@@ -14,7 +14,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * @author Guillaume EHRET
  */
 @JsonIgnoreProperties(ignoreUnknown=true)
-public abstract class AbstractConfmanAppDto<T extends AbstractConfmanAppDto, E extends AbstractConfManEntity> implements Serializable {
+public abstract class AbstractConfmanAppDto<T extends AbstractConfmanAppDto, E extends AbstractConfManEntity> implements ConfmanAppDto<E> {
     /**
      * Id
      */
@@ -65,8 +65,6 @@ public abstract class AbstractConfmanAppDto<T extends AbstractConfmanAppDto, E e
         this.version = version;
         this.active = active;
     }
-
-    public abstract E toDo();
 
     public String getCode() {
         return code;

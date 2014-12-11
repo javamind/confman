@@ -2,7 +2,7 @@ package com.ninjamind.confman.web.app;
 
 import com.ninjamind.confman.domain.Authority;
 import com.ninjamind.confman.domain.User;
-import com.ninjamind.confman.dto.UserDTO;
+import com.ninjamind.confman.dto.UserDto;
 import com.ninjamind.confman.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,7 +49,7 @@ public class AccountController {
     @RequestMapping(value = "/account",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserDTO> getAccount() {
+    public ResponseEntity<UserDto> getAccount() {
         User user = userService.getUserWithAuthorities();
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -59,7 +59,7 @@ public class AccountController {
             roles.add(authority.getName());
         }
         return new ResponseEntity<>(
-            new UserDTO(
+            new UserDto(
                 user.getLogin(),
                 null,
                 user.getFirstName(),
@@ -76,7 +76,7 @@ public class AccountController {
     @RequestMapping(value = "/account",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public void saveAccount(@RequestBody UserDTO userDTO) {
+    public void saveAccount(@RequestBody UserDto userDTO) {
         userService.updateUserInformation(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail());
     }
 

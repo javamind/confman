@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "T_USER")
-public class User  implements Serializable {
+public class User  implements TracableEntity<User> {
 
     @NotNull
     @Size(min = 0, max = 50)
@@ -50,6 +51,29 @@ public class User  implements Serializable {
     @Size(min = 0, max = 20)
     @Column(name = "activation_key", length = 20)
     private String activationKey;
+
+    /**
+     * Use for logical deletion
+     */
+    private Boolean active;
+    /**
+     * Change date of activation
+     */
+    @Temporal(TemporalType.DATE)
+    @Column(name="active_change_date")
+    private Date activeChangeDate;
+    /**
+     * Change date
+     */
+    @Temporal(TemporalType.DATE)
+    @Column(name="change_date")
+    private Date changeDate;
+    /**
+     * Change user
+     */
+    @Column(name="change_user")
+    private String changeUser;
+
 
     @JsonIgnore
     @ManyToMany
@@ -141,6 +165,42 @@ public class User  implements Serializable {
 
     public User setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
+        return this;
+    }
+
+    public Boolean isActive() {
+        return active;
+    }
+
+    public User setActive(Boolean active) {
+        this.active = active;
+        return this;
+    }
+
+    public Date getActiveChangeDate() {
+        return activeChangeDate;
+    }
+
+    public User setActiveChangeDate(Date activeChangeDate) {
+        this.activeChangeDate = activeChangeDate;
+        return this;
+    }
+
+    public Date getChangeDate() {
+        return changeDate;
+    }
+
+    public User setChangeDate(Date changeDate) {
+        this.changeDate = changeDate;
+        return this;
+    }
+
+    public String getChangeUser() {
+        return changeUser;
+    }
+
+    public User setChangeUser(String changeUser) {
+        this.changeUser = changeUser;
         return this;
     }
 

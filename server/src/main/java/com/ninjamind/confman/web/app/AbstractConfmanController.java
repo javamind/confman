@@ -2,8 +2,10 @@ package com.ninjamind.confman.web.app;
 
 import com.google.common.base.Preconditions;
 import com.ninjamind.confman.domain.AbstractConfManEntity;
+import com.ninjamind.confman.domain.TracableEntity;
 import com.ninjamind.confman.dto.AbstractConfmanApiDto;
 import com.ninjamind.confman.dto.AbstractConfmanAppDto;
+import com.ninjamind.confman.dto.ConfmanAppDto;
 import com.ninjamind.confman.exception.ConverterException;
 import com.ninjamind.confman.service.GenericFacade;
 import org.springframework.http.HttpStatus;
@@ -22,8 +24,8 @@ import java.util.stream.Collectors;
  */
 @RestController
 public abstract class AbstractConfmanController<
-        E extends AbstractConfManEntity,
-        D extends AbstractConfmanAppDto,
+        E extends TracableEntity,
+        D extends ConfmanAppDto,
         ID extends Serializable> {
 
     protected GenericFacade<E, ID, ?> genericFacade;

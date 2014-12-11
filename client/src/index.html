@@ -70,9 +70,15 @@
         </a>
 
 
-        <button class="menu-item menu-title" translate="global.menu.admin">
+        <button class="menu-item menu-title"
+                ng-class="{active : isConfmanPageSelected(['user'])}"
+                translate="global.menu.admin">
             Administration
         </button>
+        <a class="menu-item menu-sub-item" href="#/user" ng-click="toggleLeft()"
+           ng-class="{active : isConfmanPageSelected(['user'])}">
+            <span translate="global.menu.user">User</span>
+        </a>
         <div class="menu-item menu-sub-item" >
             <a href="javascript:;" ng-click="changeLanguage('fr')" ng-controller="langCtrl">
                 <img src="img/flag/flag_fr.svg" style="height: 16px; width: 18px">
@@ -189,6 +195,7 @@
 <script src="js/controller/main.js"></script>
 <script src="js/controller/login.js"></script>
 <script src="js/controller/environment.js"></script>
+<script src="js/controller/user.js"></script>
 <script src="js/controller/softwaresuite.js"></script>
 <script src="js/controller/application.js"></script>
 <script src="js/controller/applicationdetail.js"></script>

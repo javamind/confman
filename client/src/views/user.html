@@ -1,0 +1,81 @@
+<md-content ng-controller="userCtrl">
+    <div class="container-fluid">
+        <div class="col-md-5">
+            <h4>
+                <span translate="user.nb">nb utilisateurs</span> : {{users.length}}
+                <div class="confman-btn" style="width: 50%">
+                    <button class="btn btn-primary" ng-click="create()">
+                        <img src="img/icon/ic_insert_drive_file_24px.svg" title="New"/>
+                    </button>
+                </div>
+            </h4>
+            <md-list>
+                <md-item ng-repeat="user in users | orderBy:'code'" ng-click="update(user)"
+                               ng-class="isSelected(user.login, entity.selected)" class="confman-md-item">
+                    <md-item-content>
+                        <div class="md-tile-content">
+                            <h3>{{user.login}}</h3>
+                            <p>TODO</p>
+                        </div>
+                    </md-item-content>
+                </md-item>
+            </md-list>
+        </div>
+        <div class="col-md-6 col-md-offset-1">
+            <form class="form confman-form" name="form" novalidate ng-show="entity.verb">
+                <div style="height: 100%">
+                    <div class="row">
+                        <div class="col-xs-7">
+                            <br><h3>{{entity.verb}}</h3>
+                        </div>
+                        <div class="col-xs-5">
+                            <div class="confman-btn">
+                                <br/>
+                                <button class="btn" ng-class="getClassActionForm(form)" ng-click="save(form)"
+                                        ng-disabled="form.$invalid">
+                                    <img src="img/icon/ic_save_24px.svg" title="Save"/>
+                                </button>
+                                <button class="btn btn-danger" ng-click="delete(entity.content, $event)"
+                                        ng-show="entity.content.id">
+                                    <img src="img/icon/ic_delete_24px.svg" title="Delete"/>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-danger confman-alert-error container-fluid" role="alert" ng-show="error">
+                        Error : {{error.message}}
+                    </div>
+                    <div class="thumbnail">
+                        <div class="row" ng-show="entity.content.id">
+                            <div class="col-xs-2"><label for="data-id" translate="global.form.id">&nbsp;Id</label></div>
+                            <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="entity.content.id"
+                                                          class="form-control input-sm">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-2"><label class="control-label" for="data-code" translate="global.form.code">&nbsp;Code</label></div>
+                            <div class="col-xs-10"><input type="text" id="data-code" required="true"
+                                                          ng-model="entity.content.code"
+                                                          class="form-control input-sm confman-input.ng-invalid"
+                                                          name="code">
+                                <span ng-show="form.code.$error.required"
+                                      class="confman-label-error" translate="global.messages.error.coderequired">Code is required</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-2"><label class="control-label" for="data-label" translate="global.form.label">&nbsp;Label</label>
+                            </div>
+                            <div class="col-xs-10"><input type="text" id="data-label" size="50" required
+                                                          ng-model="entity.content.label" class="form-control input-sm"
+                                                          name="label">
+                                <span ng-show="form.label.$error.required"
+                                      class="confman-label-error" translate="global.messages.error.labelrequired">Label is required</span></div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</md-content>

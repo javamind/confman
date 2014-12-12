@@ -1,6 +1,7 @@
 package com.ninjamind.confman.service;
 
 import com.ninjamind.confman.domain.Environment;
+import com.ninjamind.confman.repository.AuthorityRepository;
 import com.ninjamind.confman.repository.EnvironmentRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class EnvironmentFacadeImpl implements EnvironmentFacade{
         return Environment.class;
     }
 
+    @Autowired
+    private AuthorityRepository authorityRepository;
 
     @Override
     public Environment create(Environment entity) {
@@ -38,7 +41,29 @@ public class EnvironmentFacadeImpl implements EnvironmentFacade{
             BeanUtils.copyProperties(entity, env, "id", "version");
             return env.setActive(true);
         }
+        if(entity.getProfil()!=null) {
+            entity.setProfil(authorityRepository.findOne(entity.getProfil().getName()));
+        }
         updateTracability(env);
         return getRepository().save(entity.setActive(true));
+    }
+
+    /**
+     * Update a given entity. Use the returned instance for further operations as the save operation might have changed the
+     * entity instance completely.
+     *
+     * @param entity
+     * @return the saved entity
+     */
+    public Environment update(Environment entity){
+        //We search the profile linked
+        if(entity.getProfil()!=null && entity.getProfil().getName()!=null) {
+            entity.setProfil(authorityRepository.findOne(entity.getProfil().getName()));
+        }
+        else{
+           entity.setProfil(null);
+        }
+        updateTracability(entity);
+        return getRepository().save(entity);
     }
 }

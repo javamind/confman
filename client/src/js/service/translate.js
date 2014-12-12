@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('confman').factory('LanguageService', function ($http, $translate, LANGUAGES) {
+angular.module('confman').factory('LanguageService', ['$http', '$translate', 'LANGUAGES', function ($http, $translate, LANGUAGES) {
     return {
         getBy: function(language) {
 
@@ -15,4 +15,4 @@ angular.module('confman').factory('LanguageService', function ($http, $translate
             return promise;
         }
     };
-});
+}]);

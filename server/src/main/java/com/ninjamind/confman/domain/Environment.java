@@ -22,8 +22,13 @@ public class Environment extends AbstractConfManEntity<Environment>{
     @GeneratedValue(strategy= GenerationType.AUTO, generator = Environment.SEQ_NAME)
     @SequenceGenerator(name = Environment.SEQ_NAME, sequenceName = Environment.SEQ_NAME, allocationSize = 1)
     private Long id;
+
     @OneToMany(mappedBy = "id.environment")
     private Set<SoftwareSuiteEnvironment> softwareSuiteEnvironments = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "profil")
+    private Authority profil;
 
     public Environment() {
     }
@@ -51,6 +56,15 @@ public class Environment extends AbstractConfManEntity<Environment>{
         return this;
     }
 
+    public Authority getProfil() {
+        return profil;
+    }
+
+    public Environment setProfil(Authority profil) {
+        this.profil = profil;
+        return this;
+    }
+
     public void clearSoftwareSuiteEnvironments() {
         softwareSuiteEnvironments.clear();
     }
@@ -59,6 +73,7 @@ public class Environment extends AbstractConfManEntity<Environment>{
     public String toString() {
         return Objects.toStringHelper(this)
                 .add("id", id)
+                .add("profil", profil!=null ? profil.getName() : null)
                 .addValue(super.toString())
                 .toString();
     }

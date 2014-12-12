@@ -1,9 +1,12 @@
 package com.ninjamind.confman.service;
 
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.Authority;
 import com.ninjamind.confman.domain.User;
 import com.ninjamind.confman.repository.AuthorityRepository;
 import com.ninjamind.confman.repository.UserRepository;
+import com.ninjamind.confman.security.AuthoritiesConstants;
 import com.ninjamind.confman.security.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -33,11 +37,17 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private AuthorityRepository authorityRepository;
 
+    private static List<String> PROFILS = Lists.newArrayList(AuthoritiesConstants.DEV, AuthoritiesConstants.OPS, AuthoritiesConstants.ADMIN);
+
     @Override
     public User createUserInformation(String login, String password, String firstName, String lastName, String email,
-                                      String langKey) {
+                                      String langKey, String profil) {
+
+        Preconditions.checkNotNull(login, "login is required");
+        Preconditions.checkArgument(PROFILS.contains(profil), "profil is not known");
+
         User newUser = new User();
-        Authority authority = authorityRepository.findOne("ROLE_USER");
+        Authority authority = authorityRepository.findOne(profil);
         Set<Authority> authorities = new HashSet<>();
         String encryptedPassword = passwordEncoder.encode(password);
 

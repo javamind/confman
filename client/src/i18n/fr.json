@@ -39,7 +39,9 @@
             "instance" : "Instance",
             "tracking" : "Version de tracking",
             "application" : "Application",
-            "version" : "Version"
+            "version" : "Version",
+            "profile" : "Profil",
+            "password" : "Mot de passe"
         },
         "verb":{
           "create": "Créer",
@@ -103,6 +105,9 @@
             "error": {
                 "required" :"Le formulaire n&#39;a pas été envoyé : le code et le libellé sont obligatoires",
                 "used" :"Le code est déjà utilisé"
+            },
+            "info":{
+                "profile":"Vous pouvez limiter les droits en précisant un profil. Seules les personnes rattachées à ce profil pourront modifier les paramètres de cet environnement"
             }
         }
     },

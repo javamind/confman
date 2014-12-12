@@ -27,6 +27,10 @@ public class Parameter extends AbstractConfManEntity<Parameter>{
     private Application application;
     @Enumerated(EnumType.STRING)
     private ParameterType type;
+    /**
+     * Password or not (default is not)
+     */
+    private boolean password;
 
     public Parameter() {
     }
@@ -68,6 +72,14 @@ public class Parameter extends AbstractConfManEntity<Parameter>{
         return application;
     }
 
+    public boolean isPassword() {
+        return password;
+    }
+
+    public Parameter setPassword(boolean password) {
+        this.password = password;
+        return this;
+    }
 
     @Override
     public boolean equals(Object o) {

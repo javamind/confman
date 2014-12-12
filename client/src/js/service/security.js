@@ -18,7 +18,8 @@ angular.module('confman').factory('Session', function () {
     return this;
 });
 
-angular.module('confman').factory('AuthenticationSharedService', function ($rootScope, $http, authService, Session, constants) {
+angular.module('confman').factory('AuthenticationSharedService', ['$rootScope', '$http', '$translate', 'authService', 'Session', 'LanguageService', 'constants',
+    function ($rootScope, $http, $translate, authService, Session, LanguageService, constants) {
     return {
         login: function (param) {
             var data ="username=" + encodeURIComponent(param.username) +"&password=" + encodeURIComponent(param.password) +"&_spring_security_remember_me=" + param.rememberMe +"&submit=Login";
@@ -37,6 +38,8 @@ angular.module('confman').factory('AuthenticationSharedService', function ($root
                                 $rootScope.account = Session;
                                 authService.loginConfirmed(data);
                                 $rootScope.callbackOK();
+                                $translate.use(data.langKey);
+                                $rootScope.language=data.langKey;
                             }
                         );
                 })
@@ -97,4 +100,4 @@ angular.module('confman').factory('AuthenticationSharedService', function ($root
             authService.loginCancelled();
         }
     };
-});
+}]);

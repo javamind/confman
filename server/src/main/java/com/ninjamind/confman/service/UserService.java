@@ -15,10 +15,11 @@ public interface UserService {
      * @param lastName
      * @param email
      * @param langKey
+     * @param profil
      * @return
      */
     User createUserInformation(String login, String password, String firstName, String lastName, String email,
-                                      String langKey);
+                                      String langKey, String profil);
 
 
     /**

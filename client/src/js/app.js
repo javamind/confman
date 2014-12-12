@@ -20,7 +20,8 @@ confman.constant('constants',
 confman.constant('USER_ROLES', {
     all: '*',
     admin: 'ROLE_ADMIN',
-    user: 'ROLE_USER'
+    dev: 'ROLE_DEV',
+    ops: 'ROLE_OPS'
 });
 
 /*
@@ -54,28 +55,28 @@ confman.config(function ($routeProvider, $translateProvider, $httpProvider, cons
             templateUrl: 'views/applicationdetail.html',
             controller:'applicationDetailCtrl',
             access: {
-                authorizedRoles: [USER_ROLES.user]
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.dev, USER_ROLES.ops]
             }
         })
         .when('/config/search', {
             templateUrl: 'views/configsearch.html',
             controller:'configSearchCtrl',
             access: {
-                authorizedRoles: [USER_ROLES.user]
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.dev, USER_ROLES.ops]
             }
         })
         .when('/config/create', {
             templateUrl: 'views/configcreate.html',
             controller:'configCreateCtrl',
             access: {
-                authorizedRoles: [USER_ROLES.user]
+                authorizedRoles: [USER_ROLES.dev, USER_ROLES.ops]
             }
         })
         .when('/config/compare', {
             templateUrl: 'views/configcompare.html',
             controller:'configCompareCtrl',
             access: {
-                authorizedRoles: [USER_ROLES.user]
+                authorizedRoles: [USER_ROLES.dev, USER_ROLES.ops]
             }
         })
         .when('/login', {
@@ -100,7 +101,7 @@ confman.config(function ($routeProvider, $translateProvider, $httpProvider, cons
                 templateUrl: 'views/' + element + '.html',
                 controller: element + 'Ctrl',
                 access: {
-                    authorizedRoles: [USER_ROLES.user]
+                    authorizedRoles: [USER_ROLES.dev, USER_ROLES.ops]
                 }
             });
     });

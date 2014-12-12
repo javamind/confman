@@ -14,6 +14,7 @@ public class ParameterDto extends AbstractConfmanAppDto<ParameterDto, Parameter>
     private Long idApplication;
     private Long idParameterGroupment;
     private String type;
+    private boolean password;
     public ParameterDto() {
         super();
     }
@@ -29,6 +30,7 @@ public class ParameterDto extends AbstractConfmanAppDto<ParameterDto, Parameter>
         this.idApplication = object.getApplication().getId();
         this.idParameterGroupment = object.getParameterGroupment() != null ? object.getParameterGroupment().getId() : null;
         this.type = object.getType().name();
+        this.password = object.isPassword();
     }
 
     public Parameter toDo() {
@@ -40,7 +42,8 @@ public class ParameterDto extends AbstractConfmanAppDto<ParameterDto, Parameter>
                 .setActive(isActive())
                 .setApplication(new Application().setId(idApplication))
                 .setParameterGroupment(new ParameterGroupment().setId(idParameterGroupment))
-                .setType(Enum.valueOf(ParameterType.class, type));
+                .setType(Enum.valueOf(ParameterType.class, type))
+                .setPassword(isPassword());
     }
 
     public Long getIdApplication() {
@@ -67,6 +70,15 @@ public class ParameterDto extends AbstractConfmanAppDto<ParameterDto, Parameter>
 
     public ParameterDto setType(String type) {
         this.type = type;
+        return this;
+    }
+
+    public boolean isPassword() {
+        return password;
+    }
+
+    public ParameterDto setPassword(boolean password) {
+        this.password = password;
         return this;
     }
 }

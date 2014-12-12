@@ -12,8 +12,8 @@
             "compare": "Comparer",
             "admin": "Administration",
             "language": {
-                "french":"Afficher en français",
-                "english":"Display in english"
+                "french":"Français",
+                "english":"English"
             },
             "account": {
                 "password": "Mot de passe",

@@ -142,7 +142,8 @@
                 "no.version" : "No version for the moment",
                 "no.parameter" : "No parameter for the moment",
                 "type.instance" :"If you use the same instance for different environment you have to duplicate it because the configuration could be different for each environment",
-                "type.parameter" :"A paramater can be specific for an instance or an application"
+                "type.parameter" :"A paramater can be specific for an instance or an application",
+                "param.password" : "If the parameter is a password you can choose to mask the values on the screens"
             },
             "error" : {
                 "envrequired" : "Environment is required",

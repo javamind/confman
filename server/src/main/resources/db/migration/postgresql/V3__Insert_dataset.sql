@@ -175,7 +175,7 @@ insert into T_USER (login, password, first_name, last_name, email, activated, ac
 insert into T_AUTHORITY (name) values('ROLE_ADMIN');
 insert into T_AUTHORITY (name) values('ROLE_USER');
 insert into T_AUTHORITY (name) values('ROLE_DEV');
-insert into T_AUTHORITY (name) values('ROLE_PRD');
+insert into T_AUTHORITY (name) values('ROLE_OPS');
 
 insert into T_USER_AUTHORITY (login,name) values('system', 'ROLE_ADMIN');
 insert into T_USER_AUTHORITY (login,name) values('system', 'ROLE_USER');

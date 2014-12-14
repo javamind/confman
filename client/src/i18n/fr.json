@@ -13,8 +13,8 @@
             "admin": "Administration",
             "user": "Utilisateur",
             "language": {
-                "french":"Afficher en français",
-                "english":"Display in english"
+                "french":"Français",
+                "english":"English"
             },
             "account": {
                 "password": "Mot de passe",
@@ -40,7 +40,9 @@
             "instance" : "Instance",
             "tracking" : "Version de tracking",
             "application" : "Application",
-            "version" : "Version"
+            "version" : "Version",
+            "profile" : "Profil",
+            "password" : "Mot de passe"
         },
         "verb":{
           "create": "Créer",
@@ -104,6 +106,9 @@
             "error": {
                 "required" :"Le formulaire n&#39;a pas été envoyé : le code et le libellé sont obligatoires",
                 "used" :"Le code est déjà utilisé"
+            },
+            "info":{
+                "profile":"Vous pouvez limiter les droits en précisant un profil. Seules les personnes rattachées à ce profil pourront modifier les paramètres de cet environnement"
             }
         }
     },
@@ -122,7 +127,7 @@
     },
     "soft" : {
         "title": "Suite logicielle",
-        "description" : "Une suite logicielle est un regroupement d&#39;applications formant un tout cohérent",
+        "description" : "Une suite logicielle est un regroupement d applications formant un tout cohérent",
         "nb" : "nb suite logicielle",
         "name" : "suite logicielle",
         "name.the" : "la suite logicielle",
@@ -150,18 +155,18 @@
                 "no.version" : "Pas de version pour le moment",
                 "no.parameter" : "Pas de paramètre pour le moment",
                 "type.instance" :"Si vous utilisez une même instance sur plusieurs environnements vous devez dupliquer les entrées parce que la configuration est différentes d&#39;un environnement à l&#39;autre",
-                "type.parameter" :"Un paramètre peut être spécifique pour une instance ou vraie quelque soit cette instance"
+                "type.parameter" :"Un paramètre peut être spécifique pour une instance ou vraie quelque soit cette instance",
+                "param.password" : "Si le paramètre est un mot de passe, cochez cette option pour que les valeurs soient masquées à l&#39;écran"
             },
             "error" : {
                 "envrequired" : "Un environnement est obligatoire",
                 "typerequired" : "Le type est obligatoire"
             }
         }
-
     },
     "psearch" : {
         "title": "Configurations",
-        "description" : "Rechercher les valeurs des paramètres d&#39;une versio d&#39;application",
+        "description" : "Rechercher les valeurs des paramètres pour une version d application",
         "nb" : "nb de paramètres",
         "criteria" : "Critères de recherche"
 

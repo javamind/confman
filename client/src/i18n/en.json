@@ -13,8 +13,8 @@
             "admin": "Administration",
             "user": "User",
             "language": {
-                "french":"Afficher en français",
-                "english":"Display in english"
+                "french":"Français",
+                "english":"English"
             },
             "account": {
                 "password": "Password",
@@ -40,7 +40,9 @@
             "instance" : "Instance",
             "tracking" : "Tracking version",
             "application" : "Application",
-            "version" : "Version"
+            "version" : "Version",
+            "profile" : "Profile",
+            "password" : "Password"
         },
         "verb":{
             "create": "Create",
@@ -105,6 +107,9 @@
             "error": {
                 "required" :"Your form is not submitted : code and label are required",
                 "used" :"The code  is already in use"
+            },
+            "info":{
+                "profile":"You can limit the population of users who can modify elements linked to an environment. For example you maybe want to prevent the modifications on production which can be made by dev team."
             }
         }
     },
@@ -151,7 +156,8 @@
                 "no.version" : "No version for the moment",
                 "no.parameter" : "No parameter for the moment",
                 "type.instance" :"If you use the same instance for different environment you have to duplicate it because the configuration could be different for each environment",
-                "type.parameter" :"A paramater can be specific for an instance or an application"
+                "type.parameter" :"A paramater can be specific for an instance or an application",
+                "param.password" : "If the parameter is a password you can choose to mask the values on the screens"
             },
             "error" : {
                 "envrequired" : "Environment is required",

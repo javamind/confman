@@ -70,8 +70,22 @@
                                 <span ng-show="form.label.$error.required"
                                       class="confman-label-error" translate="global.messages.error.labelrequired">Label is required</span></div>
                         </div>
-
-
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <br><small  translate="env.messages.info.profile">&nbsp;</small>
+                            </div>
+                            <div class="col-xs-2"><label class="control-label" for="data-instance-env" translate="global.form.profile">&nbsp;Type</label>
+                            </div>
+                            <div class="col-xs-10">
+                                <select id="data-instance-env" ng-model="entity.content.profile"
+                                        class="form-control input-sm input-sm"
+                                        name="profile"
+                                        ng-options="profile for profile in profiles">
+                                    <option value="" ng-hide="entity.content.profile" translate="global.messages.info.select.elem">S&eacute;lection type
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </form>

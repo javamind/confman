@@ -346,7 +346,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <p><br>
-                            <small translate="application.messages.info.type.instance">A paramater can be specific for an instance or an application
+                            <small translate="application.messages.info.type.parameter">A paramater can be specific for an instance or an application
                             </small>
                         </p>
                     </div>
@@ -366,6 +366,26 @@
                     <br>
 
                 </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p><br>
+                            <small translate="application.messages.info.param.password">
+                                If the parameter is a password you can choose to mask the values on the screens
+                            </small>
+                        </p>
+                    </div>
+                    <div class="col-xs-2"><label class="control-label" for="data-instance-env" translate="global.form.password">&nbsp;Password</label>
+                    </div>
+                    <div class="col-xs-1">
+                        <md-checkbox ng-model="appparam.content.password"></md-checkbox>
+                    </div>
+                    <div class="col-xs-9">
+                        <small translate="application.messages.info.param.password">Password</small>
+                    </div>
+                    <br>
+
+                </div>
+
             </div>
         </form>
     </div>

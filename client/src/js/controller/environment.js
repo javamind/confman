@@ -3,8 +3,8 @@
 /**
  * Controller linked to the env list
  */
-angular.module('confman').controller('environmentCtrl', ['$rootScope', '$scope', '$modal', '$filter', 'Environment',
-    function ($rootScope, $scope, $modal, $filter, Environment) {
+angular.module('confman').controller('environmentCtrl', ['$rootScope', '$scope', '$modal', '$filter', 'Environment', 'USER_ROLES',
+    function ($rootScope, $scope, $modal, $filter, Environment, USER_ROLES) {
         $rootScope.callbackOK();
 
         //Page definition
@@ -17,7 +17,8 @@ angular.module('confman').controller('environmentCtrl', ['$rootScope', '$scope',
 
         //Load environments
         $scope.environments = Environment.query();
-        //$scope.entity = { verb :null, content: { code:' ', label:' '}}
+        $scope.profiles = [USER_ROLES.all, USER_ROLES.dev, USER_ROLES.ops];
+
 
         //Actions
         $scope.update =  function (elt){

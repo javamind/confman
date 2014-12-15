@@ -42,7 +42,11 @@
             "application" : "Application",
             "version" : "Version",
             "profile" : "Profil",
-            "password" : "Mot de passe"
+            "password" : "Mot de passe",
+            "email" : "Email",
+            "firstname" : "Prénom",
+            "lastname" : "Nom",
+            "language" : "Langage"
         },
         "verb":{
           "create": "Créer",
@@ -120,8 +124,15 @@
         "name.the" : "l&acute;utilisateur",
         "messages": {
             "error": {
-                "required" :"Le formulaire n&#39;a pas été envoyé : le logn est obligatoire",
-                "used" :"Le login est déjà utilisé"
+                "required" :"Le formulaire n&#39;a pas été envoyé : le login est obligatoire",
+                "used" :"Le login est déjà utilisé",
+                "loginrequired" : "Le login est obligatoire",
+                "lastnamerequired" : "Le nom est obligatoire",
+                "passwordequired" : "Le mot de passe est obligatoire",
+                "confirmpasswordrequired" : "La confirmation de mot de passe est obligatoire"
+            },
+            "info":{
+                "profile":"Indiquez quels profils sont attchés à cet utilisateur"
             }
         }
     },

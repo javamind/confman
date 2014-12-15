@@ -1,8 +1,11 @@
 package com.ninjamind.confman.dto;
 
+import com.ninjamind.confman.domain.Authority;
 import com.ninjamind.confman.domain.User;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class UserDto implements ConfmanAppDto<User>{
 
@@ -29,6 +32,9 @@ public class UserDto implements ConfmanAppDto<User>{
         this.firstName = user.getFirstName();
         this.langKey = user.getLangKey();
         this.lastName = user.getLastName();
+        this.roles = user.getAuthorities()==null ?
+                new ArrayList<>() :
+                user.getAuthorities().stream().map(Authority::getName).collect(Collectors.toList());
     }
 
     public UserDto(String login, String password, String firstName, String lastName, String email, String langKey,

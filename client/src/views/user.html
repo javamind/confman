@@ -14,8 +14,10 @@
                                ng-class="isSelected(user.login, entity.selected)" class="confman-md-item">
                     <md-item-content>
                         <div class="md-tile-content">
-                            <h3>{{user.login}}</h3>
-                            <p>TODO</p>
+                            <h3>{{user.login}}
+                                <small>({{user.firstName}} {{user.lastName}})</small>
+                            </h3>
+                            <span class="label label-info" ng-repeat="role in user.roles" style="margin-right: 10px">{{role}}</span>
                         </div>
                     </md-item-content>
                 </md-item>
@@ -46,31 +48,104 @@
                         Error : {{error.message}}
                     </div>
                     <div class="thumbnail">
-                        <div class="row" ng-show="entity.content.id">
-                            <div class="col-xs-2"><label for="data-id" translate="global.form.id">&nbsp;Id</label></div>
-                            <div class="col-xs-10"><input type="text" id="data-id" readonly ng-model="entity.content.id"
-                                                          class="form-control input-sm">
-                            </div>
-                        </div>
                         <div class="row">
-                            <div class="col-xs-2"><label class="control-label" for="data-code" translate="global.form.code">&nbsp;Code</label></div>
-                            <div class="col-xs-10"><input type="text" id="data-code" required="true"
-                                                          ng-model="entity.content.code"
+                            <div class="col-xs-2"><label class="control-label" for="data-login"
+                                                         translate="global.form.username">&nbsp;Login</label></div>
+                            <div class="col-xs-10"><input type="text" id="data-login" required="true"
+                                                          ng-model="entity.content.login"
                                                           class="form-control input-sm confman-input.ng-invalid"
-                                                          name="code">
-                                <span ng-show="form.code.$error.required"
-                                      class="confman-label-error" translate="global.messages.error.coderequired">Code is required</span></div>
+                                                          name="login">
+                                <span ng-show="form.login.$error.required"
+                                      class="confman-label-error" translate="user.messages.error.loginrequired">Login is required</span>
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-2"><label class="control-label" for="data-label" translate="global.form.label">&nbsp;Label</label>
+                            <div class="col-xs-2"><label class="control-label" for="data-password1"
+                                                         translate="global.form.newpassword">&nbsp;Password</label>
                             </div>
-                            <div class="col-xs-10"><input type="text" id="data-label" size="50" required
-                                                          ng-model="entity.content.label" class="form-control input-sm"
-                                                          name="label">
-                                <span ng-show="form.label.$error.required"
-                                      class="confman-label-error" translate="global.messages.error.labelrequired">Label is required</span></div>
+                            <div class="col-xs-10"><input type="password" id="data-password1" size="50" required
+                                                          ng-model="entity.content.password1"
+                                                          class="form-control input-sm"
+                                                          name="password1">
+                                <span ng-show="form.password1.$error.required"
+                                      class="confman-label-error" translate="user.messages.error.passwordequired">Password is required</span>
+                            </div>
                         </div>
+                        <div class="row">
+                            <div class="col-xs-2"><label class="control-label" for="data-password2"
+                                                         translate="global.form.confirmpassword">&nbsp;Confirm
+                                Password</label>
+                            </div>
+                            <div class="col-xs-10"><input type="password" id="data-password2" size="50" required
+                                                          ng-model="entity.content.password2"
+                                                          class="form-control input-sm"
+                                                          name="password2">
+                                <span ng-show="form.password2.$error.required"
+                                      class="confman-label-error" translate="user.messages.error.confirmpasswordrequired">Password confirmation is required</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-2"><label class="control-label" for="data-lastName"
+                                                         translate="global.form.lastname">&nbsp;Firstname</label>
+                            </div>
+                            <div class="col-xs-10"><input type="text" id="data-lastName" required
+                                                          ng-model="entity.content.lastName"
+                                                          class="form-control input-sm" name="lastName">
+                                    <span ng-show="form.lastName.$error.required"
+                                          class="confman-label-error" translate="user.messages.error.lastnamerequired">Lastname is required</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-2"><label class="control-label" for="data-firstname"
+                                                         translate="global.form.firstname">&nbsp;Firstname</label></div>
+                            <div class="col-xs-10"><input type="text" id="data-firstname"
+                                                          ng-model="entity.content.firstName"
+                                                          class="form-control input-sm">
 
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-2"><label class="control-label" for="data-email"
+                                                         translate="global.form.email">&nbsp;email</label></div>
+                            <div class="col-xs-10"><input type="email" id="data-email"
+                                                          ng-model="entity.content.email"
+                                                          class="form-control input-sm">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-2"><label class="control-label" for="data-language" translate="global.form.language">&nbsp;langKey</label>
+                            </div>
+                            <div class="col-xs-10">
+                                <select id="data-language" ng-model="entity.content.langKey"
+                                        class="form-control input-sm input-sm"
+                                        name="profile"
+                                        ng-options="language for language in languages">
+                                    <option value="" ng-hide="entity.content.langKey" translate="global.messages.info.select.elem">S&eacute;lection type
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <br><small  translate="user.messages.info.profile">&nbsp;</small>
+                            </div>
+                            <div class="col-xs-12"><h4 translate="global.form.profile">&nbsp;profile</h4>
+                                <md-list>
+                                    <md-item ng-repeat="obj in entity.profiles">
+                                        <md-item-content>
+                                            <div class="md-tile-content">
+                                                <h4>{{obj.code}}</h4>
+                                            </div>
+                                            <div class="md-tile-right">
+                                                <md-checkbox ng-model="obj.selected">
+                                                </md-checkbox>
+                                            </div>
+                                        </md-item-content>
+                                    </md-item>
+                                </md-list>
+                            </div>
+                        </div>
 
                     </div>
                 </div>

@@ -3,8 +3,8 @@
 /**
  * Controller linked to the user list
  */
-angular.module('confman').controller('userCtrl', ['$rootScope', '$scope', '$modal', '$filter', 'User',
-    function ($rootScope, $scope, $modal, $filter, User) {
+angular.module('confman').controller('userCtrl', ['$rootScope', '$scope', '$modal', '$filter', 'User', 'USER_ROLES',
+    function ($rootScope, $scope, $modal, $filter, User, USER_ROLES) {
         $rootScope.callbackOK();
 
         //Page definition
@@ -17,21 +17,40 @@ angular.module('confman').controller('userCtrl', ['$rootScope', '$scope', '$moda
 
         //Load users
         $scope.users = User.query();
-        //$scope.entity = { verb :null, content: { code:' ', label:' '}}
+        //Languages
+        $scope.languages = ["en", "fr"];
 
         //Actions
         $scope.update =  function (elt){
             $scope.entity = {
                 verb : $filter('translate')('global.verb.update') + ' ' + $filter('translate')('user.name'),
                 content : elt,
-                selected : elt.id
+                selected : elt.id,
+                profiles : [
+                    {code:USER_ROLES.admin},
+                    {code:USER_ROLES.dev},
+                    {code:USER_ROLES.ops}]
             };
+            if(elt.roles){
+                elt.roles.forEach(function(elt){
+                    $scope.entity.profiles.forEach(function(profile) {
+                        if(elt===profile.code){
+                            profile.selected=true;
+                        }
+                    });
+                });
+            }
+
         };
         $scope.create =  function (){
             $scope.entity = {
                 verb : $filter('translate')('global.verb.create') + ' ' + $filter('translate')('user.name'),
                 content : {},
-                selected : null
+                selected : null,
+                profiles : [
+                    {code:USER_ROLES.admin},
+                    {code:USER_ROLES.dev},
+                    {code:USER_ROLES.ops}]
             };
         };
         $scope.delete =  function (elt, $event){

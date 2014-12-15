@@ -173,11 +173,10 @@ insert into T_USER (login, password, first_name, last_name, email, activated, ac
 insert into T_USER (login, password, first_name, last_name, email, activated, active, lang_key) values('user','4f54479f8290dfd503b72a654faf5d70593eab443993d87a79e14e5f7cda3eb7988423aa99090c9b', NULL, 'User', NULL, true, true, 'en');
 
 insert into T_AUTHORITY (name) values('ROLE_ADMIN');
-insert into T_AUTHORITY (name) values('ROLE_USER');
 insert into T_AUTHORITY (name) values('ROLE_DEV');
 insert into T_AUTHORITY (name) values('ROLE_OPS');
 
 insert into T_USER_AUTHORITY (login,name) values('system', 'ROLE_ADMIN');
-insert into T_USER_AUTHORITY (login,name) values('system', 'ROLE_USER');
+insert into T_USER_AUTHORITY (login,name) values('system', 'ROLE_DEV');
 insert into T_USER_AUTHORITY (login,name) values('admin', 'ROLE_ADMIN');
-insert into T_USER_AUTHORITY (login,name) values('admin', 'ROLE_USER');
+insert into T_USER_AUTHORITY (login,name) values('admin', 'ROLE_OPS');

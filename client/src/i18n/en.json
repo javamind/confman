@@ -42,7 +42,11 @@
             "application" : "Application",
             "version" : "Version",
             "profile" : "Profile",
-            "password" : "Password"
+            "password" : "Password",
+            "email" : "Email",
+            "firstname" : "Firstname",
+            "lastname" : "Lastname",
+            "language" : "Language"
         },
         "verb":{
             "create": "Create",
@@ -122,7 +126,14 @@
         "messages": {
             "error": {
                 "required" :"Your form is not submitted : login are required",
-                "used" :"The login  is already in use"
+                "used" :"The login  is already in use",
+                "loginrequired" : "The login is required",
+                "lastnamerequired" : "The lastname is required",
+                "passwordequired" : "The password is required",
+                "confirmpasswordrequired" : "The password confirmation is required"
+            },
+            "info":{
+                "profile":"You have to indicate the user's profile"
             }
         }
     },

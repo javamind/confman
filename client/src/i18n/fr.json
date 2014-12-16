@@ -129,7 +129,8 @@
                 "loginrequired" : "Le login est obligatoire",
                 "lastnamerequired" : "Le nom est obligatoire",
                 "passwordequired" : "Le mot de passe est obligatoire",
-                "confirmpasswordrequired" : "La confirmation de mot de passe est obligatoire"
+                "confirmpasswordrequired" : "La confirmation de mot de passe est obligatoire",
+                "checkpassword" : "Les mots de passe ne correspondent pas"
             },
             "info":{
                 "profile":"Indiquez quels profils sont attchés à cet utilisateur"

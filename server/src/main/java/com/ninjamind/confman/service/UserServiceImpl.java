@@ -1,5 +1,6 @@
 package com.ninjamind.confman.service;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.Authority;
@@ -38,34 +39,6 @@ public class UserServiceImpl implements UserService{
     private AuthorityRepository authorityRepository;
 
     private static List<String> PROFILS = Lists.newArrayList(AuthoritiesConstants.DEV, AuthoritiesConstants.OPS, AuthoritiesConstants.ADMIN);
-
-    @Override
-    public User createUserInformation(String login, String password, String firstName, String lastName, String email,
-                                      String langKey, String profil) {
-
-        Preconditions.checkNotNull(login, "login is required");
-        Preconditions.checkArgument(PROFILS.contains(profil), "profil is not known");
-
-        User newUser = new User();
-        Authority authority = authorityRepository.findOne(profil);
-        Set<Authority> authorities = new HashSet<>();
-        String encryptedPassword = passwordEncoder.encode(password);
-
-        newUser.setLogin(login);
-        newUser.setPassword(encryptedPassword);
-        newUser.setFirstName(firstName);
-        newUser.setLastName(lastName);
-        newUser.setEmail(email);
-        newUser.setLangKey(langKey);
-        newUser.setActivated(true);
-
-        authorities.add(authority);
-        newUser.setAuthorities(authorities);
-        userRepository.save(newUser);
-        log.debug("Created Information for User: {}", newUser);
-        return newUser;
-    }
-
 
     @Override
     public void updateUserInformation(String firstName, String lastName, String email) {
@@ -107,7 +80,29 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public <S extends User> S create(S entity) {
-        return null;
+    public User create(User user) {
+        Preconditions.checkNotNull(user, "user is required");
+        Preconditions.checkNotNull(user.getLogin(), "login is required");
+        Preconditions.checkNotNull(user.getPassword(), "password is required");
+
+        //We change the password with newone encrypted
+        String encryptedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encryptedPassword);
+
+        //The profiles are checked and attach with session
+        Set<Authority> authorities = new HashSet<>();
+        for(Authority authority : user.getAuthorities()){
+            Authority authorityAttached = authorityRepository.findOne(authority.getName());
+            if(authorityAttached==null){
+                throw new IllegalArgumentException("One of the profiles is not known");
+            }
+        }
+
+        //The default language is en
+        user.setLangKey(Objects.firstNonNull(user.getLangKey(), "en"));
+
+        userRepository.save(user);
+        log.debug("Created Information for User: {}", user);
+        return user;
     }
 }

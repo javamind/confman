@@ -90,7 +90,6 @@ angular.module('confman').controller('userCtrl', ['$rootScope', '$scope', '$moda
                 $rootScope.setError($filter('translate')('user.messages.error.used'));
                 return;
             }
-
              if(!$scope.entity.content.id){
                 User.save(
                         $scope.entity.content,

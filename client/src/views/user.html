@@ -64,7 +64,7 @@
                                                          translate="global.form.newpassword">&nbsp;Password</label>
                             </div>
                             <div class="col-xs-10"><input type="password" id="data-password1" size="50" required
-                                                          ng-model="entity.content.password1"
+                                                          ng-model="entity.content.password"
                                                           class="form-control input-sm"
                                                           name="password1">
                                 <span ng-show="form.password1.$error.required"
@@ -79,9 +79,11 @@
                             <div class="col-xs-10"><input type="password" id="data-password2" size="50" required
                                                           ng-model="entity.content.password2"
                                                           class="form-control input-sm"
-                                                          name="password2">
-                                <span ng-show="form.password2.$error.required"
-                                      class="confman-label-error" translate="user.messages.error.confirmpasswordrequired">Password confirmation is required</span>
+                                                          name="password2" check-password="data-password1">
+                                <span ng-messages="form.password2.$error">
+                                    <span class="confman-label-error" ng-message="required" translate="user.messages.error.confirmpasswordrequired">Password confirmation is required</span>
+                                    <span class="confman-label-error" ng-message="checkPassword" translate="user.messages.error.checkpassword">The confirmation don't check</span>
+                                </span>
                             </div>
                         </div>
                         <div class="row">

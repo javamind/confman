@@ -9,21 +9,6 @@ import com.ninjamind.confman.repository.UserRepository;
 public interface UserService extends GenericFacade<User, String, UserRepository> {
 
     /**
-     * Create user
-     * @param login
-     * @param password
-     * @param firstName
-     * @param lastName
-     * @param email
-     * @param langKey
-     * @param profil
-     * @return
-     */
-    User createUserInformation(String login, String password, String firstName, String lastName, String email,
-                                      String langKey, String profil);
-
-
-    /**
      * Update user
      * @param firstName
      * @param lastName

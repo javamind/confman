@@ -130,7 +130,8 @@
                 "loginrequired" : "The login is required",
                 "lastnamerequired" : "The lastname is required",
                 "passwordequired" : "The password is required",
-                "confirmpasswordrequired" : "The password confirmation is required"
+                "confirmpasswordrequired" : "The password confirmation is required",
+                "checkpassword" : "The passwords don't match"
             },
             "info":{
                 "profile":"You have to indicate the user's profile"

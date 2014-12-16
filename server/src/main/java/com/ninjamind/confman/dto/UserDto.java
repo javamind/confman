@@ -27,6 +27,7 @@ public class UserDto implements ConfmanAppDto<User>{
     }
 
     public UserDto(User user) {
+        //The password is not sent
         this.email = user.getEmail();
         this.login =user.getLogin();
         this.firstName = user.getFirstName();
@@ -73,6 +74,9 @@ public class UserDto implements ConfmanAppDto<User>{
     }
 
     public List<String> getRoles() {
+        if(roles==null){
+            return new ArrayList<>();
+        }
         return roles;
     }
 
@@ -100,6 +104,7 @@ public class UserDto implements ConfmanAppDto<User>{
                 .setFirstName(getFirstName())
                 .setLastName(getLastName())
                 .setLogin(getLogin())
-                .setPassword(getPassword());
+                .setPassword(getPassword())
+                .setAuthorities(getRoles().stream().map(s -> new Authority().setName(s)).collect(Collectors.toSet()));
     }
 }

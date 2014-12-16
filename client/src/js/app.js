@@ -4,7 +4,17 @@
  * Application definition
  * @type {module|*}
  */
-var confman = angular.module('confman', ['http-auth-interceptor', 'ngResource','ngRoute','ngSanitize','ngMaterial', 'ngCookies', 'ui.bootstrap', 'pascalprecht.translate']);
+var confman = angular.module('confman', [
+    'ngResource',
+    'ngRoute',
+    'ngSanitize',
+    'ngMaterial',
+    'ngCookies',
+    'http-auth-interceptor',
+    'ui.bootstrap',
+    'pascalprecht.translate',
+    'confmanFilters'
+]);
 
 /**
  *  Constants

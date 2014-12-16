@@ -56,6 +56,8 @@ public class ParameterValue extends AbstractConfManEntity<ParameterValue>{
     private String codeEnvironment;
     @Column(name = "environment_label")
     private String labelEnvironment;
+    @Transient
+    private boolean password;
 
     /**
      * the old value

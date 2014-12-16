@@ -70,12 +70,12 @@ public class ParameterFacadeImpl implements ParameterFacade {
     public Parameter create(Parameter entity) {
         //We see if an entity exist
         Parameter param = parameterRepository.findByCode(entity.getApplication().getCode(), entity.getCode());
+        updateTracability(entity);
         if (param != null) {
             //All the proprieties are copied except the version number
             BeanUtils.copyProperties(entity, param, "id", "version");
             return param.setActive(true);
         }
-        updateTracability(param);
         return getRepository().save(entity.setActive(true));
     }
 }

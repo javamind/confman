@@ -18,6 +18,7 @@ public class ParameterValueDto extends AbstractConfmanAppDto<ParameterValueDto, 
     protected String codeApplication;
     protected Long idParameter;
     protected String labelParameter;
+    protected boolean password;
     protected Long idInstance;
     protected String codeInstance;
     protected Long idEnvironment;
@@ -45,6 +46,7 @@ public class ParameterValueDto extends AbstractConfmanAppDto<ParameterValueDto, 
         this.idEnvironment = object.getEnvironment().getId();
         this.codeEnvironment = object.getCodeEnvironment();
         this.labelParameter = object.getLabelParameter();
+        this.password = object.getParameter().isPassword();
         if(object.getInstance()!=null){
             this.idInstance = object.getInstance().getId();
             this.codeInstance = object.getCodeInstance();
@@ -187,4 +189,12 @@ public class ParameterValueDto extends AbstractConfmanAppDto<ParameterValueDto, 
         return this;
     }
 
+    public boolean isPassword() {
+        return password;
+    }
+
+    public ParameterValueDto setPassword(boolean password) {
+        this.password = password;
+        return this;
+    }
 }

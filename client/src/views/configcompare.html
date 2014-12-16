@@ -84,7 +84,7 @@
                         <div class="row">
                             <div class="col-xs-6">
                                 <h3 ng-hide="param.elt1.code">&nbsp;</h3>
-                                <h3 ng-show="param.elt1.code">{{param.elt1.code}} : <b>{{param.elt1.label}}</b></h3>
+                                <h3 ng-show="param.elt1.code">{{param.elt1.code}} : <b>{{param.elt1.label | displayPassword:param.elt1.password}}</b></h3>
 
                                 <h4 ng-show="param.elt1.code"><span translate="global.form.application">Application</span> : {{param.elt1.codeApplication}} -
                                     <span translate="global.form.tracking">tracking version</span> : <div class="badge badge-version">{{param.elt1.codeTrackingVersion}}</div>
@@ -103,7 +103,7 @@
                             </div>
                             <div class="col-xs-5">
                                 <h3 ng-hide="param.elt2.code">&nbsp;</h3>
-                                <h3 ng-show="param.elt2.code">{{param.elt2.code}} : <b>{{param.elt2.label}}</b></h3>
+                                <h3 ng-show="param.elt2.code">{{param.elt2.code}} : <b>{{param.elt2.label | displayPassword:param.elt2.password}}</b></h3>
                                 <h4 ng-show="param.elt2.code"><span translate="global.form.application">Application</span> : {{param.elt2.codeApplication}} -
                                     <span translate="global.form.tracking">tracking version</span> : <div class="badge badge-version">{{param.elt2.codeTrackingVersion}}</div>
                                     <span ng-show="param.elt2.codeInstance">- <span translate="global.form.instance">instance</span> : <div class="badge badge-instance">{{param.elt2.codeInstance}}</div></span>

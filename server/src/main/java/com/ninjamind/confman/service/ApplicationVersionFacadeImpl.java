@@ -9,7 +9,6 @@ import com.ninjamind.confman.exception.FoundException;
 import com.ninjamind.confman.exception.NotFoundException;
 import com.ninjamind.confman.repository.ApplicationVersionRepository;
 import com.ninjamind.confman.repository.ApplicationtRepository;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -68,15 +67,8 @@ public class ApplicationVersionFacadeImpl implements ApplicationVersionFacade {
 
 
     @Override
-    public ApplicationVersion create(ApplicationVersion entity) {
-        //We see if an entity exist
-        ApplicationVersion version = applicationVersionRepository.findByCode(entity.getApplication().getCode(), entity.getCode());
-        if (version != null) {
-            //All the proprieties are copied except the version number
-            BeanUtils.copyProperties(entity, version, "id", "version");
-            return version.setActive(true);
-        }
-        updateTracability(version);
-        return getRepository().save(entity.setActive(true));
+    public ApplicationVersion findByCode(ApplicationVersion entity) {
+        return applicationVersionRepository.findByCode(entity.getApplication().getCode(), entity.getCode());
     }
+
 }

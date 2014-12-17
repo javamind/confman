@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserDto implements ConfmanAppDto<User>{
+    private Long id = 1L;
 
     private String login;
 
@@ -47,6 +48,10 @@ public class UserDto implements ConfmanAppDto<User>{
         this.email = email;
         this.langKey = langKey;
         this.roles = roles;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getPassword() {

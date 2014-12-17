@@ -86,11 +86,23 @@ angular.module('confman').controller('userCtrl', ['$rootScope', '$scope', '$moda
                 return;
             }
             //We check code existence
-            if(verify_code_unicity($scope.users, $scope.entity.content)>0){
+            if($scope.users.filter(
+                function verify(element){
+                    return element.login=== $scope.entity.content.login && !$scope.entity.content.id;
+                }
+            ).length>0){
                 $rootScope.setError($filter('translate')('user.messages.error.used'));
                 return;
             }
-             if(!$scope.entity.content.id){
+            //We complete the profiles and the list is re-construct
+            $scope.entity.content.roles=[];
+            $scope.entity.profiles.forEach(function(elem){
+                if(elem.selected){
+                    $scope.entity.content.roles.push(elem.code);
+                }
+            });
+
+            if(!$scope.entity.content.id){
                 User.save(
                         $scope.entity.content,
                         function(data){

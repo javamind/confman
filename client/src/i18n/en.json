@@ -26,9 +26,9 @@
         "form": {
             "username": "Login",
             "username.placeholder": "Your login",
-            "newpassword": "New password",
+            "newpassword": "Password",
             "newpassword.placeholder": "New password",
-            "confirmpassword": "New password confirmation",
+            "confirmpassword": "Password confirmation",
             "confirmpassword.placeholder": "Confirm the new password",
             "confirmdelete": "Deletion confirmation",
             "confirmdelete.placeholder":"Are you sure you want to delete ",

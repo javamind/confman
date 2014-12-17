@@ -2,11 +2,13 @@ package com.ninjamind.confman.service;
 
 import com.google.common.base.Objects;
 import com.ninjamind.confman.domain.AbstractConfManEntity;
+import com.ninjamind.confman.domain.Application;
 import com.ninjamind.confman.domain.TracableEntity;
 import com.ninjamind.confman.repository.ConfmanRepository;
 import com.ninjamind.confman.repository.HibernateUtil;
 import com.ninjamind.confman.security.AuthoritiesConstants;
 import com.ninjamind.confman.security.SecurityUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
@@ -62,6 +64,7 @@ public interface GenericFacade<T extends TracableEntity, ID extends Serializable
         entity.setChangeDate(new Date());
         entity.setChangeUser(Objects.firstNonNull(SecurityUtils.getCurrentLogin(), AuthoritiesConstants.UNKNOWN));
     }
+
     /**
      * Update a given entity. Use the returned instance for further operations as the save operation might have changed the
      * entity instance completely.
@@ -77,11 +80,38 @@ public interface GenericFacade<T extends TracableEntity, ID extends Serializable
     /**
      * Create a given entity. Use the returned instance for further operations as the save operation might have changed the
      * entity instance completely. We can make logical deletion. So if an non active element is find in database we update it
-     *
+     * We use {@link #findByCode(com.ninjamind.confman.domain.TracableEntity)}
      * @param entity
      * @return the saved entity
      */
-    <S extends T> S create(S entity);
+    default <S extends T> S create(S entity){
+        //We see if an entity exist
+        S object = findByCode(entity);
+        boolean creation = false;
+        if(object==null){
+            object = entity;
+            creation = true;
+        }
+        else{
+            //All the proprieties are copied except the version number
+            BeanUtils.copyProperties(entity, object, "id", "version");
+        }
+        if(creation || !Boolean.TRUE.equals(entity.isActive())){
+            entity.setActiveChangeDate(new Date());
+        }
+        entity.setActive(true);
+        updateTracability(entity);
+        return getRepository().save(object);
+    }
+
+    /**
+     * Default method use in entity creation
+     * @param entity
+     * @param <S>
+     * @see #create(com.ninjamind.confman.domain.TracableEntity)
+     * @return
+     */
+    <S extends T> S findByCode(S entity);
 
     /**
      * Deletes the entity with the given id. It's logical delete and entity is inactived
@@ -93,9 +123,7 @@ public interface GenericFacade<T extends TracableEntity, ID extends Serializable
         //if the element exist we make a logical delete
         T myObject = getRepository().findOne(id);
         if(myObject!=null){
-            myObject.setActive(false);
-            myObject.setActiveChangeDate(new Date());
-            updateTracability(myObject);
+            updateTracability(myObject.setActive(false).setActiveChangeDate(new Date()));
         }
     }
 

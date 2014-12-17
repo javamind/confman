@@ -144,6 +144,7 @@ confman.run(function ($rootScope, constants) {
 
     $rootScope.callbackOK = function(){
         $rootScope.error=null;
+        $rootScope.errorUrl=null;
     };
     $rootScope.callbackKO = function(data){
         if(data){

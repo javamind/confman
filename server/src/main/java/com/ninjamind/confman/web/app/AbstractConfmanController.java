@@ -91,7 +91,7 @@ public abstract class AbstractConfmanController<
     }
 
     /**
-     * Create one entity by its identifiant
+     * Delete one entity by its identifiant
      * @return
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

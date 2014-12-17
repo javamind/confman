@@ -1,6 +1,9 @@
 package com.ninjamind.confman.config;
 
-import com.ninjamind.confman.security.*;
+import com.ninjamind.confman.security.AjaxAuthenticationFailureHandler;
+import com.ninjamind.confman.security.AjaxAuthenticationSuccessHandler;
+import com.ninjamind.confman.security.AjaxLogoutSuccessHandler;
+import com.ninjamind.confman.security.Http401UnauthorizedEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +11,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.authentication.RememberMeAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -17,14 +19,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
-import org.springframework.security.web.authentication.RememberMeServices;
 
 /**
  * @author Guillaume EHRET
@@ -50,9 +50,6 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    @Autowired
-    private RememberMeServices rememberMeServices;
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new StandardPasswordEncoder();
@@ -67,17 +64,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
     @Bean
     @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
     public UserDetails authenticatedUserDetails() {
-        SecurityContextHolder.getContext().getAuthentication();
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null) {
-            if (authentication instanceof UsernamePasswordAuthenticationToken) {
-                return (UserDetails) ((UsernamePasswordAuthenticationToken) authentication).getPrincipal();
-            }
-            if (authentication instanceof RememberMeAuthenticationToken) {
-                return (UserDetails) ((RememberMeAuthenticationToken) authentication).getPrincipal();
-            }
-        }
-        return null;
+        return (UserDetails) SecurityContextHolder.getContext().getAuthentication();
     }
 
 
@@ -94,10 +81,6 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                     .authenticationEntryPoint(authenticationEntryPoint)
                     .and()
-                .rememberMe()
-                    .rememberMeServices(rememberMeServices)
-                    .key(env.getProperty("confman.security.rememberme.key"))
-                .and()
                 .formLogin()
                     .loginProcessingUrl("/app/authentication")
                     .successHandler(ajaxAuthenticationSuccessHandler)

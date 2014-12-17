@@ -36,17 +36,3 @@ CREATE TABLE T_USER_AUTHORITY
 WITH (
   OIDS=FALSE
 );
-
-CREATE TABLE T_PERSISTENT_TOKEN
-(
-  series character varying(255) NOT NULL,
-  user_login character varying(50) REFERENCES T_USER (login),
-  token_value character varying(255) NOT NULL,
-  token_date date,
-  ip_address character varying(39),
-  user_agent character varying(255),
-  CONSTRAINT persistent_token_pk PRIMARY KEY (series)
-)
-WITH (
-  OIDS=FALSE
-);

@@ -6,7 +6,6 @@ import com.ninjamind.confman.exception.FoundException;
 import com.ninjamind.confman.exception.NotFoundException;
 import com.ninjamind.confman.repository.ApplicationtRepository;
 import com.ninjamind.confman.repository.InstanceRepository;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,15 +57,9 @@ public class InstanceFacadeImpl implements InstanceFacade {
     }
 
     @Override
-    public Instance create(Instance entity) {
-        //We see if an entity exist
-        Instance instance = instanceRepository.findByCode(entity.getCode(), entity.getApplication().getCode(), entity.getEnvironment().getCode());
-        if (instance != null) {
-            //All the proprieties are copied except the version number
-            BeanUtils.copyProperties(entity, instance, "id", "version");
-            return instance.setActive(true);
-        }
-        updateTracability(instance);
-        return getRepository().save(entity.setActive(true));
+    public Instance findByCode(Instance entity) {
+        return instanceRepository.findByCode(entity.getCode(), entity.getApplication().getCode(), entity.getEnvironment().getCode());
     }
+
+
 }

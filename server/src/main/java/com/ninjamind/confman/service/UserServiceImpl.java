@@ -4,6 +4,7 @@ import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.ninjamind.confman.domain.Authority;
+import com.ninjamind.confman.domain.TrackingVersion;
 import com.ninjamind.confman.domain.User;
 import com.ninjamind.confman.repository.AuthorityRepository;
 import com.ninjamind.confman.repository.UserRepository;
@@ -11,11 +12,13 @@ import com.ninjamind.confman.security.AuthoritiesConstants;
 import com.ninjamind.confman.security.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -80,29 +83,43 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public User findByCode(User entity) {
+        return userRepository.findOne(entity.getLogin());
+    }
+
+    @Override
+    public User update(User entity){
+        return create(entity);
+    }
+
+    @Override
     public User create(User user) {
         Preconditions.checkNotNull(user, "user is required");
         Preconditions.checkNotNull(user.getLogin(), "login is required");
         Preconditions.checkNotNull(user.getPassword(), "password is required");
 
-        //We change the password with newone encrypted
-        String encryptedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encryptedPassword);
+        //We see if user exist
+        User userAttached = userRepository.findOne(user.getLogin());
+        if (userAttached == null) {
+            userAttached = user;
+        }
+        else {
+            //All the proprieties are copied except the version number
+            BeanUtils.copyProperties(user, userAttached, "login", "version");
+        }
+        updateTracability(userAttached);
+        userAttached.setActivated(true);
+        userAttached.setActive(true);
+        userAttached.setActiveChangeDate(new Date());
+
+        //The default language is en
+        userAttached.setLangKey(Objects.firstNonNull(user.getLangKey(), "en"));
 
         //The profiles are checked and attach with session
         Set<Authority> authorities = new HashSet<>();
         for(Authority authority : user.getAuthorities()){
-            Authority authorityAttached = authorityRepository.findOne(authority.getName());
-            if(authorityAttached==null){
-                throw new IllegalArgumentException("One of the profiles is not known");
-            }
+            userAttached.getAuthorities().add(authorityRepository.findOne(authority.getName()));
         }
-
-        //The default language is en
-        user.setLangKey(Objects.firstNonNull(user.getLangKey(), "en"));
-
-        userRepository.save(user);
-        log.debug("Created Information for User: {}", user);
-        return user;
+        return userRepository.save(userAttached);
     }
 }

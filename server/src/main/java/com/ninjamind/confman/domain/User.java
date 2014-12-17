@@ -83,10 +83,6 @@ public class User  implements TracableEntity<User> {
             inverseJoinColumns = {@JoinColumn(name = "name", referencedColumnName = "name")})
     private Set<Authority> authorities = new HashSet<>();
 
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
-    private Set<PersistentToken> persistentTokens = new HashSet<>();
-
     public String getLogin() {
         return login;
     }
@@ -201,15 +197,6 @@ public class User  implements TracableEntity<User> {
 
     public User setChangeUser(String changeUser) {
         this.changeUser = changeUser;
-        return this;
-    }
-
-    public Set<PersistentToken> getPersistentTokens() {
-        return persistentTokens;
-    }
-
-    public User setPersistentTokens(Set<PersistentToken> persistentTokens) {
-        this.persistentTokens = persistentTokens;
         return this;
     }
 

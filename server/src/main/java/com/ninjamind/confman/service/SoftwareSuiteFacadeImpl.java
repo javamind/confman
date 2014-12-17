@@ -1,5 +1,6 @@
 package com.ninjamind.confman.service;
 
+import com.ninjamind.confman.domain.ParameterGroupment;
 import com.ninjamind.confman.domain.SoftwareSuite;
 import com.ninjamind.confman.domain.SoftwareSuiteEnvironment;
 import com.ninjamind.confman.repository.EnvironmentRepository;
@@ -67,11 +68,8 @@ public class SoftwareSuiteFacadeImpl implements SoftwareSuiteFacade{
         return suiteSaved;
     }
 
-
     @Override
-    public SoftwareSuite create(SoftwareSuite entity) {
-        //We have no logical deletion
-        updateTracability(entity);
-        return getRepository().save(entity.setActive(true));
+    public SoftwareSuite findByCode(SoftwareSuite entity) {
+        return getRepository().findByCode(entity.getCode());
     }
 }

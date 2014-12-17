@@ -6,6 +6,7 @@
 angular.module('confman').controller('appCtrl', ['$scope', '$timeout', '$mdSidenav', '$http', 'constants','AuthenticationSharedService',
     function($scope, $timeout, $mdSidenav, $http, constants, AuthenticationSharedService) {
         $scope.callbackOK();
+        $scope.errorUrl = null;
 
         var leftNav;
         $timeout(function() {
@@ -34,7 +35,7 @@ angular.module('confman').controller('appCtrl', ['$scope', '$timeout', '$mdSiden
 
         $http.get(constants.urlserver + 'app/environment')
             .success(function (data) {
-                $scope.errorUrl = "";
+                $scope.errorUrl = null;
             })
             .error(function () {
                 $scope.errorUrl = "Impossible to dialog with confman server. Verify the server port in the config file [CONFMAN_PATH]/app/config.js";

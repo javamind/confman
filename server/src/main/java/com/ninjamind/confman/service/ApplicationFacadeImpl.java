@@ -54,16 +54,8 @@ public class ApplicationFacadeImpl implements ApplicationFacade {
     }
 
     @Override
-    public Application create(Application entity) {
-        //We see if an entity exist
-        Application app = applicationRepository.findByCode(entity.getCode());
-        if (app != null) {
-            //All the proprieties are copied except the version number
-            BeanUtils.copyProperties(entity, app, "id", "version");
-            return app.setActive(true);
-        }
-        updateTracability(app);
-        return getRepository().save(entity.setActive(true));
+    public Application findByCode(Application entity) {
+        return applicationRepository.findByCode(entity.getCode());
     }
 
     @Override

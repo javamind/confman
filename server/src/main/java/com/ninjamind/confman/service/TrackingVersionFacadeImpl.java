@@ -2,12 +2,15 @@ package com.ninjamind.confman.service;
 
 import com.github.zafarkhaja.semver.Version;
 import com.google.common.base.Preconditions;
+import com.ninjamind.confman.domain.SoftwareSuite;
 import com.ninjamind.confman.domain.TrackingVersion;
 import com.ninjamind.confman.repository.TrackingVersionRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
 
 
 /**
@@ -47,15 +50,7 @@ public class TrackingVersionFacadeImpl implements TrackingVersionFacade {
     }
 
     @Override
-    public TrackingVersion create(TrackingVersion entity) {
-        //We see if an entity exist
-        TrackingVersion version = trackingVersionRepository.findByCode(entity.getCode(), entity.getApplicationVersion().getApplication().getCode());
-        if (version != null) {
-            //All the proprieties are copied except the version number
-            BeanUtils.copyProperties(entity, version, "id", "version");
-            return version.setActive(true);
-        }
-        updateTracability(entity);
-        return getRepository().save(entity.setActive(true));
+    public TrackingVersion findByCode(TrackingVersion entity) {
+        return trackingVersionRepository.findByCode(entity.getCode(), entity.getApplicationVersion().getApplication().getCode());
     }
 }

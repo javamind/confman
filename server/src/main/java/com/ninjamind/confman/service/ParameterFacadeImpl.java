@@ -1,9 +1,7 @@
 package com.ninjamind.confman.service;
 
 import com.google.common.base.Objects;
-import com.ninjamind.confman.domain.Application;
-import com.ninjamind.confman.domain.Parameter;
-import com.ninjamind.confman.domain.ParameterType;
+import com.ninjamind.confman.domain.*;
 import com.ninjamind.confman.exception.FoundException;
 import com.ninjamind.confman.exception.NotFoundException;
 import com.ninjamind.confman.repository.ApplicationtRepository;
@@ -67,15 +65,7 @@ public class ParameterFacadeImpl implements ParameterFacade {
     }
 
     @Override
-    public Parameter create(Parameter entity) {
-        //We see if an entity exist
-        Parameter param = parameterRepository.findByCode(entity.getApplication().getCode(), entity.getCode());
-        updateTracability(entity);
-        if (param != null) {
-            //All the proprieties are copied except the version number
-            BeanUtils.copyProperties(entity, param, "id", "version");
-            return param.setActive(true);
-        }
-        return getRepository().save(entity.setActive(true));
+    public Parameter findByCode(Parameter entity) {
+        return parameterRepository.findByCode(entity.getApplication().getCode(), entity.getCode());
     }
 }

@@ -25,5 +25,7 @@ public interface TracableEntity<T extends TracableEntity> extends Serializable{
 
     public T setChangeUser(String changeUser);
 
+    public Boolean isActive();
+
     public T setActive(Boolean active);
 }

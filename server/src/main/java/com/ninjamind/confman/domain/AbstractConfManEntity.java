@@ -14,6 +14,7 @@ import java.util.Date;
 @MappedSuperclass
 public abstract class AbstractConfManEntity<T extends AbstractConfManEntity> implements TracableEntity<T>{
 
+
     /**
      * Code
      */

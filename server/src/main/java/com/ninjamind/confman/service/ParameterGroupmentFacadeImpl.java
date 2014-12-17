@@ -1,5 +1,6 @@
 package com.ninjamind.confman.service;
 
+import com.ninjamind.confman.domain.Parameter;
 import com.ninjamind.confman.domain.ParameterGroupment;
 import com.ninjamind.confman.repository.ParameterGroupmentRepository;
 import org.springframework.beans.BeanUtils;
@@ -28,17 +29,8 @@ public class ParameterGroupmentFacadeImpl implements GenericFacade<ParameterGrou
         return ParameterGroupment.class;
     }
 
-
     @Override
-    public ParameterGroupment create(ParameterGroupment entity) {
-        //We see if an entity exist
-        ParameterGroupment parameterGroupment = parameterGroupmentRepository.findByCode(entity.getCode());
-        if (parameterGroupment != null) {
-            //All the proprieties are copied except the version number
-            BeanUtils.copyProperties(entity, parameterGroupment, "id", "version");
-            return parameterGroupment.setActive(true);
-        }
-        updateTracability(parameterGroupment);
-        return getRepository().save(entity.setActive(true));
+    public ParameterGroupment findByCode(ParameterGroupment entity) {
+        return parameterGroupmentRepository.findByCode(entity.getCode());
     }
 }

@@ -26,8 +26,8 @@
         "form": {
             "username": "Login",
             "username.placeholder": "Votre login",
-            "newpassword": "Nouveau mot de passe",
-            "newpassword.placeholder": "Nouveau mot de passe",
+            "newpassword": "Mot de passe",
+            "newpassword.placeholder": "Mot de passe",
             "confirmpassword": "Confirmation mot de passe",
             "confirmpassword.placeholder": "Confirmation du nouveau mot de passe",
             "confirmdelete": "Confirmation de la suppression",

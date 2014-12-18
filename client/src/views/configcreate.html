@@ -40,7 +40,9 @@
                                 ng-options="applicationVersion.id as applicationVersion.code for applicationVersion in applicationVersions">
                             <option value="" translate="global.form.version">Versions</option>
                         </select>
-                        <span ng-show="form.applicationVersion.$error.required" class="confman-label-error"><small translate="pcreate.messages.error.versionrequired">application version is required</small></span>
+                        <span ng-show="form.applicationVersion.$error.required" class="confman-label-error">
+                            <small translate="pcreate.messages.error.versionrequired">application version is required</small>
+                        </span>
                     </div>
                     <div class="col-md-4">
                         <div class="confman-btn">
@@ -81,12 +83,15 @@
                                     <h3>{{param.code}} :</h3>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" id="data-param{{param.id}}" ng-model="param.label"
+                                    <input type="text" ng-model="param.label" ng-hide="param.password"
+                                           ng-readonly="lockVersion"
+                                           class="form-control input-sm confman-input-param-env">
+                                    <input type="password" ng-model="param.label" ng-show="param.password"
                                            ng-readonly="lockVersion"
                                            class="form-control input-sm confman-input-param-env">
                                 </div>
                                 <div class="col-md-3">
-                                    <small><span translate="pcreate.messages.info.oldvalue">old value</span>: {{param.oldValue}}</small>
+                                    <small><span translate="pcreate.messages.info.oldvalue">old value</span>: {{param.oldValue | displayPassword:param.password}}</small>
                                 </div>
                                 <div class="col-md-2">
                                     <small ng-show="param.toDelete"><b translate="pcreate.messages.info.willdelete">will be deleted on saving</b></small>

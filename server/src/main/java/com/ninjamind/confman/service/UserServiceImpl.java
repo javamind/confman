@@ -111,6 +111,8 @@ public class UserServiceImpl implements UserService{
         userAttached.setActivated(true);
         userAttached.setActive(true);
         userAttached.setActiveChangeDate(new Date());
+        //the password is crypted
+        userAttached.setPassword(passwordEncoder.encode(userAttached.getPassword()));
 
         //The default language is en
         userAttached.setLangKey(Objects.firstNonNull(user.getLangKey(), "en"));

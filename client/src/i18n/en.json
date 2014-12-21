@@ -117,6 +117,15 @@
             }
         }
     },
+    "error" : {
+        "title": "Error",
+        "description" : "",
+        "messages": {
+            "error": {
+                "authent" :"You have no access to this page. Contact your administrator"
+            }
+        }
+    },
     "user" : {
         "title": "User",
         "description" : "You can add the users who are allowed to use Confman. The rights are different according to the profile",

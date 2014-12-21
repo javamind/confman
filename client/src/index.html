@@ -39,33 +39,33 @@
         Settings
         </button>
         <a class="menu-item menu-sub-item" href="#/environment" ng-click="toggleLeft()"
-           ng-class="{active : isConfmanPageSelected(['env'])}">
+           ng-class="{active : isConfmanPageSelected(['env'])}" ng-show="isAuthorized(userRoles.all)">
             <span translate="global.menu.environment">Environment</span>
         </a>
         <a class="menu-item menu-sub-item" href="#/softwaresuite" ng-click="toggleLeft()"
-           ng-class="{active : isConfmanPageSelected(['soft'])}">
+           ng-class="{active : isConfmanPageSelected(['soft'])}" ng-show="isAuthorized(userRoles.all)">
             <span translate="global.menu.softwaresuite">Software suite</span>
         </a>
         <a class="menu-item menu-sub-item" href="#/application" ng-click="toggleLeft()"
-           ng-class="{active : isConfmanPageSelected(['app'])}">
+           ng-class="{active : isConfmanPageSelected(['app'])}" ng-show="isAuthorized(userRoles.all)">
             <span translate="global.menu.application">Application</span>
         </a>
 
-        <button class="menu-item menu-title"
+        <button class="menu-item menu-title" ng-show="isAuthorized(userRoles.dev, userRoles.ops)"
                 ng-class="{active : isConfmanPageSelected(['confcreate','confcomp','confsearch'])}"
                 translate="global.menu.config">
             Configuration
         </button>
         <a class="menu-item menu-sub-item" href="#/config/search" ng-click="toggleLeft()"
-           ng-class="{active : isConfmanPageSelected(['confsearch'])}">
+           ng-class="{active : isConfmanPageSelected(['confsearch'])}" ng-show="isAuthorized(userRoles.dev, userRoles.ops)">
             <span translate="global.menu.find">Find</span>
         </a>
         <a class="menu-item menu-sub-item" href="#/config/create" ng-click="toggleLeft()"
-           ng-class="{active : isConfmanPageSelected(['confcreate'])}">
+           ng-class="{active : isConfmanPageSelected(['confcreate'])}" ng-show="isAuthorized(userRoles.dev, userRoles.ops)">
             <span translate="global.menu.create">Create</span>
         </a>
         <a class="menu-item menu-sub-item" href="#/config/compare" ng-click="toggleLeft()"
-           ng-class="{active : isConfmanPageSelected(['confcomp'])}">
+           ng-class="{active : isConfmanPageSelected(['confcomp'])}" ng-show="isAuthorized(userRoles.dev, userRoles.ops)">
             <span translate="global.menu.compare"> Compare</span>
         </a>
 
@@ -76,7 +76,7 @@
             Administration
         </button>
         <a class="menu-item menu-sub-item" href="#/user" ng-click="toggleLeft()"
-           ng-class="{active : isConfmanPageSelected(['user'])}">
+           ng-class="{active : isConfmanPageSelected(['user'])}" ng-show="isAuthorized(userRoles.admin)">
             <span translate="global.menu.user">User</span>
         </a>
         <div class="menu-item menu-sub-item" >
@@ -198,6 +198,7 @@
 <script src="js/controller/applicationdetail.js"></script>
 <script src="js/controller/configcompare.js"></script>
 <script src="js/controller/configcreate.js"></script>
+<script src="js/controller/error.js"></script>
 <script src="js/controller/configsearch.js"></script>
 <script src="js/controller/lang.js"></script>
 <script src="js/directive/semver.js"></script>

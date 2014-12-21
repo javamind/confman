@@ -17,7 +17,7 @@ angular.module('confman').controller('environmentCtrl', ['$rootScope', '$scope',
 
         //Load environments
         $scope.environments = Environment.query();
-        $scope.profiles = [USER_ROLES.all, USER_ROLES.dev, USER_ROLES.ops];
+        $scope.profiles = [USER_ROLES.dev, USER_ROLES.ops];
 
 
         //Actions

@@ -103,6 +103,13 @@ confman.config(function ($routeProvider, $translateProvider, $httpProvider, cons
                 authorizedRoles: [USER_ROLES.all]
             }
         })
+        .when('/error', {
+            templateUrl: 'views/error.html',
+            controller:'errorCtrl',
+            access: {
+                authorizedRoles: [USER_ROLES.all]
+            }
+        })
         .otherwise({
             redirectTo: '/',
             access: {
@@ -180,11 +187,10 @@ confman.run(function ($rootScope, constants) {
  */
 confman.run(function($rootScope, $location, $http, AuthenticationSharedService, Session, USER_ROLES) {
     $rootScope.$on('$routeChangeStart', function (event, next) {
-        $rootScope.isAuthorized = false;//AuthenticationSharedService.isAuthorized;
+        $rootScope.isAuthorized = AuthenticationSharedService.isAuthorized;
         $rootScope.userRoles = USER_ROLES;
-        if (next.acces && next.access.authorizedRoles) {
-            AuthenticationSharedService.valid(next.access.authorizedRoles);
-        }
+        AuthenticationSharedService.valid(next.access.authorizedRoles);
+        AuthenticationSharedService.isAuthorizedAndThrowError(next.access.authorizedRoles);
     });
 
     // Call when the the client is confirmed
@@ -213,7 +219,10 @@ confman.run(function($rootScope, $location, $http, AuthenticationSharedService, 
     // Call when the 403 response is returned by the server
     $rootScope.$on('event:auth-notAuthorized', function(rejection) {
         $rootScope.errorMessage = 'errors.403';
-        $location.path('/error').replace();
+        if ($location.path() !==  "/error") {
+            $location.path('/error').replace();
+        }
+
     });
 
     // Call when the user logs out

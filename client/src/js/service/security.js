@@ -20,8 +20,8 @@ angular.module('confman').factory('Session', function () {
 
 angular.module('confman').factory('AuthenticationSharedService', ['$rootScope', '$http', '$translate', 'authService', 'Session', 'LanguageService', 'constants',
     function ($rootScope, $http, $translate, authService, Session, LanguageService, constants) {
-    return {
-        login: function (param) {
+
+        var login = function (param) {
             var data ="username=" + encodeURIComponent(param.username) +"&password=" + encodeURIComponent(param.password) +"&_spring_security_remember_me=" + param.rememberMe +"&submit=Login";
             $http
                 .post(constants.urlserver + 'app/authentication', data, {
@@ -33,22 +33,23 @@ angular.module('confman').factory('AuthenticationSharedService', ['$rootScope', 
                 .success(function (datazz) {
                     $http.get(constants.urlserver + 'app/account')
                         .success(
-                            function(data) {
-                                Session.create(data.login, data.firstName, data.lastName, data.email, data.roles);
-                                $rootScope.account = Session;
-                                authService.loginConfirmed(data);
-                                $rootScope.callbackOK();
-                                $translate.use(data.langKey);
-                                $rootScope.language=data.langKey;
-                            }
-                        );
+                        function(data) {
+                            Session.create(data.login, data.firstName, data.lastName, data.email, data.roles);
+                            $rootScope.account = Session;
+                            authService.loginConfirmed(data);
+                            $rootScope.callbackOK();
+                            $translate.use(data.langKey);
+                            $rootScope.language=data.langKey;
+                        }
+                    );
                 })
                 .error(function () {
                     $rootScope.authenticationError = true;
                     Session.invalidate();
                 });
-        },
-        valid: function (authorizedRoles) {
+        };
+
+        var valid = function (authorizedRoles) {
             $http.get('protected/authentication_check.gif', { ignoreAuthModule: 'ignoreAuthModule'})
                 .success(function (data) {
                     if (!Session.login) {
@@ -70,8 +71,9 @@ angular.module('confman').factory('AuthenticationSharedService', ['$rootScope', 
                     }
                 }
             );
-        },
-        isAuthorized: function (authorizedRoles) {
+        };
+
+        var isAuthorized = function (authorizedRoles) {
             if (!angular.isArray(authorizedRoles)) {
                 if (authorizedRoles == '*') {
                     return true;
@@ -89,8 +91,17 @@ angular.module('confman').factory('AuthenticationSharedService', ['$rootScope', 
             });
 
             return isAuthorized;
-        },
-        logout: function () {
+        };
+
+        var isAuthorizedAndThrowError = function (authorizedRoles) {
+            var result = isAuthorized(authorizedRoles);
+            if(!result){
+                $rootScope.$broadcast('event:auth-notAuthorized', 'error');
+            }
+            return result;
+        };
+
+        var logout = function () {
             $rootScope.authenticationError = false;
             $rootScope.authenticated = false;
             $rootScope.account = null;
@@ -98,6 +109,13 @@ angular.module('confman').factory('AuthenticationSharedService', ['$rootScope', 
             $http.get(constants.urlserver + 'app/logout');
             Session.invalidate();
             authService.loginCancelled();
-        }
+        };
+
+        return {
+            'login': login,
+            'valid': valid,
+            'isAuthorized' : isAuthorized,
+            'isAuthorizedAndThrowError' : isAuthorizedAndThrowError,
+            'logout': logout
     };
 }]);

@@ -2,6 +2,7 @@ package com.ninjamind.confman.dto;
 
 import com.ninjamind.confman.domain.Authority;
 import com.ninjamind.confman.domain.Environment;
+import com.ninjamind.confman.security.AuthoritiesConstants;
 
 /**
  * {@link com.ninjamind.confman.domain.Environment}
@@ -27,13 +28,15 @@ public class EnvironmentDto extends AbstractConfmanAppDto<EnvironmentDto, Enviro
     }
 
     public Environment toDo() {
+        String profile = getProfile() !=null && "*".equals(getProfile()) ? null : getProfile();
+
         return new Environment()
                 .setId(getId())
                 .setCode(getCode())
                 .setLabel(getLabel())
                 .setVersion(getVersion())
                 .setActive(isActive())
-                .setProfil(new Authority().setName(getProfile()));
+                .setProfil(getProfile() !=null ? new Authority().setName(profile) : null);
     }
 
     public String getProfile() {

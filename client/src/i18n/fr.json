@@ -116,6 +116,15 @@
             }
         }
     },
+    "error" : {
+        "title": "Erreur",
+        "description" : "",
+        "messages": {
+            "error": {
+                "authent" :"Vous n'avez pas le droit d'accéder à cette page ou cete fonctionnalité"
+            }
+        }
+    },
     "user" : {
         "title": "Utilisateur",
         "description" : "Vous pouvez ajouter les utilisateurs qui auront le droit d'utiliser Confman. Le niveau des droits dépend du profil choisi",

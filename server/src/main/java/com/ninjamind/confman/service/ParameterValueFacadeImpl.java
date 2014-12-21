@@ -54,6 +54,11 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
     }
 
     @Override
+    public ParameterValue findByCode(ParameterValue entity) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public PaginatedList<ParameterValue> filter(Integer page, Integer nbEltPerPage, ParameterValueSearchBuilder criteria) {
         //we instanciate our paginated list
         PaginatedList<ParameterValue> list =

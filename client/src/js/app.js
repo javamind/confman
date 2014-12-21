@@ -188,9 +188,10 @@ confman.run(function ($rootScope, constants) {
 confman.run(function($rootScope, $location, $http, AuthenticationSharedService, Session, USER_ROLES) {
     $rootScope.$on('$routeChangeStart', function (event, next) {
         $rootScope.isAuthorized = AuthenticationSharedService.isAuthorized;
+        $rootScope.isAuthorizedToModify = AuthenticationSharedService.isAuthorizedToModify;
         $rootScope.userRoles = USER_ROLES;
         AuthenticationSharedService.valid(next.access.authorizedRoles);
-        AuthenticationSharedService.isAuthorizedAndThrowError(next.access.authorizedRoles);
+
     });
 
     // Call when the the client is confirmed
@@ -227,6 +228,6 @@ confman.run(function($rootScope, $location, $http, AuthenticationSharedService, 
 
     // Call when the user logs out
     $rootScope.$on('event:auth-loginCancelled', function() {
-        $location.path('');
+        $location.path('/login');
     });
 });

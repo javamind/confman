@@ -329,7 +329,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
             Environment env = ssenv.getId().getEnvironment();
 
             //We work with all paramaters values associated with the application
-            //TODO considerer date inactivation
+            //TODO considerer date inactivation ==> un param peut etre desactive à j si on modifie version de J-1 param doit apparaitre
             for (Parameter param : application.getParameters()) {
 
                 //The parameter can be specific for an application
@@ -355,6 +355,7 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
                     else{
                         //update denormalize data
                         parameterValues.add(existantParam.get().updateDependencies());
+                        updateTracability(existantParam.get());
                     }
                 }
                 else {
@@ -389,7 +390,9 @@ public class ParameterValueFacadeImpl implements ParameterValueFacade {
                                 }
                                 else{
                                     parameterValues.add(existantParam.get().updateDependencies());
+                                    updateTracability(existantParam.get());
                                 }
+
                             });
                 }
             }

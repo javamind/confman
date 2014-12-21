@@ -93,12 +93,11 @@ angular.module('confman').factory('AuthenticationSharedService', ['$rootScope', 
             return isAuthorized;
         };
 
-        var isAuthorizedAndThrowError = function (authorizedRoles) {
-            var result = isAuthorized(authorizedRoles);
-            if(!result){
-                $rootScope.$broadcast('event:auth-notAuthorized', 'error');
+        var isAuthorizedToModify = function (env) {
+            if (!env.profile || Session.userRoles.indexOf(env.profile) !== -1) {
+                return true;
             }
-            return result;
+            return false;
         };
 
         var logout = function () {
@@ -115,7 +114,7 @@ angular.module('confman').factory('AuthenticationSharedService', ['$rootScope', 
             'login': login,
             'valid': valid,
             'isAuthorized' : isAuthorized,
-            'isAuthorizedAndThrowError' : isAuthorizedAndThrowError,
+            'isAuthorizedToModify' : isAuthorizedToModify,
             'logout': logout
     };
 }]);

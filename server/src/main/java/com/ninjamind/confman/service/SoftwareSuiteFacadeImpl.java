@@ -61,6 +61,7 @@ public class SoftwareSuiteFacadeImpl implements SoftwareSuiteFacade{
                         new SoftwareSuiteEnvironment(
                                 suiteSaved,
                                 environmentRepository.findOne(softwareSuiteEnvironment.getId().getEnvironment().getId())
+                                .setActive(true)
                 ));
                 softwareSuiteEnvironment.setId(null);
             }

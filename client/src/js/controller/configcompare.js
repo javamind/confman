@@ -3,51 +3,51 @@
  * Controller linked to the env list
  */
 angular.module('confman').controller('configCompareCtrl', ['$rootScope', '$scope', '$http', '$filter', 'constants', 'Application', 'Params',
-    function ($rootScope, $scope, $http, $filter, constants, Application, Params) {
-        $rootScope.callbackOK();
+  function ($rootScope, $scope, $http, $filter, constants, Application, Params) {
+    $rootScope.callbackOK();
 
-        //Page definition
-        $rootScope.currentPage = {
-            code: 'confcomp',
-            name: $filter('translate')('pcompare.title'),
-            description: $filter('translate')('pcompare.description'),
-            icon: 'ic_settings_24px'
-        };
+    //Page definition
+    $rootScope.currentPage = {
+      code: 'confcomp',
+      name: $filter('translate')('pcompare.title'),
+      description: $filter('translate')('pcompare.description'),
+      icon: 'ic_settings_24px'
+    };
 
-        $scope.applications = Application.query();
-        $scope.applicationVersions = [];
-        $scope.environments = [];
-        $scope.criteria = {};
+    $scope.applications = Application.query();
+    $scope.applicationVersions = [];
+    $scope.environments = [];
+    $scope.criteria = {};
 
-        $scope.changeApplication = function () {
-            $scope.applicationVersions = [];
-            $scope.environments = [];
-            if ($scope.criteria.idApplication > 0) {
-                Params.getTrackingVersionByIdApp($scope.criteria.idApplication, function (datas) {
-                    $scope.applicationVersions = datas;
-                });
-                Params.getEnvByIdApp($scope.criteria.idApplication, function (datas) {
-                    $scope.environments = datas;
-                });
-            }
-        };
+    $scope.changeApplication = function () {
+      $scope.applicationVersions = [];
+      $scope.environments = [];
+      if ($scope.criteria.idApplication > 0) {
+        Params.getTrackingVersionByIdApp($scope.criteria.idApplication, function (datas) {
+          $scope.applicationVersions = datas;
+        });
+        Params.getEnvByIdApp($scope.criteria.idApplication, function (datas) {
+          $scope.environments = datas;
+        });
+      }
+    };
 
-        $scope.compareVersion = function () {
-            //We call twice the API to load versions
-            Params.compareVersion(
-                $scope,
-                {
-                    idEnvironment: $scope.criteria.idEnvironment1,
-                    idTrackingVersion: $scope.criteria.idApplicationVersion1
-                },
-                {
-                    idEnvironment: $scope.criteria.idEnvironment2,
-                    idTrackingVersion: $scope.criteria.idApplicationVersion2
-                },
-                function(datas){
-                    $scope.listecomp = datas;
-                }
-            );
-        };
-    }
+    $scope.compareVersion = function () {
+      //We call twice the API to load versions
+      Params.compareVersion(
+        $scope,
+        {
+          idEnvironment: $scope.criteria.idEnvironment1,
+          idTrackingVersion: $scope.criteria.idApplicationVersion1
+        },
+        {
+          idEnvironment: $scope.criteria.idEnvironment2,
+          idTrackingVersion: $scope.criteria.idApplicationVersion2
+        },
+        function (datas) {
+          $scope.listecomp = datas;
+        }
+      );
+    };
+  }
 ]);

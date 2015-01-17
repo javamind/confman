@@ -1,6 +1,6 @@
-angular.module('confmanFilters', []);
+'use strict';
 
-angular.module('confmanFilters')
+angular.module('confman.filters')
     //Help to mask password on screen
     .filter('displayPassword', function() {
         return function(param, password) {

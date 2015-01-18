@@ -19,7 +19,7 @@ angular.module('confman').factory('Session', function () {
 angular.module('confman').factory('AuthenticationSharedService', ['$rootScope', '$http', '$translate', 'authService', 'Session', 'LanguageService', 'constants',
   function ($rootScope, $http, $translate, authService, Session, LanguageService, constants) {
 
-    var login = function (param) {
+    function login(param) {
       var data = "username=" + encodeURIComponent(param.username) + "&password=" + encodeURIComponent(param.password) + "&_spring_security_remember_me=" + param.rememberMe + "&submit=Login";
       $http
         .post(constants.urlserver + 'app/authentication', data, {
@@ -47,7 +47,7 @@ angular.module('confman').factory('AuthenticationSharedService', ['$rootScope', 
         });
     };
 
-    var valid = function (authorizedRoles) {
+    function valid(authorizedRoles) {
       $http.get('protected/authentication_check.gif', { ignoreAuthModule: 'ignoreAuthModule'})
         .success(function (data) {
           if (!Session.login) {
@@ -71,7 +71,7 @@ angular.module('confman').factory('AuthenticationSharedService', ['$rootScope', 
       );
     };
 
-    var isAuthorized = function (authorizedRoles) {
+    function isAuthorized(authorizedRoles) {
       if (!angular.isArray(authorizedRoles)) {
         if (authorizedRoles == '*') {
           return true;
@@ -91,14 +91,14 @@ angular.module('confman').factory('AuthenticationSharedService', ['$rootScope', 
       return isAuthorized;
     };
 
-    var isAuthorizedToModify = function (env) {
+    function isAuthorizedToModify(env) {
       if (!env.profile || Session.userRoles.indexOf(env.profile) !== -1) {
         return true;
       }
       return false;
     };
 
-    var logout = function () {
+    function logout() {
       $rootScope.authenticationError = false;
       $rootScope.authenticated = false;
       $rootScope.account = null;
